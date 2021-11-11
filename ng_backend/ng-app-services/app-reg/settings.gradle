@@ -1,0 +1,5 @@
+rootProject.name = 'app-reg'
+include 'app-reg-web'
+include 'app-reg-client'
+
+

@@ -1,0 +1,13 @@
+version: '3'
+services:
+  applicationregistration:
+    container_name: appreg
+    image: app-reg-jib
+    ports:
+      - "8088:8082"
+  ng-demo-app:
+    container_name: ng-demo-api
+    image: app-services/ng-demo-api
+    ports:
+      - "8080:8081"
+  

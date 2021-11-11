@@ -1,0 +1,117 @@
+<UX type="page">
+    <UX type="section">
+        <UX type="card" body-class="p-0 m-0">
+            <UX type="section" ux-class="w-100 mb-4">
+                <UX
+                    type="header"
+                    size="4"
+                    id="contact_header"
+                    className="p-4 ux-bg-primary text-light rounded"
+                    labelKey="case_association"
+                >
+                </UX>
+                <UX linkWith="contact_header" position="right" type="tooltip">
+                    <UX type="section">
+                        Case Association
+                    </UX>
+                </UX>
+            </UX>
+            <UX type="section" className="align-self-center container-md mb-4">
+                <UX type="section">
+                    <UX
+                        type="header"
+                        header-size="4"
+                        labelKey="cases_involvment_for"
+                        class="sectionHeader"
+                        labelSubstitute='{`{"name":"selectedPerson.name","dob":"selectedPerson.dateOfBirth","ssn":"selectedPerson.SSN"}`}'
+                    ></UX>
+                </UX>
+                <UX type="section" className="align-self-center container-md mb-4">
+                    <UX
+                        type="CustomeDataTable"
+                        col-default-headers="Cass/App#,Primary Individual,Status,Status Date,Program(s),Service County"
+                        col-data-keys="caseNum,name,Status,StatusDate,Programs,ServiceCouty"
+                        datacollection="casesInvolved"
+                        keyfield="caseNum"
+                        pagination="default"
+                        hover="false"
+                        pagination-show-total="true"
+                        rowSelection="single"
+                        rowClick="{this.setAssociatedCaseData}"
+                        pagination-size-per-page="5"
+                        striped="true"
+                    >
+                    </UX>
+                </UX>
+                <UX type="section">
+                    <UX type="buttonGroup" groupAlign="center">
+                        <UX
+                            mode="info"
+                            labelKey="associate"
+                            type="button"
+                            col-width="5"
+                            click="{this.associateCase}"
+                        >
+                        </UX>
+                    </UX>
+                </UX>
+                <UX type="section">
+                    <UX
+                        type="header"
+                        header-size="4"
+                        labelKey="individuals"
+                        class="sectionHeader"
+                    ></UX>
+                </UX>
+                <UX type="section" className="align-self-center container-md mb-4">
+                    <!-- <UX
+                        type="CustomeDataTable"
+                        col-default-headers="Name,SSN,Date Of Birth,Client Id,Gender,Active In Case"
+                        col-data-keys="name,SSN,dateOfBirth,clinetId,gender,activeInCase"
+                        datacollection="associatedCase.indvs"
+                        keyfield="personId"
+                        pagination="default"
+                        sortable-col-names="Name,SSN,Date Of Birth,Client Id,Gender,Active In Case"
+                        pagination-show-total="true"
+                        customsearch="personId"
+                        rowSelection="multi"
+                        rowClick="{this.setAssociatedIndvs}"
+                        pagination-size-per-page="5"
+                        renderOnExpand="{this.expandTheRow}"
+                        rowExpand="true"
+                        onSelectAll="{this.selectAllRows}"
+                    >
+                    </UX> -->
+
+                    <UX
+                        type="CustomeDataTable"
+                        col-default-headers="Name,SSN,Date Of Birth,Client Id,Gender,Active In Case"
+                        col-data-keys="name,SSN,dateOfBirth,clinetId,gender,activeInCase"
+                        datacollection="associatedCase.indvs"
+                        sortable-col-names="Name,SSN"
+                        keyfield="personId"
+                        pagination="default"
+                        hover="false"
+                        pagination-show-total="true"
+                        pagination-size-per-page="5"
+                        striped="true"
+                        rowSelection="multi"
+                        rowClick="{this.setAssociatedIndvs}"
+                        pagination-size-per-page="5"
+                        onSelectAll="{this.selectAllRows}"
+                    >
+                    </UX>
+                </UX>
+            </UX>
+        </UX>
+        <UXModule.NPCButtons
+            prevlabelKey="previous_Button"
+            cancellabelKey="exit_Button"
+            nextlabelKey="continue_button"
+            nextdisabled="{!$$associatedCase.selectedCase}"
+            nextclick="{this.goToNextPage}"
+            prevclick="{this.goBack}"
+            cancelclick="{this.goToHomePage}"
+        ></UXModule.NPCButtons>
+    </UX>
+</UX>

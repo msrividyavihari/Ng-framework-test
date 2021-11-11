@@ -1,0 +1,23 @@
+{
+    "search_doc_title": "Search Documents In DIS",
+    "search_doc_criteria": "Search Documents",
+    "search": "SEARCH",
+    "case": "Case",
+    "other_criteria": "Other Criteria",
+    "search_by" : "Search by :",
+    "begin_dt": "Begin Date",
+    "to_dt": "To Date",
+    "doc_recieved_label": "Document Received Date :",
+    "case_app_pound": "Case or Application #",
+    "client_id": "Client ID",
+    "reference_pound": "Reference #",
+    "transaction_pound": "Transaction #",
+    "doc_type": "Document type",
+    "first_name_label": "First Name",
+    "middle_name_label":"Middle Name",
+    "last_name_label":"Last Name",
+    "ssn_label":"SSN",
+    "date_birth_label":"Date Of Birth",
+    "phone_number":"Phone number",
+    "county_label":"County"
+}

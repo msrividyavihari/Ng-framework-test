@@ -1,0 +1,70 @@
+spring:
+  application:
+    name: hearing-appeal	
+  jmx:
+    default-domain: hearing-appeal-${random.int[1,65536]}
+  jta:
+    enabled: false
+  jackson:
+    default-property-inclusion: non_null
+  jpa:
+    show-sql: true
+    open-in-view: false
+    properties:
+        hibernate:
+            dialect: org.hibernate.dialect.Oracle10gDialect
+            current_session_context_class: thread
+            format_sql: true
+            metadata_builder_contributor: com.deloitte.nextgen.framework.persistence.boot.OracleMetadataBuilderContributor
+  datasource:
+     ## https://github.com/brettwooldridge/HikariCP
+    hikari:
+      minimumIdle: 0
+      maximumPoolSize: 20
+      connectionTimeout: 60000       ## Wait max of 1 Min (60 seconds) to fetch a connection from oralce otherwise raise an error
+      idleTimeout: 120000            ## Close connections which are idle for 2 minutes or more (excludes minimum idle connections)
+      maxLifetime: 300000            ## Close not in use connections which are older than 5 or more minutes (including minimum idle connections)
+      leakDetectionThreshold: 3000000  ## lets report any connection leaks for every 300 seconds (Database installed in USI)
+      poolName: nextgen-hearing-appeal-oracle-HikariCP
+      autoCommit: false
+      connectionTestQuery: SELECT 1 FROM DUAL
+    url:  jdbc:oracle:thin:@//172.30.168.17:1521/FATRXDV1
+    username: IE_APP_ONLINE
+    password: IE_APP_ONLINE
+    generate-unique-name: true
+  banner:
+    location: classpath:hearing-appeal-banner.txt
+
+server:
+  servlet:
+    context-path: /hearing-appeal/api
+  port: ${server-port:10101}
+  compression:
+    enabled: true
+
+security:
+  security:
+    testing: true
+
+
+http-client-config:
+  read-time-out: 90s
+  write-time-out: 90s
+  response-time-out: 90s
+
+http:
+  cache:
+    timeToLiveInDays: 0
+
+### Hearing and Appeal application specific properties
+hearing-appeal:
+  data-collection:
+    url: http://localhost:10100/data-collection/api
+    find-by-case-num-end-point: ${hearing-appeal.data-collection.url}/v1/cases/{caseNum}
+
+springdoc:
+  packagesToScan: com.deloitte.nextgen
+  api-docs:
+    resolve-schema-properties: true
+  cache:
+    disabled: true

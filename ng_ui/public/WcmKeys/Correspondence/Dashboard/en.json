@@ -1,0 +1,14 @@
+{
+    "dashboard": "Dashboard",
+    "co_search_criteria" : "Search Criteria",
+    "agency": "Agency :",
+    "notice_id": "Notice Id :",
+    "start_dt": "From Date",
+    "end_dt": "To Date",
+    "search": "Search",
+    "channel": "Channel :",
+    "status": "Status :",
+    "email_details": "Email Details",
+    "text_details": "Text Details",
+    "mail_details": "Mail Details"
+}

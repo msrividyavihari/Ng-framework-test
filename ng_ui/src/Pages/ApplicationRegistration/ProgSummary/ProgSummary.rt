@@ -1,0 +1,32 @@
+<UX type="page">
+    <UX type="card" body-class="p-0 m-0">
+        <UX type="section" ux-class="w-100 mb-4">
+            <UX type="header" size="4" id="contact_header" className="p-4 ux-bg-primary text-light rounded"
+                labelKey="register_prog_summary_title">
+            </UX>
+            <UX linkWith="contact_header" position="right" type="tooltip">
+                <UX type="section">
+                    Register Program - Summary
+                </UX>
+            </UX>
+        </UX>
+
+        <UX type="section" className="align-self-center container-md mb-4">
+            <UX type="dataTable" col-default-headers="Program,Expedited,Persons,Coverage Request Date,Edit,Delete"
+                col-data-keys="program,expedited,persons,coveReqDate,programId"
+                sortable-col-names="Name,SSN,Date of Birth,Gender,Alias Name(s)"
+                customContent="{{'Delete':this.deleteCreation,'Edit':this.editCreation}}"
+                datacollection="programCollection" keyfield="programId" pagination="default" hover="false"
+                sortable-col-names="2" pagination-show-total="true" pagination-size-per-page="5" striped="true">
+            </UX>
+        </UX>
+
+
+
+    </UX>
+
+    <UXModule.NPCButtons prevlabelKey="previous_Button" cancellabelKey="exit_Button" nextlabelKey="continue_button"
+        nextclick="{this.goToNextPage}" prevclick="{this.goBack}" cancelclick="{this.goToHomePage}">
+    </UXModule.NPCButtons>
+
+</UX>

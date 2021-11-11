@@ -1,0 +1,16 @@
+{
+    "YESNO": [
+        {
+            "DESCRIPTION": "Yes",
+            "DESCSPANISH": "Yes",
+            "DESCENGLISH": "Yes",
+            "CODE": "Y"
+        },
+        {
+            "DESCRIPTION": "Np",
+            "DESCSPANISH": "No",
+            "DESCENGLISH": "No",
+            "CODE": "N"
+        }
+    ]
+}

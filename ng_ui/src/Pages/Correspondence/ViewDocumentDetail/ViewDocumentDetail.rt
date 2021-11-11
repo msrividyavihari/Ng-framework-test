@@ -1,0 +1,179 @@
+<UX type="page" ref-table-list="DISDOCTYPE">
+    <UX type="section" ux-class="w-100 app-srch-hd-sec">
+        <UX
+            type="header"
+            size="4"
+            id="pen_dtl_header"
+            className="p-3 co-common-header"
+            labelKey="view_doc_details_title"
+        >
+        </UX>
+    </UX>
+    <UX type="card" ux-class="w-100" body-class="p-0 m-0">
+        <UX type="card">
+        <UX size="4" type="header" labelKey="co_document_title" className="mb-5 srch-hdr" />
+            <UX type="section" className="dtl-sec" col-width="12">
+                <UX size="{1}" type="lineBreak" />
+                <UX
+                    type="group"
+                    flexGroup="true"
+                    flexDirection="row"
+                    flexWrap="false"
+                    flexAlign="start"
+                    flexJustify="start"
+                    childWidths="true"
+                >
+                    <UX
+                        id="appNumber_label"
+                        col-width="6"
+                        labelKey="id_type"
+                        className="app-num-lbl co-lbl"
+                        type="label"
+                    />
+                    <UX type="para" >
+                       {AppContext.model.getValue('viewDocumentDetail.caseNum')}
+                    </UX>
+                </UX>
+                <UX
+                    type="group"
+                    flexGroup="true"
+                    flexDirection="row"
+                    flexWrap="false"
+                    flexAlign="start"
+                    flexJustify="start"
+                    childWidths="true"
+                >
+                    <UX
+                        id="appNumber_label"
+                        col-width="6"
+                        labelKey="client_id"
+                        className="app-num-lbl co-lbl"
+                        type="label"
+                    />
+                    <UX type="para" >
+                        {AppContext.model.getValue('viewDocumentDetail.indvId')}
+                    </UX>
+                </UX>
+                <UX
+                    type="group"
+                    flexGroup="true"
+                    flexDirection="row"
+                    flexWrap="false"
+                    flexAlign="start"
+                    flexJustify="start"
+                    childWidths="true"
+                >
+                    <UX
+                        id="appNumber_label"
+                        col-width="6"
+                        labelKey="doc_type"
+                        className="app-num-lbl co-lbl"
+                        type="label"
+                    />
+                     <UX type="para" >
+                        {AppContext.model.getValue('viewDocumentDetail.docType')}
+                    </UX>
+                </UX>
+                <UX
+                    type="group"
+                    flexGroup="true"
+                    flexDirection="row"
+                    flexWrap="false"
+                    flexAlign="start"
+                    flexJustify="start"
+                    childWidths="true"
+                >
+                    <UX
+                        id="appNumber_label"
+                        col-width="6"
+                        labelKey="ref_pound"
+                        className="app-num-lbl co-lbl"
+                        type="label"
+                    />
+                    <UX type="para" >
+                        {AppContext.model.getValue('viewDocumentDetail.disDocMstrSeqNum')}
+                    </UX>                    
+                </UX>
+                <UX
+                    type="group"
+                    flexGroup="true"
+                    flexDirection="row"
+                    flexWrap="false"
+                    flexAlign="start"
+                    flexJustify="start"
+                    childWidths="true"
+                >
+                    <UX
+                        id="appNumber_label"
+                        col-width="6"
+                        labelKey="transaction"
+                        className="app-num-lbl co-lbl"
+                        type="label"
+                    />
+                    <UX type="para" >
+                        {AppContext.model.getValue('viewDocumentDetail.transactionId')}
+                    </UX>
+                </UX>
+                <UX
+                    type="group"
+                    flexGroup="true"
+                    flexDirection="row"
+                    flexWrap="false"
+                    flexAlign="start"
+                    flexJustify="start"
+                    childWidths="true"
+                >
+                    <UX
+                        id="appNumber_label"
+                        col-width="6"
+                        labelKey="view_download_doc"
+                        className="app-num-lbl co-lbl"
+                        type="label"
+                    />
+                    <UX type="para" >
+                        {this.viewDocumentLink(AppContext.model.getValue('viewDocumentDetail.docuedgeDocumentId'))}
+                    </UX>
+                </UX>
+            </UX>
+            
+            <UX type="section" className="btn-grp">
+                <UX type="group">   
+                    <UX 
+                        type="group"
+                            flexGroup="true"
+                            flexDirection="row"
+                            flexWrap="false"
+                            flexAlign="start"
+                            flexJustify="start"
+                            col-width="12"
+                    >               
+                        <UX
+                            className="mt-5 co-can-btn"
+                            mode="primary"
+                            size="small"
+                            type="button"
+                            click="{this.goBack}"
+                            labelKey="previous"
+                        />
+                            <UX
+                                className="mt-5 co-can-btn"
+                                mode="primary"
+                                size="small"
+                                type="button"
+                                click="{this.metadataChange}"
+                                labelKey="metadata_change"
+                            />
+                            <UX
+                                className="mt-5 co-can-btn"
+                                mode="primary"
+                                size="small"
+                                type="button"
+                                click="{this.linkDelink}"
+                                labelKey="link_delink"
+                            />
+                    </UX>
+                </UX>
+            </UX>
+        </UX>
+    </UX>
+</UX>

@@ -1,0 +1,34 @@
+.hyperLink{
+    font-weight: bolder;
+    text-decoration: underline !important;
+}
+.ng-doc-icon{
+    height: 34px;
+    width: 31px;
+    display: inline-block;
+    background: url('icons/document.JPG');
+    background-repeat: no-repeat;
+    float: left;
+    background-size: 100% 100%;
+}
+.ng-ins-icon{
+    height: 34px;
+    width: 31px;
+    display: inline-block;
+    background: url('icons/Insights.JPG');
+    background-repeat: no-repeat;
+    float: left;
+    background-size: 100% 100%;
+}
+.appRN{
+    font-weight: 500;
+}
+.bullet:before{
+    content: ". ";
+    padding-right: 3%;
+    font-size: xx-large;
+}
+.insightPara{
+    padding-left: 5%;
+    padding-right: 5%;
+}

@@ -1,0 +1,356 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.1.xsd">
+    <changeSet author="nishmehta (generated)" id="1629471414299-1">
+        <createSequence incrementBy="50" sequenceName="AR_APP_1SQ" startValue="1"/>
+    </changeSet>
+    <changeSet author="nishmehta (generated)" id="1629471414299-2">
+        <createSequence incrementBy="30" sequenceName="AR_APP_INDIVIDUAL_1SQ" startValue="1"/>
+    </changeSet>
+    <changeSet author="nishmehta (generated)" id="1629471414299-3">
+        <createSequence incrementBy="30" sequenceName="DC_ADDRESS_1SQ" startValue="1"/>
+    </changeSet>
+    <changeSet author="nishmehta (generated)" id="1629471414299-4">
+        <createSequence incrementBy="30" sequenceName="DC_EMAIL_1SQ" startValue="1"/>
+    </changeSet>
+    <changeSet author="nishmehta (generated)" id="1629471414299-5">
+        <createSequence incrementBy="30" sequenceName="DC_INDIVIDUAL_1SQ" startValue="1"/>
+    </changeSet>
+    <changeSet author="nishmehta (generated)" id="1629471414299-6">
+        <createSequence incrementBy="30" sequenceName="DC_PHONE_1SQ" startValue="1"/>
+    </changeSet>
+    <changeSet author="nishmehta (generated)" id="1629471414299-7">
+        <createTable tableName="AR_APP">
+            <column name="AR_APP_NUM" type="VARCHAR2(15 CHAR)">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="AR_APPPK"/>
+            </column>
+            <column name="ARCHIVE_DT" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CREATE_DT" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CREATE_USER_ID" type="VARCHAR2(30 CHAR)"/>
+            <column name="UNIQUE_TRANS_ID" type="NUMBER(19, 0)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="UPDATE_DT" type="TIMESTAMP"/>
+            <column name="UPDATE_USER_ID" type="VARCHAR2(30 CHAR)"/>
+            <column name="HISTORY_SEQ" type="NUMBER(19, 0)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="nishmehta (generated)" id="1629471414299-8">
+        <createTable tableName="AR_APP_A">
+            <column name="AR_APP_NUM" type="VARCHAR2(15 CHAR)">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="AR_APP_APK"/>
+            </column>
+            <column name="HISTORY_SEQ" type="NUMBER(19, 0)">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="AR_APP_APK"/>
+            </column>
+            <column name="ARCHIVE_DT" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="AUDIT_DT" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="AUDIT_USER_ID" type="VARCHAR2(30 CHAR)"/>
+            <column name="CREATE_DT" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CREATE_USER_ID" type="VARCHAR2(30 CHAR)"/>
+            <column name="UNIQUE_TRANS_ID" type="NUMBER(19, 0)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="UPDATE_DT" type="TIMESTAMP"/>
+            <column name="UPDATE_USER_ID" type="VARCHAR2(30 CHAR)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="nishmehta (generated)" id="1629471414299-9">
+        <createTable tableName="AR_APP_INDIVIDUAL">
+            <column name="AR_INDIVIDUAL_ID" type="NUMBER(19, 0)">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="AR_APP_INDIVIDUALPK"/>
+            </column>
+            <column name="ARCHIVE_DT" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CREATE_DT" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CREATE_USER_ID" type="VARCHAR2(30 CHAR)"/>
+            <column name="UNIQUE_TRANS_ID" type="NUMBER(19, 0)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="UPDATE_DT" type="TIMESTAMP"/>
+            <column name="UPDATE_USER_ID" type="VARCHAR2(30 CHAR)"/>
+            <column name="HISTORY_SEQ" type="NUMBER(19, 0)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="FIRST_NAME" type="VARCHAR2(30 CHAR)"/>
+            <column name="LAST_NAME" type="VARCHAR2(30 CHAR)"/>
+            <column name="MIDDLE_NAME" type="VARCHAR2(30 CHAR)"/>
+            <column name="AR_APP_NUM" type="VARCHAR2(15 CHAR)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="nishmehta (generated)" id="1629471414299-10">
+        <createTable tableName="AR_APP_INDIVIDUAL_A">
+            <column name="AR_INDIVIDUAL_ID" type="NUMBER(19, 0)">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="AR_APP_INDIVIDUAL_APK"/>
+            </column>
+            <column name="HISTORY_SEQ" type="NUMBER(19, 0)">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="AR_APP_INDIVIDUAL_APK"/>
+            </column>
+            <column name="ARCHIVE_DT" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="AUDIT_DT" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="AUDIT_USER_ID" type="VARCHAR2(30 CHAR)"/>
+            <column name="CREATE_DT" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CREATE_USER_ID" type="VARCHAR2(30 CHAR)"/>
+            <column name="UNIQUE_TRANS_ID" type="NUMBER(19, 0)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="UPDATE_DT" type="TIMESTAMP"/>
+            <column name="UPDATE_USER_ID" type="VARCHAR2(30 CHAR)"/>
+            <column name="AR_APP_NUM" type="VARCHAR2(255 CHAR)"/>
+            <column name="FIRST_NAME" type="VARCHAR2(30 CHAR)"/>
+            <column name="LAST_NAME" type="VARCHAR2(30 CHAR)"/>
+            <column name="MIDDLE_NAME" type="VARCHAR2(30 CHAR)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="nishmehta (generated)" id="1629471414299-11">
+        <createTable tableName="DC_ADDRESS">
+            <column name="ADDRESS_ID" type="NUMBER(19, 0)">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="DC_ADDRESSPK"/>
+            </column>
+            <column name="ARCHIVE_DT" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CREATE_DT" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CREATE_USER_ID" type="VARCHAR2(30 CHAR)"/>
+            <column name="UNIQUE_TRANS_ID" type="NUMBER(19, 0)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="UPDATE_DT" type="TIMESTAMP"/>
+            <column name="UPDATE_USER_ID" type="VARCHAR2(30 CHAR)"/>
+            <column name="HISTORY_SEQ" type="NUMBER(19, 0)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ACTIVE_SW" type="NUMBER(10, 0)"/>
+            <column name="ADDRESS_LINE_ONE" type="VARCHAR2(50 CHAR)"/>
+            <column name="ADDRESS_LINE_TWO" type="VARCHAR2(50 CHAR)"/>
+            <column name="ADDRESS_TYPE_CD" type="VARCHAR2(2 CHAR)"/>
+            <column name="CITY" type="NUMBER(19, 0)"/>
+            <column name="STATE" type="NUMBER(19, 0)"/>
+            <column name="ZIP_CODE" type="VARCHAR2(10 CHAR)"/>
+            <column name="INDIVIDUAL_ID" type="NUMBER(19, 0)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="nishmehta (generated)" id="1629471414299-12">
+        <createTable tableName="DC_ADDRESS_A">
+            <column name="ADDRESS_ID" type="NUMBER(19, 0)">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="DC_ADDRESS_APK"/>
+            </column>
+            <column name="HISTORY_SEQ" type="NUMBER(19, 0)">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="DC_ADDRESS_APK"/>
+            </column>
+            <column name="ARCHIVE_DT" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="AUDIT_DT" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="AUDIT_USER_ID" type="VARCHAR2(30 CHAR)"/>
+            <column name="CREATE_DT" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CREATE_USER_ID" type="VARCHAR2(30 CHAR)"/>
+            <column name="UNIQUE_TRANS_ID" type="NUMBER(19, 0)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="UPDATE_DT" type="TIMESTAMP"/>
+            <column name="UPDATE_USER_ID" type="VARCHAR2(30 CHAR)"/>
+            <column name="ACTIVE_SW" type="NUMBER(10, 0)"/>
+            <column name="ADDRESS_LINE_ONE" type="VARCHAR2(50 CHAR)"/>
+            <column name="ADDRESS_LINE_TWO" type="VARCHAR2(50 CHAR)"/>
+            <column name="ADDRESS_TYPE_CD" type="VARCHAR2(2 CHAR)"/>
+            <column name="CITY" type="NUMBER(19, 0)"/>
+            <column name="INDIVIDUAL_ID" type="NUMBER(19, 0)"/>
+            <column name="STATE" type="NUMBER(19, 0)"/>
+            <column name="ZIP_CODE" type="VARCHAR2(10 CHAR)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="nishmehta (generated)" id="1629471414299-13">
+        <createTable tableName="DC_EMAIL">
+            <column name="ID" type="NUMBER(19, 0)">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="DC_EMAILPK"/>
+            </column>
+            <column name="ARCHIVE_DT" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CREATE_DT" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CREATE_USER_ID" type="VARCHAR2(30 CHAR)"/>
+            <column name="UNIQUE_TRANS_ID" type="NUMBER(19, 0)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="UPDATE_DT" type="TIMESTAMP"/>
+            <column name="UPDATE_USER_ID" type="VARCHAR2(30 CHAR)"/>
+            <column name="CONTACT_TYPE_CD" type="VARCHAR2(1 CHAR)"/>
+            <column name="EMAIL_ID" type="VARCHAR2(100 CHAR)"/>
+            <column name="INDIVIDUAL_ID" type="NUMBER(19, 0)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="nishmehta (generated)" id="1629471414299-14">
+        <createTable tableName="DC_INDIVIDUAL">
+            <column name="INDIVIDUAL_ID" type="NUMBER(19, 0)">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="DC_INDIVIDUALPK"/>
+            </column>
+            <column name="ARCHIVE_DT" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CREATE_DT" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CREATE_USER_ID" type="VARCHAR2(30 CHAR)"/>
+            <column name="UNIQUE_TRANS_ID" type="NUMBER(19, 0)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="UPDATE_DT" type="TIMESTAMP"/>
+            <column name="UPDATE_USER_ID" type="VARCHAR2(30 CHAR)"/>
+            <column name="HISTORY_SEQ" type="NUMBER(19, 0)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="BIRTH_DATE" type="date"/>
+            <column name="BIRTH_TIME" type="date"/>
+            <column name="FIRST_NAME" type="VARCHAR2(30 CHAR)"/>
+            <column name="LAST_NAME" type="VARCHAR2(30 CHAR)"/>
+            <column name="MIDDLE_NAME" type="VARCHAR2(30 CHAR)"/>
+            <column name="SSN" type="VARCHAR2(15 CHAR)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="nishmehta (generated)" id="1629471414299-15">
+        <createTable tableName="DC_INDIVIDUAL_A">
+            <column name="HISTORY_SEQ" type="NUMBER(19, 0)">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="DC_INDIVIDUAL_APK"/>
+            </column>
+            <column name="INDIVIDUAL_ID" type="NUMBER(19, 0)">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="DC_INDIVIDUAL_APK"/>
+            </column>
+            <column name="ARCHIVE_DT" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="AUDIT_DT" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="AUDIT_USER_ID" type="VARCHAR2(30 CHAR)"/>
+            <column name="CREATE_DT" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CREATE_USER_ID" type="VARCHAR2(30 CHAR)"/>
+            <column name="UNIQUE_TRANS_ID" type="NUMBER(19, 0)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="UPDATE_DT" type="TIMESTAMP"/>
+            <column name="UPDATE_USER_ID" type="VARCHAR2(30 CHAR)"/>
+            <column name="BIRTH_DATE" type="date"/>
+            <column name="BIRTH_TIME" type="date"/>
+            <column name="FIRST_NAME" type="VARCHAR2(30 CHAR)"/>
+            <column name="LAST_NAME" type="VARCHAR2(30 CHAR)"/>
+            <column name="MIDDLE_NAME" type="VARCHAR2(30 CHAR)"/>
+            <column name="SSN" type="VARCHAR2(15 CHAR)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="nishmehta (generated)" id="1629471414299-16">
+        <createTable tableName="DC_PHONE">
+            <column name="ID" type="NUMBER(19, 0)">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="DC_PHONEPK"/>
+            </column>
+            <column name="ARCHIVE_DT" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CREATE_DT" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CREATE_USER_ID" type="VARCHAR2(30 CHAR)"/>
+            <column name="UNIQUE_TRANS_ID" type="NUMBER(19, 0)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="UPDATE_DT" type="TIMESTAMP"/>
+            <column name="UPDATE_USER_ID" type="VARCHAR2(30 CHAR)"/>
+            <column name="CONTACT_TYPE_CD" type="VARCHAR2(1 CHAR)"/>
+            <column name="PHONE_NUMBER" type="VARCHAR2(255 CHAR)"/>
+            <column name="INDIVIDUAL_ID" type="NUMBER(19, 0)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="nishmehta (generated)" id="1629471414299-17">
+        <createTable tableName="EMPLOYEE">
+            <column name="EMPLOYEE_ID" type="NUMBER(19, 0)">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="EMPLOYEEPK"/>
+            </column>
+            <column name="ID" type="NUMBER(19, 0)">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="EMPLOYEEPK"/>
+            </column>
+            <column name="ARCHIVE_DT" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CREATE_DT" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CREATE_USER_ID" type="VARCHAR2(30 CHAR)"/>
+            <column name="UNIQUE_TRANS_ID" type="NUMBER(19, 0)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="UPDATE_DT" type="TIMESTAMP"/>
+            <column name="UPDATE_USER_ID" type="VARCHAR2(30 CHAR)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="nishmehta (generated)" id="1629471414299-18">
+        <addForeignKeyConstraint baseColumnNames="INDIVIDUAL_ID" baseTableName="DC_PHONE" constraintName="FK22vp6fho416dbg86merw9ke1s" deferrable="false" initiallyDeferred="false" referencedColumnNames="INDIVIDUAL_ID" referencedTableName="DC_INDIVIDUAL" validate="true"/>
+    </changeSet>
+    <changeSet author="nishmehta (generated)" id="1629471414299-19">
+        <addForeignKeyConstraint baseColumnNames="AR_APP_NUM" baseTableName="AR_APP_INDIVIDUAL" constraintName="FKfn43vv0txflv6chldj6dcinck" deferrable="false" initiallyDeferred="false" referencedColumnNames="AR_APP_NUM" referencedTableName="AR_APP" validate="true"/>
+    </changeSet>
+    <changeSet author="nishmehta (generated)" id="1629471414299-20">
+        <addForeignKeyConstraint baseColumnNames="INDIVIDUAL_ID" baseTableName="DC_ADDRESS" constraintName="FKqu3dmivcmxkuajv8ptjpaq3ty" deferrable="false" initiallyDeferred="false" referencedColumnNames="INDIVIDUAL_ID" referencedTableName="DC_INDIVIDUAL" validate="true"/>
+    </changeSet>
+    <changeSet author="nishmehta (generated)" id="1629471414299-21">
+        <addForeignKeyConstraint baseColumnNames="INDIVIDUAL_ID" baseTableName="DC_EMAIL" constraintName="FKsbtvyx6ydqvuvld6ehkpiqvpq" deferrable="false" initiallyDeferred="false" referencedColumnNames="INDIVIDUAL_ID" referencedTableName="DC_INDIVIDUAL" validate="true"/>
+    </changeSet>
+    <changeSet author="nishmehta (generated)" id="1629184896445-22">
+        <createSequence incrementBy="30" sequenceName="dc_address_0sq" startValue="1"/>
+    </changeSet>
+    <changeSet author="nishmehta (generated)" id="1629184896445-23">
+        <createSequence incrementBy="30" sequenceName="dc_address_2sq" startValue="1"/>
+    </changeSet>
+    <changeSet author="nishmehta (generated)" id="1629184896445-24">
+        <createSequence incrementBy="30" sequenceName="dc_email_0sq" startValue="1"/>
+    </changeSet>
+    <changeSet author="nishmehta (generated)" id="1629184896445-25">
+        <createSequence incrementBy="30" sequenceName="dc_individual_0sq" startValue="1"/>
+    </changeSet>
+    <changeSet author="nishmehta (generated)" id="1629184896445-26">
+        <createSequence incrementBy="30" sequenceName="dc_individual_2sq" startValue="1"/>
+    </changeSet>
+    <changeSet author="nishmehta (generated)" id="1629184896445-27">
+        <createSequence incrementBy="30" sequenceName="dc_phone_0sq" startValue="1"/>
+    </changeSet>
+    <changeSet author="nishmehta (generated)" id="1629471414299-28">
+        <createSequence incrementBy="50" sequenceName="AR_APP_0SQ" startValue="1"/>
+    </changeSet>
+    <changeSet author="nishmehta (generated)" id="1629471414299-29">
+        <createSequence incrementBy="30" sequenceName="AR_APP_INDIVIDUAL_0SQ" startValue="1"/>
+    </changeSet>
+    <changeSet author="nishmehta (generated)" id="1629471414299-30">
+        <createSequence incrementBy="30" sequenceName="AR_APP_INDIVIDUAL_2SQ" startValue="1"/>
+    </changeSet>
+</databaseChangeLog>

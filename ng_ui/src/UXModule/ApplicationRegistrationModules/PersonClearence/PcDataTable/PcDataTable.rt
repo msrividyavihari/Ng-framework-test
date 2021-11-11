@@ -1,0 +1,22 @@
+<UX type="section">
+    <UX type="para" className="font-weight-bold" labelKey="close_matches"></UX>
+    <UX
+        type="dataTable"
+        col-default-headers="Score,First Name,Last Name,Gender,Date of Birth,SSN,Individual ID,Select as {AppContext.model.getValue('appReg.applicantType')==='P' ? 'Primary' : 'Additional'} Applicant"
+        col-data-keys="score,firstName,lastName,gender,dobDt,ssn,indvId"
+        datacollection="{this.props.collection}"
+        sortable-col-names="First Name,Last Name,Gender,Date of Birth,Individual ID,"
+        customContent="{{'Score':this.showPercentage,'Gender':this.showGender,'Select as Primary Applicant':this.piCustomeColumn,'Select as Additional Applicant':this.piCustomeColumn,'First Name':this.contentFirstName,'Last Name':this.contentLastName , 'Date of Birth':this.contentDob}}"
+        keyfield="indvId"
+        pagination="nextgen"
+        hover="false"
+        dataTableProps="{this.renderOnExpand}"
+        expandMultiple="{true}"
+        expandColumnPosition="right"
+        pagination-show-total="true"
+        pagination-size-per-page="5"
+        striped="true"
+    >
+    </UX>
+    <UX type="lineBreak"></UX>
+</UX>

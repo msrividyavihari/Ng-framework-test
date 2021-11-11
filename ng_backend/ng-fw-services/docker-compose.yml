@@ -1,0 +1,22 @@
+version: '2'
+services:
+  ng-ref-table-svc:
+    container_name: ng-ref-table-svc
+    image: fw-services/ng-ref-table-svc:0.0.2-SNAPSHOT
+    ports:
+      - "8081:8080"
+  ng-security-svc:
+    container_name: ng-security-svc
+    image: fw-services/ng-security-svc:0.0.2-SNAPSHOT
+    ports:
+      - "8082:8080"
+    depends_on:
+      - ng-ref-table-svc
+  ng-error-log-svc:
+    container_name: ng-err-log-svc
+    image: fw-services/ng-err-log-svc:0.0.2-SNAPSHOT
+    ports:
+      - "8083:8080"
+    depends_on:
+      - ng-ref-table-svc
+      - ng-security-svc

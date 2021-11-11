@@ -1,0 +1,8 @@
+description = 'Nextgen Framework - Feature Toggle'
+
+dependencies {
+
+
+    annotationProcessor "org.projectlombok:lombok:$LOMBOK"
+
+}

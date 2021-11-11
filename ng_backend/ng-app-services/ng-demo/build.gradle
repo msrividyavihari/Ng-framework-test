@@ -1,0 +1,63 @@
+plugins {
+    id 'java'
+    id 'java-library'
+}
+
+apply from: "${rootProject.projectDir}/gradle/sonarqube.gradle"
+
+allprojects {
+
+    group 'com.deloitte.nextgen.demo'
+    version '1.0.0-RC1'
+
+    compileJava {
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
+    }
+
+    repositories {
+        mavenLocal()
+        mavenCentral()
+        maven { url 'https://repo.spring.io/milestone' }
+        maven { url 'https://repo.spring.io/snapshot' }
+        maven { url 'https://repo.spring.io/plugins-release'}
+    }
+
+    configurations {
+
+        all {
+            exclude module: 'spring-boot-starter-logging'
+            exclude module: 'logback-classic'
+            exclude module: 'tomcat-jdbc'
+        }
+    }
+
+}
+
+subprojects {
+
+    apply plugin: 'java'
+    apply plugin: 'java-library'
+
+    configurations {
+
+        compileOnly {
+            extendsFrom annotationProcessor
+        }
+    }
+
+    dependencies {
+        compileOnly 'org.projectlombok:lombok:1.18.16'
+    }
+
+    processResources {
+        expand(project.properties)
+    }
+
+}
+
+
+wrapper {
+    version '6.5'
+    distributionType Wrapper.DistributionType.ALL
+}

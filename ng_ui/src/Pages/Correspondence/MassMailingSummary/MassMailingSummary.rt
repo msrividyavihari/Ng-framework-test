@@ -1,0 +1,60 @@
+<UX type="page">
+    <UX type="section" ux-class="w-100 app-srch-hd-sec">
+        <UX
+            type="header"
+            size="4"
+            id="contact_header"
+            className="p-3 co-common-header"
+            labelKey="mass_mailing_title"
+        >
+        </UX>
+    </UX>
+    <UX type="card" ux-class="w-100" body-class="p-0 m-0">
+        <UX type="card">
+            <UX size="4" type="header" className="mb-5 srch-hdr" />
+             <UX type="section" className="dt-tbl-sec" showIf="{$$massSummaryData.show}">
+                <UX size="{1}" type="lineBreak" />
+                <UX type="group">
+                    <UX type="row" col-width="12" className="border alignLineCenter" />
+                </UX>
+                
+                <UX type="group">
+                    <UX
+                        type="CustomeDataTable"
+                        col-default-headers="Mass Mailing Id, Notice Title, Recipient Population, Scheduled Date, Worker ID,Edit,Delete"
+                        col-data-keys="massMailingSeqNum,noticeTitle,programStr,scheduledDt,createUserId,edit,delete"
+                        datacollection="massSummaryData.dataCollection"
+                        customContent="{{'Mass Mailing Id':this.massIdLink, 'Edit': this.editLink, 'Delete': this.deleteMassLink}}"
+                        keyfield="massMailingSeqNum" 
+                        pagination="default"
+                        hover="false"
+                        sortable-col-names="2"
+                        pagination-show-total="true"
+                        pagination-size-per-page="5"
+                        striped="true"
+                        expandColumnPosition="right"
+                        expandMultiple="{false}"
+                        className="co-dt-tbl"
+                    />
+                </UX>
+
+            </UX>
+             <UX size="{1}" type="lineBreak" />
+             <UX type="section" className="btn-sec ">
+                <UX type="section" className="btn-sec-inner">
+                    <UX type="group">
+                            <UX
+                                className="mt-5 co-srch-btn"
+                                mode="primary"
+                                size="small"
+                                type="button"
+                                align="center"
+                                click="{this.createNewRequest}"
+                                labelKey="create_new_request"
+                            />
+                        </UX>
+                </UX>
+            </UX>
+        </UX>
+    </UX>
+</UX>

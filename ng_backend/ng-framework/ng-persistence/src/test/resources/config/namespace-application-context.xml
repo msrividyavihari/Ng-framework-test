@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:jpa="http://www.springframework.org/schema/data/jpa"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/data/jpa https://www.springframework.org/schema/data/jpa/spring-jpa.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+
+    <import resource="../infrastructure.xml"/>
+
+    <!--
+
+        Simplified DAO configuration:
+
+        1. Looks for DAO interfaces in ${dao-config.dao-package-name} named ${dao.name}Dao
+        2. Uses entity classes from ${dao-config.entity-package-name}
+        3. Registers daos under ${dao.name}Dao in the applicationContext
+        4. Add postfix attributes to dao-config element as needed
+
+        You can register DAOs as needed by simply adding "dao" elements named after domain classes
+        and provide an DAO interface named as described above.
+
+        ! Note, that PersistenceAnnotationBeanPostProcessor and PersistenceExceptionTranslationPostProcessor !
+        ! do not have to be explicitly registered as they are included by namespace parser                   !
+
+    -->
+    <context:component-scan base-package="com.deloitte.nextgen.framework.persistence.junit"/>
+    <context:component-scan base-package="com.deloitte.nextgen.framework.persistence.entities"/>
+    <context:component-scan base-package="com.deloitte.ng.persistence.entities"/>
+
+    <jpa:repositories base-package= "com.deloitte.nextgen.framework.persistence.entities.generated"/>
+    <jpa:repositories base-package="com.deloitte.ng.persistence.repository.generated"/>
+    <jpa:repositories base-package= "com.deloitte.nextgen.framework.persistence.repository"/>
+
+    <!-- Register custom DAO implementation explicitly
+    <bean id="testEntityCustomRepository" class="TestEntityCustomRepositoryImpl" />
+-->
+</beans>

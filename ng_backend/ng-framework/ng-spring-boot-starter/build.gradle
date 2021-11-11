@@ -1,0 +1,14 @@
+description = 'Nextgen Framework - Starter'
+
+dependencies {
+    api project(':ng-logging')
+    api project(':ng-commons')
+    api project(':ng-web')
+    api project(':ng-properties-autoconfigure')
+    api project(':ng-spring-boot-autoconfigure')
+    api project(':ng-persistence')
+
+    implementation "org.springframework.boot:spring-boot-starter:$SPRING_BOOT"
+
+    api "org.mapstruct:mapstruct:$MAPSTRUCT"
+}

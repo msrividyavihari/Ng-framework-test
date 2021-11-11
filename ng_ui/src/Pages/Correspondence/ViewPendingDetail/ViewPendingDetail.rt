@@ -1,0 +1,264 @@
+<UX type="page" ref-table-list="STATUS,LANGUAGE">
+    <UX type="section" ux-class="w-100 app-srch-hd-sec">
+        <UX
+            type="header"
+            size="4"
+            id="pen_dtl_header"
+            className="p-3 co-common-header"
+            labelKey="co_view_pending_title"
+        >
+        </UX>
+    </UX>
+    <UX type="card" ux-class="w-100" body-class="p-0 m-0">
+        <UX type="card">
+            <UX type="section" className="dtl-sec" col-width="12">
+                <UX
+                    type="group"
+                    flexGroup="true"
+                    flexDirection="row"
+                    flexWrap="false"
+                    flexAlign="start"
+                    flexJustify="start"
+                    childWidths="true"
+                >
+                    <UX
+                        id="appNumber_label"
+                        col-width="6"
+                        labelKey="co_doc_title"
+                        className="app-num-lbl co-lbl"
+                        type="label"
+                    />
+                    <UX type="para" >
+                        {AppContext.model.getValue('viewPendingDetail.docName')}
+                    </UX>
+                </UX>
+                <UX
+                    type="group"
+                    flexGroup="true"
+                    flexDirection="row"
+                    flexWrap="false"
+                    flexAlign="start"
+                    flexJustify="start"
+                    childWidths="true"
+                >
+                    <UX
+                        id="appNumber_label"
+                        col-width="6"
+                        labelKey="id_type"
+                        className="app-num-lbl co-lbl"
+                        type="label"
+                    />
+                    <UX type="para" >
+                    {AppContext.model.getValue('viewPendingDetail.searchCriteria')}
+                    </UX>
+                </UX>
+                <UX
+                    type="group"
+                    flexGroup="true"
+                    flexDirection="row"
+                    flexWrap="false"
+                    flexAlign="start"
+                    flexJustify="start"
+                    childWidths="true"
+                >
+                    <UX
+                        id="appNumber_label"
+                        col-width="6"
+                        labelKey="date_requested"
+                        className="app-num-lbl co-lbl"
+                        type="label"
+                    />
+                    <UX type="para" >
+                        {AppContext.model.getValue('viewPendingDetail.reqDt')}
+                    </UX>
+                </UX>
+                <UX
+                    type="group"
+                    flexGroup="true"
+                    flexDirection="row"
+                    flexWrap="false"
+                    flexAlign="start"
+                    flexJustify="start"
+                    childWidths="true"
+                >
+                    <UX
+                        id="appNumber_label"
+                        col-width="6"
+                        labelKey="case_app_num"
+                        className="app-num-lbl co-lbl"
+                        type="label"
+                    />
+                     <UX type="para" >
+                     {AppContext.model.getValue('viewPendingDetail.caseAppNumber')}
+                    </UX>
+                </UX>
+                <UX
+                    type="group"
+                    flexGroup="true"
+                    flexDirection="row"
+                    flexWrap="false"
+                    flexAlign="start"
+                    flexJustify="start"
+                    childWidths="true"
+                >
+                    <UX
+                        id="appNumber_label"
+                        col-width="6"
+                        labelKey="client_id"
+                        className="app-num-lbl co-lbl"
+                        type="label"
+                    />
+                    <UX type="para" >
+                        {AppContext.model.getValue('viewPendingDetail.indvId')}
+                    </UX>                    
+                </UX>
+                <UX
+                    type="group"
+                    flexGroup="true"
+                    flexDirection="row"
+                    flexWrap="false"
+                    flexAlign="start"
+                    flexJustify="start"
+                    childWidths="true"
+                >
+                    <UX
+                        id="appNumber_label"
+                        col-width="6"
+                        labelKey="generated_by"
+                        className="app-num-lbl co-lbl"
+                        type="label"
+                    />
+                    <UX type="para" >
+                        {AppContext.model.getValue('viewPendingDetail.workerName')}
+                    </UX>
+                </UX>
+                <UX
+                    type="group"
+                    flexGroup="true"
+                    flexDirection="row"
+                    flexWrap="false"
+                    flexAlign="start"
+                    flexJustify="start"
+                    childWidths="true"
+                >
+                    <UX
+                        id="appNumber_label"
+                        col-width="6"
+                        labelKey="print_mode"
+                        className="app-num-lbl co-lbl"
+                        type="label"
+                    />
+                    <UX type="para" >
+                        {this.formatPrintMode(AppContext.model.getValue('viewPendingDetail.printMode'))}
+                    </UX>
+                </UX>
+                <UX
+                    type="group"
+                    flexGroup="true"
+                    flexDirection="row"
+                    flexWrap="false"
+                    flexAlign="start"
+                    flexJustify="start"
+                    childWidths="true"
+                >
+                    <UX
+                        id="appNumber_label"
+                        col-width="6"
+                        labelKey="print_type"
+                        className="app-num-lbl co-lbl"
+                        type="label"
+                    />
+                    <UX type="para" >
+                        {this.formatPrintType(AppContext.model.getValue('viewPendingDetail.printType'))}
+                    </UX>
+                </UX>
+                <UX
+                    type="group"
+                    flexGroup="true"
+                    flexDirection="row"
+                    flexWrap="false"
+                    flexAlign="start"
+                    flexJustify="start"
+                    childWidths="true"
+                >
+                    <UX
+                        id="appNumber_label"
+                        col-width="6"
+                        labelKey="status"
+                        className="app-num-lbl co-lbl"
+                        type="label"
+                    />
+                    <UX type="para" >
+                        {AppContext.model.getValue('viewPendingDetail.coStatusSw')}
+                    </UX>
+                </UX>
+                <UX
+                    type="group"
+                    flexGroup="true"
+                    flexDirection="row"
+                    flexWrap="false"
+                    flexAlign="start"
+                    flexJustify="start"
+                    childWidths="true"
+                >
+                    <UX
+                        id="appNumber_label"
+                        col-width="6"
+                        labelKey="orig_rept"
+                        className="app-num-lbl co-lbl"
+                        type="label"
+                    />
+                    <UX type="para" >
+                         {this.origRecipient(AppContext.model.getValue('viewPendingDetail.rePrintSw'),AppContext.model.getValue('recipientsDetail.originalRecipient'))}
+                    </UX>
+                </UX>
+                <UX
+                    type="group"
+                    flexGroup="true"
+                    flexDirection="row"
+                    flexWrap="false"
+                    flexAlign="start"
+                    flexJustify="start"
+                    childWidths="true"
+                >
+                    <UX
+                        id="appNumber_label"
+                        col-width="6"
+                        labelKey="copy_rept"
+                        className="app-num-lbl co-lbl"
+                        type="label"
+                    />
+                    <UX type="para" >
+                        {this.copyRecipient(AppContext.model.getValue('recipientsDetail.recipientWithCoRptSeqList'))}
+                    </UX>
+                </UX>
+            </UX>
+            
+            <UX type="section" >
+                <UX type="group">                  
+                        <UX
+                            className="mt-5 co-can-btn"
+                            mode="primary"
+                            size="small"
+                            className="pt-2"
+                            type="button"
+                            disabled="false"
+                            click="{this.goBack}"
+                            labelKey="previous"
+                        />
+                        <UX
+                            className="mt-5 co-sav-btn"
+                            mode="primary"
+                            size="small"
+                            className="pt-2"
+                            type="button"
+                            disabled="false"
+                            click="{this.goToNextPage}"
+                            labelKey="next"
+                        />
+                    </UX>
+                </UX>
+            </UX>
+        </UX>
+    </UX>
+</UX>

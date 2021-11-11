@@ -1,0 +1,51 @@
+[cols="2,4,6", options="header"]
+|===
+|Type | Description | Examples
+
+|Package
+|The package name should start with *com.deloitte.nextgen* followed by project name or abbreviation if name is
+too long.
+a|
+* com.deloitte.nextgen**[navy]#.dc#** -- [maroon]#Abbreviation for data collection#
+* com.deloitte.nextgen**[navy]#.correspondence#** -- [maroon]#Self explanatory#
+* com.deloitte.nextgen**[navy]#.app.registration#** -- [maroon]#Use dot representation if you want to use complete name#
+
+|Class
+|Try to name the class by suffixing according to the package in which it is created or a meaning-full name which
+is easy to remember and can be find using a regex.
+a|
+* PendingNotice**[navy]#Resource#**.java
+* PendingNotice**[navy]#Service#**.java
+* PendingNotice**[navy]#ServiceImpl#**.java
+* PendingNotice**[navy]#Repository#**.java
+* PendingNotice**[navy]#RepositoryImpl#**.java
+* PendingNotice**[navy]#Mapper#**.java
+* PendingNotice**[navy]#Request#**.java
+* PendingNotice**[navy]#Response#**.java
+
+|Entities
+|Entities class name should be named after table name in camel case.
+a|
+* DcCase.java
+* ArIndividual.java
+
+|DTO
+|DTO class name should be suffixed with _Dto_.
+a|
+* DcCase**[navy]#DTO#**.java
+* ArIndividual**[navy]#DTO#**.java
+
+|Mappers
+|Mapper interface name should be suffixed with _Mapper_.
+a|
+* DcCase**[navy]#Mapper#**.java
+* ArIndividual**[navy]#Mapper#**.java
+
+|Utility classes
+|Utility class name should suffix Utility at the end of the file name.
+a|
+* Date**[navy]#Utility#**.java
+* String**[navy]#Utility#**.java
+* Number**[navy]#Utility#**.java
+
+|===

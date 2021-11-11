@@ -1,0 +1,43 @@
+
+{
+    "AuthRep_title":"Register Individal - Authorized Representative",
+    "AuthRep_Info_Hdr": "Authorized Representative Information",
+    "AuthRep_Addr_Hdr": "Address Information",
+    "AuthRep_Contact_Hdr": "Contact Information",
+    "Authrep_first": "First: ",
+    "Authrep_middle": "Middle: ",
+    "Authrep_last": "Last: ",
+    "Authrep_suffix": "Suffix: ",
+    "Authrep_Reltnshp_Prmy_Indiv": "Relationship to Primary Individual: ",
+    "Authrep_AddrLn1": "Address Line 1: ",
+    "Authrep_AddrLn2": "Address Line 2: ",
+    "Authrep_city": "City: ",
+    "Authrep_state": "State",
+    "Authrep_zipcode": "ZIP/Postal Code: ",
+    "continue_button": "Continue",
+    "previous_Button": "Back",
+    "exit_Button": "Cancel",
+
+    "min_char_err": "'Last' must be at least two characters long.",
+    "addr_numerr_msg1": "'Address Line1' should not contain 9 digit numeric number.",
+    "addr_numerr_msg2": "'Address Line2' should not contain 9 digit numeric number.",
+    "char_err_msg1": "Invalid Entry. Valid entry can only be Alphanumeric Characters, spaces, apostrophes, and dashes for 'First' field.",
+    "char_err_msg2": "Invalid Entry. Valid entry can only be Alphanumeric Characters, spaces, apostrophes, and dashes for 'Middle' field.",
+    "char_err_msg3": "Invalid Entry. Valid entry can only be Alphanumeric Characters, spaces, apostrophes, and dashes for 'Last' field.",
+    "city_err_msg": "Invalid entry. Valid entry can only include alpha and spaces for 'City' field.",    
+    "addr_charerr_msg1" : "Please enter valid characters for 'Address Line1' field.",
+    "addr_charerr_msg2" : "Please enter valid characters for 'Address Line2' field.",
+    "zip_numerr_msg" : "'Zip/Postal Code' Must contain all five digits.",
+
+    "Add_Email":"Add Email",
+    "Add_Phone":"Add Phone",
+    "Email":"Email",
+    "Comments":"Comments",
+    "phoneType":"Phone Type",
+    "phoneNumber":"Phone Number",
+    "extension": "Extension",
+    "save":"Save",
+    "update":"Update",
+    "cancel":"Cancel"
+
+}

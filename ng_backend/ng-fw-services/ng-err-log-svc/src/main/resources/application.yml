@@ -1,0 +1,22 @@
+server:
+  compression:
+    enabled: true
+  port: 8081
+  servlet:
+    contextPath: /error
+
+spring:
+  application:
+    name: ${name}
+  jackson:
+    default-property-inclusion: non_null
+  activemq:
+    broker-url: tcp://localhost:61616
+    user: admin
+    password: admin
+    queue:
+      name: error.log.queue
+
+nextgen:
+  reference-table:
+    preload: false

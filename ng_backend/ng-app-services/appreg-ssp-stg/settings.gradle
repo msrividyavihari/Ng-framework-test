@@ -1,0 +1,4 @@
+rootProject.name = 'appreg-ssp-stg'
+include 'appreg-ssp-client'
+include 'appreg-ssp-web'
+

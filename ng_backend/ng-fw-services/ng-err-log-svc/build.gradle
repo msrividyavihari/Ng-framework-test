@@ -1,0 +1,44 @@
+jib {
+    to {
+        image = "fw-services/${project.name}"
+        tags = [version]
+    }
+    container {
+        ports = ["8080"]
+        environment = [
+                SPRING_OUTPUT_ANSI_ENABLED: "ALWAYS",
+        ]
+        creationTime = "USE_CURRENT_TIMESTAMP"
+        appRoot = "/usr/local/tomcat/webapps/ROOT"
+    }
+}
+
+war {
+    manifest {
+
+        attributes "Built-By": System.properties['user.name']
+        attributes "Name": project.name
+        attributes "Version": archiveVersion
+        attributes "Build-Number": gitVersion()
+        attributes 'Created-By': "Gradle ${gradle.gradleVersion}"
+        attributes 'Build-Jdk': "${System.properties['java.version']} (${System.properties['java.vendor']} ${System.properties['java.vm.version']})"
+        attributes 'Build-OS': "${System.properties['os.name']} ${System.properties['os.arch']} ${System.properties['os.version']}"
+
+    }
+    enabled = true
+    //archiveFileName = "${project.name}.war"
+    includes = ["WEB-INF/**", "META-INF/**"]
+}
+
+dependencies {
+    implementation('com.deloitte.nextgen.framework:ng-web:0.0.2-SNAPSHOT') {
+        providedRuntime "org.springframework.boot:spring-boot-starter-tomcat"
+    }
+    implementation 'org.springframework.boot:spring-boot-starter-activemq'
+
+    annotationProcessor "org.projectlombok:lombok:$LOMBOK"
+    annotationProcessor "org.mapstruct:mapstruct-processor:1.4.1.Final"
+    //Must be defined after the lombok annotationProcessor
+
+
+}

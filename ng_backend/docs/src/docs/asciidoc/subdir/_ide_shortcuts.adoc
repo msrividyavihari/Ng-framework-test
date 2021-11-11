@@ -1,0 +1,24 @@
+Use below shortcuts during development.
+
+|===
+|IntelliJ|Eclipse
+
+|kbd:[Ctrl+Space] for suggestion.
+|kbd:[Ctrl+Space] for suggestion
+
+|kbd:[Ctrl+Alt+L] to format code.
+|kbd:[Ctrl+Shift+F] to format code.
+
+|Double click kbd:[Shift] to search any file in work space.
+|kbd:[Ctrl+Shift+R] search for resource.
+
+|kbd:[Ctrl+F12] to view methods in file.
+|kbd:[Ctrl+O] to view methods in file.
+
+|kbd:[Ctrl+O] to override/implement methods.
+|
+
+|kbd:[Ctrl+Alt+Shift+L] to reformat file.
+|kbd:[Ctrl+SHFIT+O] Organize imports.
+
+|===

@@ -1,0 +1,125 @@
+{
+    "data": {
+        "metadata": {
+            "ARSUM": {
+                "title": {
+                    "en": "Application Summary"
+                }
+            },
+            "ARRPI": {
+                "title": {
+                    "en": "Program Summary"
+                }
+            },
+            "ARTMC": {
+                "title": {
+                    "en": "Associated Cases"
+                }
+            },
+            "ARPRO": {
+                "title": {
+                    "en": "Register Program"
+                }
+            },
+            "ARRAR": {
+                "title": {
+                    "en": "Authorized Representative"
+                }
+            },
+            "ARRAS": {
+                "title": {
+                    "en": "Application Summary"
+                }
+            },
+            "ARAPP": {
+                "title": {
+                    "en": "Register Application"
+                }
+            },
+            "ARRAP": {
+                "title": {
+                    "en": "Application"
+                }
+            },
+            "ARTMS": {
+                "title": {
+                    "en": "File Clearance - Results "
+                }
+            },
+            "ARCPG": {
+                "title": {
+                    "en": "Child Care Priority Groups"
+                }
+            },
+            "ARIND": {
+                "title": {
+                    "en": "Register an Individual"
+                }
+            },
+            "AREGA": {
+                "title": {
+                    "en": "Register Application"
+                }
+            },
+            "ARRES": {
+                "title": {
+                    "en": "Expedited Screening"
+                }
+            },
+            "ARRPR": {
+                "title": {
+                    "en": "Program"
+                }
+            },
+            "ARRIH": {
+                "title": {
+                    "en": "Applicant Group Individuals"
+                }
+            },
+            "ARRII": {
+                "title": {
+                    "en": "Individual"
+                }
+            },
+            "ARTMP": {
+                "title": {
+                    "en": "File Clearance"
+                }
+            },
+            "ARRIO": {
+                "title": {
+                    "en": "Maiden Details"
+                }
+            },
+            "ARRAD": {
+                "title": {
+                    "en": "Address"
+                }
+            }
+        },
+        "navigation": {
+            "AREGA": {
+                "ARAPP": [
+                    "ARRAP",
+                    "ARRAD"
+                ],
+                "ARIND": [
+                    "ARRIH",
+                    "ARRII"
+                ],
+                "ARTMS": [
+                    "ARTMP"
+                ],
+                "ARPRO": [
+                    "ARRPI",
+                    "ARRPR",
+                    "ARRES"
+                ],
+                "ARSUM": [
+                    "ARRAS"
+                ]
+			}
+        }
+    },
+    "status": "0"
+}

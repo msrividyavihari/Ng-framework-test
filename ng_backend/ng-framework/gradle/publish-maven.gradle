@@ -1,0 +1,47 @@
+plugins.withType(MavenPublishPlugin) {
+    publishing {
+        publications {
+            maven(MavenPublication) { publication ->
+                project.plugins.withType(JavaPlugin) {
+                    from components.java
+                    versionMapping {
+                        usage("java-api") {
+                            fromResolutionResult()
+                        }
+                        usage("java-runtime") {
+                            fromResolutionResult()
+                        }
+                    }
+                }
+                pom {
+                    name = project.provider { project.description }
+                    description = project.provider { project.description }
+                    organization {
+                        name = "Deloitte"
+                        url = "https://deloitte.com"
+                    }
+                    licenses {
+                        license {
+                            name = "TBD"
+                            url = "TBD"
+                            distribution = "repo"
+                        }
+                    }
+                    developers {
+                        developer {
+                            id = "nishmehta"
+                            name = "Nishant Mehta"
+                            email = "nishmehta@deloitte.com"
+                        }
+                        developer {
+                            id = "mukepatel"
+                            name = "Mukesh Patel"
+                            email = "mukepatel@deloitte.com"
+                        }
+                    }
+
+                }
+            }
+        }
+    }
+}

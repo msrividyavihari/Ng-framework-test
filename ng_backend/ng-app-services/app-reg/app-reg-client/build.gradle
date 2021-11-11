@@ -1,0 +1,32 @@
+
+//apply plugin: 'maven'
+//apply plugin: 'maven-publish'
+
+plugins {
+    id 'maven-publish'
+    id 'maven'
+}
+dependencies {
+//    api project(':ng-commons')
+    implementation 'com.deloitte.nextgen.framework:ng-spring-boot-starter:0.0.3-SNAPSHOT'
+    annotationProcessor 'com.deloitte.nextgen.framework:ng-persistence:0.0.3-SNAPSHOT'
+    implementation 'com.fasterxml.jackson.core:jackson-core:2.11.3'
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.11.3'
+    implementation 'com.deloitte.nextgen.framework:ng-validator:0.0.1-SNAPSHOT'
+}
+
+publishing {
+    publications {
+        mavenPublication(MavenPublication) {
+            from components.java
+            artifactId "${project.name}"
+            version "${project.version}"
+            artifact sourcesJar {
+                classifier "sources"
+            }
+            artifact javadocJar {
+                classifier "javadoc"
+            }
+        }
+    }
+}

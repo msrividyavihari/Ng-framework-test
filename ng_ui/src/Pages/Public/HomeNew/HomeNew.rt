@@ -1,0 +1,56 @@
+<UX type="page">
+    <UX type="section" id="dataLoader" className="link_background">
+        <UX type="grid">
+            <UX type="row">
+                <UX type="column" className="left_background"  width="4">
+                    <UX type="section" className="hhs-section1">
+                        <UX type="image" src="../icons/HHS_NextGen.png" adaLabelText="NexGen Icon" class="hhs-image"></UX>
+                    </UX>
+                    <UX type="section" className="pageimage-section1">
+                        <UX type="image" src="../icons/Page_Image.png" adaLabelText="NexGen Image" class="page-image"></UX>
+                    </UX>
+                    <UX type="lineBreak" size="{3}"></UX>
+                    <UX type="lineBreak" size="{10}"></UX>
+                    <UX type="lineBreak" size="{5}"></UX>
+                    <UX type="section" className="powered-image">Powered by HHS NextGen 4.0</UX>
+                </UX>
+                <UX type="column" className="page_background" width="8">
+                    <UX type="section" className="microservices">
+                        Modules
+                    </UX>
+                    <UX type="section" className="left-side">
+                        <UX type="group">
+                            <UX type="section">
+                                <UX
+                                    type="image"
+                                    src="../icons/ApplicationRegistration.png"
+                                    adaLabelText="Application Registration"
+                                    class="modules-logo"
+                                    click="{event => this.toAppReg()}"
+                                ></UX>
+                            </UX>
+                            <UX type="section">
+                                <UX
+                                    type="image"
+                                    src="../icons/HearingAppeals.png"
+                                    adaLabelText="Hearing Appeals"
+                                    class="modules-logo"
+                                ></UX>
+                            </UX>
+                            <UX type="section">
+                                <UX
+                                    type="image"
+                                    src="../icons/Notices.png"
+                                    adaLabelText="Notices"
+                                    class="modules-logo"
+                                    click="{event => this.toCoViewPending()}"
+                                ></UX>
+                            </UX>
+                        </UX>
+                    </UX>
+                </UX>
+                </UX>
+            </UX>
+        </UX>
+    </UX>
+</UX>

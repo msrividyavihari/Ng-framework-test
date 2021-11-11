@@ -1,0 +1,346 @@
+<UX type="section">
+    <UX type="section" className="panel-alert" showIf="{$$progarmSelError}">
+        <UX type="section" className="offset-md-5">
+            <UX type="label"> {AppContext.model.getValue('progarmSelErrorMsg')} </UX>
+        </UX>
+        <UX type="lineBreak"></UX>
+    </UX>
+    <UX type="section" id="first_part" className="panel-left-border-color padding-left-v1">
+        <UX size="1" type="lineBreak" />
+
+        <UX type="section" id="programCheckbox">
+            <UX
+                checkStyle="persona"
+                model="pSel.selPrograms"
+                labelKey="choose_program"
+                type="checkboxGroup"
+                className="headerFnt"
+            >
+                <UX
+                    id="healthCare"
+                    text="{'Healthcare'}"
+                    type="checkbox"
+                    value="MA"
+                    className="custom-select-card"
+                    change="{this.programSelected}"
+                />
+                <UX
+                    id="snap"
+                    text="SNAP"
+                    type="checkbox"
+                    value="FS"
+                    className="custom-select-card"
+                    change="{this.programSelected}"
+                />
+                <UX
+                    id="tanf"
+                    text="TANF"
+                    className="custom-select-card"
+                    type="checkbox"
+                    value="TF"
+                    change="{this.programSelected}"
+                />
+            </UX>
+        </UX>
+
+        <UX type="section" showIf="{$$program_required}">
+            <UX mode="danger" type="badge" labelKey="field_required" />
+            <UX size="2" type="lineBreak" />
+        </UX>
+
+        <UX type="group" width="4">
+            <UX
+                id="priority_app_status"
+                type="checkboxGroup"
+                vertical-align="true"
+                labelKey="priority_app_status"
+                model="pSel.priorityAppStatus"
+            >
+                <UX id="q-Track" text="Q-Track" type="checkbox" value="QTrack" />
+                <UX id="sr.SNAP" text="Sr.SNAP" type="checkbox" value="SrSNAP" />
+                <UX id="waiver" text="Waiver" type="checkbox" value="Waiver" />
+                <UX id="refugee" text="REFUGEE" type="checkbox" value="Refugee" />
+                <UX id="pregnancy" text="Pregnancy" type="checkbox" value="Pregnancy" />
+                <UX id="revMax" text="RevMax" type="checkbox" value="RevMax" />
+                <UX id="nursingHome" text="Nursing Home" type="checkbox" value="NursingHome" />
+            </UX>
+        </UX>
+    </UX>
+    <UX type="section" showIf="{$$button1}" className="padding-left-v1">
+        <UX
+            mode="primary"
+            size="medium"
+            type="button"
+            className="pt-2"
+            labelKey="next"
+            click="{this.openSection1}"
+            id="appRegNext"
+        ></UX>
+    </UX>
+
+    <UX type="section" showIf="{$$section1}">
+        <UX type="section" showIf="{$$snap}">
+            <UX type="section" showIf="{$$section2}" id="mandatory1">
+                <UX
+                    type="section"
+                    id="submandatory1"
+                    className="panel-left-border-color padding-left-v1"
+                >
+                    <UX type="header" labelKey="expedited_screen" size="4" />
+
+                    <UX type="group" width="4">
+                        <UX
+                            id="monthlyIncome"
+                            type="text"
+                            inputMode="currency"
+                            decimals="2"
+                            required
+                            prefixLabel="dollor_symbol"
+                            width="10"
+                            model="pSel.exp.EG"
+                            change="{this.reflectIncomeChange}"
+                        >
+                            Total Monthly Income (before deductions)
+                        </UX>
+                        <UX
+                            id="liquidResource"
+                            type="text"
+                            inputMode="currency"
+                            decimals="2"
+                            required
+                            prefixLabel="dollor_symbol"
+                            width="10"
+                            model="pSel.exp.EH"
+                            change="{this.reflectResourcesChange}"
+                        >
+                            Total Liquid Resources (cash, checking, savings, etc.)
+                        </UX>
+                    </UX>
+                    <UX
+                        id="migrant"
+                        labelKey="migrant"
+                        radioStyle="card"
+                        type="radioGroup"
+                        vertical-align="false"
+                        model="pSel.exp.EM"
+                        required
+                    >
+                        <UX name="migrant" text="Yes" type="radioButton" value="Y" />
+                        <UX name="migrant" text="No" type="radioButton" value="N" />
+                    </UX>
+                </UX>
+                <UX type="section" showIf="{$$button3}" className="padding-left-v1">
+                    <UX
+                        mode="primary"
+                        size="medium"
+                        type="button"
+                        className="pt-2"
+                        labelKey="next"
+                        click="{this.openSection3}"
+                        id="appRegNext"
+                    ></UX>
+                </UX>
+            </UX>
+            <!-- labelKey="more_details" -->
+            <UX type="section" showIf="{$$section3}" className="padding-left-v1">
+                <UX type="group" width="6" showIf="{$$expeditedResult}">
+                    <UX mode="primary" className="custom_badge" type="badge">
+                        Based on this information, the applicant group
+                        <b> does not </b> have countable gross income less than $150 and countable
+                        liquid resources of $100 or less, so we'll need a few more details.
+                    </UX>
+                </UX>
+                <UX size="1" type="lineBreak" />
+
+                <UX type="section" showIf="{$$expeditedResult}" id="mandatory2">
+                    <UX
+                        type="section"
+                        id="submandatory2"
+                        className="panel-left-border-color padding-left-v1"
+                    >
+                        <UX type="header" size="4">
+                            Expenses of The Applicant Group for
+                            {AppContext.model.getValue('monthYear')}
+                        </UX>
+
+                        <UX type="group" width="2">
+                            <UX
+                                id="mortage"
+                                type="text"
+                                inputMode="currency"
+                                decimals="2"
+                                prefixLabel="dollor_symbol"
+                                required
+                                width="10"
+                                model="pSel.exp.ER"
+                                change="{this.reflectRentalChange}"
+                            >
+                                Rent/Mortage
+                            </UX>
+                        </UX>
+                        <UX type="group" width="4">
+                            <UX
+                                col-width="5"
+                                id="paysFor"
+                                labelKey="paysFor"
+                                required
+                                type="checkboxGroup"
+                                vertical-align="true"
+                                model="pSel.exp.paysFor"
+                            >
+                                <UX
+                                    id="heatingCooling"
+                                    text="Heating/Cooling"
+                                    type="checkbox"
+                                    value="HT"
+                                />
+                                <UX
+                                    id="nonHeating"
+                                    text="Non-Heating/Cooling Utilities"
+                                    type="checkbox"
+                                    value="NE"
+                                />
+                                <UX id="water" text="Water/sewer" type="checkbox" value="WS" />
+                                <UX id="telephone" text="Telephone" type="checkbox" value="TP" />
+                                <UX
+                                    id="garbage"
+                                    text="Garbage Removal"
+                                    type="checkbox"
+                                    value="GR"
+                                />
+                            </UX>
+                        </UX>
+                        <UX mode="danger" type="badge" showIf="{$$paysError}"
+                            >This is a required field
+                        </UX>
+                    </UX>
+                    <UX type="section" showIf="{$$button4}" className="padding-left-v1 pt-4">
+                        <UX
+                            mode="primary"
+                            size="medium"
+                            type="button"
+                            className="pt-2"
+                            labelKey="next"
+                            click="{this.openSection4}"
+                            id="appRegNext"
+                        ></UX>
+                    </UX>
+                </UX>
+            </UX>
+
+            <UX type="section" showIf="{$$section4}" className="padding-left-v1">
+                <UX type="group" width="6" showIf="{$$expeditedMessage}">
+                    <UX mode="primary" className="custom_badge" type="badge">
+                        Based on this information, the monthly expenses for rent/mortage and
+                        appropriate utility allowance <b>does not </b> exceed the total monthly
+                        income and the total liquid resources.
+                    </UX>
+                </UX>
+                <UX size="1" type="lineBreak" />
+                <UX type="group" width="8" showIf="{$$expedited}">
+                    <UX
+                        type="badge"
+                        mode="primary"
+                        className="selbtnPS2"
+                        name="expedited"
+                        id="expedited"
+                    >
+                        <!-- <UX size="{1}" id="label" type="label"> -->
+                        <span className="checkMark">&#10003;</span> Expedited Screen Determination =
+                        <b>Yes</b>
+                        <!-- </UX> -->
+                    </UX>
+                </UX>
+                <UX type="group" width="8" showIf="{$$expeditedMessage}">
+                    <UX
+                        type="badge"
+                        mode="primary"
+                        className="selbtnPS2"
+                        name="notexpedited"
+                        id="notexpedited"
+                    >
+                        <span className="checkMark">&#10003;</span> Expedited Screen Determination =
+                        <b>No</b>
+                    </UX>
+                </UX>
+            </UX>
+        </UX>
+        <UX size="2" type="lineBreak" />
+
+        <UX type="section" showIf="{$$common}">
+            <UX type="section" id="final_part" className="panel-left-border-color padding-left-v1">
+                <UX type="header" labelKey="program" size="4" />
+
+                <UX type="section" showIf="{$$health}">
+                    <UX
+                        type="CustomeDataTable"
+                        col-default-headers="Applicant,{AppContext.model.getValue('programString')},Coverage,Healthcare Retro Coverage"
+                        col-data-keys="applicant,{AppContext.model.getValue('programString')},coverage,retro"
+                        datacollection="psel.applicant"
+                        customContent="{{'SNAP': this.snapBox,'Healthcare': this.healthBox,'TANF': this.tanfBox,'Healthcare Retro Coverage': this.retroCoverage,'Coverage':this.coverageDatePicker}}"
+                        keyfield="applicant"
+                        pagination="nextgen"
+                        hover="false"
+                        sortable-col-names="Applicant"
+                        sortable-col-names="2"
+                        pagination-show-total="true"
+                        pagination-size-per-page="5"
+                        striped="true"
+                    >
+                    </UX>
+                </UX>
+
+                <UX type="section" showIf="{$$nonhealth}">
+                    <UX
+                        type="CustomeDataTable"
+                        col-default-headers="Applicant,{AppContext.model.getValue('programString')},Coverage"
+                        col-data-keys="applicant,{AppContext.model.getValue('programString')},coverage"
+                        datacollection="psel.applicant"
+                        customContent="{{'SNAP': this.snapBox,'TANF': this.tanfBox,'Coverage':this.coverageDatePicker}}"
+                        keyfield="applicant"
+                        pagination="nextgen"
+                        hover="false"
+                        sortable-col-names="2"
+                        sortable-col-names="Applicant"
+                        pagination-show-total="true"
+                        pagination-size-per-page="5"
+                        striped="true"
+                    >
+                    </UX>
+                </UX>
+
+                <UX size="2" type="lineBreak" />
+                <UX
+                    id="disabled"
+                    labelKey="disabled"
+                    radioStyle="card"
+                    type="radioGroup"
+                    vertical-align="false"
+                    model="pSel.disabled"
+                    required
+                >
+                    <UX name="disabled" text="Yes" type="radioButton" value="Y" />
+                    <UX name="disabled" text="No" type="radioButton" value="N" />
+                </UX>
+            </UX>
+
+            <!-- <UX mode="danger" type="badge" class="pc_err_badge" showIf="{$$progarmSelError}"
+                >{AppContext.model.getValue('progarmSelErrorMsg')}
+            </UX> -->
+
+            <UX size="1" type="lineBreak" />
+
+            <UX type="section" showIf="{$$button2}" className="padding-left-v1">
+                <UX
+                    mode="primary"
+                    size="medium"
+                    type="button"
+                    className="pt-2"
+                    labelKey="next"
+                    click="{this.finalNext}"
+                    id="appRegNext"
+                ></UX>
+            </UX>
+        </UX>
+    </UX>
+</UX>

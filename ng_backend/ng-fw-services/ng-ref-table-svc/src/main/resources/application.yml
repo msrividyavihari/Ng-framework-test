@@ -1,0 +1,15 @@
+server:
+  port: 8080
+  servlet:
+    contextPath: /rtservice
+
+spring:
+  application:
+    name: ${name}
+  profiles:
+    active: local
+  datasource:
+    driver-class-name: oracle.jdbc.driver.OracleDriver
+    url: jdbc:oracle:thin:@//host.docker.internal:1522/ORCL
+    username: IE_APP_ONLINE
+    password: IE_APP_ONLINE

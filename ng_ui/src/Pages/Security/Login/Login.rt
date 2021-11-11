@@ -1,0 +1,70 @@
+<UX type="page" submit="{this.loginAction}">
+    <UX type="card">
+        <UX
+            type="group"
+            rowClass="vert-offset-top-3 d-flex"
+            colClass="order-1 order-md-0 container_center_align_items, ux-secondary-background ux-p-3 border order-0 order-md-1"
+        >
+            <UX type="section" ux-class="mt-3">
+                <UX type="header" header-size="4" labelKey="Login_paper" class="subheader" />
+                <UX type="para" labelKey="Login_online" class="header_gradient_line" />
+                <UX type="header" class="subheader" header-size="4" labelKey="Login_account" />
+                <UX type="para" labelKey="Login_benefits" class="header_gradient_line" />
+                <UX type="header" class="subheader" header-size="4" labelKey="Login_tips" />
+                <UX type="para" labelKey="Login_ready" />
+            </UX>
+            <UX type="section">
+                <UX
+                    type="group"
+                    width="12,12,6,6"
+                    rowClass="collapse-panel mb-3"
+                    colClass="padding-offset-top-1,padding-offset-top-0,padding-offset-top-1,padding-offset-top-1"
+                >
+                    <UX
+                        type="header"
+                        header-size="1"
+                        labelKey="Login_title"
+                        className="pageTitle nobackground_image no_padding_bottom"
+                        size="1"
+                        wraperClassName="pageTitle_wrapper noborderheader"
+                    />
+                    <UX type="section">
+                        <UX type="label" labelKey="Login_check" />
+                        <UX type="inlineSpace" size="1" />
+                        <UX type="navlink" to="/Public/ASREA" labelKey="Login_ClickHere" />
+                    </UX>
+                    <UX
+                        type="hyperLink"
+                        link="#"
+                        className="cursor-pointer"
+                        click="{this.forgotUsername}"
+                        labelKey="Login_Forgot_username"
+                    />
+                    <UX
+                        type="hyperLink"
+                        link="#"
+                        className="cursor-pointer"
+                        click="{this.forgotAction}"
+                        labelKey="Login_Forgot_password"
+                    />
+                </UX>
+                <UX
+                    type="para"
+                    className="alert alert-danger mt-2 mb-2 "
+                    showIf="{$$isValidUser}"
+                    labelKey="InvalidUserOrPassword"
+                ></UX>
+                <UX type="text" labelKey="Login_UserId" model="userID" required />
+                <UX type="password" labelKey="Login_Password" model="password" required />
+                <UX
+                    type="button"
+                    buttonType="submit"
+                    class="ux-btn ux-btn-primary vert-offset-bottom-2"
+                    click="{this.loginAction}"
+                    labelKey="Login_Button"
+                />
+                <UX type="lineBreak" size="1" />
+            </UX>
+        </UX>
+    </UX>
+</UX>

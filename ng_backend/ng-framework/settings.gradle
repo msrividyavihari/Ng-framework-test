@@ -1,0 +1,28 @@
+pluginManagement {
+    repositories {
+        maven { url 'https://repo.spring.io/milestone' }
+        maven { url 'https://repo.spring.io/snapshot' }
+        gradlePluginPortal()
+    }
+    resolutionStrategy {
+        eachPlugin {
+            if (requested.id.id == 'org.springframework.boot') {
+                useModule("org.springframework.boot:spring-boot-gradle-plugin:${requested.version}")
+            }
+        }
+    }
+}
+rootProject.name = 'ng-framework'
+include 'ng-spring-boot-starter'
+include 'ng-spring-boot-autoconfigure'
+include 'ng-persistence'
+include 'ng-security'
+include 'ng-commons'
+include 'ng-logging'
+include 'ng-web'
+include 'ng-properties-autoconfigure'
+include 'ng-feature-toggle'
+include 'ng-validator'
+include 'ng-exceptions'
+include 'ng-automate'
+

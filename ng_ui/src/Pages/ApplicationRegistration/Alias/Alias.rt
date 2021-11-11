@@ -1,0 +1,120 @@
+<UX type="page" ref-table-list="NAMESUFFIX,GENDER">
+    <!-- <UX type="header" header-size="2">Page Skeleton - Alias</UX> -->
+    <UX id="aliasSummary" type="collapsePanel">
+        <UX id="aliasPrmyHdr" titleKey="AliasPrmyHdr" type="collapseSection" editDoneMode="false">
+            <UX type="group" width="8">
+                <UX type="group" width="12">
+                    <UX type="label" labelKey="Prmy_first" />
+                    <UX type="para" height="10">
+                        {AppContext.model.getValue('alias.aliasPrmy.prmyFirst')}
+                    </UX>
+                </UX>
+            </UX>
+            <UX type="group" width="8">
+                <UX type="group" width="12">
+                    <UX type="label" labelKey="Prmy_middle" />
+                    <UX type="para" height="10">
+                        {AppContext.model.getValue('alias.aliasPrmy.prmyMiddle')}
+                    </UX>
+                </UX>
+            </UX>
+            <UX type="group" width="8">
+                <UX type="group" width="12">
+                    <UX type="label" labelKey="Prmy_last" />
+                    <UX type="para" height="10">
+                        {AppContext.model.getValue('alias.aliasPrmy.prmyLast')}
+                    </UX>
+                </UX>
+            </UX>
+            <UX type="group" width="8">
+                <UX type="group" width="12">
+                    <UX type="label" labelKey="Prmy_suffix" />
+                    <UX type="para" height="10">
+                        {AppContext.model.getValue('alias.aliasPrmy.prmySuffix')}
+                    </UX>
+                </UX>
+            </UX>
+            <UX type="group" width="8">
+                <UX type="group" width="12">
+                    <UX type="label" labelKey="Prmy_gender" />
+                    <UX type="para" height="10">
+                        {AppContext.model.getValue('alias.aliasPrmy.prmyGender')}
+                    </UX>
+                </UX>
+            </UX>
+            <UX type="group" width="8">
+                <UX type="group" width="12">
+                    <UX type="label" labelKey="Prmy_ssn" />
+                    <UX type="para" height="10">
+                        {AppContext.model.getValue('alias.aliasPrmy.prmySSN')}
+                    </UX>
+                </UX>
+            </UX>
+            <UX type="group" width="8">
+                <UX type="group" width="12">
+                    <UX type="label" labelKey="Prmy_dob" />
+                    <UX type="para" height="10">
+                        {AppContext.model.getValue('alias.aliasPrmy.prmyDOB')}
+                    </UX>
+                </UX>
+            </UX>
+        </UX>
+
+        <UX id="aliasHeader" titleKey="AliasHeader" type="collapseSection" editDoneMode="false">
+            <UX type="card" className="mt-3">
+                <UX type="group" width="12">
+                    <UX type="dataTable" col-default-headers="First,Middle,Last,Suffix,Gender,Edit,Delete" col-data-keys="aliasFirst,aliasMiddle,aliasLast,aliasSuffix,aliasGender"
+                        sortable-col-names="First,Middle,Last,Suffix,Gender"
+                        customContent="{{'Delete':this.deleteCreation,'Edit':this.editCreation,'Suffix':this.getAliasSuffix,'Gender':this.getAliasGender}}" datacollection="aliasCollection"
+                        keyfield="email" pagination="default" hover="false" sortable-col-names="2" pagination-show-total="true"
+                        pagination-size-per-page="5" striped="true">
+                    </UX>
+                </UX>
+                <UX type="section" className="error mt-3" repeat="val,errorId in $$alias.name.validationMessage"
+                    showIf="{this.getModelValue('alias.name.ValidateContact')}">
+                    {val}
+                </UX>
+
+                <div className="text-center">
+                    <UX type="button" size="small" labelKey="Add" click="{this.showForm}"
+                    showIf="{!this.getModelValue('alias.DynaFlags.showForm')}" className="align-self-center"></UX>
+                </div>
+                <UX type="section" className="mt-3" showIf="{this.getModelValue('alias.DynaFlags.showForm')}">
+                    <UX type="group" width="10">
+                        
+                        <UX type="text" model="alias.name.aliasFirst" id="aliasFirst" labelKey="alias_first" maxLength="30" required/>
+                        <UX type="text" model="alias.name.aliasMiddle" id="aliasMiddle" labelKey="alias_middle" maxLength="30"/>
+                        <UX type="text" model="alias.name.aliasLast" id="aliasLast" labelKey="alias_last" maxLength="30" required/>
+                        <UX type="select" model="alias.name.aliasSuffix" id="aliasSuffix" labelKey="alias_suffix"
+                            defaultOption="true" defaultOptionValue="{''}" ref-table="NAMESUFFIX">
+                        </UX>
+                        <UX type="select" model="alias.name.aliasGender" id="aliasGender" labelKey="alias_gender"
+                            defaultOption="true" defaultOptionValue="{''}" ref-table="GENDER"
+                            required>
+                        </UX>
+                    </UX>
+                </UX>
+                <UX type="section" showIf="{this.getModelValue('alias.DynaFlags.showForm')}">
+                    <UX type="button" size="medium" mode="default" labelKey="cancel" click="{this.cancel}"
+                        className="align-self-start">
+                    </UX>
+                    <UX type="button" size="medium" mode="primary" labelKey="save" click="{this.saveContact}"
+                        className="pull-right" showIf="{this.getModelValue('alias.DynaFlags.toggleAdd')}">
+                    </UX>
+                    <UX type="button" size="medium" mode="primary" labelKey="update" click="{this.update}" className="pull-right"
+                        showIf="{!this.getModelValue('alias.DynaFlags.toggleAdd')}">
+                    </UX>
+                </UX>
+            </UX>
+        </UX>
+    </UX>
+
+    <UXModule.NPCButtons
+        prevlabelKey="previous_Button"
+        cancellabelKey="exit_Button"
+        nextlabelKey="sumbit_button"
+        nextclick="{this.SubmitForm}"
+        prevclick="{this.goBack}"
+        cancelclick="{this.goToHomePage}"
+    ></UXModule.NPCButtons>
+</UX>

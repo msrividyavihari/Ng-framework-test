@@ -1,0 +1,13 @@
+{
+    "view_doc_details_title": "View Document Details",
+    "co_document_title" : "DOCUMENT DETAILS",
+    "id_type": "Case or Application App # :",
+    "client_id":"Client ID :",
+    "doc_type": "Document Type :",
+    "ref_pound": "Reference # :",
+    "transaction": "Transaction # :",
+    "view_download_doc": "View/Download Document :",
+    "previous": "PREVIOUS",
+    "metadata_change": "METADATA CHANGE",
+    "link_delink": "LINK AND DELINK"
+}

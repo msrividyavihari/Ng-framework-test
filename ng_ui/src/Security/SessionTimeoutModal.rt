@@ -1,0 +1,18 @@
+<UX type="component">
+    <UX type="section">
+        <p>Your session will be auto logged out in : {props.timeLeftForDisplay}</p>
+        <br /><br />
+        <UX type="progressbar" percent="{props.timeLeftInPercent}" />
+        <br /><br />
+        <UX
+            type="button"
+            col-width="12"
+            size="small"
+            align="right"
+            click="{e=> props.resetTimeout()}"
+            mode="success"
+        >
+            Continue Session
+        </UX>
+    </UX>
+</UX>

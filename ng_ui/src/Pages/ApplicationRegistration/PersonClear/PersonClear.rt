@@ -1,0 +1,94 @@
+<UX type="page" ref-table-list='YESNO'  >
+    <UX type="section">
+        <UX type="card" body-class="p-0 m-0">
+            <UX type="section" ux-class="w-100 mb-4">
+                <UX
+                    type="header"
+                    size="4"
+                    id="contact_header"
+                    className="p-4 ux-bg-primary text-light rounded"
+                    labelKey="file_clear_summary"
+                >
+                </UX>
+                <UX linkWith="contact_header" position="right" type="tooltip">
+                    <UX type="section">
+                        File Clearence
+                    </UX>
+                </UX>
+            </UX>
+            <UX type="section" className="align-self-center container-md mb-4">
+                <UX
+                    type="section"
+                    showIf="{(AppContext.model.getValue('personCollection') && AppContext.model.getValue('personCollection').length !== 0)}"
+                >
+                    <UX
+                        type="header"
+                        header-size="4"
+                        labelKey="potential_matches"
+                        class="sectionHeader"
+                        labelSubstitute='{`{"name":"personCollection[0].name","dob":"personCollection[0].dateOfBirth","ssn":"personCollection[0].SSN"}`}''
+                    ></UX>
+                </UX>
+                <UX type="section" className="align-self-center container-md mb-4">
+                    <UX
+                    type="CustomeDataTable"
+                    col-default-headers="Name, SSN , Date Of Birth ,  Client Id , Score"
+                    col-data-keys="name,SSN,dateOfBirth,clinetId,Score"
+                    datacollection="personCollection"
+                    keyfield="personId"
+                    pagination="default"
+                    hover="false"
+                    sortable-col-names="2"
+                    pagination-show-total="true"
+                    rowSelection="single"
+                    rowClick="{this.setPersonClearData}"
+                    renderOnExpand="{this.expandTheRow}"
+                    pagination-size-per-page="5"
+                    striped="true"
+                    expandColumnPosition='right'
+                    expandMultiple="{true}"
+                    > </UX>
+                </UX>
+                <UX type="section" className="align-self-center container-md mb-4">
+                    <UX type="group">
+                        <UX
+                            model="personClear.associateIndv"
+                            radioStyle="bar"
+                            type="radioGroup"
+                            labelKey="assoicate_case_q"
+                            required
+                            disabled="personCollection"
+                            ref-table="YESNO"
+                            change={this.associateIndvChange}
+                            vertical-align="false"
+                        >
+                            <!-- <UX text="Yes" type="radioButton" value="Y" />
+                            <UX text="No" type="radioButton" value="N" /> -->
+                        </UX>
+                        <UX
+                            model="personClear.establishAsNew"
+                            radioStyle="bar"
+                            type="radioGroup"
+                            labelKey="establish_new_indv"
+                            disabled="personCollection"
+                            ref-table="YESNO"
+                            change={this.establishAsNewChange}
+                            vertical-align="false"
+                        >
+                            <!-- <UX text="Yes" type="radioButton" value="Y" />
+                            <UX text="No" type="radioButton" value="N" /> -->
+                        </UX>
+                    </UX>
+                </UX>
+            </UX>
+        </UX>
+        <UXModule.NPCButtons
+            prevlabelKey="previous_Button"
+            cancellabelKey="exit_Button"
+            nextlabelKey="continue_button"
+            nextclick="{this.goToNextPage}"
+            prevclick="{this.goBack}"
+            cancelclick="{this.goToHomePage}"
+        ></UXModule.NPCButtons>
+    </UX>
+</UX>

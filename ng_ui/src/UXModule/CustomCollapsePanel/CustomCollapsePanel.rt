@@ -1,0 +1,111 @@
+<rt-import name="Util" as="Utils" from="@d-lift/core"></rt-import>
+<React.Fragment>
+    <div
+        className="{'ux-customcollapse-section ' + this.props.className}"
+        type="section"
+        id="{this.props.id}"
+        rt-if="(this.props.showIf?this.props.showIf:true)"
+        aria-multiselectable="false"
+    >
+        <React.Fragment key="{itemIndex}" rt-repeat="item in this.buidPanelwithProps()">
+            <div
+                className="{
+            (item.props.disablePanel === 'true' ) ?
+            'ux-custom-panel panel-default noShadow edit-mode-off' : 
+            (item.props.disablePanel === 'false' ) ? 'ux-custom-panel panel-default noShadow edit-mode-on' : ''
+            }"
+                rt-if="(item.props.showIf!==undefined?item.props.showIf:true)"
+                type="customCollapsePanel"
+                id="{`${item.props.id}_panel`}"
+            >
+                <div
+                    id="{`${item.props.id}_header`}"
+                    className="ux-custom-panel-header ux-col-md-12"
+                >
+                    <a
+                        id="panel{itemIndex}"
+                        data-target="#{item.props.id}"
+                        data-toggle="collapse"
+                        className="clearfix cursor-pointer ng-panel-link"
+                        aria-controls="{item.props.id}"
+                        onClick="{(e)=> {(item.props.click?item.props.click():''); (this.updateActiveClass(e))}}"
+                    >
+                        <span
+                            className="ux-panel-header-icon"
+                            rt-if="(this.disableNumber === false)"
+                        >
+                            <span className="ux-panel-number">{itemIndex + 1}</span>
+                        </span>
+                        <span className="ng-money-icon" rt-if="(this.disableIcon === false)">
+                        </span>
+
+                        <h4
+                            id="{item.props.id}_title"
+                            class="ng-panel-header"
+                            dangerouslySetInnerHTML='{{ __html: typeof item.props.titleKey != "undefined" ? Utils.getWcmValue(item.props.titleKey.toString().toLowerCase(),this) : item.props.titleText }}'
+                        ></h4>
+                        <span class="icon-space pull-right" id="{item.props.id}_exclamation"></span>
+                        <label
+                            id="{item.props.id}_infolabel"
+                            class="custom-panel-header-info pull-right"
+                            rt-if="item.props.headerLabelKey != undefined || item.props.headerLabelText !=undefined"
+                            dangerouslySetInnerHTML='{{ __html: typeof item.props.headerLabelKey != "undefined" ? Utils.getWcmValue(item.props.headerLabelKey.toString().toLowerCase(),this) : item.props.headerLabelText }}'
+                        ></label>
+                        <span class="exansionarrow ytb pull-right"></span>
+                    </a>
+                </div>
+                <div
+                    id="{item.props.id}"
+                    nextsectionid="{itemIndex!==(this.collapseSectionlength - 1)?this.collapseSectionsId[itemIndex + 1]:null}"
+                    className="custom-panel-collapse collapse "
+                    aria-labelledby="{item.props.id}_title"
+                    role="region"
+                >
+                    <div className="{item.props.ownBodyClass} ux-clear-both vert-offset-bottom-1">
+                        {item.props.children}
+                        <div
+                            className="ux-row"
+                            rt-if="this.getComponentConfigValue('sectionFlags.'+this.props.id+'.'+item.props.id+'.readonly') && (item.props.modifyShowIf?item.props.modifyShowIf:true) && this.editDoneMode && (item.props.editDoneMode === undefined || item.props.editDoneMode === true)"
+                        >
+                            <div className="ux-col-md-12">
+                                <hr className="ux-custom-panel-separator" />
+                                <button
+                                    type="button"
+                                    button-mode="modify"
+                                    id="{item.props.id}_modify"
+                                    className="ux-btn ux-btn-default pull-left "
+                                    onMouseUp="{(event)=>{(item.props.modifyClick?item.props.modifyClick():''); this.modifyButtonClick(event,item.props)}}"
+                                    onKeyPress="{(event)=>{(item.props.modifyClick?item.props.modifyClick():''); this.modifyButtonClick(event,item.props)}}"
+                                >
+                                    {typeof item.props.modifyButtonKey != "undefined" ?
+                                    Utils.getWcmValue(item.props.modifyButtonKey.toString().toLowerCase(),this)
+                                    : item.props.modifyButtonText}
+                                </button>
+                            </div>
+                        </div>
+                        <div
+                            className="ux-row"
+                            rt-if="this.getComponentConfigValue('sectionFlags.'+this.props.id+'.'+item.props.id+'.readonly')===false && (item.props.doneShowIf?item.props.doneShowIf:true) && this.editDoneMode && (item.props.editDoneMode === undefined || item.props.editDoneMode === true)"
+                        >
+                            <div className="ux-col-md-12">
+                                <hr className="ux-custom-panel-separator" />
+                                <button
+                                    type="button"
+                                    button-mode="done"
+                                    id="{item.props.id}_done"
+                                    className="ux-btn ux-btn-primary pull-left {item.props.doneButtonClass?item.props.doneButtonClass:''} "
+                                    onMouseUp="{(event)=>{(item.props.doneClick?item.props.doneClick():''); this.doneButtonClick(event,item.props);}}"
+                                    onKeyPress="{(event)=>{(item.props.doneClick?item.props.doneClick():''); this.doneButtonClick(event,item.props)}}"
+                                >
+                                    {typeof item.props.doneButtonkey != "undefined" ?
+                                    Utils.getWcmValue(item.props.doneButtonkey.toString().toLowerCase(),this)
+                                    : item.props.doneButtonText}
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </React.Fragment>
+    </div>
+</React.Fragment>

@@ -1,0 +1,48 @@
+.search-modal {
+    width: 40%;
+    border-radius: 6px;
+    transform: translateY(-50%);
+    top:40%;
+    display: block;
+}
+.search-modal .para-resize {
+    width: 55%;
+    font-size: 1.5rem;
+}
+.search-modal .heading-resize {
+    padding-left: 0;
+    margin: 0 auto;
+    width: 45.5%;
+}
+.search-modal .del-app-data{
+    padding-left:10%;
+}
+.search-modal .ux-col-md-8{
+    margin: 0 auto;
+}
+.popupbutton-resize-search{
+    text-align-last: center !important;
+    margin-right: 0%;
+}
+div.popupHeader{
+    font-family: Georgia, 'Times New Roman', Times, serif !important;
+    text-align: center;
+    font-size: 50px !important;
+    font-weight: bold;
+    padding-bottom: 1.25%;
+
+}
+div.popupHeader-content {
+    font-family: inherit;
+    text-align: center;
+    font-size: x-large;
+    padding: 1% 0% 6% 0%;
+}
+#imageSession img {
+        text-align: center;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        padding: 2% 0 2% 0;
+        width: 8%;
+}

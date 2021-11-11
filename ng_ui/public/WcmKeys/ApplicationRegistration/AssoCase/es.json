@@ -1,0 +1,10 @@
+{
+    "case_association": "Clearence de archivo - Casos asociados",
+    "asociado": "Asociado",
+    "Individuos": "Individuos",
+    "cases_involvment_for": "Casos involucrados para <%= name%> <%= ssn%> (SSN) <%= dob%> (DOB)",
+    "select_all": "Seleccionar todo",
+    "continue_button": "Continuar",
+    "previous_Button": "Atrás",
+    "exit_Button": "Cancelar"
+}

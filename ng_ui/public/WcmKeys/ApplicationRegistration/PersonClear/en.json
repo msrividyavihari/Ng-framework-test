@@ -1,0 +1,10 @@
+{
+    "assoicate_case_q": "Do you wish to view associated cases ?",
+    "select_a_case": "Please Select a Person",
+    "establish_new_indv": "Do you wish to establish as a new individual ?",
+    "continue_button": "Continue",
+    "previous_Button": "Back",
+    "exit_Button": "Cancel",
+    "file_clear_summary": "File Clearence - Results",
+    "potential_matches": "Potential Matches For <%= name %> <%= ssn %> (SSN) <%= dob %> (DOB)"
+}

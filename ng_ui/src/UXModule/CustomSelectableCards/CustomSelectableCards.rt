@@ -1,0 +1,11 @@
+<div className="card custom-selectable-card" id="{this.props.id}">
+    <div className="card-body" id="{this.props.id}_cardbody">
+        {this.props.children}
+        <a
+            id="{this.props.id}_select"
+            href="#"
+            className="stretched-link"
+            onClick="{this.onSelectCard}"
+        ></a>
+    </div>
+</div>

@@ -1,0 +1,12 @@
+spring:
+  jpa:
+    database-platform: org.hibernate.dialect.SQLServer2008Dialect
+    database: SQL_SERVER
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    url: jdbc:sqlserver://localhost:44033;databasename=test_db
+    username: iewp_ee_dev
+    password: iewp_ee_dev
+    driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+    hikari:
+      connectionTestQuery: SELECT 1

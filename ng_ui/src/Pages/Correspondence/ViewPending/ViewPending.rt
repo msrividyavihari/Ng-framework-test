@@ -1,0 +1,252 @@
+<UX type="page" ref-table-list="STATUS,LANGUAGE">
+    <UX type="section" ux-class="w-100 app-srch-hd-sec">
+        <UX
+            type="header"
+            size="4"
+            id="contact_header"
+            className="p-3 co-common-header"
+            labelKey="co_view_pending_title"
+        >
+        </UX>
+    </UX>
+    <UX type="card" ux-class="w-100" body-class="p-0 m-0">
+        <UX type="card">
+            <UX size="4" type="header" labelKey="co_search_criteria" className="mb-5 srch-hdr" />
+            <UX type="section" className="outer-sec">
+                <UX type="section" className="search-sec">
+                    <UX
+                        type="radioGroup"
+                        radioStyle="card"
+                        model="viewPendingData.searchCriteria"
+                        vertical-align="false"
+                        col-width="12"
+                        labelKey="empty_string"
+                    >
+                        <UX type="radioButton" labelKey="case" value="C" />
+                        <UX type="radioButton" labelKey="client_id" value="I" />
+                        <UX type="radioButton" labelKey="app" value="A" />
+                        <UX type="radioButton" labelKey="worker_name" value="E" />
+                        <UX type="radioButton" labelKey="worker_id" value="W" />
+                    </UX>
+                </UX>
+                <UX type="section" className="sr-txt-sec">
+                    <UX
+                        type="group"
+                        className="case-num"
+                        col-width="12"
+                        showIf="{$$viewPendingData.searchCriteria==='C'}"
+                    >
+                        <UX
+                            type="group"
+                            flexGroup="true"
+                            flexDirection="row"
+                            flexWrap="false"
+                            flexAlign="start"
+                            flexJustify="start"
+                            childWidths="true"
+                        >
+                            <UX
+                                id="case_label"
+                                col-width="3"
+                                labelKey="case_pound"
+                                className="case-num-lbl co-lbl"
+                                type="label"
+                            />
+                            <UX
+                                id="caseNumber"
+                                model="viewPendingData.caseNumber"
+                                labelKey="empty_string"
+                                col-width="6"
+                                className="ml-1 co-srch-txt"
+                                type="text"
+                                maxLength="9"
+                            />
+                        </UX>
+                    </UX>
+                    <UX
+                        type="group"
+                        className="marginauto"
+                        col-width="12"
+                        showIf="{$$viewPendingData.searchCriteria==='I'}"
+                    >
+                        <UX
+                            type="group"
+                            flexGroup="true"
+                            flexDirection="row"
+                            flexWrap="false"
+                            flexAlign="start"
+                            flexJustify="start"
+                            childWidths="true"
+                        >
+                            <UX
+                                id="client_id_label"
+                                col-width="3"
+                                labelKey="client_id_pound"
+                                className="cl-id-lbl co-lbl"
+                                type="label"
+                            />
+                            <UX
+                                id="clientId"
+                                model="viewPendingData.clientId"
+                                labelKey="textboxValue"
+                                col-width="6"
+                                className="ml-1 co-srch-txt"
+                                type="text"
+                                maxLength="9"
+                            />
+                        </UX>
+                    </UX>
+                    <UX
+                        type="group"
+                        className="marginauto app-num-sec"
+                        col-width="12"
+                        showIf="{$$viewPendingData.searchCriteria==='A'}"
+                    >
+                        <UX
+                            type="group"
+                            flexGroup="true"
+                            flexDirection="row"
+                            flexWrap="false"
+                            flexAlign="start"
+                            flexJustify="start"
+                            childWidths="true"
+                        >
+                            <UX
+                                id="appNumber_label"
+                                col-width="6"
+                                labelKey="app_pound"
+                                className="app-num-lbl co-lbl"
+                                type="label"
+                            />
+                            <UX
+                                id="appNumber"
+                                model="viewPendingData.appNumber"
+                                labelKey="textboxValue"
+                                col-width="6"
+                                className="ml-1 co-srch-txt"
+                                type="text"
+                                maxLength="9"
+                            />
+                        </UX>
+                    </UX>
+                    <UX
+                        type="group"
+                        className="marginauto"
+                        col-width="12"
+                        showIf="{$$viewPendingData.searchCriteria==='E'}"
+                    >
+                        <UX
+                            type="group"
+                            flexGroup="true"
+                            flexDirection="row"
+                            flexWrap="false"
+                            flexAlign="start"
+                            flexJustify="start"
+                            childWidths="true"
+                        >
+                            <UX
+                                id="worker_name_label"
+                                col-width="5"
+                                labelKey="worker_name"
+                                className="wr-nm-lbl co-lbl"
+                                type="label"
+                            />
+                            <UX
+                                id="workerName"
+                                model="viewPendingData.workerName"
+                                labelKey="textboxValue"
+                                col-width="6"
+                                className="ml-1 co-srch-txt"
+                                type="text"
+                                maxLength="9"
+                            />
+                        </UX>
+                    </UX>
+                    <UX
+                        type="group"
+                        className="marginauto"
+                        col-width="12"
+                        showIf="{$$viewPendingData.searchCriteria==='W'}"
+                    >
+                        <UX
+                            type="group"
+                            flexGroup="true"
+                            flexDirection="row"
+                            flexWrap="false"
+                            flexAlign="start"
+                            flexJustify="start"
+                            childWidths="true"
+                        >
+                            <UX
+                                id="worker_id_label"
+                                col-width="3"
+                                labelKey="worker_id"
+                                className="wr-id-lbl co-lbl"
+                                type="label"
+                            />
+                            <UX
+                                id="worker_id"
+                                model="viewPendingData.workerId"
+                                labelKey="textboxValue"
+                                col-width="6"
+                                className="ml-1 co-srch-txt"
+                                type="text"
+                                maxLength="9"
+                            />
+                        </UX>
+                    </UX>
+                </UX>
+                <UX type="section" className="btn-sec ">
+                    <UX type="section" className="btn-sec-inner">
+                        <UX type="group" className="reset-img-ctn">
+                            <UX
+                                type="image"
+                                src="../icons/buttonResetScreen.png"
+                                className="reset-img"
+                                click="{this.resetForm}"
+                            />
+                        </UX>
+                        <UX type="group">
+                            <UX
+                                className="mt-5 co-srch-btn"
+                                mode="primary"
+                                size="small"
+                                type="button"
+                                align="center"
+                                click="{this.showTable}"
+                                labelKey="search"
+                            />
+                        </UX>
+                    </UX>
+                </UX>
+            </UX>
+            <UX type="section" className="dt-tbl-sec" showIf="{$$viewPendingData.show}">
+                <UX size="{1}" type="lineBreak" />
+                <UX type="group">
+                    <UX type="row" col-width="12" className="border alignLineCenter" />
+                </UX>
+                <UX size="{1}" type="lineBreak" />
+                <UX type="group" showIf="{$$viewPendingData.show}">
+                    <UX
+                        type="CustomeDataTable"
+                        col-default-headers="Client ID,Document Title,Language,Request Date,Generate Date,Status"
+                        col-data-keys="indvId,docName,languageCd,reqDt,generateDt,coStatusSw"
+                        datacollection="viewPendingData.datatableCollection"
+                        customContent="{{'Document Title':this.docTitleLink,'Language':this.formatLangCd}}"
+                        keyfield="coReqSeq"
+                        pagination="nextgen"
+                        hover="false"
+                        pagination-show-total="true"
+                        rowSelection="single"
+                        rowClick="{this.selectRow}"
+                        pagination-show-total="true"
+                        pagination-size-per-page="5"
+                        emptymsg-key="Empty_message"
+                        className="mt-5 appSearchDetails"
+                        sortable-col-names="Client ID,Document Title,Language,Request Date,Generate Date,Status"
+                    />
+                </UX>
+            </UX>
+        </UX>
+    </UX>
+</UX>

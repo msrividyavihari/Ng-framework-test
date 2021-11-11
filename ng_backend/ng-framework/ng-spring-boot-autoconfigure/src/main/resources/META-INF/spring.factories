@@ -1,0 +1,5 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+com.deloitte.nextgen.framework.autoconfigure.messaging.JmsAutoConfiguration,\
+com.deloitte.nextgen.framework.autoconfigure.validator.ValidatorAutoConfiguration,\
+com.deloitte.ng.autoconfigure.ReferenceTableAutoConfiguration,\
+com.deloitte.ng.services.NgUserDetailsService

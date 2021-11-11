@@ -1,0 +1,209 @@
+.padding15{
+    padding-top: 15% !important;
+}
+.align-left{
+    padding-left: 5px;
+}
+.andOrOne, .andOrTwo, .andOrThree {
+    margin-top: 39px;
+    margin-right: 50px !important;
+    margin-left: 0px !important;
+}
+ 
+/* .andOrThree {
+    margin-left: -85px;
+    margin-right: 0px;
+}
+.andOrTwo {
+    margin-left: -105px;
+    margin-right: 20px;
+}  */
+/* .andOrOne {
+    margin-left: -28px;
+} */
+.rowWidth{
+    width: 90%;
+}
+
+button.searchButton {
+    margin-top: 5px !important;
+    margin-left: 5px;
+}
+#appNumber_label,#ssn_label,#firstName_label,#lastName_label{
+    margin-bottom: 0.2rem;
+    
+    padding: 0.2rem
+}
+.ux-form-control {
+    height: calc(2rem + 3px);
+}
+.ux-input-group{
+    border: 1px solid #c6c9df;
+    margin: 1px;
+    /* width: max-content; */
+}
+.alignLineCenter{
+    margin:0 auto;
+}
+.searchRightPanel{
+    padding-left: 0px;
+    margin-left: -20px;
+}
+.searchRightPanel section.border{
+    border-radius: 0.5rem;
+    border-width: 0.15rem !important;
+}
+.searchLeftPanel{
+    padding-right: 0px;
+    padding-top: 20px;
+    padding-left: 3.5%;
+}
+.app-search-header {
+    font-size: 2.75rem;
+    font-weight: 600;
+}
+.appRN{
+    margin-bottom: 0.25rem !important;
+}
+.docIconParent,.appLinkSpace{
+    padding-right: 0px !important;
+}
+.appRNHeader,.appLink{
+    padding-left: 0px !important;
+}
+.searchTip .bullet {
+    margin-bottom: 0px !important;
+}
+.searchTipHeader{
+    padding-top: 0.75rem !important;
+}
+.insightParaParent{
+    padding-top: 0.5rem !important;
+}
+.appSearchDetails th, .appSearchDetails td,.appSearchDetails thead{
+    border-left:0px !important;
+    border-right:0px !important;
+    border-top:0px !important;
+    border-bottom:2px solid #EBECF0;
+}
+.appSearchDetails {
+    font-size: 0.825rem !important;
+    border:0px;
+}
+.appSearchDetails th{
+    font-weight: 600;
+}
+.appSearchDetails .ux-badge {
+    border-radius: 5px;
+}
+.ng-del-icon{
+    height: 34px;
+    width: 31px;
+    display: inline-block;
+    background: url('../icons/delete-button.png');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+.ng-down-icon{
+    height: 34px;
+    width: 31px;
+    display: inline-block;
+    background: url('../icons/down-sort.png');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+.ng-up-icon{
+    height: 34px;
+    width: 31px;
+    display: inline-block;
+    background: url('../icons/up-sort.png');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+.del-icon{
+    height:auto;
+    cursor: pointer;
+    margin-left: 5%;
+    width: 18%;
+}
+.search-modal {
+    width: 40%;
+    border-radius: 6px;
+    transform: translateY(-50%);
+    top:40%;
+}
+.search-modal .para-resize {
+    width: 55%;
+    font-size: 1.5rem;
+}
+.search-modal .heading-resize {
+    padding-left: 0;
+    margin: 0 auto;
+    width: 45.5%;
+}
+.search-modal .del-app-data{
+    padding-left:10%;
+}
+.search-modal .ux-col-md-8{
+    margin: 0 auto;
+}
+.fullName, .appRecdDate,.appNumber {
+    font-weight: 500;
+}
+.confirmDeleteButton {
+    background-color: #e0284a;
+    color: #ffffff;
+    border-color: #e0284a;
+}
+.hyperLink{
+    cursor:pointer;
+}
+.defaultBadge {
+    background-color: #eeeff5;
+    border-color: #eeeff5;
+}
+.warnBadge {
+    background-color: #ffeaba;
+    border-color: #ffeaba;
+}
+.dangerBadge {
+    background-color: #ffafbe;
+    border-color: #ffafbe;
+}
+.appSearchDetails .ux-badge span {
+    font-weight: 400;
+}
+.successBadge {
+    background-color: #c3f1ed;
+    border-color: #c3f1ed;
+}
+.appSearchDetails td {
+    vertical-align: middle;
+}
+.button-resize-search{
+    text-align-last: center !important;
+    margin-right: 6%;
+}
+
+ 
+
+
+ .react-bootstrap-table .caret-4-asc  , .react-bootstrap-table .caret-4-desc  {
+    float: none  !important;
+    margin-left: 2px !important;
+} 
+
+.input-group, .ux-input-group, .react-datepicker-wrapper {
+    position: relative !important;
+    display: flex !important;
+    flex-wrap: wrap !important;
+    align-items: stretch !important;
+ /* width: 100%  !important; */
+}
+label {
+    font-size: 0.875rem !important;
+}
+
+select.ux-form-control{
+    height: calc(1.5em + 0.75rem + 2px ) !important;
+}

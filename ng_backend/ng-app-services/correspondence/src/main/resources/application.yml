@@ -1,0 +1,62 @@
+server:
+  port: 8086
+  compression:
+    enabled: true
+  servlet:
+    contextPath: /co
+
+logging:
+  level:
+    org:
+      hibernate:
+        type: trace
+spring:
+  application:
+    name: Correspondence
+  jackson:
+    default-property-inclusion: non_null
+    mapper:
+      accept_case_insensitive_properties: true
+  jpa:
+    database-platform: org.hibernate.dialect.Oracle12cDialect
+    show-sql: true
+    hibernate:
+      ddl-auto: none
+      integrator_provider:
+    properties:
+        hibernate:
+          format-sql: true
+          temp:
+            use_jdbc_metadata_defaults: false
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    url: jdbc:oracle:thin:@//localhost:1522/ORCL
+    username: WP_CO_APP
+    password: WP_CO_APP
+#    url: jdbc:oracle:thin:@//NG4DB.CRVNQYEDFNRM.US-EAST-1.RDS.AMAZONAWS.COM:1521/NG4DB
+#    username: WP_CO_APP
+#    password: wp_co_app_ng4db
+    driver-class-name: oracle.jdbc.OracleDriver
+    hikari:
+      poolName: correspondence
+      connectionTimeout: 10000
+      maximumPoolSize: 2
+      autoCommit: false
+      connectionTestQuery: SELECT 1 FROM DUAL
+      data-source-properties:
+        cachePrepStmts: true
+        perpStmtCacheSize: 250
+        prepStmtCacheSqlLimits: 2048
+        userServerPrepStmts: true
+
+nextgen:
+  reference-table:
+    preload: false
+  cors:
+    allowed-origins:
+      - "http://15.207.142.199"
+      - "http://localhost:5000"
+
+security:
+  security:
+    testing: true

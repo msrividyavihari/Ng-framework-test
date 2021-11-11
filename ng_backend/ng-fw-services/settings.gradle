@@ -1,0 +1,5 @@
+rootProject.name = 'ng-fw-services'
+//include 'ng-audit-svc'
+include 'ng-err-log-svc'
+include 'ng-ref-table-svc'
+include 'ng-security-svc'

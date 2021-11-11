@@ -1,0 +1,55 @@
+<UX type="section">
+    <UX type="para" labelKey="case_asso_label"> </UX>
+    <UX
+        type="CustomeDataTable"
+        col-default-headers="Last Updated,HOH,Programs,Status/Case Mode,Case Number,Office,Associate to this Case?"
+        col-widths="{{'associate':1}}"
+        col-data-keys="lastUpdated,hoh,programs,status,caseNum,office,associate"
+        datacollection="associatedCase"
+        customContent="{{'Associate to this Case?':this.associate,'Last Updated': this.formatTime,'Programs': this.formatProg, 'Office': this.formatOffice, 'Status/Case Mode': this.statusdesc}}"
+        keyfield="caseNumber"
+        pagination="nextgen"
+        hover="true"
+        sortable-col-names="Last Updated,HOH"
+        pagination-show-total="true"
+        pagination-size-per-page="1"
+        striped="true"
+    >
+    </UX>
+    <UX type="lineBreak"></UX>
+    <UX
+        iconClass="{null}"
+        mode="primary"
+        postIconClass="{null}"
+        preIconClass="{null}"
+        size="large"
+        type="button"
+        click="{this.onOpenModal}"
+        id="appRegNext"
+    >
+        Next
+    </UX>
+    <UX type="modal" isOpen="{$$caseAssociate.popup}">
+        <span onClick="{this.cancel}">
+            <p className="close-icon">&#x2716;</p>
+        </span>
+        <UX
+            size="3"
+            type="header"
+            value="Test"
+            labelKey="case_asso_popup_heading"
+            className="heading-resize"
+        >
+        </UX>
+        <UX type="para" labelKey="case_asso_popup_text" className="para-resize"> </UX>
+        <UX type="lineBreak"></UX>
+        <UX type="section" className="button-resize">
+            <UX iconClass="{null}" mode="default" size="large" type="button" click="{this.cancel}">
+                Cancel
+            </UX>
+            <UX iconClass="{null}" mode="primary" size="large" type="button" click="{this.confirm}">
+                Confirm
+            </UX>
+        </UX>
+    </UX>
+</UX>

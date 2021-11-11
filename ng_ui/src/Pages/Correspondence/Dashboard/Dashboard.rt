@@ -1,0 +1,258 @@
+<UX type="page">
+    <UX type="section" ux-class="w-100 app-srch-hd-sec">
+        <UX
+            type="header"
+            size="4"
+            id="notice_status_header"
+            className="p-3 co-common-header"
+            labelKey="dashboard"
+        >
+        </UX>
+    </UX>
+    <UX type="card" ux-class="w-100" body-class="p-0 m-0" id="search_card">
+         <UX type="card">
+            <UX size="4" type="header" labelKey="co_search_criteria" className="mb-5" />
+            <UX type="section" className="outer-sec">
+                 <UX type="section" className="search-sec" id="search-sec">
+                    <UX
+                        type="group"
+                        flexGroup="true"
+                        flexDirection="row"
+                        flexWrap="false"
+                        flexAlign="start"
+                        flexJustify="start"
+                        childWidths="true"
+                    >
+                        <UX
+                            id="caseNumber_label"
+                            col-width="6"
+                            labelKey="agency"
+                            className="pt-4"
+                            type="label"
+                            
+                        />
+                        <UX
+                            id="caseNumber"
+                            model="noticestatusData.agency"
+                            labelKey="textboxValue"
+                            col-width="6"
+                            className="ml-1"
+                            type="select"
+                            list="noticestatusData.agencyList"
+                optionValue = "value"
+                optionLabel="label"
+                
+                        />
+                    </UX>
+                    <UX type="section" className="dates-sec" >
+                        <!-- <UX type="section" col-width="12" className="dates-sec-inner"> -->
+                            <UX
+                                type="group"
+                                flexGroup="true"
+                                flexDirection="row"
+                                flexWrap="false"
+                                flexAlign="start"
+                                flexJustify="start"
+                                childWidths="true"
+                                
+                            >
+                                <UX
+                                    id="startDate"
+                                    model="noticestatusData.startDate"
+                                    type="date"
+                                    col-width="6"
+                                    labelKey="start_dt"
+                                    maxDate="today"
+                                    required
+                                    errormessages='{{"required":"valid_date"}}'
+                                />
+                                <UX
+                                    id="endDate"
+                                    model="noticestatusData.endDate"
+                                    type="date"
+                                    col-width="6"
+                                    labelKey="end_dt"
+                                    maxDate="today"
+                                    required
+                                    errormessages='{{"required":"valid_date"}}'
+                                />
+                            </UX>
+                        <!-- </UX> -->
+                     </UX>
+                     
+                    <UX
+                        type="group"
+                        flexGroup="true"
+                        flexDirection="row"
+                        flexWrap="false"
+                        flexAlign="start"
+                        flexJustify="start"
+                        childWidths="true"
+                    >
+                        <UX
+                            id="status_label"
+                            col-width="6"
+                            labelKey="status"
+                            className="pt-4"
+                            type="label"
+                        />
+                       
+                        <UX
+                        defaultOption="true"
+                defaultOptionValue="{''}"
+                id="status"
+                model="noticestatusData.status"
+                type="select"
+                className="ml-1"
+                maxLength="9" 
+                col-width="6"
+                list="noticestatusData.statusList"
+                optionValue = "value"
+                optionLabel="label"
+/>
+            
+                    </UX>
+                    <UX
+                    type="group"
+                    flexGroup="true"
+                    flexDirection="row"
+                    flexWrap="false"
+                    flexAlign="start"
+                    flexJustify="start"
+                    childWidths="true"
+                >
+                 
+                <UX
+                        id="channel_label"
+                        col-width="6"
+                        labelKey="channel"
+                        className="pt-4"
+                        type="label"
+                    />
+                    <UX
+                    id="channel"
+                    model="noticestatusData.channel"
+                    type="checkboxGroup"
+                    vertical-align="true"
+                    col-width="6"
+                        className="ml-1"
+                  > 
+                    <UX
+                        id="email"
+                        type="checkbox"
+                        value="Email"
+                        text="Email"
+
+                    />
+                    <UX
+                        id="text"
+                        type="checkbox"
+                        value="Text"
+                        text="Text"
+                    />
+                    <UX
+                        id="mail"
+                        type="checkbox"
+                        value="Mail"
+                        text="Mail"
+                    />
+                </UX>
+                </UX>
+                    <UX type="section" className="btn-sec ">
+                        <UX type="section" className="btn-sec-inner">
+                            <UX type="group" className="reset-img-ctn">
+                                <UX
+                                    type="image"
+                                    src="../icons/buttonResetScreen.png"
+                                    className="reset-img"
+                                    click="{this.resetForm}"
+                                />
+                            </UX>
+                            
+                        </UX>
+                     </UX>
+                    <UX type="group">
+                        <UX
+                            className="mt-5 co-srch-btn"
+                            mode="primary"
+                            size="small"
+                            type="button"
+                            align="center"
+                            labelKey="search"
+                            click="{this.showTable}"
+                        />
+                    </UX>
+                 </UX>
+                 
+            <UX type="section" className="dt-tbl-sec" showIf="{$$noticestatusData.show}">
+                <UX size="{1}" type="lineBreak" />
+                <UX type="group" showIf="{$$noticestatusData.show}">
+                    <UX
+                        type="CustomeDataTable"
+                        col-default-headers="Notice Status,Email,Text,Mail"
+                        col-data-keys="noticestatus,email,text,mail"
+                        datacollection="noticestatusData.dataCollection"
+                        keyfield="logstatusId"
+                        pagination="nextgen"
+                        hover="false"
+                        emptymsg-key="Empty_message"
+                        className="mt-5"
+                        customContent="{{'Email':this.emailLink,'Text':this.textLink,'Mail':this.mailLink}}"
+                    />
+                </UX>
+            </UX>
+            <UX type="section" className="dt-tbl-sec" showIf="{$$noticestatusData.emailshow}" labelKey="email_details">
+                <UX size="{1}" type="lineBreak" />
+                <UX type="group" showIf="{$$noticestatusData.emailshow}">
+                    <UX
+                        type="CustomeDataTable"
+                        col-default-headers="Date,Notice Id,Reason"
+                        col-data-keys="requestDate,noticeRequestId,reasonForFailure"
+                        datacollection="noticestatusData.emaildataCollection"
+                        keyfield="logstatusId"
+                        pagination="nextgen"
+                        hover="false"
+                        emptymsg-key="Empty_message"
+                        className="mt-5"
+
+                    />
+                </UX>
+            </UX>
+            <UX type="section" className="dt-tbl-sec" showIf="{$$noticestatusData.textshow}" labelKey="text_details">
+                <UX size="{1}" type="lineBreak" />
+                <UX type="group" showIf="{$$noticestatusData.textshow}">
+                    <UX
+                        type="CustomeDataTable"
+                        col-default-headers="Date,Notice Id,Reason"
+                        col-data-keys="requestDate,noticeRequestId,reasonForFailure"
+                        datacollection="noticestatusData.textdataCollection"
+                        keyfield="logstatusId"
+                        pagination="nextgen"
+                        hover="false"
+                        emptymsg-key="Empty_message"
+                        className="mt-5"
+
+                    />
+                </UX>
+            </UX>
+            <UX type="section" className="dt-tbl-sec" showIf="{$$noticestatusData.mailshow}" labelKey="mail_details">
+                <UX size="{1}" type="lineBreak" />
+                <UX type="group" showIf="{$$noticestatusData.mailshow}">
+                    <UX
+                        type="CustomeDataTable"
+                        col-default-headers="Date,Notice Id,Reason"
+                        col-data-keys="requestDate,noticeRequestId,reasonForFailure"
+                        datacollection="noticestatusData.maildataCollection"
+                        keyfield="logstatusId"
+                        pagination="nextgen"
+                        hover="false"
+                        emptymsg-key="Empty_message"
+                        className="mt-5"
+
+                    />
+                </UX>
+            </UX>
+            </UX>
+         </UX>
+    </UX>
+</UX>

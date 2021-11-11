@@ -1,0 +1,211 @@
+<UX type="section">
+    <UXModule.SidepanelApplicants
+        popupId="popupFirst"
+        lable="SSP Applicants"
+        mode="primary"
+        closeButton="true"
+        showIf="{$$sspMode}"
+    >
+        <React.Fragment key="{itemIndex}" rt-repeat="item in this.buildApplicantCards()">
+            <div id="sspMainId">
+                <UX
+                    className="panel-header-custom"
+                    type="CustomCollapsePanel"
+                    editDoneMode="{false}"
+                    id="{'sspPanel_' + itemIndex}"
+                    enableReadOnlyState="{true}"
+                    disable-number="true"
+                    headerSize="5"
+                >
+                    <UX
+                        className="panel-header-custom"
+                        id="{'sspSection_' + itemIndex}"
+                        lastSectionIf="true"
+                        titleText="
+                            <p>
+                                <span class='ssp-header-name'>
+                                    {item.firstName} {item.lastName} - 
+                                </span>
+                                    {item.gender === 'M' ? ' Male' : ' Female'}, Age {item.age}
+                            </p>"
+                        model="{'sspApplicant_'+itemIndex}"
+                        type="collapseSection"
+                        doneShowIf="true"
+                        modifyButtonKey="edit_button_text"
+                        doneButtonkey="done_button_text"
+                        modifyButtonText="edit_button_text"
+                        doneButtonText="done_button_text"
+                        headerSize="1"
+                    >
+                        <UX
+                            id="{'hohWarning'}"
+                            type="section"
+                            className="ssp-panel-alert"
+                            showIf="{AppContext.model.getValue('HohAlert'+itemIndex) === true}"
+                        >
+                            <UX type="label" id="{'hoh_'+itemIndex}" labelKey="sspHoh_warning" />
+                        </UX>
+                        <UX type="lineBreak" size="{2}"></UX>
+                        <div className="headers-text">
+                            <UX type="label">First Name</UX>
+                            <UX type="label" id="{'first_label_'+ itemIndex}" className="val"
+                                >{item.firstName}</UX
+                            >
+                        </div>
+                        <div className="headers-text">
+                            <UX type="label">Last Name</UX>
+                            <UX type="label" id="{'last_label_'+ itemIndex}" className="val"
+                                >{item.lastName}</UX
+                            >
+                        </div>
+                        <UX type="lineBreak" size="{2}"></UX>
+                        <div className="headers-text">
+                            <UX type="label">SSN</UX>
+                            <UX type="label" id="{'ssn_label_'+ itemIndex}" className="val"
+                                >{item.ssn}</UX
+                            >
+                        </div>
+                        <div className="headers-text">
+                            <UX type="label">DOB</UX>
+                            <UX type="label" id="{'dob_label_'+ itemIndex}" className="val"
+                                >{item.dob}</UX
+                            >
+                        </div>
+                        <UX type="lineBreak" size="{2}"></UX>
+                        <div className="headers-text">
+                            <UX type="label">GENDER</UX>
+                            <UX type="label" id="{'gender_'+ itemIndex}" className="val"
+                                >{item.gender}</UX
+                            >
+                        </div>
+                        <div className="headers-text">
+                            <UX type="label">HOH</UX>
+                            <UX type="label" id="{'hoh_'+ itemIndex}" className="val"
+                                >{item.primaryApplicantSw}</UX
+                            >
+                        </div>
+                        <UX type="lineBreak" size="{2}"></UX>
+                        <div>
+                            <UX
+                                type="badge"
+                                class="ssp-panel-badge"
+                                mode="default"
+                                id="sspPanelInfoAlert1"
+                                showIf="{((item.primaryApplicantSw==='Yes' && (!AppContext.model.getValue('ar.pc.search.collection.above85')
+                                || AppContext.model.getValue('ar.pc.search.collection.above85').length === 0 ))&& (($$EstablishNewPerson !==true)))}"
+                                >Click on Establish New Person in File Clearance Panel to Proceed.
+                            </UX>
+
+                            <UX
+                                type="badge"
+                                class="ssp-panel-badge"
+                                mode="default"
+                                id="sspPanelInfoAlert2"
+                                showIf="{item.primaryApplicantSw==='Yes' && (AppContext.model.getValue('ar.pc.search.collection.above85')
+                            && AppContext.model.getValue('ar.pc.search.collection.above85').length !== 0 )}"
+                                >Match found for this individual. Review the individuals on the left
+                                and add to the application if applicable.
+                            </UX>
+
+                            <div  id="{'sspPanelBadge' + item.ssn}">
+                            <UX
+                                type="badge"
+                                class="ssp-panel-badge"
+                                mode="default"
+                                showIf="{item.primaryApplicantSw==='No' && $$EstablishNewPerson !==true}"
+                            >
+                                {AppContext.model.getValue('badgeMessage') ?
+                                AppContext.model.getValue('badgeMessage') : ''}
+                            </UX>
+                        </div>
+                        <div className="headers-text pb-2">
+                            <UX
+                                id="{'fileClearButton' + itemIndex}"
+                                type="button"
+                                mode="default"
+                                className="float-xl-right rounded-pill"
+                                showIf="{item.primaryApplicantSw!=='Yes'}"
+                                size="small"
+                                name="{item.ssn +  itemIndex.toString() +'_B'}"
+                                labelKey="file_clear"
+                                click="{event => this.sero(item,itemIndex)}"
+                                disabled="{$$HohFileCleared !== true}"
+                            >
+                            </UX>
+                        </div>
+                        <div className="headers-text pb-2">
+                            <UX
+                                id="{'fileClearRemoveButton' + itemIndex}"
+                                type="button"
+                                mode="default"
+                                className="float-xl-right rounded-pill"
+                                showIf="{item.primaryApplicantSw!=='Yes'}"
+                                size="small"
+                                name="{item.ssn + itemIndex.toString()  +'_B'}"
+                                labelKey="file_clear_remove"
+                                click="{event => this.remove(item,itemIndex)}"
+                                disabled="{$$HohFileCleared !== true}"
+                            >
+                            </UX>
+                        </div>
+                        <div className="center-button pb-2">
+                            <UX
+                                id="{'importButton' + itemIndex}"
+                                type="button"
+                                mode="default"
+                                showIf="{($$EstablishNewPerson===true)&&(AppContext.model.getValue('sspFileClearSwitch'+itemIndex)
+                        || item.primaryApplicantSw==='Yes')}"
+                                className="float-xl-right rounded-pill"
+                                size="small"
+                                name="{item.ssn + '_B'}"
+                                labelKey="import"
+                                click="{event => this.import(item,itemIndex)}"
+                            >
+                            </UX>
+                        </div>
+                    </UX>
+                </UX>
+                <UX type="lineBreak" size="{1}"></UX>
+
+                <UX
+                    type="modal"
+                    isOpen="{AppContext.model.getValue('remove.popup'+itemIndex)}"
+                    className="search-modal"
+                >
+                    <span onClick="{event => this.onCloseModal(itemIndex)}">
+                        <p className="close-icon">&#x2716;</p>
+                    </span>
+                    <UX
+                        size="3"
+                        type="header"
+                        value="Test"
+                        labelKey="sspRemove_warning"
+                        className="heading-resize"
+                    >
+                    </UX>
+                    <UX type="lineBreak"></UX>
+                    <UX type="section" className="button-resize-search">
+                        <UX
+                            iconClass="{null}"
+                            mode="default"
+                            size="small"
+                            type="button"
+                            click="{event => this.onConfirmModal(itemIndex)}"
+                        >
+                            YES
+                        </UX>
+                        <UX
+                            iconClass="{null}"
+                            mode="default"
+                            size="small"
+                            type="button"
+                            click="{event => this.onCloseModal(itemIndex)}"
+                        >
+                            NO
+                        </UX>
+                    </UX>
+                </UX>
+            </div>
+        </React.Fragment>
+    </UXModule.SidepanelApplicants>
+</UX>

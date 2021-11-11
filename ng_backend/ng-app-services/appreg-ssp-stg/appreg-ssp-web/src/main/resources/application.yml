@@ -1,0 +1,46 @@
+server:
+  port: 8085
+  compression:
+    enabled: true
+  servlet:
+    contextPath: /ar-ssp-api
+
+logging:
+  level:
+    root: DEBUG
+    org.reflections: ERROR
+
+spring:
+  application:
+    name: AppReg_SSP
+  jackson:
+    default-property-inclusion: non_null
+  jpa:
+    database-platform: org.hibernate.dialect.Oracle10gDialect
+    database: ORACLE
+    show-sql: true
+    hibernate:
+      ddl-auto: none
+    properties:
+      hibernate:
+        format-sql: true
+        temp:
+          use_jdbc_metadata_defaults: false
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+#    url: jdbc:oracle:thin:@//usmumpurchase1:1522/xepdb1
+    url: jdbc:oracle:thin:@//localhost:1522/ORCL
+    username: WP_AR_APP_STG
+    password: WP_AR_APP_STG
+    driver-class-name: oracle.jdbc.driver.OracleDriver
+    hikari:
+      poolName: applicationRegistration_ssp
+      connectionTimeout: 10000
+      maximumPoolSize: 2
+      autoCommit: false
+      connectionTestQuery: SELECT 1 FROM DUAL
+      data-source-properties:
+        cachePrepStmts: true
+        perpStmtCacheSize: 250
+        prepStmtCacheSqlLimits: 2048
+        userServerPrepStmts: true

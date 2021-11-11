@@ -1,0 +1,128 @@
+<UX type="section">
+    <UXModule.CustomCollapseSidepanel
+        popupId="popupFirst"
+        lable="{this.getHeader()} "
+        mode="primary"
+        closeButton="true"
+    >
+        <UX className="topPara" id="notMatchItem" type="section">
+            <UX type="para">
+                There are <b> {this.totalItems()} </b> from Data Collection that do not match the
+                info from the current Application. Review the below and choose the information to
+                keep for this registration.
+            </UX>
+        </UX>
+        <UX
+            id="conflictPanelAlert"
+            type="section"
+            className="conflict-panel-alert"
+            showIf="{AppContext.model.getValue('conflictPanelAlert') === false}"
+        >
+            <UX type="label" labelKey="conflictPanelWarning" />
+        </UX>
+        <React.Fragment key="{itemIndex}" rt-repeat="item in this.buildApplicantCards()">
+            <UX
+                type="CustomCollapsePanel"
+                id="{'conflictPanel' + item.PANEL_HEADERS.UNIQUE_ID}"
+                disable-number="true"
+                last-section-if="{true}"
+                expandAllOnLoad="{false}"
+                editDoneMode="{false}"
+                enableReadOnlyState="{true}"
+                className="headerIconAlert"
+            >
+                <UX
+                    hideOnDone="false"
+                    editDoneMode="false"
+                    lastSectionIf="{true}"
+                    type="collapseSection"
+                    hideOnDone="false"
+                    editDoneMode="false"
+                    id="{'conflictSection' + item.PANEL_HEADERS.UNIQUE_ID}"
+                    lastSectionIf="true"
+                    titleText="{item.PANEL_HEADERS.panelName}"
+                    model="{'sspApplicant_'+itemIndex}"
+                    type="collapseSection"
+                    doneShowIf="true"
+                    className="headerIconAlert"
+                    modifyButtonKey="edit_button_text"
+                    doneButtonkey="done_button_text"
+                    modifyButtonText="edit_button_text"
+                    doneButtonText="done_button_text"
+                    headerSize="1"
+                >
+                    <UX type="lineBreak" size="{1}"></UX>
+                    <div className="headers">
+                        <div className="headers-left">
+                            <UX type="label">SSP Data</UX>
+                        </div>
+
+                        <div className="headers-right">
+                            <UX type="label">Data Collection Data</UX>
+                        </div>
+                    </div>
+
+                    <hr />
+
+                    <React.Fragment
+                        key="{itemIndex}"
+                        rt-repeat="item in this.buildConflictPanelData(item.PANEL_HEADERS.UNIQUE_ID)"
+                    >
+                        <label className="card-checkbox">
+                            <input
+                                id="{this.headerKeys(item)}"
+                                onClick="{()=>this.handleCheck(item,'ssp')}"
+                                type="radio"
+                                name="{this.genRadioBtn(item)}"
+                                className="card-input-element"
+                            />
+                            <div className="card-input">
+                                <UX type="label" className="key" labelKey="{this.headerKeys(item)}">
+                                </UX>
+                                <div className="val" class="panel-body">
+                                    {item.substring(item.indexOf(",")+1, item.indexOf("-"))}
+                                </div>
+                            </div>
+                        </label>
+
+                        <div className="or-and">
+                            <UX type="label" className="andOr">OR</UX>
+                        </div>
+
+                        <label className="card-checkbox">
+                            <input
+                                id="{this.headerKeys(item)}"
+                                onClick="{()=>this.handleCheck(item,'dc')}"
+                                type="radio"
+                                name="{this.genRadioBtn(item)}"
+                                className="card-input-element"
+                            />
+                            <div className="card-input">
+                                <UX type="label" className="key" labelKey="{this.headerKeys(item)}">
+                                </UX>
+
+                                <div className="val" class="panel-body">
+                                    {item.substring(item.indexOf("-")+1, item.indexOf("$"))}
+                                </div>
+                            </div>
+                        </label>
+                    </React.Fragment>
+                </UX>
+            </UX>
+        </React.Fragment>
+        <!-- <div className="sub-btn"> -->
+        <UX type="lineBreak" size="{1}"></UX>
+        <UX
+            iconClass="{null}"
+            mode="primary"
+            size="small"
+            type="button"
+            className="custom-btn"
+            buttonType="submit"
+            click="{() => this.submitData()} "
+        >
+            &#10004; &#160; Save All Selected Info
+        </UX>
+        <!-- </div> -->
+    </UXModule.CustomCollapseSidepanel>
+</UX>

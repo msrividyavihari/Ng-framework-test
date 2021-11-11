@@ -1,0 +1,71 @@
+plugins {
+    id 'war'
+    id 'com.google.cloud.tools.jib' version "3.0.0"
+    id 'org.springframework.boot' version '2.4.0'
+    id 'io.spring.dependency-management' version '1.0.10.RELEASE'
+    id 'java'
+    id 'idea'
+    id 'org.liquibase.gradle' version '2.0.4'
+}
+apply from :"liquibase.gradle"
+jib {
+
+    from {
+        image = "tomcat:9.0"
+    }
+
+    to {
+        image = "app-services/${project.name}"
+        tags = [version]
+    }
+    container {
+        ports = ['8080', '8081']
+        environment = [
+                SPRING_OUTPUT_ANSI_ENABLED: "ALWAYS",
+        ]
+        creationTime = "USE_CURRENT_TIMESTAMP"
+        appRoot = "/usr/local/tomcat/webapps/ROOT"
+    }
+}
+
+war {
+    manifest {
+
+        attributes "Built-By": System.properties['user.name']
+        attributes "Name": project.name
+        attributes "Version": archiveVersion
+        //attributes "Build-Number": gitVersion()
+        attributes 'Created-By': "Gradle ${gradle.gradleVersion}"
+        attributes 'Build-Jdk': "${System.properties['java.version']} (${System.properties['java.vendor']} ${System.properties['java.vm.version']})"
+        attributes 'Build-OS': "${System.properties['os.name']} ${System.properties['os.arch']} ${System.properties['os.version']}"
+
+    }
+    enabled = true
+    includes = ["WEB-INF/**", "META-INF/**"]
+}
+
+compileJava {
+    options.annotationProcessorPath = configurations.annotationProcessor
+    options.compilerArgs += [
+            //'-Amapstruct.verbose=true',
+            '-Amapstruct.defaultComponentModel=spring',
+            '-Aautomate.verbose=true'
+    ]
+}
+
+dependencies {
+    api project(':ng-demo-client')
+    implementation "com.deloitte.nextgen.framework:ng-spring-boot-starter:$NEXTGEN"
+    implementation "com.querydsl:querydsl-jpa:$QUERY_DSL"
+    implementation "com.querydsl:querydsl-core:$QUERY_DSL"
+
+    annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
+    annotationProcessor "com.deloitte.nextgen.framework:ng-persistence:$NEXTGEN"
+    annotationProcessor "com.querydsl:querydsl-apt:$QUERY_DSL:jpa"
+    annotationProcessor "org.projectlombok:lombok:$LOMBOK"
+    annotationProcessor "org.mapstruct:mapstruct-processor:$MAPSTRUCT"
+    annotationProcessor "com.deloitte.nextgen.framework:ng-automate:$NEXTGEN"
+
+
+}
+

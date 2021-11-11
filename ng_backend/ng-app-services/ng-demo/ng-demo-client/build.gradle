@@ -1,0 +1,46 @@
+plugins {
+    id 'maven'
+    id 'maven-publish'
+}
+
+
+task sourcesJar(type: Jar, dependsOn: classes) {
+    archiveClassifier = 'sources'
+    from sourceSets.main.allSource
+}
+
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    archiveClassifier = 'javadoc'
+    from javadoc.destinationDir
+}
+
+compileJava {
+    options.annotationProcessorPath = configurations.annotationProcessor
+    options.compilerArgs += [
+            '-Aautomate.verbose=true',
+            '-Aautomate.generateMode=uri'
+    ]
+}
+
+publishing {
+    publications {
+        mavenPublication(MavenPublication) {
+            from components.java
+            artifactId "${project.name}"
+            version "${project.version}"
+            artifact sourcesJar
+
+        }
+    }
+}
+
+dependencies {
+
+    implementation "com.deloitte.nextgen.framework:ng-validator:$NEXTGEN"
+    implementation "com.deloitte.nextgen.framework:ng-exceptions:$NEXTGEN"
+    implementation 'com.fasterxml.jackson.core:jackson-core:2.11.3'
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.11.3'
+
+    annotationProcessor "com.deloitte.nextgen.framework:ng-automate:$NEXTGEN"
+    annotationProcessor "org.projectlombok:lombok:$LOMBOK"
+}

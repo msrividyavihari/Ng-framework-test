@@ -1,0 +1,13 @@
+description = 'Nextgen Framework - Validator'
+
+dependencies {
+
+    api project(':ng-commons')
+    api project(':ng-logging')
+
+    api "org.springframework.boot:spring-boot-starter-validation:$SPRING_BOOT"
+
+
+    annotationProcessor "org.projectlombok:lombok:$LOMBOK"
+
+}

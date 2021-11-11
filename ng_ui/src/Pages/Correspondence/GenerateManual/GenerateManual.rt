@@ -1,0 +1,86 @@
+<UX type="page" ref-table-list="CO_MASTER">
+    <UX type="section" ux-class="w-100 app-srch-hd-sec">
+        <UX
+            type="header"
+            size="4"
+            id="contact_header"
+            className="p-3 co-common-header"
+            labelKey="co_search_case_title"
+        >
+        </UX>
+    </UX>
+    <UX type="card" ux-class="w-100" body-class="p-0 m-0">
+        <UX type="card">
+            <UX size="4" type="header" labelKey="co_form_search_criteria" className="mb-5" />
+            <UX type="group" width="10">            
+                <UX
+                labelText="Document ID"
+                defaultOption="true"
+                id="optiongroup"
+                labelKey="docId"
+                model="generateManualData.docId" 
+                list="generateManualData.coMaster" 
+                optionGroup="true"
+                optionLabel="docName"
+                optionValue="docId"
+                type="select"
+                errormessages='{{"required":"valueRequired"}}'/>
+            </UX>
+            <UX type="lineBreak"
+                size="{2}"/>
+            <UX size="4" type="header" labelKey="co_case_search_criteria" className="mb-5" />
+            <UX type="group" className="marginauto" col-width="4">
+                    <UX
+                        id="caseNumber"
+                        placeholder="Enter Case #"
+                        model='generateManualData.caseNumber'
+                        labelKey="Case Number :"
+                        col-width="10"
+                        className="ml-1"
+                        type="text"
+                        maxLength="9"
+                    />
+            </UX>
+            <UX
+                    type="button"
+                    size="small"
+                    labelKey="search"
+                    id="search"
+                    className="align-self-center"
+                    click="{this.showTable}">
+            </UX>
+            <UX type="lineBreak"
+                size="{2}"/>
+            <UX type="card" showIf="{$$generateManualData.show}">
+                <UX size="4" type="header" labelKey="co_search_results" className="mb-5" />
+                    <UX
+                        type="CustomeDataTable"
+                        col-default-headers="CLIENT ID, INDIVIDUAL NAME"
+                        col-data-keys="clientId,fullName"
+                        datacollection="generateManualData.datatableCollection.data"
+                        emptymsg-key="Empty_message"
+                        keyfield="clientId"
+                        rowSelection="single"
+                        rowClick="{this.setGenerateManualData}"
+                        pagination="default"
+                        hover="false"
+                        pagination-show-total="true"
+                        pagination-size-per-page="5"
+                        striped="true"
+                        col-widths="{{'SELECT':1,'CLIENT ID':7,'INDIVIDUAL NAME':3}}"
+                    />                    
+                </UX>
+                <UX type="lineBreak"
+                size="{2}"/>
+                <UX showIf="{$$generateManualData.show}"
+                    type="button"
+                    size="small"
+                    labelKey="submit"
+                    id="submit"
+                    className="align-self-center"
+                    click="{this.NavToAdditionalInfo}">
+                </UX>
+            </UX>
+        </UX>
+    </UX>
+</UX>

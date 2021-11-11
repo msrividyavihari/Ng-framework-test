@@ -1,0 +1,111 @@
+buildscript {
+    repositories {
+        mavenLocal()
+    }
+}
+
+plugins {
+    id 'maven-publish'
+    id 'java-library'
+    id 'java'
+    id 'org.springframework.boot' version "$SPRING_BOOT" apply false
+    id 'io.spring.dependency-management' version '1.0.9.RELEASE' apply false
+}
+
+apply from: "${rootProject.projectDir}/gradle/publish-maven.gradle"
+apply from: "${rootProject.projectDir}/gradle/sonarqube.gradle"
+
+allprojects {
+
+    group 'com.deloitte.nextgen.framework'
+    version = '1.0.0-RC1'
+
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+
+    repositories {
+        mavenLocal()
+        mavenCentral()
+        maven { url 'https://repo.spring.io/milestone' }
+        maven { url 'https://repo.spring.io/snapshot' }
+        maven { url 'https://repo.spring.io/plugins-release' }
+    }
+
+    configurations {
+        all {
+            exclude module: 'spring-boot-starter-logging'
+            exclude module: 'logback-classic'
+            exclude module: 'tomcat-jdbc'
+
+        }
+    }
+}
+
+subprojects { subproject ->
+    apply plugin: 'java-library'
+    apply plugin: 'java'
+    apply plugin: 'maven-publish'
+    apply plugin: 'io.spring.dependency-management'
+
+    dependencyManagement {
+        imports {
+            mavenBom org.springframework.boot.gradle.plugin.SpringBootPlugin.BOM_COORDINATES
+
+        }
+    }
+
+    tasks.withType(JavaCompile) {
+        options.encoding = "UTF-8"
+    }
+
+    compileJava {
+        options.compilerArgs = ["-Xdoclint:none"]
+    }
+
+    plugins.withType(MavenPublishPlugin) {
+        subproject.apply from: "${rootProject.projectDir}/gradle/publish-maven.gradle"
+        java {
+            //withJavadocJar()
+            withSourcesJar()
+        }
+
+    }
+
+    dependencies {
+        api "org.projectlombok:lombok:$LOMBOK"
+
+        api "org.apache.commons:commons-lang3:$APACHE_COMMONS_LANG"
+        api "org.apache.commons:commons-collections4:$APACHE_COMMONS_COLLECTION"
+        api "org.springframework:spring-context"
+        implementation 'com.google.guava:guava:30.1.1-jre'
+
+        testCompileOnly "org.projectlombok:lombok:$LOMBOK"
+
+        testImplementation(platform('org.junit:junit-bom:5.7.2'))
+        testImplementation('org.junit.jupiter:junit-jupiter')
+
+        testImplementation('org.springframework.boot:spring-boot-starter-test') {
+            exclude group: 'junit', module: 'junit'
+        }
+
+    }
+
+    /*task sourcesJar(type: Jar, dependsOn: classes) {
+        archiveClassifier = 'sources'
+        from sourceSets.main.allSource
+    }*/
+
+    artifacts {
+        archives sourcesJar
+    }
+
+    test.useJUnitPlatform()
+}
+
+
+
+
+wrapper {
+    version '6.5'
+    distributionType Wrapper.DistributionType.ALL
+}

@@ -1,0 +1,180 @@
+==== Description
+
+* _Ng-web is a library used to serve two purpuses._
+
+. Api Responses
+. Request Authorization Using JWT
+
+
+==== API Responses
+---
+* API Responses used to send a custom *successful* and *failed* response to the client for each HTTP request.
+* It gives standerd structure for Response.
+* It gives standerd format to handle exceptions in controller
+
+===== Response Syntax
+
+
+* Success Response
+[source, json, linenums]
+----
+ {
+    "timestamp": "2021-04-29T09:11:53.842Z", //Current timestamp
+
+    "message": {
+       "MessageType" :"SUCCESS /INFO /ERROR /WARN" // [optional]
+       "devMessage":"" // [optional] Developer Message
+       "code": 100,  // Custom Response Code
+       "show": false // Custom Response Status
+       "messageParameters" : ["",""]  [optional]
+    },
+
+    "data": {
+
+       // Response Data Can be object / array
+
+   }
+----
+
+* Failure Response
+
+[source, json, linenums]
+----
+ {
+"timestamp": "2021-04-29T09:11:53.842Z",  //Current timestamp
+
+"message": {
+    "MessageType" :"SUCCESS /INFO /ERROR /WARN" // [optional]
+    "devMessage":"" // [optional] Developer Message
+    "code": 100,  // Custom Response Code
+    "show": false // Custom Response Status
+    "messageParameters" : ["",""]  [optional]
+},
+
+"error": {
+
+    // Response Error Data Can be object / array
+
+}
+----
+
+
+
+[source, java, linenums]
+----
+    @PostMapping(path = "success")
+    public ResponseEntity<ApiResponse<DemoEntityResponseDTO>> demoMethod() {
+
+     /* Choose Appropriate method of ApiResponse
+        class based on the operation performed  */
+
+        return ApiResponse.success(100).data(data);
+    }
+----
+
+[source, java, linenums]
+----
+ @GetMapping(path = "getPagedData")
+ public ResponseEntity<ApiResponse<PagedData>> getAll(@PageableDefault Pageable pageable) {
+
+  // Sample method to return pageable data
+
+        return ApiResponse.pageable(testService.getAll(pageable)).page();
+    }
+----
+
+[source, java, linenums]
+----
+  @PutMapping(path = "notfound/{id}")
+  public ResponseEntity<ApiResponse<String>> resourceNotFound(@PathVariable Long id) {
+
+      // Sample method which throws ResourceNotFoundException
+      throw new ResourceNotFoundException(99, "test entity", id.toString());
+}
+----
+
+[TIP]
+ResourceNotFoundException(); method is present in *ng-commons* services , For Such predefined Exception Do Check *ng-commons* services
+
+* Service Specific Custom Exception Handling
+** Step 1: Create Custom Exception Class.
+** Step 2: Extends Custom Exception Class With *ApiException* .
+** Step 3: Create Custom Exception Handler and Handle Exception as shown below.
+
+[source, java, linenums]
+----
+public class CustomException extends ApiException {
+
+
+    public CustomException(int code, String message) {
+        super(code, message);
+    }
+----
+
+[source, java, linenums]
+----
+public class CustomExceptionHandler {
+
+    @ExceptionHandler(CustomException.class)
+    @ResponseBody
+    public ResponseEntity<?> handleCustomException(CustomException e) {
+
+       return ApiResponse.error(e.getCode()).data(e.getMessage());
+    }
+
+}
+----
+
+
+==== Request Authorization Using JWT
+* To elable JWT Authorization we need to enable `_nextgen.JwtSecurity .enableJwtSecurity_` flag to `_true_` from `_src/resources/nextgen.properties_` from *ng-web* Services
+* Then we hit the `_http://{hostname:portid}/security/validateUser_`
+with Username and Password we will get JWT token in Response header with key `_jwt_`
+
+NOTE: `_http://{hostname:portid}/security/validateUser_` is present in *ng-security-svc* Service `(ng-security-svc is used to Authenticate user with username and password )`
+
+* To Validate each http request we have to send obtained token as request header with `_jwt_` in each http request
+
+....
+url : http://localhost:8083/security/validateUser
+HTTP Method : POST
+
+Request Body:
+{
+"userName":"abelbakry",
+"password":"nilesh"
+}
+Response
+heades  :
+jwt : <JWT TOKEN>
+
+Body:
+{
+    "Data": {
+        "userProfile": {
+            "firstName": "Abdelrahman",
+            "midname": null,
+            "lastName": "Elbakry",
+            "email": "abelbakry@deloitte.com",
+            "county": "001"
+        },
+        "status": "Success"
+    }
+}
+....
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

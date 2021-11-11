@@ -1,0 +1,161 @@
+<UX type="page">
+    <UX type="section">
+        <UX type="section" className="py-5 container">
+            <UX type="group">
+                <UX type="section">
+                    <UX type="header" header-size="1" labelKey="Home_title" />
+                    <UX type="header" header-size="5" labelKey="Home_description" />
+                    <UX type="section" className="mt-5 d-flex flex-column">
+                        <UX
+                            type="button"
+                            mode="default"
+                            className="mt-2 ux-home-btn"
+                            preIconClass="fa fa-address-book"
+                            click="{this.toApplicationReg}"
+                            labelKey="reg_App"
+                        ></UX>
+                        <UX
+                            type="button"
+                            mode="default"
+                            className="mt-2 ux-home-btn"
+                            preIconClass="fa fa-address-book"
+                            click="{this.toApplicationRegOld}"
+                            labelKey="reg_App_old"
+                        ></UX>
+                        <UX
+                            type="button"
+                            mode="default"
+                            className="mt-2 ux-home-btn"
+                            preIconClass="fa fa-address-book"
+                            click="{this.toMaintainApp}"
+                            labelKey="app_maintain"
+                        ></UX>
+                        <UX
+                            type="button"
+                            mode="default"
+                            className="mt-2 ux-home-btn"
+                            preIconClass="fa fa-address-book"
+                            click="{this.toMaintainAppOld}"
+                            labelKey="app_maintain_old"
+                        ></UX>
+                        <UX
+                            type="button"
+                            mode="default"
+                            className="mt-2 ux-home-btn"
+                            preIconClass="fa fa-address-book"
+                            click="{this.toCoViewPending}"
+                            labelKey="correspondence"
+                        ></UX>
+                    </UX>
+                </UX>
+                <UX
+                    type="image"
+                    src="{`${process.env.PUBLIC_URL}/icons/ng360-banner-noclip.png`}"
+                    className="ux-img ux-home-banner-img float-right"
+                />
+            </UX>
+        </UX>
+        <UX type="section" className="bg-white">
+            <UX type="section" className="py-5">
+                <UX type="section" className="d-flex justify-content-center flex-wrap">
+                    <UX
+                        type="card"
+                        showIf="{(AppContext.security.isAuthorized() === false)}"
+                        repeat="program,programIndex in this.programData"
+                        body-class="py-4 flex-column align-items-start"
+                        key="{programIndex}"
+                        image-src="{program.image}"
+                        className="ux-card-flex"
+                    >
+                        <UX
+                            type="header"
+                            header-size="5"
+                            labelKey="{program.headerKey}"
+                            ux-class="ux-card-title"
+                        />
+                        <UX type="para" ux-class="ux-card-subtitle" labelKey="{program.paraKey}" />
+                        <UX
+                            type="navlink"
+                            workflow="{program.public.workflow}"
+                            to="{program.public.url}"
+                            className="ux-link mt-auto d-flex align-items-center pt-3"
+                        >
+                            <UX type="para" labelKey="apply_now" className="p-0 m-0 body-sm"></UX>
+                            <i className="ni ni-bold-right fa-1x ni-1x pl-2" />
+                        </UX>
+                    </UX>
+                    <UX
+                        type="card"
+                        showIf="{(AppContext.security.isAuthorized() === true)}"
+                        repeat="program,programIndex in this.programData"
+                        body-class="py-4 flex-column align-items-start"
+                        key="{programIndex}"
+                        image-src="{program.image}"
+                        className="ux-card-flex"
+                    >
+                        <UX
+                            type="header"
+                            header-size="5"
+                            labelKey="{program.headerKey}"
+                            ux-class="ux-card-title"
+                        />
+                        <UX type="para" ux-class="ux-card-subtitle" labelKey="{program.paraKey}" />
+                        <UX
+                            type="navlink"
+                            workflow="{program.private.workflow}"
+                            to="{program.private.url}"
+                            className="ux-link mt-auto d-flex align-items-center pt-3"
+                        >
+                            <UX type="para" labelKey="apply_now" className="p-0 m-0 body-sm"></UX>
+                            <i className="ni ni-bold-right fa-1x ni-1x pl-2" />
+                        </UX>
+                    </UX>
+                </UX>
+            </UX>
+        </UX>
+    </UX>
+    <UX type="section" className="container py-5">
+        <UX type="group">
+            <UX type="section">
+                <UX
+                    type="header"
+                    header-size="3"
+                    ux-class="text-primary mb-4"
+                    labelKey="ways-to-apply-header"
+                />
+                <UX
+                    type="header"
+                    header-size="6"
+                    ux-class="text-dark"
+                    labelKey="ways-to-apply-subheader"
+                />
+                <UX type="para" labelKey="ways-to-apply-body" />
+                <UX
+                    type="navlink"
+                    workflow="Demo-Page"
+                    to="Public/login"
+                    className="ux-link d-flex align-items-center py-3 ux-pointer"
+                >
+                    <UX type="para" labelKey="download-form" className="p-0 m-0 body-sm"></UX>
+                    <i className="ni ni-bold-right fa-1x ni-1x pl-2" />
+                </UX>
+                <UX
+                    type="navlink"
+                    workflow="Demo-Page"
+                    to="Public/login"
+                    className="ux-link d-flex align-items-center py-3 ux-pointer"
+                >
+                    <UX type="para" labelKey="find-office" className="p-0 m-0 body-sm"></UX>
+                    <i className="ni ni-bold-right fa-1x ni-1x pl-2" />
+                </UX>
+            </UX>
+            <UX type="section">
+                <UX
+                    type="image"
+                    src="{`${process.env.PUBLIC_URL}/icons/nextgen-mail.png`}"
+                    className="ux-img ux-home-secondary-img float-right"
+                />
+            </UX>
+        </UX>
+    </UX>
+</UX>

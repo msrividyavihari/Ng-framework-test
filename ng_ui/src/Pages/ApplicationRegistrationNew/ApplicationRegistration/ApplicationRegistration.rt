@@ -1,0 +1,266 @@
+<UX
+    type="page"
+    ref-table-list="APPMODE,EDEDGSTATUS,PROGRAM,COUNTY,ETHNICITY,RACE,DCRELATIONSHIP,GENDER,PRIMARYLANGUAGE,YESNO,NAMESUFFIX,INSDXRACE,MILITARYPOCODES,STATE,STATEMILITARY,AUTHREPRELATIONTOINDIVIDUAL"
+>
+    <UX type="section" className="pt-5">
+        <UX type="grid">
+            <UX type="row">
+                <UX type="column" width="4">
+                    <UX type="header" className="pt-2">
+                        Application Registration
+                    </UX>
+                </UX>
+                <UX type="column" width="7">
+                    <UXModule.ProgressBar
+                        progress="{AppContext.model.getValue('appReg.Progress') ? AppContext.model.getValue('appReg.Progress')+'%' : ''}"
+                    ></UXModule.ProgressBar>
+                </UX>
+            </UX>
+        </UX>
+    </UX>
+
+    <UX type="card" className="cardSec">
+        <UX type="grid">
+            <UX type="row">
+                <UX type="column" width="10">
+                    <UX
+                        type="CustomCollapsePanel"
+                        id="applicationInfo"
+                        editDoneMode="{false}"
+                        enableReadOnlyState="{true}"
+                        disable-number="true"
+                        enableReadOnlyAllPanels="{$$appReg.readOnly}"
+                    >
+                        <UX
+                            type="collapseSection"
+                            titleKey="application_info"
+                            id="application_info"
+                            modifyButtonKey="edit_button_text"
+                            doneButtonkey="done_button_text"
+                            modifyButtonText="edit_button_text"
+                            doneButtonText="done_button_text"
+                            doneShowIf="true"
+                            headerLabelText="{AppContext.model.getValue('appRegNew.ArApplicationForAid.appNum')}"
+                            disablePanel="false"
+                            ownBodyClass="ux-custom-panel-body"
+                        >
+                            <UX type="section" className="panel-left-border-color padding-left-v1">
+                                <UXModule.ApplicationInfo></UXModule.ApplicationInfo>
+                            </UX>
+                            <UX type="section" className="padding-left-v1">
+                                <UX
+                                    mode="primary"
+                                    size="medium"
+                                    type="button"
+                                    className="pt-2"
+                                    labelKey="next"
+                                    click="{event => this.nextClick('application_info','file_clearance','Y')}"
+                                    id="appRegNext"
+                                ></UX>
+                            </UX>
+                        </UX>
+                        <UX
+                            type="collapseSection"
+                            titleKey="file_clearance"
+                            id="file_clearance"
+                            modifyButtonKey="edit_button_text"
+                            doneButtonkey="done_button_text"
+                            modifyButtonText="edit_button_text"
+                            doneButtonText="done_button_text"
+                            doneShowIf="true"
+                            disablePanel="true"
+                            ownBodyClass="ux-custom-panel-body"
+                            headerLabelText="{(AppContext.model.getValue('fileClearIndvs') && AppContext.model.getValue('maintainMode') !== 'Y') ? (AppContext.model.getValue('fileClearIndvs').length > 0 ?
+                            AppContext.model.getValue('fileClearIndvs') : AppContext.model.getValue('fileClearStatus')) : AppContext.model.getValue('fileClearStatus')}"
+                        >
+                            <!-- headerLabelText="{AppContext.model.getValue('fileClearIndvs')}" -->
+
+                            <UXModule.PersonClearence
+                                createApp="{this.createApp}"
+                                closePanel="{this.closePanelByID}"
+                                openPanel="{this.openPanelByID}"
+                                enablePanel="{this.enablePanelById}"
+                                resetFileClearencePanel="{this.resetFileClearencePanel}"
+                            ></UXModule.PersonClearence>
+                            <UX type="section" className="ml-4 padding-left-v1">
+                                <UX
+                                    mode="primary"
+                                    size="medium"
+                                    type="button"
+                                    className="pt-2"
+                                    labelKey="next"
+                                    showIf="{$$pcNxtclick}"
+                                    click="{event => this.nextClick('file_clearance','applicants','Y')}"
+                                    id="appRegNext"
+                                ></UX>
+                                <UX
+                                    mode="primary"
+                                    size="medium"
+                                    type="button"
+                                    className="pt-2"
+                                    labelKey="next"
+                                    showIf="{$$sspMode==='Y' && $$sspDcMatch===false}"
+                                    click="{event => this.nextClick('file_clearance','applicants','Y')}"
+                                    id="appRegNext"
+                                ></UX>
+                            </UX>
+                        </UX>
+                        <UX
+                            type="collapseSection"
+                            editDoneMode="false"
+                            titleKey="applicants"
+                            id="applicants"
+                            doneShowIf="true"
+                            disablePanel="true"
+                            headerLabelText="{AppContext.model.getValue('applicantsNames')}"
+                            ownBodyClass="ux-applicants-panel-body"
+                        >
+                            <UXModule.Applicants></UXModule.Applicants>
+                            <UX type="section" className="ml-4">
+                                <UX
+                                    mode="primary"
+                                    size="medium"
+                                    type="button"
+                                    className="pt-2"
+                                    labelKey="next"
+                                    click="{event => this.nextClick('applicants','case_association','Y')}"
+                                    id="appRegNext"
+                                ></UX>
+                            </UX>
+                        </UX>
+                        <UX
+                            type="collapseSection"
+                            titleKey="case_association"
+                            id="case_association"
+                            modifyButtonKey="edit_button_text"
+                            doneButtonkey="done_button_text"
+                            modifyButtonText="edit_button_text"
+                            doneButtonText="done_button_text"
+                            disablePanel="true"
+                            ownBodyClass="ux-custom-panel-body"
+                            headerLabelText="{AppContext.model.getValue('associatedCaseToApp')}"
+                        >
+                            <UX type="section" className="padding-left-v1">
+                                <UXModule.CaseAssociation
+                                    closePanel="{this.closePanelByID}"
+                                    openPanel="{this.openPanelByID}"
+                                    enablePanel="{this.enablePanelById}"
+                                >
+                                </UXModule.CaseAssociation
+                            ></UX>
+                        </UX>
+                        <UX
+                            type="collapseSection"
+                            editDoneMode="false"
+                            titleKey="contact_info"
+                            id="contact_info"
+                            doneShowIf="true"
+                            disablePanel="true"
+                            ownBodyClass="ux-custom-panel-body"
+                            headerLabelText="{AppContext.model.getValue('phoneNumOnPanel')}"
+                        >
+                            <UX type="section" className="panel-left-border-color padding-left-v1">
+                                <UXModule.ContactInfo></UXModule.ContactInfo
+                            ></UX>
+
+                            <UX type="section" className="padding-left-v1">
+                                <UX
+                                    mode="primary"
+                                    size="medium"
+                                    type="button"
+                                    className="pt-2"
+                                    labelKey="next"
+                                    click="{event => this.nextClick('contact_info','authorised_representative','Y')}"
+                                    id="appRegNext"
+                                ></UX>
+                            </UX>
+                        </UX>
+                        <UX
+                            type="collapseSection"
+                            editDoneMode="false"
+                            titleKey="authorized_representative"
+                            id="authorised_representative"
+                            doneShowIf="true"
+                            disablePanel="true"
+                            ownBodyClass="ux-custom-panel-body"
+                            headerLabelText="{AppContext.model.getValue('authRepPanelNames')}"
+                        >
+                            <UX type="section" className="panel-left-border-color padding-left-v1">
+                                <UXModule.AuthRep></UXModule.AuthRep
+                            ></UX>
+                            <UX type="section" className="padding-left-v1">
+                                <UX
+                                    mode="primary"
+                                    size="medium"
+                                    type="button"
+                                    className="pt-2"
+                                    labelKey="next"
+                                    click="{event => this.nextClick('authorised_representative','program_selection','Y')}"
+                                    id="appRegNext"
+                                >
+                                </UX
+                            ></UX>
+                        </UX>
+                        <UX
+                            type="collapseSection"
+                            titleKey="program_selection"
+                            id="program_selection"
+                            modifyButtonKey="edit_button_text"
+                            doneButtonkey="done_button_text"
+                            modifyButtonText="edit_button_text"
+                            doneButtonText="done_button_text"
+                            doneShowIf="true"
+                            disablePanel="true"
+                            editDoneMode="false"
+                            ownBodyClass="ux-custom-panel-body"
+                            headerLabelText="{AppContext.model.getValue('programListSelected')}"
+                        >
+                            <UXModule.ProgramSelection
+                                closePanel="{this.closePanelByID}"
+                                openPanel="{this.openPanelByID}"
+                                enablePanel="{this.enablePanelById}"
+                            >
+                            </UXModule.ProgramSelection>
+                        </UX>
+                        <UX
+                            type="collapseSection"
+                            editDoneMode="false"
+                            titleKey="review"
+                            id="review"
+                            doneShowIf="true"
+                            disablePanel="true"
+                            ownBodyClass="ux-custom-panel-body"
+                        >
+                            <UX type="section" className="panel-left-border-color padding-left-v1">
+                                <UXModule.ApplicationOverview></UXModule.ApplicationOverview
+                            ></UX>
+                            <UX type="section" className="padding-left-v1">
+                                <UX type="section" className="mt-4">
+                                    <UX
+                                        mode="primary"
+                                        size="medium"
+                                        type="button"
+                                        className="pt-2"
+                                        labelKey="submit"
+                                        disabled="{$$isAppSubmitted === 'true'}"
+                                        click="{event => this.submitApplication()}"
+                                    >
+                                    </UX
+                                ></UX>
+                            </UX>
+                        </UX>
+                    </UX>
+                </UX>
+                <UX type="column" width="2">
+                    <UXModule.RightNavigation
+                        appNum="{AppContext.model.getValue('ARRAP.RN.appNum')}"
+                        rightNavCond="{AppContext.model.getValue('ARRAP.RN.rNavCond')}"
+                        module="{AppContext.model.getValue('ARRAP.RN.module')}"
+                        recentAppList="{ AppContext.model.getValue('ARRAP.RN.recentAppList')}"
+                    >
+                    </UXModule.RightNavigation>
+                </UX>
+            </UX>
+        </UX>
+    </UX>
+</UX>

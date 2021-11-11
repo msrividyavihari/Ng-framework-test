@@ -1,0 +1,221 @@
+Creating web service end points is an important task, as it help developers to understand what it consumes and produces.
+The URI which we create needs to be logical and self-explanatory, for this will follow rest convention to create APIs.
+
+I have taken extract from the following  https://restfulapi.net/resource-naming/[link] to follow resource naming convention.
+
+==== Versioning
+
+Use URI versioning when creating URI, doing this we can give different implementation for the same business scenario.
+Also, this help in maintaining backward compatible URIs and slowly deprecating the currently used URIs.
+
+[sidebar]
+.Versioning Scenario
+--
+Suppose you have a URI which produces individual data that return only first_name and last_name in response.
+
+* http://api.example.com/data-collection/v1/individual/{id}
+
+Now, there is a requirement where we need to change the response structure and still we need to have the above URI.
+In this case you can create a new version with updated URI as below.
+
+* http://api.example.com/data-collection/v2/individual/{id}
+--
+
+==== Naming Convention
+
+Use nouns to represent resources::
+RESTful URI should refer to a resource that is a thing (noun) instead of referring to an action (verb) because nouns have properties
+which verbs do not have – similar to resources have attributes.
+Some examples of a resource and their resource URIs can be designed as below
+* Users of the system
+* User Notices
+* Case Task
+
+----
+http://api.example.com/v1/correspondence/notices/{id}
+http://api.example.com/v1/admin/tasks
+http://api.example.com/v1/data-collection/individual/{id}
+http://api.example.com/v1/data-collection/case/individual/{id}
+http://api.example.com/v1/data-collection/case _//Send case number in request body_
+http://api.example.com/v1/user-management/users/{id}
+----
+
+[CAUTION]
+====
+* Never create an endpoint where you are sending PII data in URL as GET params, and as a variable in an endpoint.
+* Create a POST request and send data in body when we are dealing with PII.
+* Developers can use unique_trans_id to fetch resource data.
+====
+
+Never use CRUD function names in URIs::
+URIs should not be used to indicate that what CRUD operation is being perform. URIs should be used to uniquely identify
+resources and not any action upon them. HTTP request methods should be used to indicate which CRUD function is performed.
+
+----
+HTTP GET http://api.example.com/correspondence/v1/notices  # <.>
+HTTP POST http://api.example.com/correspondence/v1/notices  # <.>
+
+HTTP GET http://api.example.com/data-collection/v1/individual/income/{id} # <.>
+HTTP PUT http://api.example.com/data-collection/v1/individual/income/{id} # <.>
+HTTP DELETE http://api.example.com/data-collection/v1/individual/income/{id} # <.>
+----
+
+<.> Get all notices.
+<.> Create new notice.
+<.> Get individual's income for given Id.
+<.> Update individual's income for given Id.
+<.> Delete individual's income for given Id.
+
+==== Endpoints
+
+This section will help you in understanding how to name an endpoint. We recommend following points to keep in mind while
+creating an endpoint.
+
+. Name the rest controller path with what type of operation it's going to perform. Please refer below examples +
+If the controller is going to perform operations on an individual then name the root path as *"/individual"* +
+If the controller is going to perform operations on a notice then name the root path as *"/notice"*
+. Name individual endpoint according to what operation it does and do not use method name in the URI endpoint.
+Refer <<naming-convention, Naming convention>> on how each endpoint should be named.
+. Never pass PII data in request params or path variables.
+. Try to use combination of HTTP methods and method overloading pattern of java.
+
+[source, java, linenums]
+.Incorrect way of naming the endpoints
+----
+@RestController
+@RequestMapping("/appIndvFetch") # <.>
+public class AppIndvFetchController {
+
+    private final ApplicationIndvFetchService applicationIndvFetchService;
+
+    @PostMapping("/fetchAppIndv") # <.> <.> <.>
+    public ResponseEntity<ApiResponse> fetchAppIndv(@RequestBody AppIndvListRequest appIndvListRequest)  { # <.>
+        //code commented for brevity
+    }
+}
+----
+<.> It does not help to understand what this controller is about and what functions it's going to perform.
+<.> Exposes method name as URI endpoint.
+<.> Incorrect HTTP method used.
+<.> No versioning done.
+<.> No validation annotation added.
+
+[source, java, linenums]
+.Correct way of naming the endpoints
+----
+@RestController
+@RequestMapping("/search") # <.>
+public class AppIndvFetchController {
+
+    private final ApplicationIndvFetchService applicationIndvFetchService;
+
+
+    @GetMapping("/") # <.>
+    public ResponseEntity<ApiResponse> search(@RequestParam String appNum, @RequestParam boolean activeSw)  { # <.>
+        //code commented for brevity
+    }
+
+    @PostMapping("/") # <.>
+    public ResponseEntity<ApiResponse> search(@Valid @RequestBody SearchRequest searchRequest)  { # <.>
+        //code commented for brevity
+    }
+
+    @GetMapping("/individual/{appNum}") # <.>
+    public ResponseEntity<ApiResponse> search(@NotNull @PathVariable String appNum)  {
+        //code commented for brevity
+    }
+}
+----
+<.> By reading the root path we understand that this controller has functionality related to search.
+<.> This endpoint says that you can search application in respective project with passing two request params.
+<.> If endpoint have more than 2 or 3 request param we recommend creating a POST request and passing data in request body.
+Here we have repeated same mapping path as in point 1, but the difference is in HTTP methods and method signature.
+<.> This endpoint says that we can search all individual belonging to application number.
+
+[TIP]
+====
+- Naming an endpoint logically is very important, try to brainstorm before creating any endpoint.
+- Try to reuse the endpoint with HTTP method variations and method overloading concept.
+- Prioritise REST Api conventions instead of just creating it randomly.
+- Please look <<anti-patterns, Anti Patterns>> section for examples.
+====
+
+===== Anti-patterns
+
+. Anti-Pattern Examples
+[cols="4,4,4", options="header"]
+|===
+
+| Anti-pattern URI | Reason | Resolution
+
+| _POST_ \http://api.example.com/``app_reg/appIndvFetch/fetchAppIndv``
+a|
+* Endpoint name is too verbose.
+* Exposes method name using in the file.
+* No versioning.
+| _GET_ \http://api.example.com/``app_reg/v1/indiv/{app_num}``
+
+| _POST_ \http://api.example.com/``app_reg/appsearch/findApps``
+a|
+* Same synonyms use (e.g. search, find)
+* We already have context as app-reg so we know where we are searching. No need to mention _"appsearch"_ again.
+* No versioning.
+| _GET_ \http://api.example.com/``app_reg/search/v1/{app_num}``
+
+| _POST_ \http://api.example.com/``app_reg/api/application/findAuthRepDetailsForAppNum/{appNum}/{caseNum}``
+a|
+* Exposing case number which is a PII.
+* Inconsistent with above URI endpoint created in same application. The above URIs do not start start with */api/*
+* If a developer use same name with 2 path variable if will confuse the Spring framework and results in error.
+
+a|
+- _GET_ \http://api.example.com/``app_reg/v1/authRep/{app_num}`` +
+- _POST_ \http://api.example.com/``app_reg/v1/authRep`` [gray]_//Pass case number in request body_
+
+| _POST_ \http://api.example.com/``app_reg/createAuthRep``
+a|
+* Exposing function name in URI endpoint.
+| POST \http://api.example.com/``app_reg/api/v1/authRep`` [gray]_//Pass auth rep data in request body_
+
+| _GET_ \http://api.example.com/``app_reg/deleteAuthRepDataForAppNum/{app_num}``
+a|
+* Exposing function name in URI endpoint.
+* Incorrect HTTP method used. Here we are deleting a record and using GET method instead of DELETE method
+| _DELETE_ \http://api.example.com/``app_reg/api/v1/authRep/{unique_id_of_auth_rep_table}``
+
+| _POST_ \http://api.example.com/``app_reg/application/associateCase/{appNum}/{caseNum}``
+a|
+* Exposing case number which is a  PII.
+* The URL endpoint name is too verbose and expose method name.
+| _POST_ \http://api.example.com/``app_reg/v1/associate`` [gray]_//Send app_num and case_num in request body_
+
+| _POST_ \http://api.example.com/``co/api/correspondence/generateManual/caseSearch``
+a|
+* Context root is redundant _'co or correspondence'_ both means same.
+* Developer know they are searching notices for a case, no need to say what this endpoint is going to search. You can always
+pass generate_manual_sw in request body to get a specific type of notice.
+* There should be always a global search in respective applications and URI should not be specific as in this example.
+| _POST_ \http://api.example.com/``co/v1/search`` [gray]_//Send case_num in request body_
+
+| _POST_ \http://api.example.com/``co/api/correspondence/massMailing/createOrUpdateRequest``
+a|
+* This URI violates single use principle, it does two different this here create and update
+* Context root is repeated.
+* Updates need to be a PUT request
+a|
+- _POST_ \http://api.example.com/``co/v1/mailing`` +
+- _PUT_ \http://api.example.com/``co/v1/mailing/{id}``
+
+
+| _POST_ \http://api.example.com/``co/api/correspondence/massMailing/delete``
+a|
+* The URI business operation contradicts with HTTP method.
+| _DELETE_ \http://api.example.com/``co/v1/massMailing/{id}``
+
+| _POST_ \http://api.example.com/``co/api/correspondence/viewHistory/searchHistory``
+a|
+* We can use same URI as of search to get historical notice.
+* The URI name used is very confusing.
+| _POST_ http://api.example.com/``co/search`` [gray]_//Pass customized parameters in request body to find historical notices._
+
+|===

@@ -1,0 +1,25 @@
+.underln{
+    font-weight: 700;
+    text-decoration: underline;
+    cursor: pointer;
+  }
+  
+  .fa-sort-amount-up-alt::before, .react-bootstrap-table .caret-4-asc::before {
+    content: "\f0de" !important;
+    font-size: 18px !important;
+    margin-left: 2px !important;
+
+    
+   
+}
+.fa-sort-amount-up-alt:before, .react-bootstrap-table .caret-4-desc:before {
+  content: "\f0dd" !important;
+  font-size: 18px !important;
+}
+
+.table-bordered th, .table-bordered thead th {
+  font-weight: 700;
+  font-size: 0.875rem;
+  font-family: Avenir Next LT Pro;
+  color: #5b6473 !important;
+}

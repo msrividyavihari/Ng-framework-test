@@ -1,0 +1,3 @@
+rootProject.name = 'ng-consumers'
+include 'ng-audit-consumer'
+include 'ng-error-consumer'

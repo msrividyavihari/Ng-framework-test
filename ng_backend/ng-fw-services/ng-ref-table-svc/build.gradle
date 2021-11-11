@@ -1,0 +1,51 @@
+jib {
+	to {
+		image = "fw-services/${project.name}"
+		tags = [version]
+	}
+	container {
+		ports = ["8080"]
+		environment = [
+				SPRING_OUTPUT_ANSI_ENABLED: "ALWAYS",
+		]
+		creationTime = "USE_CURRENT_TIMESTAMP"
+		appRoot = "/usr/local/tomcat/webapps/ROOT"
+	}
+}
+
+war {
+	manifest {
+
+		attributes "Built-By": System.properties['user.name']
+		attributes "Name": project.name
+		attributes "Version": archiveVersion
+		attributes "Build-Number": gitVersion()
+		attributes 'Created-By': "Gradle ${gradle.gradleVersion}"
+		attributes 'Build-Jdk': "${System.properties['java.version']} (${System.properties['java.vendor']} ${System.properties['java.vm.version']})"
+		attributes 'Build-OS': "${System.properties['os.name']} ${System.properties['os.arch']} ${System.properties['os.version']}"
+
+	}
+	enabled = true
+	includes = ["WEB-INF/**", "META-INF/**"]
+}
+
+dependencies {
+	//implementation 'com.deloitte.nextgen.framework:ng-commons:0.0.1-SNAPSHOT'
+	//implementation 'com.deloitte.nextgen.framework:ng-web:0.0.1-SNAPSHOT'
+	implementation 'org.springframework.boot:spring-boot-starter-jdbc'
+	implementation "org.springframework.boot:spring-boot-starter-log4j2"
+	implementation ('org.springframework.boot:spring-boot-starter-web')
+	runtimeOnly 'com.oracle.ojdbc:ojdbc8'
+
+	annotationProcessor 'org.projectlombok:lombok'
+
+	testImplementation 'org.springframework.boot:spring-boot-starter-test:2.5.4'
+	testImplementation('org.junit.jupiter:junit-jupiter-api:5.4.2')
+	testRuntime('org.junit.jupiter:junit-jupiter-engine:5.4.2')
+
+
+}
+
+test {
+	useJUnitPlatform()
+}

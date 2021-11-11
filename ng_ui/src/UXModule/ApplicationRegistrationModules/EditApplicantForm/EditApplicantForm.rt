@@ -1,0 +1,416 @@
+<rt-import name="Util" as="Utils" from="@d-lift/core"></rt-import>
+<React.Fragment>
+    <UX type="section" id="aplicant-edit" className="mt-10 new-applicant-vl">
+        <UX type="section" className="ux-row">
+            <UX type="section" className="ux-col-md-3 ml-2 mr-0 pl-2 pr-0 new-applicant-header-col">
+                <UX
+                    type="header"
+                    header-size="4"
+                    className="new-applicant-header-name pl-3"
+                    labelKey="establish_new"
+                ></UX>
+            </UX>
+            <UX type="section" className="ux-col-md-5 pl-0">
+                <UX
+                    mode="danger"
+                    className="float-xl-left ml-0"
+                    size="small"
+                    type="button"
+                    labelKey="cancel"
+                    click="{event => this.viewMode()}"
+                ></UX>
+            </UX>
+            <UX type="section" className="ux-col-md-4 ml-2 top-applicant form-inline">
+                <UX
+                    type="CustomCheckBox"
+                    id="newPrimaryApplicantCheckbox"
+                    labelKey="primary_applicant"
+                    vertical-align="true"
+                    className="custom-control custom-checkbox"
+                    checkboxClassName="custom-control-input"
+                    labelClassName="custom-control-label custom-checkbox-label"
+                    model="appRegNew.ArApplicationForAid.applicant.primaryApplicantSw"
+                    onChange="{this.primaryCheckSelected}"
+                ></UX>
+                <UX
+                    type="CustomCheckBox"
+                    id="newIncludeAppCheckbox"
+                    labelKey="include_application"
+                    vertical-align="true"
+                    className="custom-control custom-checkbox"
+                    checkboxClassName="custom-control-input"
+                    labelClassName="custom-control-label custom-checkbox-label"
+                    model="appRegNew.ArApplicationForAid.applicant.includeApplicantSw"
+                    onChange="{this.checkIncludeApplicant}"
+                ></UX>
+            </UX>
+        </UX>
+        <UX type="section" className="ux-col-md-12 ux-row ml-lg-1 mt-10">
+            <div class="ux-col-md-2 applicant-card">
+                <UX
+                    type="text"
+                    model="appRegNew.ArApplicationForAid.applicant.firstName"
+                    required
+                    placeholder="First"
+                    labelKey="first_name"
+                ></UX>
+            </div>
+            <div class="ux-col-md-2 applicant-card">
+                <UX
+                    type="text"
+                    model="appRegNew.ArApplicationForAid.applicant.middleName"
+                    placeholder="Middle"
+                    labelKey="middleName"
+                ></UX>
+            </div>
+            <div class="ux-col-md-2 applicant-card">
+                <UX
+                    type="text"
+                    model="appRegNew.ArApplicationForAid.applicant.lastName"
+                    required
+                    placeholder="Last"
+                    labelKey="lastName"
+                ></UX>
+            </div>
+            <div class="ux-col-md-2 applicant-card">
+                <UX
+                    defaultOption="true"
+                    defaultOptionValue="{''}"
+                    id="suffix"
+                    labelKey="suffix"
+                    ref-table="NAMESUFFIX"
+                    model="appRegNew.ArApplicationForAid.applicant.suffix"
+                    type="select"
+                />
+            </div>
+            <div class="ux-col-md-2 applicant-card">
+                <UX
+                    defaultOption="true"
+                    defaultOptionValue="{''}"
+                    id="gender"
+                    labelKey="gender"
+                    ref-table="GENDER"
+                    model="appRegNew.ArApplicationForAid.applicant.gender"
+                    placeholder="Select Gender"
+                    type="select"
+                    required
+                />
+            </div>
+        </UX>
+        <UX type="section" className="ux-col-md-12 ux-row ml-lg-1">
+            <div class="ux-col-md-2 applicant-card">
+                <UX
+                    type="date"
+                    maxDate="today"
+                    minDate="1899-01-01"
+                    model="appRegNew.ArApplicationForAid.applicant.dob"
+                    required
+                    labelKey="Date_of_birth"
+                ></UX>
+            </div>
+            <div class="ux-col-md-2 applicant-card">
+                <UX
+                    type="ssn"
+                    model="appRegNew.ArApplicationForAid.applicant.ssn"
+                    labelKey="ssn_acronym"
+                ></UX>
+            </div>
+            <div class="ux-col-md-2 applicant-card">
+                <UX
+                    defaultOption="true"
+                    defaultOptionValue="{''}"
+                    id="race"
+                    labelKey="race"
+                    ref-table="INSDXRACE"
+                    model="appRegNew.ArApplicationForAid.applicant.race"
+                    type="select"
+                    required
+                />
+            </div>
+            <div class="ux-col-md-2 applicant-card">
+                <UX
+                    defaultOption="true"
+                    defaultOptionValue="{''}"
+                    id="ethnicity"
+                    labelKey="ethnicity"
+                    ref-table="ETHNICITY"
+                    model="appRegNew.ArApplicationForAid.applicant.ethnicity"
+                    type="select"
+                    required
+                />
+            </div>
+            <div class="ux-col-md-3 applicant-card">
+                <UX
+                    id="alias"
+                    type="radioGroup"
+                    model="appRegNew.ArApplicationForAid.applicant.aliasSw"
+                    radioStyle="card"
+                    labelKey="alias"
+                    vertical-align="false"
+                    className="custom-radio-card"
+                    ref-table="YESNO"
+                >
+                </UX>
+            </div>
+        </UX>
+        <UX
+            type="section"
+            className="ux-col-md-12 ux-row ml-lg-1"
+            showIf="{
+                AppContext.model.getValue(
+                    'appRegNew.ArApplicationForAid.applicant.aliasSw',
+                ) === 'Y'
+            }"
+        >
+            <div class="ux-col-md-2 applicant-card">
+                <UX
+                    type="text"
+                    model="appRegNew.ArApplicationForAid.applicant.aliasFirstName"
+                    required
+                    placeholder="First"
+                    labelKey="alias_firstName"
+                ></UX>
+            </div>
+            <div class="ux-col-md-2 applicant-card">
+                <UX
+                    type="text"
+                    model="appRegNew.ArApplicationForAid.applicant.aliasMiddleName"
+                    placeholder="Midde"
+                    labelKey="alias_middleName"
+                ></UX>
+            </div>
+            <div class="ux-col-md-2 applicant-card">
+                <UX
+                    type="text"
+                    model="appRegNew.ArApplicationForAid.applicant.aliasLastName"
+                    required
+                    placeholder="Last"
+                    labelKey="alias_lastName"
+                ></UX>
+            </div>
+            <div class="ux-col-md-2 applicant-card">
+                <UX
+                    defaultOption="true"
+                    defaultOptionValue="{''}"
+                    id="alias_suffix"
+                    labelKey="alias_suffix"
+                    ref-table="NAMESUFFIX"
+                    model="appRegNew.ArApplicationForAid.applicant.aliasSuffix"
+                    type="select"
+                />
+            </div>
+            <div class="ux-col-md-2 applicant-card">
+                <UX
+                    defaultOption="true"
+                    defaultOptionValue="{''}"
+                    id="aliasGender"
+                    labelKey="alias_gender"
+                    ref-table="GENDER"
+                    model="appRegNew.ArApplicationForAid.applicant.aliasGender"
+                    type="select"
+                    required
+                />
+            </div>
+        </UX>
+        <UX
+            type="section"
+            className="ux-col-md-12 ux-row ml-lg-1"
+            showIf="{
+                AppContext.model.getValue(
+                    'appRegNew.ArApplicationForAid.applicant.primaryApplicantSw',
+                ) === 'Yes'
+            }"
+        >
+            <div class="ux-col-md-2 applicant-card">
+                <UX
+                    id="interpreter"
+                    type="radioGroup"
+                    model="appRegNew.ArApplicationForAid.applicant.interpreterSw"
+                    radioStyle="card"
+                    labelKey="interpreter_need"
+                    vertical-align="false"
+                    className="custom-radio-card"
+                    ref-table="YESNO"
+                >
+                </UX>
+            </div>
+            <div class="ux-col-md-2 applicant-card">
+                <UX
+                    defaultOption="true"
+                    defaultOptionValue="{''}"
+                    id="primaryLanguage"
+                    labelKey="primaryLanguage"
+                    ref-table="PRIMARYLANGUAGE"
+                    model="appRegNew.ArApplicationForAid.applicant.primaryLanguage"
+                    type="select"
+                />
+            </div>
+            <UX
+                type="section"
+                className="ux-col-md-2 applicant-card"
+                showIf="{
+                    AppContext.model.getValue(
+                        'appRegNew.ArApplicationForAid.applicant.primaryLanguage',
+                    ) === '1002'
+                }"
+            >
+                <UX
+                    type="text"
+                    model="appRegNew.ArApplicationForAid.applicant.specificPrimaryLanguage"
+                    placeholder="Specific"
+                    labelKey="specificPrimaryLanguage"
+                ></UX>
+            </UX>
+        </UX>
+        <UX
+            type="section"
+            className="ux-col-md-12 ux-row ml-lg-1"
+            showIf="{
+                AppContext.model.getValue(
+                    'appRegNew.ArApplicationForAid.applicant.primaryApplicantSw',
+                ) === 'Yes'
+            }"
+        >
+            <div class="ux-col-md-2 applicant-card">
+                <UX
+                    id="accomodation"
+                    type="radioGroup"
+                    model="appRegNew.ArApplicationForAid.applicant.accomodationSw"
+                    radioStyle="card"
+                    labelKey="accomodation_need"
+                    vertical-align="false"
+                    className="custom-radio-card"
+                    ref-table="YESNO"
+                >
+                </UX>
+            </div>
+            <UX
+                type="section"
+                className="ux-col-md-3 applicant-card"
+                showIf="{
+                    AppContext.model.getValue(
+                        'appRegNew.ArApplicationForAid.applicant.accomodationSw',
+                    ) === 'Y'
+                }"
+            >
+                <UX
+                    type="text"
+                    model="appRegNew.ArApplicationForAid.applicant.typeAccommodation"
+                    placeholder="Type"
+                    labelKey="typeAccommodation"
+                ></UX>
+            </UX>
+        </UX>
+        <UX
+            type="section"
+            className="ux-col-md-12 ux-row ml-lg-1"
+            showIf="{
+                AppContext.model.getValue(
+                    'appRegNew.ArApplicationForAid.applicant.primaryApplicantSw',
+                ) === undefined ||
+                AppContext.model.getValue(
+                    'appRegNew.ArApplicationForAid.applicant.primaryApplicantSw',
+                ) === 'No'
+            }"
+        >
+            <div class="ux-col-md-2 applicant-card">
+                <UX
+                    defaultOption="true"
+                    defaultOptionValue="{''}"
+                    id="primaryLanguage"
+                    labelKey="primaryLanguage"
+                    ref-table="PRIMARYLANGUAGE"
+                    model="appRegNew.ArApplicationForAid.applicant.primaryLanguage"
+                    type="select"
+                />
+            </div>
+            <div class="ux-col-md-2 applicant-card">
+                <UX
+                    id="hasebtcard"
+                    type="radioGroup"
+                    model="appRegNew.ArApplicationForAid.applicant.ebtcardSw"
+                    radioStyle="card"
+                    labelKey="has_ebt_card"
+                    vertical-align="false"
+                    className="custom-radio-card"
+                    ref-table="YESNO"
+                >
+                    <!--<UX name="hasebtcard" text="Yes" type="radioButton" value="Y" />
+                    <UX name="hasebtcard" text="No" type="radioButton" value="N" />-->
+                </UX>
+            </div>
+            <div class="ux-col-md-2 applicant-card">
+                <UX
+                    id="registervote"
+                    type="radioGroup"
+                    model="appRegNew.ArApplicationForAid.applicant.registervoteSw"
+                    radioStyle="card"
+                    labelKey="register_vote"
+                    vertical-align="false"
+                    className="custom-radio-card"
+                    ref-table="YESNO"
+                >
+                    <!-- <UX name="registervote" text="Yes" type="radioButton" value="Y" />
+                    <UX name="registervote" text="No" type="radioButton" value="N" />-->
+                </UX>
+            </div>
+        </UX>
+        <UX
+            type="section"
+            className="ux-col-md-12 ux-row ml-lg-1"
+            showIf="{
+                AppContext.model.getValue(
+                    'appRegNew.ArApplicationForAid.applicant.primaryApplicantSw',
+                ) === 'Yes'
+            }"
+        >
+            <div class="ux-col-md-2 applicant-card">
+                <UX
+                    id="representative"
+                    type="radioGroup"
+                    model="appRegNew.ArApplicationForAid.applicant.authRepresentativeSw"
+                    radioStyle="card"
+                    labelKey="auth_representative"
+                    vertical-align="false"
+                    className="custom-radio-card"
+                    ref-table="YESNO"
+                >
+                    <!-- <UX name="representative" text="Yes" type="radioButton" value="Y" />
+                    <UX name="representative" text="No" type="radioButton" value="N" />-->
+                </UX>
+            </div>
+            <div class="ux-col-md-2 applicant-card">
+                <UX
+                    id="hasebtcard"
+                    type="radioGroup"
+                    model="appRegNew.ArApplicationForAid.applicant.ebtcardSw"
+                    radioStyle="card"
+                    labelKey="has_ebt_card"
+                    vertical-align="false"
+                    className="custom-radio-card"
+                    ref-table="YESNO"
+                >
+                    <!--<UX name="hasebtcard" text="Yes" type="radioButton" value="Y" />
+                    <UX name="hasebtcard" text="No" type="radioButton" value="N" />-->
+                </UX>
+            </div>
+            <div class="ux-col-md-2 applicant-card">
+                <UX
+                    id="registervote"
+                    type="radioGroup"
+                    model="appRegNew.ArApplicationForAid.applicant.registervoteSw"
+                    radioStyle="card"
+                    labelKey="register_vote"
+                    vertical-align="false"
+                    className="custom-radio-card"
+                    ref-table="YESNO"
+                >
+                    <!--  <UX name="registervote" text="Yes" type="radioButton" value="Y" />
+                    <UX name="registervote" text="No" type="radioButton" value="N" />-->
+                </UX>
+            </div>
+        </UX>
+    </UX>
+
+    <hr class="ux-custom-panel-separator" />
+</React.Fragment>

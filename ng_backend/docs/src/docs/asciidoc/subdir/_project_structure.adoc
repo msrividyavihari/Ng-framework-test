@@ -1,0 +1,91 @@
+.Recommended file hierarchy
+----
+ng-demo/ # <.>
+    ng-demo-web/ # <.>
+    ng-demo-client/ # <.>
+settings.gradle
+build.gradle
+gradlew.bat
+gradlew
+----
+<.> *Root Project* - This the root project which can have multiple sub module depending on project requirement.
+<.> *Web Module* - This contains Resource API and all the business logic
+<.> *Client Module* - This module will have Resource API constants, Request/Response POJOs, enums and other utility class. Also, this project will
+be published so that other project can reuse the files.
+
+[TIP]
+Create sub modules as required for your project and abstract out files in those modules.
+Also publish the modules only if you think it can be used by other projects.
+
+[NOTE]
+Brainstorm on project name and come up with a meaningful and self-explanatory name.
+
+.Recommend file hierarchy for _Web Project_
+----
+ng-demo-web/ # <.>
+    src/
+        main/
+            java/
+                com.deloitte.nextgen.demo # <.> <.>
+                    resources/ # <.>
+                    services/ # <.>
+                        impl/
+                            DemoServiceImpl.java
+                        DemoService.java
+                    repositories/ # <.>
+                        impl/
+                            DemoRepositoryImpl.java
+                        DemoRepository.java
+                    entities/ # <.>
+                    mappers/ # <.>
+                    dto/ # <.>
+                DemoApplicationSvc.java <.>
+            resources/ <.>
+                application.yml
+        test/
+            java/
+build.gradle
+----
+<.> *Root package name* - Here the root package name is _com.deloitte.nextgen_
+<.> *Sub package* - "demo" is the sub package, this can be name of the project.
+E.g dc (i.e. data collection), ar (i.e. application registration)
+<.> *Resources* - This package will have all the controller and api endpoints.
+<.> *Services* - This package will have all business logic classes.
+<.> *Repositories* - This package will have logic related to fetch data from databases.
+<.> *Entities* - This package will have all entities class.
+<.> *Mappers* - This package will have all mapper interfaces.
+<.> *Start Class* - This is spring boot starter file from where you application start.
+<.> *Data Transfer Objects (DTO)* - Create DTOs which can be used to transfer objects within you application
+<.> *Resources directory* - All the files related to configuration or properties will be placed in this directory.
+
+.Recommend file hierarchy for _Client Project_
+----
+ng-demo-client/ # <.>
+    src/
+        main/
+            java/
+                com.deloitte.nextgen.demo.client # <.> <.>
+                request/ <.>
+                response/ <.>
+                enums/ <.>
+                util/ <.>
+            resources/
+                application.yml
+        test/
+            java/
+build.gradle
+----
+<.> *Root package name* - Here the root package name is _com.deloitte.nextgen.demo.client_
+<.> *Sub package* - "client" is the sub package.
+<.> *Request* - This package will contain all the request related POJO files.
+<.> *Response* - This package will contain all the response related POJO files.
+<.> *Enum* - This package will contain all the enums used in the project.
+<.> *Util* - This package will contain all utility classes.
+<.> *Resources directory* - All the files related to configuration or properties will be place in this directory.
+
+
+[TIP]
+Create sub packages as needed for better segregation. This will help organize your files and have better readability.
+
+[NOTE]
+Create only those file in client project which can be re-used by other project.

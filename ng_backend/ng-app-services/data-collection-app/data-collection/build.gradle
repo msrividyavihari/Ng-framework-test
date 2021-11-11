@@ -1,0 +1,47 @@
+plugins {
+ 	id 'io.spring.dependency-management' version '1.0.10.RELEASE'
+	id 'org.springframework.boot' version '2.4.0'
+}
+
+def nextgenFwkVersion = "0.0.3-SNAPSHOT"
+def queryDslVersion = '5.0.0.M1'
+
+dependencies {
+
+
+	implementation project(':data-collection-dto')
+
+    implementation ("com.deloitte.nextgen.framework:ng-spring-boot-starter:${nextgenFwkVersion}") {
+		exclude group: 'io.springfox'
+	}
+	implementation 'com.google.guava:guava:30.1.1-jre'
+	implementation 'org.apache.commons:commons-collections4:4.4'
+
+	implementation group: 'org.springdoc', name: 'springdoc-openapi-ui', version: '1.5.8'
+	implementation group: 'org.springdoc', name: 'springdoc-openapi-data-rest', version: '1.5.8'
+	implementation group: 'org.springdoc', name: 'springdoc-openapi-security', version: '1.5.8'
+
+	annotationProcessor (
+			"com.deloitte.nextgen.framework:ng-persistence:${nextgenFwkVersion}",
+			"org.mapstruct:mapstruct-processor:1.4.1.Final",
+			"org.springframework.boot:spring-boot-configuration-processor",
+			"org.springframework.boot:spring-boot-starter-data-jpa:2.4.5",
+			"com.querydsl:querydsl-apt:${queryDslVersion}:jpa"
+	)
+
+	testImplementation('org.springframework.boot:spring-boot-starter-test') {
+		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+		exclude module: 'spring-boot-starter-logging' // ng-logging using log4j-slf4j-impl (apache log4j)
+	}
+}
+
+compileJava {
+		options.annotationProcessorPath = configurations.annotationProcessor
+		// setting mapstruct component model to Spring
+		options.compilerArgs += [
+				//'-Amapstruct.suppressGeneratorTimestamp=true',
+				//'-Amapstruct.suppressGeneratorVersionInfoComment=true',
+				//'-Amapstruct.verbose=true',
+				'-Amapstruct.defaultComponentModel=spring'
+		]
+}

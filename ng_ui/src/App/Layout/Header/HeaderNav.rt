@@ -1,0 +1,38 @@
+<UX type="page">
+    <div style="padding-left: 82%;font-size: large;">
+        <ul>
+            <li>
+                <UX type="hyperLink" ux-class="cursor-pointer" click="{this.logout}">
+                    {this.getLabelValue('logout')}
+                </UX>
+            </li>
+            <li>{this.state.currentTime}</li>
+        </ul>
+    </div>
+
+    <div
+        style="padding-right: 1503px;
+    font-size: large;"
+    >
+        <UX
+            type="dropdown"
+            id="navbarDropdown1"
+            ux-class="text-white text-decoration-none"
+            labelText="{this.getLabelValue('AppReg')}"
+            showIf="{(AppContext.pagedetails.getRootContext()  !== 'Security' )}"
+        >
+            <UX type="hyperLink" link="#" ux-class="cursor-pointer" click="{this.toHomePage}">
+                {this.getLabelValue('Home')}
+            </UX>
+            <UX type="hyperLink" link="#" ux-class="cursor-pointer" click="{this.toApplicationReg}">
+                {this.getLabelValue('RegApp')}
+            </UX>
+            <UX type="hyperLink" link="#" ux-class="cursor-pointer" click="{this.toMaintainApp}">
+                {this.getLabelValue('MaintApp')}
+            </UX>
+            <UX type="hyperLink" link="#" ux-class="cursor-pointer" click="{this.toCorrespondence}">
+                {this.getLabelValue('Correspondence')}
+            </UX>
+        </UX>
+    </div>
+</UX>

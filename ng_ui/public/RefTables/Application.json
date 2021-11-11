@@ -1,0 +1,19 @@
+{
+    "GENDER": [
+        {
+            "DESCRIPTION": "Male",
+            "DESCSPANISH": "Hombre",
+            "DESCENGLISH": "Male",
+            "CODE": "M"
+            
+        },
+        {
+            "DESCRIPTION": "Female",
+            "DESCSPANISH": "Mujer",
+            "DESCENGLISH": "Female",
+            "CODE": "F"
+            
+        }
+    ]
+
+}

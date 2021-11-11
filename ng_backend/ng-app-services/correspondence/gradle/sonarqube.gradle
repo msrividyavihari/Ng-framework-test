@@ -1,0 +1,25 @@
+
+buildscript {
+    repositories.jcenter()
+    dependencies.classpath 'org.sonarsource.scanner.gradle:sonarqube-gradle-plugin:3.0'
+}
+
+apply plugin: org.sonarqube.gradle.SonarQubePlugin
+
+sonarqube {
+    properties {
+
+        property "sonar.host.url", "http://localhost:9000"
+        property "sonar.verbose", "true"
+        property "sonar.sourceEncoding", "UTF-8"
+    }
+}
+
+subprojects { subproject ->
+
+    sonarqube {
+        properties {
+            property "sonar.sourceEncoding", "UTF-8"
+        }
+    }
+}

@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>com.deloitte.nextgen</groupId>
+  <artifactId>nextgen-hearing-appeal-entity-generator</artifactId>
+  <version>1.0.0-SNAPSHOT</version>
+
+  <name>hibernate-tools-jpa-entity-generator</name>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    <java.version>1.8</java.version>
+    <maven.compiler.source>1.8</maven.compiler.source>
+    <maven.compiler.target>1.8</maven.compiler.target>
+	<hibernate-tools-maven-plugin.version>5.4.22.Final</hibernate-tools-maven-plugin.version>
+    <org.jooq.version>3.14.9</org.jooq.version>
+  </properties>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.hibernate</groupId>
+        <artifactId>hibernate-tools-maven-plugin</artifactId>
+        <version>${hibernate-tools-maven-plugin.version}</version>
+        <dependencies>
+         
+          <dependency>
+            <!-- DB Driver of your choice -->
+            <groupId>com.oracle.database.jdbc</groupId>
+			<artifactId>ojdbc8</artifactId>
+			<version>19.8.0.0</version>
+          </dependency>
+        </dependencies>
+        
+        <configuration>
+		  <ejb3>true</ejb3>
+          <jdk5>true</jdk5>
+          <revengFile>${project.basedir}/hibernate-tools-jpa-entity-generator-config/hibernate.reveng.xml</revengFile>
+          <propertyFile>${project.basedir}/hibernate-tools-jpa-entity-generator-config/hibernate.properties</propertyFile>
+          <detectManyToMany>true</detectManyToMany>
+          <detectOneToOne>true</detectOneToOne>
+          <detectOptimisticLock>true</detectOptimisticLock>
+          <createCollectionForForeignKey>true</createCollectionForForeignKey>
+          <createManyToOneForForeignKey>true</createManyToOneForForeignKey>
+		  <outputDirectory>${project.basedir}/src/main/java</outputDirectory>
+		  <packageName>com.deloitte.nextgen.ha.entity</packageName>
+        </configuration>
+      </plugin>
+
+      <plugin>
+        <groupId>org.jooq</groupId>
+        <artifactId>jooq-codegen-maven</artifactId>
+        <version>${org.jooq.version}</version>
+
+        <executions>
+          <execution>
+            <id>generate-h2-jpa</id>
+            <phase>generate-sources</phase>
+            <goals>
+              <goal>generate</goal>
+            </goals>
+            <configuration>
+              <generator>
+                <database>
+                  <name>org.jooq.meta.extensions.jpa.JPADatabase</name>
+                  <properties>
+                    <property>
+                      <key>packages</key>
+                      <value>com.deloitte.nextgen.ha.entity</value>
+                    </property>
+                    <property>
+                      <key>hibernate.physical_naming_strategy</key>
+                      <value>org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy</value>
+                    </property>
+                  </properties>
+                  <includes>.*</includes>
+                </database>
+                <generate>
+                </generate>
+                <target>
+                  <packageName>com.deloitte.nextgen.ha.jooq</packageName>
+                  <directory>src/main/java</directory>
+                </target>
+              </generator>
+            </configuration>
+          </execution>
+        </executions>
+        <dependencies>
+          <dependency>
+            <groupId>com.deloitte.nextgen</groupId>
+            <artifactId>hearing-appeal</artifactId>
+            <version>1.0-SNAPSHOT</version>
+          </dependency>
+          <!--  This is needed for the JPADatabase -->
+          <dependency>
+            <groupId>org.jooq</groupId>
+            <artifactId>jooq-meta-extensions</artifactId>
+            <version>${org.jooq.version}</version>
+          </dependency>
+          <dependency>
+            <groupId>org.jooq</groupId>
+            <artifactId>jooq-meta-extensions-hibernate</artifactId>
+            <version>${org.jooq.version}</version>
+          </dependency>
+          <dependency>
+            <groupId>javax.persistence</groupId>
+            <artifactId>javax.persistence-api</artifactId>
+            <version>2.2</version>
+          </dependency>
+          <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
+            <version>2.4.0</version>
+          </dependency>
+        </dependencies>
+      </plugin>
+    </plugins>
+    
+  </build>
+</project>

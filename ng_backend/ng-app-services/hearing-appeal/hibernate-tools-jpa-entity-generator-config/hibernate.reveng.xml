@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-reverse-engineering SYSTEM "http://hibernate.org/dtd/hibernate-reverse-engineering-3.0.dtd" >
+
+<!--
+https://docs.jboss.org/tools/archive/2.0.0.GA/hibernatetools/en/html/reverseengineering.html
+https://docs.huihoo.com/hibernate/tools-reference-3.2.0/reverseengineering.html
+https://www.codejava.net/frameworks/hibernate/how-to-customize-hibernate-reverse-engineering-code-generation
+
+mvn hibernate-tools:hbm2java
+
+WARNING: 
+ 1) Dangers of a class level use-in-string and use-in-equals meta attributes when having bi-directional associations
+-->
+ 
+<hibernate-reverse-engineering>
+ 
+  <schema-selection match-schema="IE_APP_ONLINE" match-table="AM_REQUEST_PROG_DETAILS" />
+  <schema-selection match-schema="IE_APP_ONLINE" match-table="AM_APPEAL_INFO" />
+
+  <type-mapping>
+    <sql-type jdbc-type="DATE" hibernate-type="java.time.LocalDate"/>
+    <sql-type jdbc-type="TIMESTAMP" hibernate-type="java.time.LocalDateTime"/>
+  </type-mapping>
+
+  <table name="AM_REQUEST_PROG_DETAILS">
+    <foreign-key  constraint-name="AM_APPEAL_INFO_AM_REQUEST_PROG_DETAILS_FK" foreign-table="AM_APPEAL_INFO">
+      <column-ref local-column="APL_NUM" foreign-column="APL_NUM" />
+      <many-to-one property="APL_NUM" />
+    </foreign-key>
+
+  </table>
+
+</hibernate-reverse-engineering>

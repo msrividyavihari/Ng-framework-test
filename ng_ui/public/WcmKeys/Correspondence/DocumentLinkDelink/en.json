@@ -1,0 +1,12 @@
+{
+    "link_delink_title": "Link and Delink",
+    "co_document_title": "DOCUMENT DETAILS",
+    "doc_type": "Document type :",
+    "ref_pound" : "Reference # :",
+    "case_pound": "Case # :",
+    "link_docs_title": "Link Documents to Case/Application/Client",
+    "appl_pound": "Application #(TNUM) :",
+    "client": "Client :",
+    "empty_string":"",
+    "link_btn": "LINK"
+}

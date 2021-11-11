@@ -1,0 +1,197 @@
+<UX type="page">
+    <UX id="appSummary" type="collapsePanel">
+    <UX
+      id="appSum"
+      titleKey="AppSum"
+      type="collapseSection"
+      editDoneMode="false"
+    >
+      <UX
+        type="group"
+        width="8"
+      >
+      <UX type="group" width="12">
+          <UX type="label" labelKey="Current_primary_individual" />
+             <UX type="para" height="10">
+                {AppContext.model.getValue('summary.appSum.currentPrimaryIndividual')}
+            </UX>
+            </UX>
+        
+      </UX>
+      <UX
+        type="group"
+        width="8"
+      >
+      <UX type="group" width="12">
+          <UX type="label" labelKey="Expedited" />
+             <UX type="para" height="10">
+                {AppContext.model.getValue('summary.appSum.expedited')}
+            </UX>
+            </UX>
+        
+      </UX>
+      <UX
+        type="group"
+        width="8"
+      >
+      <UX type="group" width="12">
+          <UX type="label" labelKey="Application_singned" />
+             <UX type="para" height="10">
+                {AppContext.model.getValue('summary.appSum.applicationSigned') }
+            </UX>
+            </UX>
+      </UX>
+       <UX
+    type="group"
+    width="4, 12"
+  >
+  <UX type="label" labelKey="Aged_blind_disabled" />
+    <UX
+      id="agedBlindDisabled"
+      model="agedBlindDisabled"
+      type="checkboxGroup"
+      className="ml-3"
+    >
+      <UX
+        id="agedBlindDisabled"
+        labelKey="checkBoxValue"
+        type="checkbox"
+        value="summary.appSum.isAgeBlindDisabled"
+        trueValue="true"
+        falseValue="false"
+        disabled="{$$summary.appSum.isAgeBlindDisabled === 'YES'}"
+      />
+    </UX>
+  </UX>
+    </UX>
+    <UX
+      editDoneMode="false"
+      id="priorityApplication"
+      lastSectionIf="true"
+      titleKey="Priority_application"
+      type="collapseSection"
+    >
+     <UX type="group" width="12">
+  <UX type="group">
+    <UX
+      id="priorityApp"
+      model="summary.program"
+      type="checkboxGroup"
+      vertical-align="true"
+      errormessages='{{"required":"program_required"}}'
+    >
+      <UX
+        id="qTrack"
+        text="Q-Track"
+        type="checkbox"
+        value="QT"
+        trueValue="true"
+        falseValue="false"
+        disabled="{$$summary.priorityApplication.qTrack}"
+      />
+      <UX
+        id="refugee"
+        text="REFUGEE"
+        type="checkbox"
+        value="RF"
+        trueValue="true"
+        falseValue="false"
+        disabled="{$$summary.priorityApplication.refugee}"
+      />
+       <UX
+        id="revmax"
+        text="RevMax"
+        type="checkbox"
+        value="RV"
+        trueValue="true"
+        falseValue="false"
+        disabled="{$$summary.priorityApplication.revmax}"
+      />
+       <UX
+        id="srsnap"
+        text="Sr.Snap"
+        type="checkbox"
+        value="SP"
+        trueValue="true"
+        falseValue="false"
+        disabled="{$$summary.priorityApplication.srsnap}"
+      />
+       <UX
+        id="pregnancy"
+        text="Pregnancy"
+        type="checkbox"
+        value="PR"
+        trueValue="true"
+        falseValue="false"
+        disabled="{$$summary.priorityApplication.pregnancy}"
+      />
+       <UX
+        id="nursingHome"
+        text="Nursing Home"
+        type="checkbox"
+        value="NH"
+        trueValue="true"
+        falseValue="false"
+        disabled="{$$summary.priorityApplication.nursingHome}"
+      />
+      <UX
+        id="waiver"
+        text="Waiver"
+        type="checkbox"
+        value="WV"
+        trueValue="true"
+        falseValue="false"
+        disabled="{$$summary.priorityApplication.waiver}"
+      />
+    </UX>
+  </UX>
+ </UX>
+ <UX
+    col-data-keys="name,ssn,clientId,dob,progarm,aliasNames"
+    col-default-headers="Name, SSN, Client ID, Date of Birth, Program, Alias Name(s)"
+    datacollection="summary.datatableCollection"
+    emptymsg-key="Empty_message"
+    hover="false"
+    keyfield="ssn"
+    pagination="default"
+    pagination-show-total="true"
+    pagination-size-per-page="5"
+    striped="true"
+    type="dataTable"
+  />
+ <UX
+    type="group"
+    width="3, 12"
+  >
+  <UX type="label" className="mt-5 d-flex flex-row" labelKey="assignToSelf" />
+    <UX
+      id="assignToSelf"
+      model="assignToSelf"
+      type="checkboxGroup"
+      className="mt-5 d-flex flex-row"
+    >
+      <UX
+        id="assignToSelf"
+        type="checkbox"
+        labelKey="selfAssign"
+        value="assignToSelf"
+        trueValue="true"
+        falseValue="false"
+      />
+    </UX>
+  </UX>
+    </UX>
+      </UX>
+   <UXModule.NPCButtons
+            prevlabelKey="previous_Button"
+            cancellabelKey="exit_Button"
+            nextlabelKey="sumbit_button"
+            nextclick="{this.SubmitForm}"
+            prevclick="{this.goBack}"
+            cancelclick="{this.goToHomePage}"
+        ></UXModule.NPCButtons>
+    </UX>
+</UX>
+    </UX>
+  </UX>
+</UX>

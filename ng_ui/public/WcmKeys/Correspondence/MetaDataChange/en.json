@@ -1,0 +1,13 @@
+{
+    "metadata_title": "Metadata Change",
+    "co_document_title": "DOCUMENT DETAILS",
+    "doc_type": "Document type :",
+    "ref_pound" : "Reference # :",
+    "ssn_id": "SSN # :",
+    "metadata_change": "CHANGE METADATA",
+    "link_change_title": "Link Change Document Type/SSN Metadata",
+    "empty_string":"",
+    "doc_type_info":"Document Type Information",
+    "ssn_info":"SSN Information",
+    "ssn_no":"SSN :"
+}

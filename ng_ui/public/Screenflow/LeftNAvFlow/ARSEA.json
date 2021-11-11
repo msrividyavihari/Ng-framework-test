@@ -1,0 +1,144 @@
+{
+    "data": {
+        "metadata": {
+            "AMAPP": {
+                "title": {
+                    "en": "Maintain Application"
+                }
+            },
+            "AMMPI": {
+                "title": {
+                    "en": "Program Summary"
+                }
+            },
+            "ARSEA": {
+                "title": {
+                    "en": "Maintain Application"
+                }
+            },
+            "AMTMC": {
+                "title": {
+                    "en": "Associated Cases"
+                }
+            },
+            "AMMAP": {
+                "title": {
+                    "en": "Application"
+                }
+            },
+            "ARSAR": {
+                "title": {
+                    "en": "Search"
+                }
+            },
+            "AMMAR": {
+                "title": {
+                    "en": "Representative"
+                }
+            },
+            "AMIND": {
+                "title": {
+                    "en": "Maintain Individual"
+                }
+            },
+            "AMMIS": {
+                "title": {
+                    "en": "SSCNs / RRNs"
+                }
+            },
+            "AMTMP": {
+                "title": {
+                    "en": "File Clearance"
+                }
+            },
+            "ARMRD": {
+                "title": {
+                    "en": "Application Withdrawal"
+                }
+            },
+            "AMTMS": {
+                "title": {
+                    "en": "File Clearance - Results"
+                }
+            },
+            "AMMCP": {
+                "title": {
+                    "en": "Child Care Priority Groups"
+                }
+            },
+            "AMMES": {
+                "title": {
+                    "en": "Expedited Screening"
+                }
+            },
+            "ARSEE": {
+                "title": {
+                    "en": "Search Application"
+                }
+            },
+            "AMMIH": {
+                "title": {
+                    "en": "Household Individuals"
+                }
+            },
+            "AMPRO": {
+                "title": {
+                    "en": "Maintain Program"
+                }
+            },
+            "AMMII": {
+                "title": {
+                    "en": "Individual"
+                }
+            },
+            "AMDIS": {
+                "title": {
+                    "en": "Application Disposition"
+                }
+            },
+            "AMMPR": {
+                "title": {
+                    "en": "Program"
+                }
+            },
+            "AMMAD": {
+                "title": {
+                    "en": "Address"
+                }
+            },
+            "AMMIO": {
+                "title": {
+                    "en": "Maiden Names"
+                }
+            }
+        },
+        "navigation": {
+            "ARSEA": {
+                "ARSEE": [
+                    "ARSAR"
+                ],
+                "AMAPP": [
+                    "AMMAP",
+                    "AMMAD"
+                ],
+                "AMIND": [
+                    "AMMIH",
+                    "AMMII",
+                    "AMMIS"
+                ],
+                "AMTMS": [
+                    "AMTMP"
+                ],
+                "AMPRO": [
+                    "AMMPI",
+                    "AMMPR",
+                    "AMMES"
+                ],
+                "AMDIS": [
+                    "ARMRD"
+                ]
+			}
+        }
+    },
+    "status": "0"
+}

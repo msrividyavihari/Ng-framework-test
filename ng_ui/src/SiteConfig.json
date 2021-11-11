@@ -1,0 +1,33 @@
+{
+    "AppType": "Default",
+    "BuildConfig": {
+        "BuildPath": "dist/lift",
+        "ContextRoot": "/"
+    },
+    "PageTitle": "LIFT App",
+    "AppLoadingText": "Loading Lift based Application",
+    "AppLoadingIcon": "/icons/LIFT_deepblue.png",
+    "PageTitleStrategy": "disable",
+    "PageMetaTags": {
+        "description": "NextGen LIFT",
+        "format-detection": "telephone=yes"
+    },
+    "AvailableOffline": true,
+    "ContentManager": true,
+    "ContentCache": true,
+    "AuthenticationType": "Default",
+    "RefrenceTableCache": true,
+    "AppLabelKeys": true,
+    "Preload": {
+        "All": true
+    },
+    "SessionTimeout": {
+        "enabled": true,
+        "timerResetEvents": [],
+        "warning": {
+            "enabled": true,
+            "displayInSeconds": 840
+        },
+        "timeoutInSeconds": 900
+    }
+}

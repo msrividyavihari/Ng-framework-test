@@ -1,0 +1,27 @@
+<div className="{this.props.className + ' '}">
+    <input
+        type="checkbox"
+        id="{this.props.id}"
+        className="{this.props.checkboxClassName + ' '}"
+        disabled="{this.props.disabled}"
+        name="{this.props.name}"
+        value="{this.props.value}"
+        checked="{this.props.checked}"
+        aria-labelledby="{this.props.id+'_label'}"
+        aria-describedby="{this.props.ariadescribedby}"
+        aria-live="assertive"
+        truevalue="{this.props.trueValue}"
+        falsevalue="{this.props.falseValue}"
+        onChange="{this.props.onChange}"
+        required="{this.props.required}"
+    />
+    <UX
+        type="label"
+        labelKey="{this.props.wcmKey}"
+        id="{this.props.id}_label"
+        htmlFor="{this.props.id}"
+        labelSubstitute="{this.props.labelSubstitute}"
+        className="{this.props.labelClassName + ' '}"
+        >{this.props.text}</UX
+    >
+</div>

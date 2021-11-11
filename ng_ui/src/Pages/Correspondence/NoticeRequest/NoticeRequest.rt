@@ -1,0 +1,180 @@
+<UX type="page">
+    <UX type="section" ux-class="w-100 app-srch-hd-sec">
+        <UX
+            type="header"
+            size="4"
+            id="notice_request_header"
+            className="p-3 co-common-header"
+            labelKey="notice_request"
+        >
+        </UX>
+    </UX>
+    <UX type="card" ux-class="w-100" body-class="p-0 m-0">
+         <UX type="card">
+            <UX size="4" type="header" labelKey="co_search_criteria" className="mb-5" />
+            <UX type="section" className="outer-sec">
+                 <UX type="section" className="search-sec">
+                    <UX
+                        type="group"
+                        flexGroup="true"
+                        flexDirection="row"
+                        flexWrap="false"
+                        flexAlign="start"
+                        flexJustify="start"
+                        childWidths="true"
+                    >
+                        <UX
+                            id="caseNumber_label"
+                            col-width="6"
+                            labelKey="case_number"
+                            className="pt-4"
+                            type="label"
+                        />
+                        <UX
+                            id="caseNumber"
+                            model="noticeRequestData.caseNumber"
+                            labelKey="textboxValue"
+                            col-width="6"
+                            className="ml-1"
+                            type="text"
+                        />
+                    </UX>
+                    <UX
+                        type="group"
+                        flexGroup="true"
+                        flexDirection="row"
+                        flexWrap="false"
+                        flexAlign="start"
+                        flexJustify="start"
+                        childWidths="true"
+                    >
+                        <UX
+                            id="noticeId_label"
+                            col-width="6"
+                            labelKey="notice_id"
+                            className="pt-4"
+                            type="label"
+                        />
+                        <UX
+                            id="noticeId"
+                            model="noticeRequestData.noticeId"
+                            labelKey="textboxValue"
+                            col-width="6"
+                            className="ml-1"
+                            type="text"
+                        />
+                    </UX>
+                 </UX>
+                 <UX type="section" className="dates-sec">
+                    <UX type="section" col-width="12" className="dates-sec-inner">
+                        <UX
+                            type="group"
+                            flexGroup="true"
+                            flexDirection="row"
+                            flexWrap="false"
+                            flexAlign="start"
+                            flexJustify="start"
+                            childWidths="true"
+                        >
+                            <UX
+                                id="startDate"
+                                model="noticeRequestData.startDate"
+                                type="date"
+                                col-width="6"
+                                labelKey="start_dt"
+                            />
+                            <UX
+                                id="endDate"
+                                model="noticeRequestData.endDate"
+                                type="date"
+                                col-width="6"
+                                labelKey="end_dt"
+                            />
+                        </UX>
+                    </UX>
+                 </UX>
+                 <UX type="section" className="btn-sec ">
+                    <UX type="section" className="btn-sec-inner">
+                        <UX type="group" className="reset-img-ctn">
+                            <UX
+                                type="image"
+                                src="../icons/buttonResetScreen.png"
+                                className="reset-img"
+                                click="{this.resetForm}"
+                            />
+                        </UX>
+                        <UX type="group">
+                            <UX
+                                className="mt-5 co-srch-btn"
+                                mode="primary"
+                                size="small"
+                                type="button"
+                                align="center"
+                                labelKey="search"
+                                click="{this.showTable}"
+                            />
+                        </UX>
+                    </UX>
+                 </UX>
+            <UX type="section" className="dt-tbl-sec" showIf="{$$noticeRequestData.show}">
+                <UX size="{1}" type="lineBreak" />
+                <UX type="group" showIf="{$$noticeRequestData.show}">
+                    <UX
+                        type="CustomeDataTable"
+                        col-default-headers="Request #,Notice,Agency,Case Number,Created On,Last Updated On,Status"
+                        col-data-keys="noticeRequestId,formTitle,agencyId,caseNum,createDt,updateDt,status"
+                        datacollection="noticeRequestData.dataCollection"
+                        customContent="{{'Created On':this.formatCreateDate,'Last Updated On':this.formatUpdateDate}}"
+                        keyfield="logRequestId"
+                        pagination="nextgen"
+                        hover="false"
+                        rowSelection="single"
+                        rowClick="{this.selectRow}"
+                        emptymsg-key="Empty_message"
+                        className="mt-5"
+                    />
+                </UX>
+            </UX>
+            <UX type="section" className="btn-grp-mod" showIf="{$$noticeRequestData.show}">
+                <UX type="group">
+                    <UX
+                        type="group"
+                        flexGroup="true"
+                        flexDirection="row"
+                        flexWrap="false"
+                        flexAlign="start"
+                        flexJustify="start"
+                        childWidths="true"
+                        col-width="6"
+                    >
+                        <UX
+                            className="mt-5"
+                            mode="primary"
+                            size="small"
+                            type="button"
+                            click="{this.preview}"
+                            labelKey="preview"
+                        />
+                        <UX
+                            className="mt-5"
+                            mode="primary"
+                            size="small"
+                            type="button"
+                            click="{this.centralPrint}"
+                            labelKey="centralPrint"
+                        />
+                        <UX
+                            className="mt-5"
+                            mode="primary"
+                            size="small"
+                            type="button"
+                            click="{this.localPrint}"
+                            labelKey="localPrint"
+                        />
+                    </UX>
+                </UX>
+                </UX>
+            </UX>
+         </UX>
+    </UX>
+</UX>

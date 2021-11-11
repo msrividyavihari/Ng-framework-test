@@ -1,0 +1,142 @@
+
+  .sidepanel-close{
+    transition: 3.5s;
+      height:250px;
+      width: 0px;
+      position: fixed;
+      z-index: 1;
+      top: 0;
+      right: 0;
+      margin: 0;
+      float: right;
+      background-color: #111;
+      overflow-x: hidden;
+      padding-top: 60px;
+      padding-bottom: 100px   ;
+      transition: 0.8s;
+  }
+
+  .sidepanel-open{
+    height:100%;
+    width: 19.5%;
+    position: fixed;
+    z-index: 1;
+    top: 9%;
+  z-index: 99;
+    right: 0;
+    margin: 0;
+    background-color: #fff;
+    overflow-x: hidden;
+    padding-top: 60px;
+    padding-bottom: 100px   ;
+    transition: 0.8s;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  
+}
+  
+.heading-btn{
+  display: flex;
+  flex-direction: row;
+}
+
+.paraHeading{
+  position: absolute;
+  top: 3%;
+  margin-left: 20px;
+  margin-top: 18px;
+  float: left;
+  font-size: 18px !important;
+  width: 14vw;
+}
+
+.closebtn {
+  position: absolute;
+  top: 2%;
+  left: 81%;
+    font-size: 44px !important;
+}
+  
+  /* .openbtn:hover {
+    background-color: rgb(243, 133, 70);
+  }
+  .sidepanel-close::before {
+    content: "\f053 " ;
+    position: fixed;
+    float: left;
+    margin-left: -3.5%
+  } */
+
+  .openbtn{
+    position: fixed;
+    top: 12%;
+    right: 8px;
+    z-index: 100;
+    cursor: pointer !important;
+    font-size: 36px !important;
+  
+    transition: 0.8s;
+}
+
+#mySidenav a {
+  position: fixed;
+  right: -10px;
+  transition: 0.3s;
+  padding: 15px;
+  text-align: right;
+  width: 120px;
+  text-decoration: none;
+  font-size: 20px;
+  color: white;
+  z-index: 90;
+  border-radius:  32px 0 0 32px ;
+}
+/* 
+#mySidenav a:hover {
+  right: 0;
+} 
+*/
+
+#mySidenavApplicants a {
+  position: fixed;
+  right: -10px;
+  transition: 0.3s;
+  padding: 15px;
+  text-align: right;
+  width: 169px;
+  text-decoration: none;
+  font-size: 20px;
+  color: white;
+  z-index: 90;
+  border-radius:  32px 0 0 32px ;
+}
+
+/*
+#mySidenavApplicants a:hover {
+  right: 0;
+}
+*/
+#conflits{
+  top: 220px;
+  background-color: #dc3545
+}
+
+#sspIndvs{
+  top: 130px;
+  background-color: #22e292
+}
+
+.custom-btn {
+  width: auto;
+  display: block;
+  min-width: 63%;
+  background: linear-gradient(116.57deg, #3ECDF2 0%, #1D9FE0 83.33%) !important;
+  border-radius: 24.5px  !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+  
+.sub-btn {
+ width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}

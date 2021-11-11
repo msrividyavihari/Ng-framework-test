@@ -1,0 +1,7 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+com.deloitte.nextgen.framework.web.configuration.WebAutoConfiguration,\
+com.deloitte.nextgen.framework.web.configuration.docs.ApiDocumentationAutoConfiguration,\
+com.deloitte.nextgen.framework.commons.utils.JwtUtil,\
+com.deloitte.nextgen.framework.web.configuration.SecurityConfigurer,\
+com.deloitte.nextgen.framework.web.filters.JwtRequestFilter,\
+com.deloitte.nextgen.framework.web.services.ValidateUserServiceImpl

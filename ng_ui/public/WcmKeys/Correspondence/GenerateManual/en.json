@@ -1,0 +1,12 @@
+{
+    "Application_title" : "Generate Manual",
+    "co_search_case_title": "Form And Case Search",
+    "co_form_search_criteria": "Form Search",
+    "co_case_search_criteria": "Case Search",
+    "search": "Search",
+    "co_search_results": "Search Results",
+    "document_title": "Document Title: ",
+    "dataRequired": "Data required. Please enter ~",
+    "valueRequired": "Please select value for ~",
+    "submit": "Submit"
+}

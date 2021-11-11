@@ -1,0 +1,190 @@
+<UX type="page" ref-table-list="YESNO">
+    <UX type="collapsePanel" id="AmIEligible" editDoneMode="{false}" enableReadOnlyState="{false}">
+        <UX
+            type="collapseSection"
+            titleKey="application_group_month_income"
+            id="application_group_month_income"
+            modifyButtonKey="edit_button_text"
+            doneButtonkey="done_button_text"
+            modifyButtonText="edit_button_text"
+            doneButtonText="done_button_text"
+        >
+            <UX type="section">
+                <UX type="group">
+                    <UX
+                        type="text"
+                        inputMode="currency"
+                        decimals="2"
+                        required
+                        prefixLabel="dollor_symbol"
+                        labelKey="total_inc_before_ded"
+                        model="expScreen.totalIncBeforeDed"
+                        change="{this.changeEventTotalIncBeforeDed}"
+                    ></UX>
+                    <UX
+                        type="text"
+                        inputMode="currency"
+                        required
+                        labelKey="total_liquid_resource"
+                        decimals="2"
+                        model="expScreen.toalLiquidres"
+                        required
+                        prefixLabel="dollor_symbol"
+                        change="{this.changeEventToalLiquidres}"
+                    ></UX>
+                </UX>
+                <UX type="group">
+                    <UX
+                        type="radioGroup"
+                        labelKey="does_applicamt_group_have_gross_income"
+                        radioStyle=""
+                        disabled="{true}"
+                        model="expScreen.applicantgroupHasGrossIncome"
+                        ref-table="YESNO"
+                    >
+                    </UX>
+                </UX>
+            </UX>
+        </UX>
+        <UX
+            type="collapseSection"
+            titleKey="application_group_month_expense"
+            id="application_group_month_expense"
+            modifyButtonKey="edit_button_text"
+            doneButtonkey="done_button_text"
+            modifyButtonText="edit_button_text"
+            doneButtonText="done_button_text"
+        >
+            <UX type="section">
+                <UX type="group">
+                    <UX type="section">
+                        <UX
+                            type="text"
+                            inputMode="decimal"
+                            decimals="2"
+                            labelKey="rent_modage"
+                            disabled="{($$expScreen.totalIncBeforeDed <150 && $$expScreen.toalLiquidres <=100)}"
+                            required
+                            model="expScreen.rentOrMod"
+                            prefixLabel="dollor_symbol"
+                            change="{this.changeEventRentOrMod}"
+                        ></UX>
+                        <UX
+                            type="radioGroup"
+                            labelKey="heating_cooling"
+                            radioStyle=""
+                            disabled="{($$expScreen.totalIncBeforeDed <150 && $$expScreen.toalLiquidres <=100)}"
+                            model="expScreen.heatingCooling"
+                            ref-table="YESNO"
+                        >
+                        </UX>
+                        <UX
+                            type="radioGroup"
+                            labelKey="non_heating_cooling_utils"
+                            radioStyle=""
+                            disabled="{($$expScreen.totalIncBeforeDed <150 && $$expScreen.toalLiquidres <=100)}"
+                            model="expScreen.nonHeatingCooling"
+                            ref-table="YESNO"
+                        >
+                        </UX>
+                    </UX>
+
+                    <UX type="section">
+                        <UX
+                            type="radioGroup"
+                            labelKey="water_sewage"
+                            radioStyle=""
+                            disabled="{($$expScreen.totalIncBeforeDed <150 && $$expScreen.toalLiquidres <=100)}"
+                            model="expScreen.waterSewage"
+                            ref-table="YESNO"
+                        >
+                        </UX>
+                        <UX
+                            type="radioGroup"
+                            labelKey="telephone"
+                            radioStyle=""
+                            disabled="{($$expScreen.totalIncBeforeDed <150 && $$expScreen.toalLiquidres <=100)}"
+                            model="expScreen.telephone"
+                            ref-table="YESNO"
+                        >
+                        </UX>
+                        <UX type="group">
+                            <UX
+                                type="radioGroup"
+                                labelKey="do_monthly_incme_apply"
+                                radioStyle=""
+                                disabled
+                                model="expScreen.doMonthlyIncomeAppply"
+                                ref-table="YESNO"
+                            >
+                            </UX>
+                        </UX>
+                    </UX>
+                </UX>
+            </UX>
+        </UX>
+        <UX
+            type="collapseSection"
+            titleKey="amigrant_worker"
+            id="amigrant_worker"
+            modifyButtonKey="edit_button_text"
+            doneButtonkey="done_button_text"
+            modifyButtonText="edit_button_text"
+            doneButtonText="done_button_text"
+        >
+            <UX type="section">
+                <UX type="group">
+                    <UX
+                        type="radioGroup"
+                        labelKey="there_a_migrant_worker"
+                        radioStyle=""
+                        required
+                        disabled="{($$expScreen.totalIncBeforeDed <$$expScreen.rentOrMod && $$expScreen.toalLiquidres <=$$expScreen.rentOrMod)}"
+                        change="{this.changeMigrantWorker}"
+                        model="expScreen.thereAMigrant"
+                        ref-table="YESNO"
+                    >
+                    </UX>
+                    <UX
+                        type="radioGroup"
+                        labelKey="earn_less_than100"
+                        radioStyle=""
+                        disabled="{($$expScreen.totalIncBeforeDed <$$expScreen.rentOrMod && $$expScreen.toalLiquidres <=$$expScreen.rentOrMod)}"
+                        model="expScreen.mograntLess100"
+                        ref-table="YESNO"
+                    >
+                    </UX>
+                </UX>
+            </UX>
+        </UX>
+        <UX
+            type="collapseSection"
+            titleKey="expedited_result"
+            editDoneMode="false"
+            id="expedited_result"
+        >
+            <UX type="section">
+                <UX type="group">
+                    <UX
+                        type="radioGroup"
+                        labelKey="meets_expedited"
+                        radioStyle=""
+                        disabled="{true}"
+                        model="expScreen.expeditedSw"
+                        ref-table="YESNO"
+                    >
+                    </UX>
+                </UX>
+            </UX>
+        </UX>
+    </UX>
+    <!-- <UX type="collapsePanel" id="AmIEligible" enableReadOnlyState="{true}"> </UX> -->
+    <UXModule.NPCButtons
+        prevlabelKey="previous_Button"
+        cancellabelKey="exit_Button"
+        nextlabelKey="continue_button"
+        nextclick="{this.toNextPage}"
+        prevclick="{this.goBack}"
+        cancelclick="{this.goToHomePage}"
+    ></UXModule.NPCButtons>
+</UX>

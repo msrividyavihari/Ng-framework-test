@@ -1,0 +1,18 @@
+{
+    "compilerOptions": {
+        "jsx": "react",
+        "checkJs": false,
+        "target": "ES6",
+        "baseUrl": "./",
+        "module": "esnext",
+        "allowSyntheticDefaultImports": true,
+        "experimentalDecorators": true,
+        "paths": {
+            "@d-lift/*": ["./node_modules/@d-lift/*/src/index"],
+            "@/*": ["./src/*"],
+            "UXSiteConfig": ["./src/SiteConfig.json"],
+            "@Tests/*": ["./Tests/*"]
+        }
+    },
+    "include": ["./node_modules/@d-lift", "./src"]
+}

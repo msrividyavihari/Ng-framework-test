@@ -1,0 +1,21 @@
+server:
+  port: 8888
+
+spring:
+  profiles:
+    active: jdbc
+  application:
+    name: feature-config-server
+  jmx:
+    default-domain: feature-config-server
+  datasource:
+    url: jdbc:sqlserver://localhost:44033;databasename=test_db
+    username: iewp_ee_dev
+    password: iewp_ee_dev
+    driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+  cloud:
+    config:
+      server:
+        jdbc:
+          order: 1
+          sql: SELECT PROP_KEY, VALUE from PROPERTIES where APPLICATION=? and PROFILE=? and LABEL=?

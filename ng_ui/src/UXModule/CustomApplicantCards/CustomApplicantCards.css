@@ -1,0 +1,181 @@
+.mt-10 {
+    margin-top: 1.2em !important;
+}
+
+.custom-panel-collapse.show .ux-applicants-panel-body  {
+    padding-top: 1.25rem;
+    padding-bottom: 1.25rem;
+    background: #FFFFFF;
+    border: 1px solid #C6C9DF;
+    border-top: none;
+    border-bottom: none;
+}
+
+.applicant-form-control {
+    display: block;
+    width: 100%;
+    height: calc(1.5em + 0.75rem + 2px);
+    padding: 0.375rem 0 0.375rem 0;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #0a1542;
+}
+
+.new-applicant-header-col {
+    flex: 0 0 21% !important;
+    max-width: 31% !important;
+    min-width: 27% !important;
+}
+
+.applicant-header-name {
+    font-size: 1.5em;
+}
+
+.applicant-header {
+    padding:0 !important;
+    margin-left: 40px;
+}
+
+.applicant-header-checks {
+    padding:0 !important;
+}
+.applicant-card label:first-child {
+    font-size:1em;
+}
+
+.applicant-card label:nth-child(2) {
+    font-size:1em;
+    font-weight:500;
+}
+
+.applicant-card{
+    min-width: 18.5%;
+    padding-bottom: 1%;
+}
+
+
+.new-applicant-header-name {
+    font-size: 1.5em;
+    font-weight:500;
+}
+
+.applicant-edit-radio-box {
+    flex: 0 0 20.66667% !important;
+    max-width: 20.66667% !important;
+}
+
+.andOr{
+    float: left;
+    margin-top: 2.5%;
+    text-align: center;
+    font-size: 86% !important;
+}
+
+.custom-selectable-card {
+    border: 1px solid #C6C9DF !important;
+    box-sizing: border-box;
+    border-radius: 4px !important;
+    float: left;
+     height: max-content !important;
+     height: 64px;
+     /* min-width: 16.5% !important; */
+     width: 44% !important;
+    margin: 10px 5px 10px 5px !important;
+}
+
+.custom-card-selected{
+    background-color: rgba(0, 136, 255, 0.1) !important;
+    border: 1px solid #0088FF !important;
+    box-sizing: border-box;
+    border-radius: 4px !important;
+    float: left;
+    height: max-content  !important;
+    height: 64px;
+    /* min-width: 16.5% !important; */
+    width: 44% !important;
+    margin: 10px 5px 10px 5px !important;
+
+}
+.card-body {
+    margin-bottom: 2% !important;
+}
+.key{
+font-weight: bold;
+color: darkgrey;
+font-size: large;
+display: block;
+;
+}
+.val{
+color: gray;
+font-size: medium;
+display: block;
+}
+
+.headers{
+    font-weight: bold;
+    color: black;
+    font-size: large;
+    display: inline-block;
+    text-align: center;
+    width: 47%;
+}
+/*
+.applicant-primary-checkbox {
+    float:left;
+    width:1rem;
+}
+
+.applicant-include-checkbox {
+    float:right;
+    width:1rem;
+}
+
+.applicant-primary-checkbox div div .checked .ux-cb-state .icon {
+    color: white;
+    background-color: #0088ff;
+    stroke: #0088ff;
+    border-color: #0088ff;
+}
+
+.applicant-primary-checkbox div div .checked .ux-cb-state .icon:before {
+    border-radius: 4px;
+    box-shadow: inset 0 1px 3px rgba(0,0,0,.1);
+}
+
+.applicant-include-checkbox div div .checked .ux-cb-state .icon {
+    color: #EBECF0;
+    background-color: #5B6473;
+    stroke: #0088ff;
+    border-color: #5B6473;
+}
+
+.applicant-include-checkbox div div .checked .ux-cb-state .icon:before {
+    border-radius: 4px;
+    box-shadow: inset 0 1px 3px #5B6473;
+}
+*/
+
+
+.new-applicant-vl {
+    border-left: 8px solid #19E4D4;
+}
+
+.custom-radio-card .ux-radio-card {
+    width: 5.7rem !important;
+    height: 2.6rem !important;
+    margin-right:0.5rem !important;
+}
+.custom-radio-card .ux-radio-card .ux-radio-card-state {
+    width: 5.7rem !important;
+    height: 2.6rem !important;
+}
+.custom-radio-card .ux-radio-card .ux-radio-card-state label:before {
+    width: 5.7rem !important;
+    height: 2.6rem !important;
+    text-transform:capitalize !important;
+}
+.custom-radio-card .ux-radio-card .ux-radio-card-state label {
+     text-transform:capitalize !important;
+}

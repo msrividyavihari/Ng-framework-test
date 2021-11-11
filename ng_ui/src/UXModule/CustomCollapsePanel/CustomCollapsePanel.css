@@ -1,0 +1,231 @@
+.displayHide{
+    display: none;
+}
+.padding90{
+    padding-left: 90%;
+}
+
+.ux-custom-panel-header {
+   border-color: #C6C9DF;
+   border-radius: 6px;
+}
+
+.ux-custom-panel-header a {
+    display: block;
+}
+
+.ux-custom-panel-header > a {
+    padding: 13px 15px !important;
+    /*color:#0088FF;*/
+    color:#0a1542;
+}
+
+.ux-custom-panel-header > a > label {
+    color:#0a1542;
+    font-size: 19px !important;
+}
+
+.ux-custom-panel-header {
+	background-color: #FFFFFF;
+}
+
+.ux-custom-panel-header > a h4 {
+    margin-top: 24px;
+    margin-left: 24px;
+    color: #0A1542;
+    font-family: "Avenir Next LT Pro";
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 27px;
+    letter-spacing: 0px;
+    text-align: left;
+}
+
+.ux-custom-panel-header > a:before {
+    font-size: 1.5em !important;
+    margin-top: 0.8em !important;
+    color:#0088FF;
+    -ms-transform: rotate(180deg);
+    transform: rotate(180deg);
+}
+
+.ux-panel-active .ux-custom-panel-header {
+    background-color: #ffffff !important;
+    color: #0a1542 !important;
+}
+.ux-panel-active .ux-custom-panel-header {
+    background-color: #ffffff ;
+}
+
+.ux-panel-active .ux-custom-panel-header > a h4 {
+    color: #0A1542 !important;
+    margin-top: 14px !important;
+    margin-left: 24px;
+}
+
+.ng-panel-link .ng-panel-header {
+    margin-top: 14px !important;
+    margin-left: 24px;
+    float: left !important;
+    font-weight: bolder;
+}
+
+.ux-panel-active .ux-custom-panel-header > a {
+    color: #0A1542;
+}   
+
+.ux-panel-active .ux-custom-panel-header > a span.ux-panel-header-icon {
+    background-color: #d6d6d8e5 !important;
+    border-radius: 50%;
+    display: inline-block;
+}
+/* .ux-customcollapse-section {
+width: 140%;
+} */
+
+
+
+.ux-custom-panel-header span.ng-money-icon {
+  height: 54px;
+  width: 54px;
+  background-color: #d6d6d8e5 !important;
+  border-radius: 50%;
+  display: block;
+  background: url('./icons/money.jpg');
+  background-repeat: no-repeat;
+  background-size: 2.3em 1.5em;
+  background-position: center;
+  float:left;
+  }
+
+.ng-money {
+    background-color: #d6d6d8e5 !important;
+}
+
+.ux-custom-panel .ux-custom-panel-header {
+    background: #FFFFFF;
+    border: 1px solid #C6C9DF;
+    box-sizing: border-box;
+    border-radius: 6px !important;
+}
+
+.ux-custom-panel.ux-custom-panel-active .ux-custom-panel-header {
+    background: #FFFFFF;
+    border: none;
+    border-bottom: none;
+    border-radius: 6px !important;
+    box-shadow: 5px 5px 10px 5px #e9e9e9;
+}
+
+.custom-panel-collapse.show {
+    padding: 0px 1em;
+    background-color: transparent;
+}
+
+.custom-panel-collapse.show .ux-custom-panel-body  {
+    padding: 1.25rem;
+    background: #FFFFFF;
+    border: 1px solid #C6C9DF;
+    border-top: none;
+    border-bottom: none;
+    padding-left: 0;
+}
+
+.icon-space {
+    margin-top: 1em !important;
+    margin-right: 0.5em;
+    height: 27px;
+    width: 27px;
+}
+.exclamation {
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    color:#FDC240;
+    font-size: 1.1em !important;
+    background: rgba(253, 194, 64, 0.15);
+    border-radius: 50%;
+    display: inline-block;
+    background-position: center;
+}
+.exclamation::before {
+    content: "\f12a";
+    font: normal normal 600 18px/1 'Font Awesome 5 Free';
+    margin-left: 0.6em;
+}
+
+.success {
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    color: #19E4D4;
+    font-size: 1.1em !important;
+    background: rgba(25, 228, 212, 0.15);
+    border-radius: 50%;
+    display: inline-block;
+    background-position: center;
+}
+.success::before {
+    content: "\f00c";
+    font: normal normal 600 16px/1 'Font Awesome 5 Free';
+    margin-left: 0.4em;
+}
+
+.edit-mode-off .ux-custom-panel-header{
+    background: #EBECF0 50%;
+    z-index: 2;
+    pointer-events: none;
+    opacity: 0.5;
+}
+
+.ux-custom-panel-separator {
+    margin-bottom: 30px;
+    background: #C6C9DF;
+    margin-right: 1.5rem;
+    margin-left: 1.5rem;
+}
+
+@media (min-width: 576px)
+{
+    .ux-custom-panel-header > a.collapsed::before {
+        float: right;
+        -ms-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    .ux-custom-panel-header > a::before {
+        content: '\F078';
+        font: normal normal 900 14px/1 'Font Awesome 5 Free';
+        font-size: inherit;
+        text-rendering: auto;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        float: right;
+        transition: all 0.5s ease;
+        margin-top: 0.5em;
+        margin-right: 0.5em;
+        -ms-transform: rotate(180deg);
+        transform: rotate(180deg);
+    }
+    .ux-custom-panel-header > a:before {
+        font-size: 1.5em !important;
+        margin-top: 0.8em !important;
+        color: #0088FF;
+        -ms-transform: rotate(180deg);
+        transform: rotate(180deg);
+    }
+
+}
+
+.custom-panel-header-info {
+    font-family: "Avenir Next LT Pro";
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 25px;
+    letter-spacing: 0px;
+    text-align: right;
+    margin-top: 18px !important;
+    margin-left: 24px;
+    margin-right: 12px;
+}

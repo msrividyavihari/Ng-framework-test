@@ -1,0 +1,482 @@
+<UX type="section" className="pb-4">
+    <UX type="section" className="panel-alert" showIf="{$$contactsConflictAlert === true}">
+        <UX type="section" className="offset-md-5">
+            <UX type="label" labelKey="sspConflictsAlert" />
+        </UX>
+    </UX>    
+    <UX type="para" className="contact-sub-heading">
+        Weekday Contact Preference
+    </UX>
+    <UX type="section" className="contact-page-details">
+        <UX id="preferredContactMethod" labelText="Preferred Method" model="contactInfo.arApplicationForAid.preferredContactMethod"
+            radioStyle="radio" type="radioGroup" vertical-align="false" className="contact-radio">
+            <UX name="preferredContactMethod" text="Primary" type="radioButton" value="P" />
+            <UX name="preferredContactMethod" text="Work" type="radioButton" value="U" />
+            <UX name="preferredContactMethod" text="Alternative" type="radioButton" value="A" />
+        </UX>
+        <UX id="preferredContactTime" labelText="Preferred Time" model="contactInfo.arApplicationForAid.preferredContactTime"
+            radioStyle="radio" type="radioGroup" vertical-align="false" className="contact-radio">
+            <UX name="preferredContactTime" text="Early Morning" type="radioButton" value="EAM" />
+            <UX name="preferredContactTime" text="Late Morning" type="radioButton" value="LAM" />
+            <UX name="preferredContactTime" text="Early Afternoon" type="radioButton" value="EAA" />
+            <UX name="preferredContactTime" text="Lunch Hour" type="radioButton" value="LUH" />
+            <UX name="preferredContactTime" text="Late Afternoon" type="radioButton" value="LAA" />
+        </UX>
+    </UX>
+
+    <hr />
+    <UX type="lineBreak"></UX>
+
+    <!-- <UX type="para" className="contact-sub-heading">Phone Details</UX> -->
+    <UX type="para" className="contact-sub-heading">Phone Details</UX>
+    <UX type="section" className="contact-page-details">
+        <UX type="group">
+            <UX type="group" flexGroup="true" flexDirection="column">
+                <UX type="para" labelKey="phone_type" className="phone-type-group-label" />
+                <UX type="para" labelKey="primary" className="phone-type-group-content" />
+            </UX>
+            <UX type="phone" labelKey="phone_number" model="contactInfo.phoneDetails.PRP.phnNum" maxLength="{10}"
+                validationRules="phoneCheck" errormessages='{{"phoneCheck":"phone_numeric_allowed"}}' />
+            <UX type="text" labelKey="extension" model="contactInfo.phoneDetails.PRP.phoneExtn" />
+            <UX type="text" labelKey="comments" model="contactInfo.phoneDetails.PRP.phnComments" />
+        </UX>
+        <UX type="group">
+            <UX type="group" flexGroup="true" flexDirection="column">
+                <UX type="para" labelKey="phone_type" className="phone-type-group-label" />
+                <UX type="para" labelKey="work" className="phone-type-group-content" />
+            </UX>
+            <UX type="phone" labelKey="phone_number" model="contactInfo.phoneDetails.WOP.phnNum" maxLength="{10}"
+                validationRules="phoneCheck" errormessages='{{"phoneCheck":"phone_numeric_allowed"}}' />
+            <UX type="text" labelKey="extension" model="contactInfo.phoneDetails.WOP.phoneExtn" />
+            <UX type="text" labelKey="comments" model="contactInfo.phoneDetails.WOP.phnComments" />
+        </UX>
+        <UX type="group">
+            <UX type="group" flexGroup="true" flexDirection="column">
+                <UX type="para" labelKey="phone_type" className="phone-type-group-label" />
+                <UX type="para" labelKey="alternative" className="phone-type-group-content" />
+            </UX>
+            <UX type="phone" labelKey="phone_number" model="contactInfo.phoneDetails.ALP.phnNum" maxLength="{10}"
+                validationRules="phoneCheck" errormessages='{{"phoneCheck":"phone_numeric_allowed"}}' />
+            <UX type="text" labelKey="extension" model="contactInfo.phoneDetails.ALP.phoneExtn" />
+            <UX type="text" labelKey="comments" model="contactInfo.phoneDetails.ALP.phnComments" />
+        </UX>
+    </UX>
+
+    <hr />
+    <UX type="lineBreak"></UX>
+
+    <!-- <UX type="para" className="contact-sub-heading">Email Details</UX> -->
+    <UX type="para" className="contact-sub-heading">Email Details</UX>
+
+    <UX type="section" className="contact-page-details">
+        <UX type="section" repeat="email, emailIndex in $$contactInfo.emailDetails">
+            <UX type="para">
+                <!-- {appContext.model.getValue(`contactInfo.emailDetails[${emailIndex}].comments`)} -->
+                <UX type="group">
+                    <UX type="text" labelKey="email_address" model="contactInfo.emailDetails[{emailIndex}].email"
+                        validationRules="emailCheck" errormessages='{{"emailCheck":"email_pattern_allowed"}}' />
+                    <UX type="text" labelKey="comments" model="contactInfo.emailDetails[{emailIndex}].emailComments" />
+                </UX>
+            </UX>
+        </UX>
+        <UX type="button" labelKey="add_additional_email" click="{this.addEmailDetails}"></UX>
+    </UX>
+    <hr />
+    <UX type="lineBreak"></UX>
+
+    <!-- Address section begins here -->
+    <UX type="para" className="contact-sub-heading">Address Details</UX>
+    <!-- <UX type="para" className="contact-sub-heading">Address Details</UX> -->
+
+    <UX type="section">
+        <UX type="section">
+            <UX type="section">
+                <UX type="section" className="contact-page-details">
+                    <UX type="section">
+                        <UX type="group">
+                            <UX model="contactInfo.addressDetails.resAddrSw" radioStyle="card" type="radioGroup"
+                                className="align-left" labelKey="addr_homeless">
+                                <UX text="Yes" type="radioButton" value="Y" />
+                                <UX text="No" type="radioButton" value="N" />
+                            </UX>
+                        </UX>
+                    </UX>
+
+                    <!-- No Matching Address found Modal -->
+                    <UX type="modal" isOpen="{$$addressNotFound.popup}">
+                        <span onClick="{this.cancelNoAddress}">
+                            <p className="close-icon">&#x2716;</p>
+                        </span>
+                        <UX size="3" type="header" value="Test" labelKey="addr_not_found_popup_heading"
+                            className="pophead38">
+                        </UX>
+                        <UX type="section" className="paddingleft25">
+                            <UX type="lineBreak"></UX>
+                            We were unable to validate the address you entered. You can make changes
+                            and
+                            <UX type="lineBreak"></UX>
+                            <UX type="para" class="center">
+                            try again or continue with the address without validation.
+                             </UX>
+                            <UX type="lineBreak"></UX>
+                            <UX type="lineBreak"></UX>
+                            <UX type="lineBreak"></UX>
+                        </UX>
+                        <UX type="section" className="button-resize">
+                            <UX iconClass="{null}" mode="primary" size="large" type="button"
+                                click="{this.cancelNoAddress}">
+                                Okay
+                            </UX>
+                        </UX>
+                        <UX type="lineBreak"></UX>
+                    </UX>
+                    <!-- Validate Residential Address Modal -->
+                    <UX type="modal" isOpen="{$$validateReAddress.popup}" className="modalContact">
+                        <span onClick="{this.cancelValidateReAddress}">
+                            <p className="close-icon">&#x2716;</p>
+                        </span>
+                        <UX size="3" type="header" value="Test" labelKey="validate_addr_popup_heading"
+                            className="pophead">
+                        </UX>
+                        <UX type="lineBreak"></UX>
+                        <UX type="lineBreak"></UX>
+                        <UX type="grid" className="paddingleft25">
+                            <UX type="row">
+                                <UX type="column" width="4">
+                                    <UX type="grid">
+                                        <UX type="row">
+                                            <UX size="5" type="header">Your input the address:</UX>
+                                        </UX>
+                                        <UX type="row">
+                                            <UX size="6" type="header">
+                                                {$$contactInfo.addressDetails.addressInfo.RE.addrLine}</UX>
+                                        </UX>
+                                        <UX type="row">
+                                            <UX size="6" type="header">
+                                                {$$contactInfo.addressDetails.addressInfo.RE.addrCity},
+                                                {$$contactInfo.addressDetails.addressInfo.RE.addrStateCd}
+                                                {$$contactInfo.addressDetails.addressInfo.RE.addrZip5}
+                                            </UX>
+                                        </UX>
+                                    </UX>
+                                </UX>
+                                <UX type="column" width="4">
+                                    <UX type="grid">
+                                        <UX type="row">
+                                            <UX size="5" type="header">We recommend using:</UX>
+                                        </UX>
+                                        <UX type="row">
+                                            <UX size="6" type="header">
+                                                {$$contactInfo.addressDetails.addressInfo.webRE.addrLine}</UX>
+                                        </UX>
+                                        <UX type="row">
+                                            <UX size="6" type="header">
+                                                {$$contactInfo.addressDetails.addressInfo.webRE.addrCity},
+                                                {$$contactInfo.addressDetails.addressInfo.webRE.addrStateCd}
+                                                {$$contactInfo.addressDetails.addressInfo.webRE.addrZip5}</UX>
+                                        </UX>
+                                    </UX>
+                                </UX>
+                            </UX>
+                        </UX>
+                        <UX type="lineBreak"></UX>
+                        <UX type="lineBreak"></UX>
+                        <UX type="section" className="button-resize">
+                            <UX iconClass="{null}" mode="default" size="large" type="button"
+                                click="{this.cancelValidateReAddress}">
+                                No, Don't use Recommended
+                            </UX>
+                            <UX iconClass="{null}" mode="default" size="large" type="button"
+                                click="{this.confirmValidateReAddress}">
+                                Yes, Use Recommended Address
+                            </UX>
+                        </UX>
+                        <UX type="lineBreak"></UX>
+                    </UX>
+
+                    <!-- Validate Mailing Address Modal -->
+                    <UX type="modal" isOpen="{$$validateMaAddress.popup}" className="modalContact">
+                        <span onClick="{this.cancelValidateMaAddress}">
+                            <p className="close-icon">&#x2716;</p>
+                        </span>
+                        <UX size="3" type="header" value="Test" labelKey="validate_addr_popup_heading"
+                            className="pophead">
+                        </UX>
+                        <UX type="lineBreak"></UX>
+                        <UX type="lineBreak"></UX>
+                        <UX type="grid" className="paddingleft25">
+                            <UX type="row">
+                                <UX type="column" width="4">
+                                    <UX type="grid">
+                                        <UX type="row">
+                                            <UX size="5" type="header">Your input the address:</UX>
+                                        </UX>
+                                        <UX type="row">
+                                            <UX size="6" type="header">
+                                                {$$contactInfo.addressDetails.addressInfo.MA.addrLine}</UX>
+                                        </UX>
+                                        <UX type="row">
+                                            <UX size="6" type="header">
+                                                {$$contactInfo.addressDetails.addressInfo.MA.addrCity},
+                                                {$$contactInfo.addressDetails.addressInfo.MA.addrStateCd}
+                                                {$$contactInfo.addressDetails.addressInfo.MA.addrZip5}
+                                            </UX>
+                                        </UX>
+                                    </UX>
+                                </UX>
+                                <UX type="column" width="4">
+                                    <UX type="grid">
+                                        <UX type="row">
+                                            <UX size="5" type="header">We recommend using:</UX>
+                                        </UX>
+                                        <UX type="row">
+                                            <UX size="6" type="header">
+                                                {$$contactInfo.addressDetails.addressInfo.webMA.addrLine}</UX>
+                                        </UX>
+                                        <UX type="row">
+                                            <UX size="6" type="header">
+                                                {$$contactInfo.addressDetails.addressInfo.webMA.addrCity},
+                                                {$$contactInfo.addressDetails.addressInfo.webMA.addrStateCd}
+                                                {$$contactInfo.addressDetails.addressInfo.webMA.addrZip5}</UX>
+                                        </UX>
+                                    </UX>
+                                </UX>
+                            </UX>
+                        </UX>
+                        <UX type="lineBreak"></UX>
+                        <UX type="lineBreak"></UX>
+                        <UX type="section" className="button-resize">
+                            <UX iconClass="{null}" mode="default" size="large" type="button"
+                                click="{this.cancelValidateMaAddress}">
+                                No, Don't use Recommended
+                            </UX>
+                            <UX iconClass="{null}" mode="default" size="large" type="button"
+                                click="{this.confirmValidateMaAddress}">
+                                Yes, Use Recommended Address
+                            </UX>
+                        </UX>
+                        <UX type="lineBreak"></UX>
+                    </UX>
+
+                    <!-- Residence Address Begins here-->
+                    <UX type="section" id="contact_res_addr">
+                        <UX type="group">
+                            <UX model="contactInfo.addressDetails.addressInfo.RE.addrFormatCd" radioStyle="card"
+                                type="radioGroup" className="align-left" labelKey="res_addr_format">
+                                <UX text="U.S." type="radioButton" value="US" />
+                                <UX text="Military" type="radioButton" value="MI" />
+                            </UX>
+                        </UX>
+                        <UX type="grid">
+                            <UX type="row">
+                                <UX type="column">
+                                    <UX type="text" labelKey="res_addr_line1"
+                                        model="contactInfo.addressDetails.addressInfo.RE.addrLine"
+                                        required="{$$contactInfo.addressDetails.resAddrSw !=='Y'}"
+                                        validationRules="addressCheck|splCharCheck"
+                                        labelRequiredClassIf="{$$contactInfo.addressDetails.resAddrSw !=='Y'}"
+                                        errormessages='{{"addressCheck":"addr_numerr_msg1","splCharCheck":"addr_splerr_msg1"}}'
+                                        className="addrLn1" />
+                                </UX>
+                                <UX type="column">
+                                    <UX type="text" labelKey="res_addr_line2"
+                                        model="contactInfo.addressDetails.addressInfo.RE.addrLine1"
+                                        validationRules="addressCheck|splCharCheck"
+                                        disabled="{$$contactInfo.addressDetails.resAddrSw ==='Y'}"
+                                        errormessages='{{"addressCheck":"addr_numerr_msg2","splCharCheck":"addr_splerr_msg2"}}'
+                                        className="addrLn2" />
+                                </UX>
+                                <UX type="column"
+                                    showIf="{$$contactInfo.addressDetails.addressInfo.RE.addrFormatCd === 'MI'}">
+                                    <UX type="text" labelKey="res_addr_line3"
+                                        model="contactInfo.addressDetails.addressInfo.RE.addrLine3"
+                                        validationRules="addressCheck|splCharCheck"
+                                        disabled="{$$contactInfo.addressDetails.resAddrSw ==='Y'}"
+                                        errormessages='{{"addressCheck":"addr_numerr_msg3","splCharCheck":"addr_splerr_msg3"}}'
+                                        className="addrLn3" />
+                                </UX>
+                                <UX type="column"
+                                    showIf="{$$contactInfo.addressDetails.addressInfo.RE.addrFormatCd === 'US'}">
+                                </UX>
+                            </UX>
+                        </UX>
+
+                        <UX type="grid">
+                            <UX type="row">
+                                <UX type="column"
+                                    showIf="{$$contactInfo.addressDetails.addressInfo.RE.addrFormatCd==='MI'}">
+                                    <UX type="select" labelKey="apo_fpo" ref-table="MILITARYPOCODES"
+                                        defaultOption="true" defaultOptionValue="{''}"
+                                        model="contactInfo.addressDetails.addressInfo.RE.apoFpoAddr"
+                                        required="{$$contactInfo.addressDetails.addressInfo.RE.addrFormatCd ==='MI'}"
+                                        labelRequiredClassIf="{$$contactInfo.addressDetails.addressInfo.RE.addrFormatCd ==='MI'}" />
+                                </UX>
+                                <UX type="column"
+                                    showIf="{$$contactInfo.addressDetails.addressInfo.RE.addrFormatCd==='US'}">
+                                    <UX id="resCountyId" type="select" ref-table="COUNTY" labelKey="res_county"
+                                        defaultOption="true" defaultOptionValue="{''}"
+                                        disabled="{$$contactInfo.addressDetails.addressInfo.RE.addrStateCd !=='GA'}"
+                                        model="contactInfo.addressDetails.addressInfo.RE.addrCountyCd" />
+                                </UX>
+                                <UX type="column"
+                                    showIf="{$$contactInfo.addressDetails.addressInfo.RE.addrFormatCd==='MI'}">
+                                    <UX type="select" labelKey="aa_ae_ap"
+                                        model="contactInfo.addressDetails.addressInfo.RE.addrMilitary"
+                                        defaultOption="true" defaultOptionValue="{''}" ref-table="STATEMILITARY"
+                                        required="{$$contactInfo.addressDetails.addressInfo.RE.addrFormatCd ==='MI'}"
+                                        labelRequiredClassIf="{$$contactInfo.addressDetails.addressInfo.RE.addrFormatCd ==='MI'}" />
+                                </UX>
+                                <UX type="column"
+                                    showIf="{$$contactInfo.addressDetails.addressInfo.RE.addrFormatCd==='US'}">
+                                    <UX type="text" labelKey="addr_city"
+                                        model="contactInfo.addressDetails.addressInfo.RE.addrCity" required="{true}"
+                                        validationRules="cityCheck" errormessages='{{"cityCheck":"city_err_msg"}}' />
+                                </UX>
+
+                                <UX type="column"
+                                    showIf="{$$contactInfo.addressDetails.addressInfo.RE.addrFormatCd==='US'}">
+                                    <UX type="select" labelKey="addr_state" ref-table="STATE"
+                                        change="{this.chgResCounty}"
+                                        model="contactInfo.addressDetails.addressInfo.RE.addrStateCd" required="{true}" />
+                                </UX>
+                                <UX type="column">
+                                    <UX type="text" labelKey="addr_zip"
+                                        model="contactInfo.addressDetails.addressInfo.RE.addrZip5" required="{true}"
+                                        maxLength="{5}" validationRules="zipCheck"
+                                        errormessages='{{"zipCheck":"zip_numeric_allowed"}}' />
+                                </UX>
+                                <UX type="column"
+                                    showIf="{$$contactInfo.addressDetails.addressInfo.RE.addrFormatCd==='MI'}">
+                                    <UX type="text" labelKey="care_of"
+                                        model="contactInfo.addressDetails.addressInfo.RE.addrCareOfLine" />
+                                </UX>
+                                <UX type="column" className="marginTop35">
+                                    <UX type="button" size="small" mode="primary"
+                                        className="rounded-pill align-self-center" labelKey="addr_validate"
+                                        click="{this.validateResInfo}"></UX>
+                                </UX>
+                            </UX>
+                        </UX>
+                    </UX>
+
+                    <!-- Mailing SW different radio group -->
+                    <UX type="section">
+                        <UX type="group">
+                            <UX model="contactInfo.addressDetails.livingResSw" radioStyle="card" type="radioGroup"
+                                className="align-left" labelKey="addr_mailing_diff">
+                                <UX text="Yes" type="radioButton" value="Y" />
+                                <UX text="No" type="radioButton" value="N" />
+                            </UX>
+                        </UX>
+                    </UX>
+
+                    <!-- Mailing Address Begins here-->
+
+                    <UX type="section" id="contact_mail_addr" showIf="{$$contactInfo.addressDetails.livingResSw==='Y'}">
+                        <UX type="group">
+                            <UX model="contactInfo.addressDetails.addressInfo.MA.addrFormatCd" radioStyle="card"
+                                type="radioGroup" className="align-left" labelKey="mail_addr_format">
+                                <UX text="U.S." type="radioButton" value="US" />
+                                <UX text="Military" type="radioButton" value="MI" />
+                            </UX>
+                        </UX>
+                        <UX type="grid">
+                            <UX type="row">
+                                <UX type="column">
+                                    <UX type="text" labelKey="mail_addr_line1"
+                                        model="contactInfo.addressDetails.addressInfo.MA.addrLine"
+                                        required="{$$contactInfo.addressDetails.resAddrSw !=='Y'}"
+                                        validationRules="addressCheck|splCharCheck"
+                                        labelRequiredClassIf="{$$contactInfo.addressDetails.resAddrSw !=='Y'}"
+                                        errormessages='{{"addressCheck":"addr_numerr_msg1","splCharCheck":"addr_splerr_msg1"}}'
+                                        className="addrLn1" />
+                                </UX>
+                                <UX type="column">
+                                    <UX type="text" labelKey="mail_addr_line2"
+                                        model="contactInfo.addressDetails.addressInfo.MA.addrLine1"
+                                        validationRules="addressCheck|splCharCheck"
+                                        disabled="{$$contactInfo.addressDetails.resAddrSw ==='Y'}"
+                                        errormessages='{{"addressCheck":"addr_numerr_msg2","splCharCheck":"addr_splerr_msg2"}}'
+                                        className="addrLn2" />
+                                </UX>
+                                <UX type="column"
+                                    showIf="{$$contactInfo.addressDetails.addressInfo.MA.addrFormatCd === 'MI'}">
+                                    <UX type="text" labelKey="mail_addr_line3"
+                                        model="contactInfo.addressDetails.addressInfo.MA.addrLine3"
+                                        validationRules="addressCheck|splCharCheck"
+                                        disabled="{$$contactInfo.addressDetails.resAddrSw ==='Y'}"
+                                        errormessages='{{"addressCheck":"addr_numerr_msg3","splCharCheck":"addr_splerr_msg3"}}'
+                                        className="addrLn3" />
+                                </UX>
+                                <UX type="column"
+                                    showIf="{$$contactInfo.addressDetails.addressInfo.MA.addrFormatCd === 'US'}">
+                                </UX>
+                            </UX>
+                        </UX>
+
+                        <UX type="grid">
+                            <UX type="row">
+                                <UX type="column"
+                                    showIf="{$$contactInfo.addressDetails.addressInfo.MA.addrFormatCd==='MI'}">
+                                    <UX type="select" labelKey="apo_fpo"
+                                        model="contactInfo.addressDetails.addressInfo.MA.apoFpoAddr"
+                                        ref-table="MILITARYPOCODES" defaultOption="true" defaultOptionValue="{''}"
+                                        required="{$$contactInfo.addressDetails.addressInfo.MA.addrFormatCd ==='MI'}"
+                                        labelRequiredClassIf="{$$contactInfo.addressDetails.addressInfo.MA.addrFormatCd ==='MI'}" />
+                                </UX>
+                                <UX type="column"
+                                    showIf="{$$contactInfo.addressDetails.addressInfo.MA.addrFormatCd==='US'}">
+                                    <UX id="mailCountyId" 
+                                    type="select" defaultOption="true" defaultOptionValue="{''}"
+                                        ref-table="COUNTY" labelKey="mail_county" defaultOption="true"
+                                        defaultOptionValue="{''}"
+                                        disabled="{$$contactInfo.addressDetails.addressInfo.MA.addrStateCd !=='GA'}"
+                                        model="contactInfo.addressDetails.addressInfo.MA.addrCountyCd" />
+                                </UX>
+                                <UX type="column"
+                                    showIf="{$$contactInfo.addressDetails.addressInfo.MA.addrFormatCd==='MI'}">
+                                    <UX type="select" labelKey="aa_ae_ap" defaultOption="true" defaultOptionValue="{''}"
+                                        model="contactInfo.addressDetails.addressInfo.MA.addrMilitary"
+                                        ref-table="STATEMILITARY"
+                                        required="{$$contactInfo.addressDetails.addressInfo.MA.addrFormatCd ==='MI'}"
+                                        labelRequiredClassIf="{$$contactInfo.addressDetails.addressInfo.MA.addrFormatCd ==='MI'}" />
+                                </UX>
+                                <UX type="column"
+                                    showIf="{$$contactInfo.addressDetails.addressInfo.MA.addrFormatCd==='US'}">
+                                    <UX type="text" labelKey="addr_city"
+                                        model="contactInfo.addressDetails.addressInfo.MA.addrCity" required="{true}"
+                                        validationRules="cityCheck" errormessages='{{"cityCheck":"city_err_msg"}}' />
+                                </UX>
+
+                                <UX type="column"
+                                    showIf="{$$contactInfo.addressDetails.addressInfo.MA.addrFormatCd==='US'}">
+                                    <UX type="select" labelKey="addr_state" ref-table="STATE"
+                                        change="{this.chgMailCounty}"
+                                        model="contactInfo.addressDetails.addressInfo.MA.addrStateCd" required="{true}" />
+                                </UX>
+                                <UX type="column">
+                                    <UX type="text" labelKey="addr_zip"
+                                        model="contactInfo.addressDetails.addressInfo.MA.addrZip5" required="{true}"
+                                        maxLength="{5}" validationRules="zipCheck"
+                                        errormessages='{{"zipCheck":"zip_numeric_allowed"}}' />
+                                </UX>
+                                <UX type="column"
+                                    showIf="{$$contactInfo.addressDetails.addressInfo.MA.addrFormatCd==='MI'}">
+                                    <UX type="text" labelKey="care_of"
+                                        model="contactInfo.addressDetails.addressInfo.MA.addrCareOfLine" />
+                                </UX>
+                                <UX type="column" className="marginTop35">
+                                    <UX type="button" size="small" mode="primary"
+                                        className="rounded-pill align-self-center" labelKey="addr_validate"
+                                        click="{this.validateMailInfo}"></UX>
+                                </UX>
+
+                            </UX>
+                        </UX>
+                    </UX>
+                </UX>
+            </UX>
+        </UX>
+    </UX>
+</UX>
+</UX>

@@ -1,0 +1,281 @@
+<UX type="section">
+    <UX
+        type="group"
+        showIf="{
+            (
+            (AppContext.model.getValue('sspMode')==='Y' && 
+            AppContext.model.getValue('sspDcMatch')===false) ||
+            (AppContext.model.getValue('sspMode')==='Y' && 
+            AppContext.model.getValue('sspDcMatch')===true &&
+            AppContext.model.getValue('sspPending')!==0 )||
+            (AppContext.model.getValue('sspMode')==='Y' && 
+            AppContext.model.getValue('sspDcMatch')===true &&
+            AppContext.model.getValue('HohFileCleared')===true &&
+            AppContext.model.getValue('sspPending')!==0 )
+            )
+        }"
+    >
+        <UXModule.sspApplicants></UXModule.sspApplicants>
+    </UX>
+
+    <UX
+        type="group"
+        showIf="{ 
+        AppContext.model.getValue('showApplicantsConflicts') === true ||
+        AppContext.model.getValue('showContactConflicts') === true ||
+        AppContext.model.getValue('showAuthRepConflicts') === true
+        }"
+    >
+        <UXModule.SideConflictsPanel></UXModule.SideConflictsPanel>
+    </UX>
+
+    <UX type="section" ux-class="border pt-3 pb-3 pl-3" showIf="{this.props.module === 'appReg'}">
+        <UX type="grid">
+            <UX type="row" className="pt-3">
+                <UX type="column" width="2">
+                    <span className="ng-doc-icon"></span>
+                </UX>
+                <UX type="column" width="7">
+                    <UX type="para" className="pt-2 appRN">{this.props.appNum}</UX></UX
+                >
+            </UX>
+            <UX type="row" className="pt-3">
+                <UX type="column" width="2"> </UX>
+                <UX type="column" width="7">
+                    <UX target="_self" type="hyperLink" className="hyperLink">
+                        Documents
+                    </UX>
+                </UX>
+            </UX>
+            <UX type="row" className="pt-3">
+                <UX type="column" width="2"> </UX>
+                <UX type="column" width="7">
+                    <UX target="_self" type="hyperLink" className="hyperLink">
+                        Page Help
+                    </UX>
+                </UX>
+            </UX>
+            <UX type="row" className="pt-3">
+                <UX type="column" width="2"> </UX>
+                <UX type="column" width="7">
+                    <UX target="_self" type="hyperLink" className="hyperLink">
+                        Print Application
+                    </UX>
+                </UX>
+            </UX>
+        </UX>
+    </UX>
+    <UX size="1" type="lineBreak" />
+    <UX
+        type="section"
+        ux-class="border pt-3 pb-3 pl-3 recentApps"
+        showIf="{this.props.module === 'searchApp'}"
+    >
+        <UX type="grid">
+            <UX type="row" className="pt-3 recentAppHeader">
+                <UX type="column" width="2" className="docIconParent">
+                    <span className="ng-doc-icon"></span>
+                </UX>
+                <UX type="column" width="7" className="appRNHeader">
+                    <UX type="para" className="pt-2 appRN">Recent Searches</UX></UX
+                >
+            </UX>
+            <UX
+                type="row"
+                className="pt-3 appLinkHeader"
+                repeat="val, index in this.props.recentAppList"
+            >
+                <UX type="column" width="2" className="appLinkSpace"> </UX>
+                <UX type="column" width="7" className="appLink">
+                    <UX
+                        click="{this.toApplicationReg}"
+                        target="_self"
+                        type="hyperLink"
+                        className="hyperLink"
+                        >{val}
+                    </UX>
+                </UX>
+            </UX>
+        </UX>
+    </UX>
+    <UX size="1" type="lineBreak" />
+    <UX
+        type="section"
+        ux-class="border pt-3 pb-3 pl-3 searchTip"
+        showIf="{this.props.rightNavCond === 'searchTip'}"
+    >
+        <UX type="grid">
+            <UX type="row" className="pt-3">
+                <UX type="column" width="2">
+                    <span className="ng-ins-icon"></span>
+                </UX>
+                <UX type="column" width="7" className="appRNHeader">
+                    <UX type="para" className="pt-2 appRN">Insights</UX></UX
+                >
+            </UX>
+            <UX type="row" className="pt-3 searchTipHeader">
+                <UX type="para" className="pl-4 font-weight-bold bullet w-100">
+                    Search Tip
+                </UX>
+            </UX>
+            <UX type="row" className="pt-3 insightParaParent">
+                <UX type="para" className="insightPara">
+                    Enter as many search criteria as you can to find the application you are looking
+                    for.
+                </UX>
+                <UX type="para"></UX>
+            </UX>
+        </UX>
+    </UX>
+    <UX size="1" type="lineBreak" />
+    <UX
+        type="section"
+        ux-class="border pt-3 pb-3 pl-3"
+        showIf="{this.props.rightNavCond === 'appInfo'}"
+    >
+        <UX type="grid">
+            <UX type="row" className="pt-3">
+                <UX type="column" width="2">
+                    <span className="ng-ins-icon"></span>
+                </UX>
+                <UX type="column" width="7">
+                    <UX type="para" className="pt-2 appRN">Insights</UX></UX
+                >
+            </UX>
+            <UX type="row" className="pt-3">
+                <UX type="para" className="pl-4 font-weight-bold bullet w-100">
+                    Did you Know?
+                </UX>
+            </UX>
+            <UX type="row" className="pt-3">
+                <UX type="para" className="insightPara">
+                    Applications submitted via self-service might not need to be processed as a new
+                    application. Check if this should be sent to the case worker for a different
+                    action.
+                </UX>
+                <UX type="para"></UX>
+            </UX>
+        </UX>
+    </UX>
+    <UX size="1" type="lineBreak" />
+    <UX
+        type="section"
+        ux-class="border pt-3 pb-3 pl-3"
+        showIf="{this.props.rightNavCond === 'fileClrOneMatch1'}"
+    >
+        <UX type="grid">
+            <UX type="row" className="pt-3">
+                <UX type="column" width="2">
+                    <span className="ng-ins-icon"></span>
+                </UX>
+                <UX type="column" width="7">
+                    <UX type="para" className="pt-2 appRN">Insights</UX></UX
+                >
+            </UX>
+            <UX type="row" className="pt-3">
+                <UX type="para" className="pl-4 font-weight-bold bullet w-100">
+                    Is it a match?
+                </UX>
+            </UX>
+            <UX type="row" className="pt-3">
+                <UX type="para" className="insightPara">
+                    Check to make sure the First and Last Name, Gender and DOB of the person
+                    returned matches the application. If the name, gender and DOB do not match
+                    applicant information, click SSN Not Provided/Search by Other Criteria to enter
+                    more details.
+                </UX>
+                <UX type="para"></UX>
+            </UX>
+        </UX>
+    </UX>
+    <UX size="1" type="lineBreak" />
+    <UX
+        type="section"
+        ux-class="border pt-3 pb-3 pl-3"
+        showIf="{this.props.rightNavCond === 'fileClrNoMatch'}"
+    >
+        <UX type="grid">
+            <UX type="row" className="pt-3">
+                <UX type="column" width="2">
+                    <span className="ng-ins-icon"></span>
+                </UX>
+                <UX type="column" width="7">
+                    <UX type="para" className="pt-2 appRN">Insights</UX></UX
+                >
+            </UX>
+            <UX type="row" className="pt-3">
+                <UX type="para" className="pl-4 font-weight-bold bullet w-100">
+                    No Matches Found
+                </UX>
+            </UX>
+            <UX type="row" className="pt-3">
+                <UX type="para" className="insightPara">
+                    There is no match on SSN alone. Entering more information about the applicant
+                    will help us perform a more thorough search for potential matches.
+                </UX>
+                <UX type="para"></UX>
+            </UX>
+        </UX>
+    </UX>
+    <UX size="1" type="lineBreak" />
+    <UX
+        type="section"
+        ux-class="border pt-3 pb-3 pl-3"
+        showIf="{this.props.rightNavCond === 'fileClrOneMatch2'}"
+    >
+        <UX type="grid">
+            <UX type="row" className="pt-3">
+                <UX type="column" width="2">
+                    <span className="ng-ins-icon"></span>
+                </UX>
+                <UX type="column" width="7">
+                    <UX type="para" className="pt-2 appRN">Insights</UX></UX
+                >
+            </UX>
+            <UX type="row" className="pt-3">
+                <UX type="para" className="pl-4 font-weight-bold bullet w-100">
+                    Is it a match?
+                </UX>
+            </UX>
+            <UX type="row" className="pt-3">
+                <UX type="para" className="insightPara">
+                    If this result’s details do not match the applicant, you should Establish New
+                    Person.
+                </UX>
+                <UX type="para"></UX>
+            </UX>
+        </UX>
+    </UX>
+    <UX size="1" type="lineBreak" />
+    <UX
+        type="section"
+        ux-class="border pt-3 pb-3 pl-3"
+        showIf="{this.props.rightNavCond === 'fileClrMultiMatch'}"
+    >
+        <UX type="grid">
+            <UX type="row" className="pt-3">
+                <UX type="column" width="2">
+                    <span className="ng-ins-icon"></span>
+                </UX>
+                <UX type="column" width="7">
+                    <UX type="para" className="pt-2 appRN">Insights</UX></UX
+                >
+            </UX>
+            <UX type="row" className="pt-3">
+                <UX type="para" className="pl-4 font-weight-bold bullet w-100">
+                    Multiple Results Found
+                </UX>
+            </UX>
+            <UX type="row" className="pt-3">
+                <UX type="para" className="insightPara">
+                    If more than one individual matches the criteria you searched by, please review
+                    other details to determine a match.
+                </UX>
+                <UX type="para" className="insightPara">
+                    If none of the results match the applicant, you should Establish New Person.
+                </UX>
+                <UX type="para"></UX>
+            </UX>
+        </UX>
+    </UX>
+</UX>

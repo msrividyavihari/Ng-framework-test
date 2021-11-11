@@ -1,0 +1,8 @@
+=== Files
+
+include::_package_guidelines.adoc[]
+
+=== Rest APIs
+
+include::_api_guidelines.adoc[]
+

@@ -1,0 +1,19 @@
+version: '2'
+services:
+  active-mq:
+    container_name: active-mq
+    image: rmohr/activemq
+  ng-error-consumer:
+    container_name: ng-error-consumer
+    image: ng-consumers/ng-error-consumer:0.0.2-SNAPSHOT
+    ports:
+      - "8085:8080"
+    depends_on:
+      - active-mq
+  ng-audit-consumer:
+    container_name: ng-audit-consumer
+    image: ng-consumers/ng-audit-consumer:0.0.2-SNAPSHOT
+    ports:
+      - "8086:8080"
+    depends_on:
+      - active-mq

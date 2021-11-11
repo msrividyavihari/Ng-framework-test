@@ -1,0 +1,88 @@
+<UX type="section">
+    <UX type="section" className="panel-alert" showIf="{$$appInfoError}">
+        <UX type="section" className="margin-center">
+            <UX type="label">{AppContext.model.getValue('appInfoErrorMsg')}</UX>
+        </UX>
+    </UX>
+
+    <UX type="section">
+        <UX type="para">
+            Enter a few details about the application being registered.
+        </UX>
+        <UX type="group" width="11">
+            <UX
+                id="registeredDate"
+                model="appRegNew.ArApplicationForAid.dateTimeRegistered"
+                type="date"
+                maxDate="today"
+                minDate="1990-01-01"
+                change="{this.validateRegisteredDate}"
+                labelKey="application_registered_date"
+                required
+                disabled
+                errormessages='{{"required":"regDate.required"}}'
+            >
+            </UX>
+
+            <UX
+                type="text"
+                labelKey="date_and_time_registered"
+                model="appRegNew.ArApplicationForAid.appRegDt"
+                readOnly="{true}"
+            />
+
+            <UX
+                model="appRegNew.ArApplicationForAid.time"
+                radioStyle="bar"
+                type="radioGroup"
+                className="appTime"
+                disabled
+            >
+                <UX text="AM" type="radioButton" value="AM" />
+                <UX text="PM" type="radioButton" value="PM" />
+            </UX>
+        </UX>
+        <UX type="group" width="11">
+            <UX
+                id="recievedDate"
+                model="appRegNew.ArApplicationForAid.appRecvdDt"
+                type="date"
+                required
+                labelKey="application_recieved_date"
+                validationRules="recivedAndregDiffDate|validateRecievedDate"
+                errormessages='{{"recivedAndregDiffDate":"app_red_date" , "validateRecievedDate":"valid_date","required":"valid_date"}}'
+                change="{this.validateMonthDiffRecievedDate}"
+                minDate="1990-01-01"
+                maxDate="today"
+            >
+            </UX>
+            <UX
+                defaultOption="true"
+                defaultOptionValue="{''}"
+                id="source"
+                labelKey="source"
+                ref-table="APPMODE"
+                model="appRegNew.ArApplicationForAid.appModeCd"
+                type="select"
+                disabled="{$$sourceDisable  === 'true'}"
+                errormessages='{{"required":"source_required"}}'
+            />
+            <UX type="group"></UX>
+        </UX>
+        <UX type="group" width="11">
+            <UX
+                id="signed"
+                labelKey="signed"
+                radioStyle="card"
+                type="radioGroup"
+                vertical-align="false"
+                model="appRegNew.ArApplicationForAid.appSignedSw"
+                required
+                errormessages='{{"required":"signed.required"}}'
+            >
+                <UX name="signed" text="Yes" type="radioButton" value="Y" />
+                <UX name="signed" text="No" type="radioButton" value="N" />
+            </UX>
+        </UX>
+    </UX>
+</UX>

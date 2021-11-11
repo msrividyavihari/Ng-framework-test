@@ -1,0 +1,22 @@
+description = 'Nextgen Framework - Web'
+
+dependencies {
+
+    api project(':ng-logging')
+    api project(':ng-commons')
+    api project(':ng-exceptions')
+    api project(':ng-security')
+    api project(':ng-properties-autoconfigure')
+    api project(':ng-persistence')
+    api project(':ng-validator')
+    api project(':ng-spring-boot-autoconfigure')
+
+    api group: 'io.jsonwebtoken', name: 'jjwt', version: '0.2'
+    api "org.springframework.boot:spring-boot-starter-security:$SPRING_BOOT"
+    api "org.springframework.boot:spring-boot-starter-web:$SPRING_BOOT"
+    api "org.springframework.boot:spring-boot-starter-activemq:$SPRING_BOOT"
+    api "io.springfox:springfox-boot-starter:$SPRING_FOX"
+
+    annotationProcessor "org.projectlombok:lombok:$LOMBOK"
+
+}

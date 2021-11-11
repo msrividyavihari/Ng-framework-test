@@ -1,0 +1,19 @@
+// maven publication
+apply plugin: 'maven'
+apply plugin: 'maven-publish'
+
+publishing {
+    publications {
+        mavenPublication(MavenPublication) {
+            from components.java
+            artifactId "${project.name}"
+            version "${project.version}"
+            artifact sourcesJar {
+                classifier "sources"
+            }
+            artifact javadocJar {
+                classifier "javadoc"
+            }
+        }
+    }
+}

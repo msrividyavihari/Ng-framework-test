@@ -1,0 +1,338 @@
+<UX type="page" ref-table-list="COUNTY,MASSMAILTEXT">
+    <UX type="section" ux-class="w-100 app-srch-hd-sec">
+        <UX
+            type="header"
+            size="4"
+            id="contact_header"
+            className="p-3 co-common-header"
+            labelKey="create_mass_mailing_req_title"
+        >
+        </UX>
+    </UX>
+      <UX type="card" ux-class="w-100" body-class="p-0 m-0">
+        <UX type="card">
+            <UX size="4" type="header" labelKey="co_search_criteria" className="mb-5 srch-hdr" />
+            <UX size="8" type="section" className="outer-sec">
+                 <UX type="section" className="dates-sec">
+                    <UX type="section" col-width="12" className="dates-sec-inner">
+                        <UX
+                            type="group"
+                            flexGroup="true"
+                            flexDirection="row"
+                            flexWrap="false"
+                            flexAlign="start"
+                            flexJustify="start"
+                            childWidths="true"
+                        >
+                            <UX
+                                id="scheduled_date"
+                                col-width="6"
+                                labelKey="scheduled_date_label"
+                                className="co-text-label"
+                                type="label"
+                            />
+                            <UX
+                                id="scheduledDt"
+                                model="massMailingData.scheduledDt"
+                                col-width="6"
+                                className="ml-1 co-srch-txt"
+                                type="date"
+                                minDate="today"
+                            />
+                        </UX>
+                    </UX>
+                </UX>
+                <UX type="section" className="search-sec">
+                    <UX
+                            type="group"
+                            flexGroup="true"
+                            flexDirection="row"
+                            flexWrap="false"
+                            flexAlign="start"
+                            flexJustify="start"
+                            childWidths="true"
+                        >
+                            <UX
+                                id="recpt_pop_id"
+                                col-width="6"
+                                labelKey="recpt_pop_label"
+                                className="co-text-label"
+                                type="label"
+                            />
+                    </UX>
+                    <UX
+                        type="radioGroup"
+                        radioStyle="card"
+                        model="massMailingData.recptPop"
+                        vertical-align="false"
+                        col-width="12"
+                        labelKey="empty_string"
+                        change="{this.onRecptPopChange}"
+                    >
+                        <UX type="radioButton" labelKey="dch" value="DCH"/>
+                        <UX type="radioButton" labelKey="rsm" value="RSM" />
+                        <UX type="radioButton" labelKey="dhs" value="DHS" />
+                        <UX type="radioButton" labelKey="peach_care_kids" value="PC" />
+                        <UX type="radioButton" labelKey="child_care" value="CC" />
+                    </UX>
+                </UX>
+            <UX type="section" id="section1" className="container-md mb-4 ml-3">
+                <UX type="section" className="alignCenter">
+                    <UX type="section" className="alignCenter checkbox-label">
+                        <UX type="checkboxGroup" showIf="{$$massMailingData.recptPop==='DCH' || $$massMailingData.recptPop==='RSM'}" model="massMailingData.programLst"> 
+                            <UX
+                                id="adult_medicaid"
+                                type="checkbox"
+                                labelKey="adult_medicaid"
+                                value="ABD,GMWD"
+                            />
+                             <UX
+                                id="family_medicaid"
+                                type="checkbox"
+                                labelKey="family_medicaid"
+                                value="FM,MAGI,RMA"
+                            />
+                        </UX>
+                        <UX type="checkboxGroup" showIf="{$$massMailingData.recptPop==='DHS'}" model="massMailingData.programLst">
+                            <UX
+                                id="snap_works"
+                                type="checkbox"
+                                labelKey="snap_works"
+                                value="SNAP Works"
+                            />
+                             <UX
+                                id="food_stamps"
+                                type="checkbox"
+                                labelKey="food_stamps"
+                                value="FS"
+                            />
+                            <UX
+                                id="abawd"
+                                type="checkbox"
+                                value="Abawd"
+                                labelKey="abawd_time_lmt_waiver"
+                            />
+                             <UX
+                                id="tanf"
+                                type="checkbox"
+                                labelKey="tanf"
+                                value="TANF,RCA"
+                            />
+                            <UX
+                                id="adult_medicaid2"
+                                type="checkbox"
+                                labelKey="adult_medicaid"
+                                value="ABD,GMWD"
+                            />
+                            <UX
+                                id="family_medicaid2"
+                                type="checkbox"
+                                value="FM,MAGI,RMA"
+                                labelKey="family_medicaid"
+                            />
+                            <UX
+                                id="tanf_emp_serv"
+                                type="checkbox"
+                                labelKey="tanf_emp_serv"
+                                value="TANF ES"
+    
+                            />
+                        </UX>
+                    </UX>
+                </UX>
+            </UX>
+            
+            <UX type="section" className="search-sec">
+                <UX type="section" col-width="12">
+                        <UX
+                            type="group"
+                            flexGroup="true"
+                            flexDirection="row"
+                            flexWrap="false"
+                            flexAlign="start"
+                            flexJustify="start"
+                            childWidths="true"
+                        >
+                            <UX
+                                id="notice_title"
+                                col-width="6"
+                                labelKey="notice_title_label"
+                                className="txt-sec"
+                                type="label"
+                            />
+                            <UX
+                                id="noticeTitle1"
+                                model="massMailingData.noticeTitle"
+                                col-width="6"
+                                className="case-num-lbl co-lbl"
+                                labelKey="empty_string"
+                                type="text"
+                            />
+                        </UX>
+                        <UX
+                            type="group"
+                            flexGroup="true"
+                            flexDirection="row"
+                            flexWrap="false"
+                            flexAlign="start"
+                            flexJustify="start"
+                            childWidths="true"
+                        >
+                            <UX
+                                id="notice_text"
+                                col-width="6"
+                                labelKey="notice_text_label"
+                                className="txt-sec"
+                                type="label"
+                            />
+                            <UX
+                                id="noticeTextLabel"
+                                model="massMailingData.noticeText"
+                                col-width="6"
+                                className="case-num-lbl co-lbl"
+                                labelKey="empty_string"
+                                type="text"
+                            />
+                        </UX>
+                         <UX
+                            type="group"
+                            flexGroup="true"
+                            flexDirection="row"
+                            flexWrap="false"
+                            flexAlign="start"
+                            flexJustify="start"
+                            childWidths="true"
+                        >
+                            <UX
+                                id="policy_man_ref"
+                                col-width="6"
+                                labelKey="policy_man_ref_label"
+                                className="txt-sec"
+                                type="label"
+                            />
+                            <UX
+                                id="policyManualRefLabel"
+                                model="massMailingData.policyManualRef"
+                                col-width="6"
+                                className="case-num-lbl co-lbl"
+                                labelKey="empty_string"
+                                type="text"
+                            />
+                        </UX>
+                        <UX
+                            type="group"
+                            flexGroup="true"
+                            flexDirection="row"
+                            flexWrap="false"
+                            flexAlign="start"
+                            flexJustify="start"
+                            childWidths="true"
+                        >
+                            <UX
+                                id="county"
+                                col-width="3"
+                                labelKey="county_label"
+                                className="txt-sec"
+                                type="label"
+                            />
+                            <UX
+                                id="multiSelect"
+                                defaultOption="true"
+                                defaultOptionValue="{''}"
+                                ref-table="COUNTY"
+                                model="massMailingData.countyCd"
+                                name="multiSelect"
+                                placeholder="Select an Option"
+                                col-width="9"
+                                required="{false}"
+                                type="multiSelect"
+                            />
+                        </UX>
+                </UX>
+            </UX>
+
+            <UX type="section" className="dt-tbl-sec" >
+            <UX size="{1}" type="lineBreak" />
+            <UX size="4" type="header" labelKey="stnd_txt_label" className="mb-5 srch-hdr" />
+                <UX type="group">
+                    <UX type="row" col-width="12" className="border alignLineCenter" />
+                </UX>
+                <UX type="group">
+                    <UX
+                        type="CustomeDataTable"
+                        col-default-headers="Select, Standard Text"
+                        col-data-keys="select, description"
+                        ref-table="MASSMAILTEXT"
+                        keyfield="massMailingSeqNum"
+                        pagination="default"
+                        hover="false"
+                        sortable-col-names="2"
+                        pagination-show-total="true"
+                        rowSelection="multi"
+                        pagination-size-per-page="5"
+                        expandColumnPosition="right"
+                        expandMultiple="{false}"
+                        className="co-dt-tbl"
+                    />
+                </UX>
+            </UX>
+
+             <UX type="section" className="btn-sec">
+                <UX type="group" className="reset-img-ctn">
+                    <UX
+                        type="image"
+                        src="../icons/buttonResetScreen.png"
+                        className="reset-img"
+                        click="{this.resetForm}"
+                    />
+                </UX>
+            </UX>
+
+             <UX type="section" className="btn-grp">
+                <UX type="group" className="btn-sec-inner">  
+                    <UX 
+                        type="group"
+                            flexGroup="true"
+                            flexDirection="row"
+                            flexWrap="false"
+                            flexAlign="start"
+                            flexJustify="start"
+                            col-width="9"
+                    >               
+                        <UX
+                            className="mt-5 co-can-btn"
+                            mode="primary"
+                            size="small"
+                            type="button"
+                            align="center"
+                            click="{this.goBack}"
+                            labelKey="cancel"
+                        />
+                        <UX
+                            className="mt-5 co-can-btn"
+                                mode="primary"
+                                size="small"
+                                type="button"
+                                align="center"
+                                click="{this.preview}"
+                                labelKey="preview"
+                            />
+                            <UX
+                                className="mt-5 co-can-btn"
+                                mode="primary"
+                                size="small"
+                                type="button"
+                                align="center"
+                                click="{this.submitRequest}"
+                                labelKey="submit"
+                            />
+                    </UX>
+                </UX>
+            </UX>
+
+            </UX>
+        </UX>
+    </UX>
+
+    
+</UX>

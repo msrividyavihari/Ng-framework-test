@@ -1,0 +1,137 @@
+plugins {
+    id 'java'
+	id 'java-library'
+	id 'eclipse'
+	id 'idea'
+	id 'maven'
+	id 'maven-publish'
+	id "io.freefair.lombok" version "5.3.3.3"
+	id 'io.spring.dependency-management' version '1.0.10.RELEASE'
+	id 'org.springframework.boot' version '2.4.5'
+	id "com.diffplug.eclipse.apt" version "3.25.0"
+}
+
+apply from: "${rootProject.projectDir}/gradle/sonarqube.gradle"
+
+group 'com.deloitte.nextgen.hearing-appeal'
+version '1.0-SNAPSHOT'
+generateLombokConfig.enabled = false
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+	jcenter()
+    maven { url 'https://repo.spring.io/milestone' }
+    maven { url 'https://repo.spring.io/snapshot' }
+    maven { url 'https://repo.spring.io/plugins-release'}
+    maven { url "https://plugins.gradle.org/m2/"}
+    maven { url 'http://fast4j.glbsnet.com:8086/artifactory/repo' }
+}
+
+
+eclipse {
+	classpath {
+		downloadJavadoc = true
+		downloadSources = true
+		defaultOutputDir = file("build/default")
+		file.whenMerged {
+			entries.each { entry ->
+				if (entry.kind == 'src' && entry.hasProperty('output')) {
+					entry.output = entry.output.replace('bin/', "build/")
+				}
+			}
+		}
+	}
+}
+
+idea {
+	module {
+		downloadJavadoc = true
+		downloadSources = true
+	}
+}
+
+java{
+	sourceCompatibility = JavaVersion.VERSION_1_8
+	targetCompatibility = JavaVersion.VERSION_1_8
+	withSourcesJar()
+}
+
+def queryDslVersion = '5.0.0.M1'
+def nextgenFwkVersion = "0.0.3-SNAPSHOT"
+dependencies {
+
+	// Query DSL
+	implementation("com.querydsl:querydsl-core:${queryDslVersion}")
+	implementation("com.querydsl:querydsl-jpa:${queryDslVersion}")
+
+	annotationProcessor "org.hibernate.orm:hibernate-jpamodelgen:6.0.0.Alpha7"
+	implementation 'com.deloitte.nextgen.data-collection:data-collection-dto:1.0-SNAPSHOT'
+    implementation ("com.deloitte.nextgen.framework:ng-spring-boot-starter:${nextgenFwkVersion}") {
+		exclude group: 'io.springfox'
+	}
+
+	implementation group: 'org.springframework.boot', name: 'spring-boot-starter-webflux'
+
+	implementation 'com.google.guava:guava:30.1.1-jre'
+	implementation group: 'com.fasterxml.jackson.datatype', name: 'jackson-datatype-guava', version: '2.12.3'
+
+	implementation 'org.apache.commons:commons-collections4:4.4'
+
+	implementation group: 'org.springdoc', name: 'springdoc-openapi-ui', version: '1.5.8'
+	implementation group: 'org.springdoc', name: 'springdoc-openapi-data-rest', version: '1.5.8'
+	implementation group: 'org.springdoc', name: 'springdoc-openapi-security', version: '1.5.8'
+	implementation group: 'io.swagger', name: 'swagger-annotations', version: '1.6.2'
+
+	annotationProcessor (
+
+			"org.hibernate.orm:hibernate-jpamodelgen:6.0.0.Alpha7",
+			"com.deloitte.nextgen.framework:ng-persistence:${nextgenFwkVersion}",
+			"org.mapstruct:mapstruct-processor:1.4.1.Final",
+			"org.springframework.boot:spring-boot-configuration-processor",
+			"org.springframework.boot:spring-boot-starter-data-jpa:2.4.5",
+			"com.querydsl:querydsl-apt:${queryDslVersion}:jpa"
+	)
+
+	testImplementation('org.springframework.boot:spring-boot-starter-test') {
+			exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+			exclude module: 'spring-boot-starter-logging' // ng-logging using log4j-slf4j-impl (apache log4j)
+	}
+        
+	testImplementation(platform('org.junit:junit-bom:5.7.0'))
+	testImplementation('org.junit.jupiter:junit-jupiter')
+
+	testImplementation 'org.assertj:assertj-core:3.18.0'
+	testImplementation 'org.assertj:assertj-guava:3.4.0'
+
+	testImplementation 'org.hamcrest:hamcrest-all:1.3'
+	testImplementation 'org.mockito:mockito-all:1.10.19'
+	testImplementation 'com.jayway.jsonpath:json-path-assert:2.4.0'
+	
+	testImplementation 'org.jeasy:easy-random-core:4.2.0'
+	testImplementation 'io.github.glytching:junit-extensions:2.4.0'
+
+}
+
+compileJava {
+		options.annotationProcessorPath = configurations.annotationProcessor
+		// setting mapstruct component model to Spring
+		options.compilerArgs += [
+				//'-Amapstruct.suppressGeneratorTimestamp=true',
+				//'-Amapstruct.suppressGeneratorVersionInfoComment=true',
+				'-Amapstruct.verbose=false',
+				'-Amapstruct.defaultComponentModel=spring'
+		]
+}
+
+tasks.withType(JavaCompile) {
+	options.encoding = 'UTF-8'
+}
+
+test {
+	useJUnitPlatform()
+	testLogging {
+		events "passed", "skipped", "failed"
+	}
+}
+

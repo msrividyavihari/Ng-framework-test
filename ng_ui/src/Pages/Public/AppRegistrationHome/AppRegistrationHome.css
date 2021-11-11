@@ -1,0 +1,73 @@
+.page_background{
+    background:#101A47 !important;
+}
+.left_background{
+    background: #FFFFFF;
+}
+.hhs-image2{
+    width: 87% !important;
+    padding-top: 20%;
+}
+
+  .page-image2{
+    width:97% !important;
+    display:block !important;
+    float:left !important;
+  }
+
+  .application-registration{
+    width: 100%;
+    font-family: Source Serif Pro;
+    font-style: normal;
+    font-weight: 900;
+    font-size: 370%;
+    line-height: 156%;
+    text-align: center;
+    color: #FFFFFF;
+    margin-bottom: 2%;
+    padding-top: 6%;
+    }
+
+    .link_background{
+      margin-right: -20%;
+      margin-left: -20%;
+    }
+
+.appreg-logo{
+    height: 200px!important;
+    width: 48%!important;
+    display:block !important;
+    background: white;
+    border-radius: 10%;
+    cursor: pointer;
+    
+}
+.app-reg{
+    width: 215px;
+    height: 125px;
+    font-family: Source Serif Pro;
+    font-style: normal;
+    font-weight: 900;
+    font-size: 32px;
+    line-height: 40px;
+    text-align: center;
+    letter-spacing: -0.483871px;
+    color: #0A1542;
+}
+
+.left-padding{
+  padding-left:18%;
+}
+
+.hhs-section{
+  text-align:center;
+}
+
+.pageimage-section{
+  padding-top:2%;
+}
+.appLogo{
+  width: 48% !important;
+    display: inline-block;
+    float: right !important;
+}

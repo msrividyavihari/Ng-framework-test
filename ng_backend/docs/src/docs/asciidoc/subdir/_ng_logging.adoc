@@ -1,0 +1,123 @@
+==== Description
+* ng-logging is a library which used to serve the purpose of masking the logs based on the sensitivity of data.
+
+*  ng-logging is a library module which when used, configures logging aspect within the application. The individual applications using this library is supposed to access the loggers using SLF4J facade (@Slf4j Lombok annotation). SLF4J logging abstraction helps to decouple application from underlying logging framework by allowing it to be plugged in at runtime.
+
+* The ng-logging module plugs in log4j2 logging framework into the application by default. If the requirement is to use any other logging framework for the application, then ng-logging module can be updated with the runtime dependencies of the desired logging framework which should automatically configure new logging framework in all the applications using this library module.
+
+* It also provides various markers to support masking of logs based on the sensitivity of data.To mask the logs we use** _Log Markers_**  according  to sensitivity of data ,By default we have three.
+SECRET :: Masks or Hide the complete string.
+SECRET_LEVEL_ONE:: Masks or Hide string except last four chars.
+SECRET_LEVEL_TWO:: Masks or Hide string in between.
+
+NOTE: If We want to log _sensitive_ data then we have to use there logs, If we want to log _non-sensitive_ data  then we need to create _custom log_ marker for each service.
+
+==== Implementation
+.To Implement Log Masking :
+* Step 1:- Annotate the class with `@Slf4j`
+* Step 2:- Add appropriate  *_Log Markers_* to logging methods such as`` log.info() ,log.warn(), log.debug()`` etc.
+
+NOTE: An alternative way ( _not recommended_ )  +
+private static final Logger log = LoggerFactory.getLogger(SecurityMarkersTest.class);
+
+
+
+[source, java, linenums]
+----
+@Slf4j
+public class LoggingDemo {
+
+   public void someMethod() {
+
+        log.info(LogMarker.SECRET,"Starting with {} ","Framework Security Service");
+            // Output - Starting with **************************
+
+		log.info(LogMarker.SECRET_LEVEL_ONE,"Starting with {}","Framework Security Service");
+            // Output - Starting with **********************vice
+
+		log.info(LogMarker.SECRET_LEVEL_TWO,"Starting with {}","Framework Security Service");
+		    // Output - Starting with F*********************vice
+     }
+  }
+----
+
+
+
+==== How to Create Custom Log Masking Markers ?
+.To Create Custom Log Masking Markers :
+* Step 1:- Declare custom Log Masking Markers in ``_LogMarker_ `` class of `_ng-logging_` library.
+* Step 2:- Define custom marker in `_rewrite_` method of `_MaskingRewritePolicy_` class of `_ng-logging_` library.
+
+[NOTE]
+We have wirte Custom Log Masking Markers rules in `_MaskingUtils_` class.
+
+[source, java, linenums]
+----
+public class LogMarker {
+
+    private static final String CUSTOM_MARKER = "CUSTOM";
+
+  // Declare Marker
+   public static final Marker CUSTOM = MarkerFactory.getDetachedMarker(CUSTOM_MARKER);
+}
+----
+
+[source, java, linenums]
+----
+public class MaskingRewritePolicy implements RewritePolicy {
+
+    public static MaskingRewritePolicy createPolicy() {
+        return new MaskingRewritePolicy();
+    }
+    @Override
+    public LogEvent rewrite(LogEvent logEvent) {
+       // LOG EVENT :-  log.info(LogMarker.CUSTOM, "Key" , "Value1","Valus2", "Value3");
+
+       // get marker from log event
+      Marker sourceMarker = logEvent.getMarker();
+
+        // get message Part of log
+      final Message msg = logEvent.getMessage();
+
+        // get params of message i.e. "Value1","Valus2", "Value3")
+      Object[] params = msg.getParameters();
+
+      if (eventMarker.contains(LogMarker.CUSTOM)) {
+            // Masking Rules defined in MaskingUtils Class
+           params[i] = MaskingUtils.maskEverything(params[i].toString());
+       }
+         // consolidate masked message
+        Message outMessage = new ParameterizedMessage(msg.getFormat(), params,msg.getThrowable());
+
+         // Creating Masked Log Event
+        LogEvent outputLogEvebt = new Log4jLogEvent.Builder(logEvent).setMessage(outMessage).build();
+
+        return outputLogEvent;
+    }
+}
+----
+
+==== Defining Custom Masking Rules
+.Custom Masking Rules need to define in `_MaskingUtils_`  Class.
+
+[source, java, linenums]
+----
+public class MaskingUtils {
+ public static String maskEverything(String str){
+
+         //  Constants.Mask.character is '*'
+        return maskString(str, 0, str.length(), Constants.Mask.character);
+    }
+}
+----
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,27 @@
+.selbtnPS2 {
+    border-radius: 12px !important;
+    background-color: white !important;
+    border: 2px solid  #14F1BB !important;
+    display: none;
+}
+
+.contact-sub-heading {
+    font-size: 24px;
+    font-weight: bold;
+
+}
+
+.contact-field-heading{
+    font-size: 19px !important;
+}
+
+.field-sub-heading{
+font-size: 17px !important;
+font-weight: 500;
+display: block;
+word-spacing: 5px;
+}
+
+.program_tag{
+    padding-left: 3rem !important;
+}

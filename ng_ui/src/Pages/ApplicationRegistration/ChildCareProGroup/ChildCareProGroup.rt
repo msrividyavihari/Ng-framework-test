@@ -1,0 +1,80 @@
+<UX type="page" ref-table-list="YESNO">
+    <UX type="collapsePanel">
+        <UX type="collapseSection" editDoneMode="false" titleKey="CHLD_HDR" id="CHLD_HDR"
+            modifyButtonKey="done_button_text" doneButtonkey="done_button_text" doneShowIf="true">
+            <UX type="group" width="12">
+                <UX defaultOption="true" defaultOptionValue="{''}" id="applnPrtyGrp" required ref-table="YESNO"
+                    model="childCare.applnPrtyGrp" labelKey="CHLD_APPLN_PRTY_GRP" type="select" col-width="12"
+                    change="{this.chgApplnPrty}" />
+                <UX defaultOption="true" defaultOptionValue="{''}" id="fmlyLack" labelKey="CHLD_FMLIES_LACK"
+                    ref-table="YESNO" model="childCare.fmlyLack" type="select" col-width="12"
+                    change="{this.chgAppln}" />
+                <UX defaultOption="true" defaultOptionValue="{''}" id="fmlyDomesViol" labelKey="CHLD_FMLIES_DOMES_VIOL"
+                    ref-table="DOMESTICPRIORITY" model="childCare.fmlyDomesViol" type="select" col-width="12"
+                    change="{this.chgAppln}" />
+                <UX defaultOption="true" defaultOptionValue="{''}" id="fmlyNtrlDistr" labelKey="CHLD_FMLIES_NTRL_DISTR"
+                    ref-table="NATURALDISASTERPRIORITY" model="childCare.fmlyNtrlDistr" type="select" col-width="12"
+                    change="{this.chgAppln}" />
+            </UX>
+            <UX type="group" width="12">
+                <UX defaultOption="true" defaultOptionValue="{''}" id="dfcsStatus" labelKey="CHLD_DFCS_STAT"
+                    ref-table="DFCSPRIORITY" model="childCare.dfcsStatus" type="select" col-width="12"
+                    change="{this.chgAppln}" />
+                <UX defaultOption="true" defaultOptionValue="{''}" id="withDisabl" labelKey="CHLD_WITH_DISABL"
+                    ref-table="YESNO" model="childCare.withDisabl" type="select" col-width="12"
+                    change="{this.chgAppln}" />
+                <UX defaultOption="true" defaultOptionValue="{''}" id="protServ" labelKey="CHLD_PROTCT_SVC"
+                    ref-table="PROTECTIVEPRIORITY" model="childCare.protServ" type="select" col-width="12"
+                    change="{this.chgAppln}" />
+                <UX defaultOption="true" defaultOptionValue="{''}" id="gaPreK" labelKey="CHLD_GA_PRE_K"
+                    ref-table="YESNO" model="childCare.gaPreK" type="select" col-width="12" change="{this.chgAppln}" />
+            </UX>
+
+            <UX type="group" width="12">
+                <UX defaultOption="true" defaultOptionValue="{''}" id="grndParntRaiseGrndChild"
+                    labelKey="CHLD_GRNDPARNT_RASIE_GRNDCHILD" ref-table="GRGPRIORITY"
+                    model="childCare.grndParntRaiseGrndChild" type="select" col-width="12" change="{this.chgAppln}" />
+                <UX defaultOption="true" defaultOptionValue="{''}" id="minParent" labelKey="CHLD_MIN_PARENT"
+                    ref-table="MINORPARENTPRIORITY" model="childCare.minParent" type="select" col-width="12"
+                    change="{this.chgAppln}" />
+                <UX defaultOption="true" defaultOptionValue="{''}" id="tanf" labelKey="CHLD_TANF"
+                    ref-table="TANFPRIORITY" model="childCare.tanf" type="select" col-width="12"
+                    change="{this.chgAppln}" />
+                <UX defaultOption="true" defaultOptionValue="{''}" id="lowIncome" labelKey="CHLD_LOW_INCME"
+                    ref-table="LOWINCOMEPRIORITY" model="childCare.lowIncome" type="select" col-width="12"
+                    change="{this.chgAppln}" />
+
+            </UX>
+            <UX type="group" width="12">
+                <UX defaultOption="true" defaultOptionValue="{''}" id="grntTranst" labelKey="CHLD_GRNT_TRANST"
+                    ref-table="GRANTTRANSITIONPRIORITY" model="childCare.grntTranst" type="select" col-width="12"
+                    change="{this.chgAppln}" />
+                <UX defaultOption="true" defaultOptionValue="{''}" id="prtyGrp" labelKey="CHLD_NO_PRTY_GRP"
+                    ref-table="BLOCKGRANTPRIORITY" model="childCare.prtyGrp" optionLabel="text" optionValue="value"
+                    type="select" col-width="12" change="{this.chgAppln}" />
+                <UX defaultOption="true" defaultOptionValue="{''}" id="tccCase" labelKey="CHLD_TCC_CASE"
+                    ref-table="TCCPRIORITY" model="childCare.tccCase" type="select" col-width="12"
+                    change="{this.chgAppln}" />
+                <UX type="group" />
+
+            </UX>
+        </UX>
+
+        <UX type="collapseSection" editDoneMode="false" titleKey="CHLD_ADDR_INFO" id="CHLD_ADDR_INFO"
+            modifyButtonKey="done_button_text" doneButtonkey="done_button_text" lastSectionIf="false">
+            <UX type="group" width="12">
+                <UX defaultOption="true" defaultOptionValue="{''}" id="tccCase" labelKey="CHLD_RESRC_EXCESS"
+                    ref-table="YESNO" model="childCare.resrcExcess" type="select" col-width="12"
+                    change="{this.chgAppln}" />
+                <UX type="group" />
+                <UX type="group" />
+                <UX type="group" />
+            </UX>
+
+        </UX>
+    </UX>
+
+    <UXModule.NPCButtons prevlabelKey="previous_Button" cancellabelKey="exit_Button" nextlabelKey="next_button"
+        nextclick="{this.goToNextPage}" prevclick="{this.goBack}" cancelclick="{this.goToHomePage}">
+    </UXModule.NPCButtons>
+</UX>

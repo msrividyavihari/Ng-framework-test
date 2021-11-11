@@ -1,0 +1,160 @@
+<UX type="page">
+    <UX type="section" ux-class="w-100 app-srch-hd-sec">
+        <UX
+            type="header"
+            size="4"
+            id="notice_status_header"
+            className="p-3 co-common-header"
+            labelKey="dashboardNew"
+        >
+        </UX>
+    </UX>
+    <UX type="card" ux-class="w-100" body-class="p-0 m-0" id="search_card">
+         <UX type="card">
+            <UX size="4" type="header" labelKey="co_search_criteria" className="mb-5" />
+            <UX type="section" className="outer-sec">
+                 <UX type="section" className="search-sec" id="search-sec">
+                    <UX
+                        type="group"
+                        flexGroup="true"
+                        flexDirection="row"
+                        flexWrap="false"
+                        flexAlign="start"
+                        flexJustify="start"
+                        childWidths="true"
+                    >
+                        <UX
+                            id="caseNumber_label"
+                            col-width="6"
+                            labelKey="agency"
+                            className="pt-4"
+                            type="label"
+                            
+                        />
+                        <UX
+                            id="caseNumber"
+                            model="noticestatusData.agency"
+                            labelKey="textboxValue"
+                            col-width="6"
+                            className="ml-1"
+                            type="select"
+                            list="noticestatusData.agencyList"
+                            optionValue = "value"
+                            optionLabel="label"
+                        />
+                    </UX>
+                    <UX
+                        type="group"
+                        flexGroup="true"
+                        flexDirection="row"
+                        flexWrap="false"
+                        flexAlign="start"
+                        flexJustify="start"
+                        childWidths="true"
+                    >
+                        <UX
+                            id="notice_type_label"
+                            col-width="6"
+                            labelKey="notice_type"
+                            className="pt-4"
+                            type="label"
+                            
+                        />
+                        <UX
+                            id="notice_type"
+                            model="noticestatusData.noticeType"
+                            labelKey="textboxValue"
+                            col-width="6"
+                            className="ml-1"
+                            type="select"
+                            list="noticestatusData.noticeType"
+                            optionValue = "value"
+                            optionLabel="label"
+                        />
+                    </UX>
+                    <UX type="section" className="dates-sec" >
+                    <UX size="{1}" type="lineBreak" />
+                        <!-- <UX type="section" col-width="12" className="dates-sec-inner"> -->
+                            <UX
+                                type="group"
+                                flexGroup="true"
+                                flexDirection="row"
+                                flexWrap="false"
+                                flexAlign="start"
+                                flexJustify="start"
+                                childWidths="true"
+                                
+                            >
+                                <UX
+                                    id="startDate"
+                                    model="noticestatusData.startDate"
+                                    type="date"
+                                    col-width="6"
+                                    labelKey="start_dt"
+                                    maxDate="today"
+                                    required
+                                    errormessages='{{"required":"valid_date"}}'
+                                />
+                                <UX
+                                    id="endDate"
+                                    model="noticestatusData.endDate"
+                                    type="date"
+                                    col-width="6"
+                                    labelKey="end_dt"
+                                    maxDate="today"
+                                    required
+                                    errormessages='{{"required":"valid_date"}}'
+                                />
+                            </UX>
+                        <!-- </UX> -->
+                     </UX>
+                     
+                    
+                    
+                </UX>
+                    <UX type="section" className="btn-sec ">
+                        <UX type="section" className="btn-sec-inner">
+                            <UX type="group" className="reset-img-ctn">
+                                <UX
+                                    type="image"
+                                    src="../icons/buttonResetScreen.png"
+                                    className="reset-img"
+                                    click="{this.resetForm}"
+                                />
+                            </UX>
+                            
+                        </UX>
+                     </UX>
+                    <UX type="group">
+                        <UX
+                            className="mt-5 co-srch-btn"
+                            mode="primary"
+                            size="small"
+                            type="button"
+                            align="center"
+                            labelKey="search"
+                            click="{this.showTable}"
+                        />
+                    </UX>
+                 </UX>
+            <UX type="section" className="dt-tbl-sec" showIf="{$$noticestatusData.show}">
+                <UX size="{1}" type="lineBreak" />
+                <UX type="group" showIf="{$$noticestatusData.show}">
+                    <UX
+                        type="CustomeDataTable"
+                        col-default-headers="Document Name,Total,Held,Suppressed,Printed Locally,Failed,Emailed,% Emailed,Undelivered Email,% Undelivered Email,Total Printed,% Printed,Returned Mail Count,% Mail Returned"
+                        col-data-keys="documentName,total,held,suppressed,localPrinted,failed,emailed,percentEmailed,undeliveredEmail,percentUndeliveredEmail,totalPrinted,percentPrinted,returnedMailCount,percentMailReturned"
+                        datacollection="noticestatusData.dataCollection"
+                        customContent="{{'% Emailed': this.perEmail,'% Undelivered Email':this.perUndeliver,'% Printed':this.perPrinted,'% Mail Returned':this.perReturned}}"
+                        keyfield="documentName"
+                        pagination="nextgen"
+                        hover="false"
+                        emptymsg-key="Empty_message"
+                        className="mt-5"
+                    />
+                </UX>
+            </UX>
+            </UX>
+         </UX>
+    </UX>
+</UX>

@@ -1,0 +1,56 @@
+logging:
+  level:
+    root: ERROR
+
+spring:
+  application:
+    name: ng-error-consumer
+  profiles:
+    active: local
+  jackson:
+    default-property-inclusion: non_null
+  jpa:
+    database-platform: org.hibernate.dialect.Oracle12cDialect
+    database: ORACLE
+    show-sql: false
+    hibernate:
+      ddl-auto: none
+    properties:
+      hibernate:
+        temp:
+          use_jdbc_metadata_defaults: false
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    url: jdbc:oracle:thin:@//localhost:1522/ORCL
+    username: WP_CO_APP
+    password: WP_CO_APP
+    driver-class-name: oracle.jdbc.OracleDriver
+    hikari:
+      poolName: ng-demo
+      connectionTimeout: 10000
+      maximumPoolSize: 2
+      autoCommit: false
+      connectionTestQuery: SELECT 1 FROM DUAL
+      data-source-properties:
+        cachePrepStmts: true
+        perpStmtCacheSize: 250
+        prepStmtCacheSqlLimits: 2048
+        userServerPrepStmts: true
+
+nextgen:
+  cors:
+    allowed-origins:
+      - http://localhost:5000
+  resource-doc-info:
+    title: NG Demo API
+    description: List of all API available in NG Demo app
+    contact-name: Nishant Mehta
+    contact-email: nishmehta@deloitte.com
+  reference-table:
+    preload: false
+    preloadList:
+      - MESSAGE
+
+security:
+  security:
+    testing: true

@@ -1,0 +1,12 @@
+{
+    "ApplicationRegistrationSample": {
+        "Register_application": ["Application", "address"],
+        "Individual_Regestration": ["appgrpindiv", "indiv"],
+        "Person_Clerarnce": ["personclear"],
+        "Program_Screens": ["progsummary", "selectprog", "expscrn"],
+        "Application_Summary": ["appsumm"]
+    },
+    "MaintainApplicationSample": {
+        "Maintain_Application": ["searchapp"]
+    }
+}

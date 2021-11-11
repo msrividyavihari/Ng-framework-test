@@ -1,0 +1,1006 @@
+<rt-import name="Util" as="Utils" from="@d-lift/core"></rt-import>
+
+<React.Fragment>
+    <UX
+        type="section"
+        className="{'mt-10 px-3 ' + this.className}"
+        showif="{this.checkApplicantList}"
+    >
+        <UX type="section" className="ux-row pb-2">
+            <UX type="section" className="ux-col-md-3 ml-2 mr-0 pl-2 pr-0 new-applicant-header-col">
+                <UX
+                    type="header"
+                    header-size="4"
+                    className="applicant-header-name pl-3"
+                    showIf="{undefined !== this.props.applicant && undefined === this.props.applicant.indvStatusSw}"
+                >
+                    {(this.props.applicant) ? this.props.applicant.firstName: ""}
+                    {(this.props.applicant) ? this.props.applicant.lastName: ""}
+                    {(this.props.applicant) ? ' - Age ' + this.props.applicant.age: ""}
+                </UX>
+                <UX
+                    type="header"
+                    header-size="4"
+                    className="new-applicant-header-name pl-3"
+                    labelKey="establish_new"
+                    showIf="{undefined !== this.props.applicant && this.props.applicant.indvStatusSw === 'T' && undefined === this.props.applicant.firstName}"
+                >
+                </UX>
+                <UX
+                    type="header"
+                    header-size="4"
+                    className="applicant-header-name pl-3"
+                    showIf="{undefined !== this.props.applicant && this.props.applicant.indvStatusSw === 'T' && undefined !== this.props.applicant.firstName}"
+                >
+                    {(this.props.applicant) ? this.props.applicant.firstName: ""}
+                    {(this.props.applicant) ? this.props.applicant.lastName: ""}
+                    {(this.props.applicant && this.props.applicant.age) ? ' - Age ' +
+                    this.props.applicant.age: ""}
+                </UX>
+            </UX>
+
+            <UX type="section" className="ux-col-md-5 pl-0">
+                <UX
+                    mode="danger"
+                    className="float-xl-left ml-0"
+                    size="small"
+                    type="button"
+                    labelKey="cancel"
+                    showIf="{undefined !== this.props.applicant && this.props.applicant.indvStatusSw === 'T'}"
+                    click="{event => this.cancelEdit(this.props.index)}"
+                ></UX>
+            </UX>
+
+            <UX
+                type="section"
+                className="top-applicant form-inline"
+                showIf="{undefined !== this.props.applicant && undefined === this.props.applicant.indvStatusSw}"
+            >
+                <UX
+                    id="{'primary_Applicant_Checkbox'}"
+                    type="checkboxGroup"
+                    model="{'primary_Applicant_Checkbox'}"
+                    vertical-align="true"
+                >
+                    <UX
+                        type="checkbox"
+                        id="{'primaryApplicantCheckbox_'+ this.props.index}"
+                        labelKey="primary_applicant"
+                        change="{this.checkPrimaryApplicant}"
+                        trueValue="true"
+                        falseValue="false"
+                        value="{'primaryApplicantCheckbox_'+ this.props.index}"
+                    />
+                </UX>
+
+                <UX
+                    id="{'include_Applicant_Checkbox'}"
+                    type="checkboxGroup"
+                    model="{'include_Applicant_Checkbox'}"
+                    vertical-align="true"
+                >
+                    <UX
+                        type="checkbox"
+                        id="{'includeApplicantCheckbox_'+ this.props.index}"
+                        labelKey="include_application"
+                        vertical-align="true"
+                        change="{this.checkIncludeApplicant}"
+                        disabled="{undefined !== this.props.applicant && this.props.applicant.primaryApplicantSw === 'Yes' ? true : false}"
+                        value="{'includeApplicantCheckbox_'+ this.props.index}"
+                    />
+                </UX>
+                <!--             
+                <UX
+                    type="CustomCheckBox"
+                    id="{'primaryApplicantCheckbox_' + this.props.index}"
+                    className="custom-control custom-checkbox"
+                    checkboxClassName="custom-control-input"
+                    labelClassName="custom-control-label custom-checkbox-label"
+                    labelKey="primary_applicant"
+                    vertical-align="true"
+                    trueValue="{true}"
+                    falseValue="{false}"
+                    checked="{undefined !== this.props.applicant && this.props.applicant.primaryApplicantSw === 'Yes' ? true : false}"
+                    onChange="{this.checkPrimaryApplicant}"
+                ></UX>
+                <UX
+                    type="CustomCheckBox"
+                    id="{'includeApplicantCheckbox_' + this.props.index}"
+                    className="custom-control custom-checkbox"
+                    checkboxClassName="custom-control-input"
+                    labelClassName="custom-control-label custom-checkbox-label"
+                    labelKey="include_application"
+                    vertical-align="true"
+                    trueValue="{true}"
+                    falseValue="{false}"
+                    disabled="{undefined !== this.props.applicant && this.props.applicant.primaryApplicantSw === 'Yes' ? true : false}"
+                    checked="{undefined !== this.props.applicant && this.props.applicant.includeApplicantSw === 'Yes' ? true : false}"
+                    onChange="{this.checkIncludeApplicant}"
+                ></UX>
+                -->
+            </UX>
+
+            <UX
+                type="section"
+                className="top-applicant form-inline"
+                showIf="{undefined !== this.props.applicant && this.props.applicant.indvStatusSw === 'T'}"
+            >
+                <UX
+                    id="{'primary_Applicant_Checkbox'}"
+                    type="checkboxGroup"
+                    model="{'primary_Applicant_Checkbox'}"
+                    vertical-align="true"
+                >
+                    <UX
+                        type="checkbox"
+                        id="{'primaryApplicantCheckbox_'+ this.props.index}"
+                        labelKey="primary_applicant"
+                        change="{this.checkPrimaryApplicant}"
+                        trueValue="true"
+                        falseValue="false"
+                        value="{'primaryApplicantCheckbox_'+ this.props.index}"
+                    />
+                </UX>
+
+                <UX
+                    id="{'include_Applicant_Checkbox'}"
+                    type="checkboxGroup"
+                    model="{'include_Applicant_Checkbox'}"
+                    vertical-align="true"
+                >
+                    <UX
+                        type="checkbox"
+                        id="{'includeApplicantCheckbox_'+ this.props.index}"
+                        labelKey="include_application"
+                        vertical-align="true"
+                        change="{this.checkIncludeApplicant}"
+                        disabled="{undefined !== this.props.applicant && this.props.applicant.primaryApplicantSw === 'Yes' ? true : false}"
+                        value="{'includeApplicantCheckbox_'+ this.props.index}"
+                    />
+                </UX>
+                <!-- 
+                <UX
+                    type="CustomCheckBox"
+                    id="{'primaryApplicantCheckbox_' + this.props.index}"
+                    className="custom-control custom-checkbox"
+                    checkboxClassName="custom-control-input"
+                    labelClassName="custom-control-label custom-checkbox-label"
+                    labelKey="primary_applicant"
+                    vertical-align="true"
+                    trueValue="{true}"
+                    falseValue="{false}"
+                    checked="{undefined !== this.props.applicant && this.props.applicant.primaryApplicantSw === 'Yes' ? true : false}"
+                    onChange="{this.checkPrimaryApplicant}"
+                ></UX>
+                <UX
+                    type="CustomCheckBox"
+                    id="{'includeApplicantCheckbox_' + this.props.index}"
+                    className="custom-control custom-checkbox"
+                    checkboxClassName="custom-control-input"
+                    labelClassName="custom-control-label custom-checkbox-label"
+                    labelKey="include_application"
+                    vertical-align="true"
+                    trueValue="{true}"
+                    falseValue="{false}"
+                    disabled="{undefined !== this.props.applicant && this.props.applicant.primaryApplicantSw === 'Yes' ? true : false}"
+                    checked="{undefined !== this.props.applicant && this.props.applicant.includeApplicantSw === 'Yes' ? true : false}"
+                    onChange="{this.checkIncludeApplicant}"
+                ></UX>
+                 -->
+            </UX>
+        </UX>
+
+        <UX type="section" className="ux-col-md-12 ux-row ml-lg-1 mt-10">
+            <UX
+                type="section"
+                className="ux-col-md-2 applicant-card"
+                showIf="{undefined !== this.props.applicant && undefined === this.props.applicant.indvStatusSw}"
+            >
+                <UX type="label" labelKey="firstName"></UX>
+                <UX type="label" className="applicant-form-control">
+                    {this.props.applicant ? this.props.applicant.firstName: ""}
+                </UX>
+            </UX>
+
+            <UX
+                type="section"
+                className="ux-col-md-2 applicant-card"
+                showIf="{undefined !== this.props.applicant && this.props.applicant.indvStatusSw === 'T'}"
+            >
+                <UX
+                    type="text"
+                    id="{'firstNameTextbox_' + this.props.index}"
+                    model="{'applicants['+ this.props.index+'].firstName'}"
+                    required
+                    placeholder="First"
+                    labelKey="firstName"
+                    validationRules="alphaCheck"
+                    errormessages='{{"alphaCheck":"only_alphabets","required":""}}'
+                ></UX>
+            </UX>
+
+            <UX
+                type="section"
+                className="ux-col-md-2 applicant-card"
+                showIf="{undefined !== this.props.applicant && undefined === this.props.applicant.indvStatusSw}"
+            >
+                <UX type="label" labelKey="middleName"></UX>
+                <UX
+                    type="label"
+                    className="applicant-form-control {this.props.middleName ? this.props.applicant.middleName : 'skipped-text'}"
+                >
+                    {this.props.middleName ? this.props.applicant.middleName : "skipped"}
+                </UX>
+            </UX>
+
+            <UX
+                type="section"
+                className="ux-col-md-2 applicant-card"
+                showIf="{undefined !== this.props.applicant && this.props.applicant.indvStatusSw === 'T'}"
+            >
+                <UX
+                    type="text"
+                    id="{'middleNameTextbox_' + this.props.index}"
+                    model="{'applicants['+ this.props.index+'].middleName'}"
+                    labelKey="middleName"
+                    placeholder="Middle"
+                    validationRules="alphaCheck"
+                    errormessages='{{"alphaCheck":"only_alphabets","required":""}}'
+                ></UX>
+            </UX>
+
+            <UX
+                type="section"
+                className="ux-col-md-2 applicant-card"
+                showIf="{undefined !== this.props.applicant && undefined === this.props.applicant.indvStatusSw}"
+            >
+                <UX type="label" labelKey="lastName"></UX>
+                <UX type="label" className="applicant-form-control">
+                    {this.props.applicant ? this.props.applicant.lastName: ""}
+                </UX>
+            </UX>
+
+            <UX
+                type="section"
+                className="ux-col-md-2 applicant-card"
+                showIf="{undefined !== this.props.applicant && this.props.applicant.indvStatusSw === 'T'}"
+            >
+                <UX
+                    type="text"
+                    id="{'lastNameTextbox_' + this.props.index}"
+                    model="{'applicants['+ this.props.index+'].lastName'}"
+                    required
+                    placeholder="Last"
+                    labelKey="lastName"
+                    validationRules="alphaCheck"
+                    errormessages='{{"alphaCheck":"only_alphabets","required":""}}'
+                ></UX>
+            </UX>
+
+            <UX
+                type="section"
+                className="ux-col-md-2 applicant-card"
+                showIf="{undefined !== this.props.applicant && undefined === this.props.applicant.indvStatusSw}"
+            >
+                <UX type="label" labelKey="suffix"></UX>
+                <UX
+                    type="label"
+                    className="applicant-form-control 
+                    {this.getRefTableDescriptionFromCode(this.props.applicant ?
+                    this.props.applicant.sufxName: '', 'NAMESUFFIX') !== '' ? this.getRefTableDescriptionFromCode(this.props.applicant ?
+                    this.props.applicant.sufxName: '', 'NAMESUFFIX') : 'skipped-text'}"
+                >
+                    {this.getRefTableDescriptionFromCode(this.props.applicant ?
+                    this.props.applicant.sufxName: "", 'NAMESUFFIX') !== '' ?
+                    this.getRefTableDescriptionFromCode(this.props.applicant ?
+                    this.props.applicant.sufxName: "", 'NAMESUFFIX') : 'skipped'}
+                </UX>
+            </UX>
+
+            <UX
+                type="section"
+                className="ux-col-md-2 applicant-card"
+                showIf="{undefined !== this.props.applicant && this.props.applicant.indvStatusSw === 'T'}"
+            >
+                <UX
+                    type="select"
+                    id="{'sufxNameDropdown_' + this.props.index}"
+                    defaultOption="true"
+                    defaultOptionValue="{''}"
+                    labelKey="suffix"
+                    ref-table="NAMESUFFIX"
+                    model="{'applicants['+ this.props.index+'].sufxName'}"
+                ></UX>
+            </UX>
+
+            <UX
+                type="section"
+                className="ux-col-md-2 applicant-card"
+                showIf="{undefined !== this.props.applicant && undefined === this.props.applicant.indvStatusSw}"
+            >
+                <UX type="label" labelKey="gender"></UX>
+                <UX type="label" className="applicant-form-control">
+                    {this.getRefTableDescriptionFromCode(this.props.applicant ?
+                    this.props.applicant.gender: "", 'GENDER')}
+                </UX>
+            </UX>
+
+            <UX
+                type="section"
+                className="ux-col-md-2 applicant-card"
+                showIf="{undefined !== this.props.applicant && this.props.applicant.indvStatusSw === 'T'}"
+            >
+                <UX
+                    type="select"
+                    id="{'genderDropdown_' + this.props.index}"
+                    defaultOption="true"
+                    defaultOptionValue="{''}"
+                    labelKey="gender"
+                    ref-table="GENDER"
+                    required
+                    model="{'applicants['+ this.props.index+'].gender'}"
+                    errormessages='{{"required":""}}'
+                ></UX>
+            </UX>
+        </UX>
+
+        <UX type="section" className="ux-col-md-12 ux-row ml-lg-1">
+            <UX
+                type="section"
+                className="ux-col-md-2 applicant-card"
+                showIf="{undefined !== this.props.applicant && undefined === this.props.applicant.indvStatusSw}"
+            >
+                <UX type="label" labelKey="Date_of_birth"></UX>
+                <UX type="label" className="applicant-form-control">
+                    {this.props.applicant ? this.props.applicant.dob: ""}
+                </UX>
+            </UX>
+            <UX
+                type="section"
+                className="ux-col-md-2 applicant-card"
+                showIf="{undefined !== this.props.applicant && this.props.applicant.indvStatusSw === 'T'}"
+            >
+                <UX
+                    type="date"
+                    id="{'dobTextbox_' + this.props.index}"
+                    model="{'applicants['+ this.props.index+'].dob'}"
+                    maxDate="today"
+                    minDate="1899-01-01"
+                    required
+                    labelKey="Date_of_birth"
+                    change="{this.handleAgeInputChange}"
+                    errormessages='{{"required":""}}'
+                >
+                </UX>
+            </UX>
+            <UX
+                type="section"
+                className="ux-col-md-2 applicant-card"
+                showIf="{undefined !== this.props.applicant && undefined === this.props.applicant.indvStatusSw}"
+            >
+                <UX type="label" labelKey="ssn_acronym"></UX>
+                <UX
+                    type="label"
+                    className="applicant-form-control 
+                {this.handlestring(this.props.applicant ? this.props.applicant.ssn: '') !== '' ? 
+                this.handlestring(this.props.applicant ? this.props.applicant.ssn: '') : 'skipped-text'}"
+                >
+                    {this.handlestring(this.props.applicant ? this.props.applicant.ssn: "") !== '' ?
+                    this.handlestring(this.props.applicant ? this.props.applicant.ssn: "") :
+                    'skipped'}
+                </UX>
+            </UX>
+            <UX
+                type="section"
+                className="ux-col-md-2 applicant-card"
+                showIf="{undefined !== this.props.applicant && this.props.applicant.indvStatusSw === 'T'}"
+            >
+                <UX
+                    type="ssn"
+                    model="{'applicants['+ this.props.index+'].ssn'}"
+                    labelKey="ssn_acronym"
+                    id="{'applicantSSnTextbox_' + this.props.index}"
+                ></UX>
+            </UX>
+            <UX
+                type="section"
+                className="ux-col-md-2 applicant-card"
+                showIf="{undefined !== this.props.applicant && undefined === this.props.applicant.indvStatusSw}"
+            >
+                <UX type="label" labelKey="race"></UX>
+                <UX type="label" className="applicant-form-control">
+                    {this.getRefTableDescriptionFromCode(this.props.applicant ?
+                    this.props.applicant.race: "", 'INSDXRACE')}
+                </UX>
+            </UX>
+            <UX
+                type="section"
+                className="ux-col-md-2 applicant-card"
+                showIf="{undefined !== this.props.applicant && this.props.applicant.indvStatusSw === 'T'}"
+            >
+                <UX
+                    defaultOption="true"
+                    defaultOptionValue="{''}"
+                    labelKey="race"
+                    ref-table="INSDXRACE"
+                    type="select"
+                    id="{'raceDropdown_' + this.props.index}"
+                    model="{'applicants['+ this.props.index+'].race'}"
+                    required
+                    errormessages='{{"required":""}}'
+                />
+            </UX>
+            <UX
+                type="section"
+                className="ux-col-md-2 applicant-card"
+                showIf="{undefined !== this.props.applicant && undefined === this.props.applicant.indvStatusSw}"
+            >
+                <UX type="label" labelKey="ethnicity"></UX>
+                <UX type="label" className="applicant-form-control">
+                    {this.getRefTableDescriptionFromCode(this.props.applicant ?
+                    this.props.applicant.ethnicity: "", 'ETHNICITY')}
+                </UX>
+            </UX>
+            <UX
+                type="section"
+                className="ux-col-md-2 applicant-card"
+                showIf="{undefined !== this.props.applicant && this.props.applicant.indvStatusSw === 'T'}"
+            >
+                <UX
+                    defaultOption="true"
+                    defaultOptionValue="{''}"
+                    labelKey="ethnicity"
+                    ref-table="ETHNICITY"
+                    model="{'applicants['+ this.props.index+'].ethnicity'}"
+                    type="select"
+                    id="{'ethnicityDropdown_' + this.props.index}"
+                    required
+                    errormessages='{{"required":""}}'
+                />
+            </UX>
+            <UX
+                type="section"
+                className="ux-col-md-3 applicant-card"
+                showIf="{undefined !== this.props.applicant && undefined === this.props.applicant.indvStatusSw}"
+            >
+                <UX type="label" labelKey="alias"></UX>
+                <UX
+                    type="label"
+                    className="applicant-form-control {this.getRefTableDescriptionFromCode(this.props.applicant ?
+                    this.props.applicant.aliasSw: '', 'YESNO') ? this.getRefTableDescriptionFromCode(this.props.applicant ?
+                    this.props.applicant.aliasSw: '', 'YESNO') : 'skipped-text'}"
+                >
+                    {this.getRefTableDescriptionFromCode(this.props.applicant ?
+                    this.props.applicant.aliasSw: "", 'YESNO') ?
+                    this.getRefTableDescriptionFromCode(this.props.applicant ?
+                    this.props.applicant.aliasSw: "", 'YESNO') : 'skipped'}
+                </UX>
+            </UX>
+            <UX
+                type="section"
+                className="ux-col-md-2 applicant-card"
+                showIf="{undefined !== this.props.applicant && this.props.applicant.indvStatusSw === 'T'}"
+            >
+                <UX
+                    type="radioGroup"
+                    model="{'applicants['+ this.props.index+'].aliasSw'}"
+                    radioStyle="card"
+                    labelKey="alias"
+                    vertical-align="false"
+                    className="custom-radio-card"
+                    ref-table="YESNO"
+                    id="{'aliasRadio_' + this.props.index}"
+                ></UX>
+            </UX>
+        </UX>
+
+        <UX
+            type="section"
+            className="ux-col-md-12 ux-row ml-lg-1"
+            showIf="{(undefined !== this.props.applicant && this.props.applicant.alias === 'Yes') || 
+                            (AppContext.model.getValue('applicants['+ this.props.index+'].aliasSw') ==='Y')}"
+        >
+            <UX
+                type="section"
+                className="ux-col-md-2 applicant-card"
+                showIf="{undefined !== this.props.applicant && undefined === this.props.applicant.indvStatusSw}"
+            >
+                <UX type="label" labelKey="alias_firstName"></UX>
+                <UX type="label" className="applicant-form-control">
+                    {this.props.applicant ? this.props.applicant.aliasFirstName: ""}
+                </UX>
+            </UX>
+            <UX
+                type="section"
+                className="ux-col-md-2 applicant-card"
+                showIf="{undefined !== this.props.applicant && this.props.applicant.indvStatusSw === 'T'
+                                    && AppContext.model.getValue('applicants['+ this.props.index+'].aliasSw') ==='Y' }"
+            >
+                <UX
+                    type="text"
+                    model="{'applicants['+ this.props.index+'].aliasFirstName'}"
+                    required
+                    placeholder="First"
+                    labelKey="alias_firstName"
+                    id="{'aliasFirstNameTextbox_' + this.props.index}"
+                ></UX>
+            </UX>
+            <UX
+                type="section"
+                className="ux-col-md-2 applicant-card"
+                showIf="{undefined !== this.props.applicant && undefined === this.props.applicant.indvStatusSw}"
+            >
+                <UX type="label" labelKey="alias_middleName"></UX>
+                <UX
+                    type="label"
+                    className="applicant-form-control {this.props.applicant ? this.props.applicant.aliasMiddleName: 'skipped-text'}"
+                >
+                    {this.props.applicant ? this.props.applicant.aliasMiddleName: "skipped"}
+                </UX>
+            </UX>
+            <UX
+                type="section"
+                className="ux-col-md-2 applicant-card"
+                showIf="{undefined !== this.props.applicant && this.props.applicant.indvStatusSw === 'T'
+                                && AppContext.model.getValue('applicants['+ this.props.index+'].aliasSw') ==='Y' }"
+            >
+                <UX
+                    type="text"
+                    model="{'applicants['+ this.props.index+'].aliasMiddleName'}"
+                    placeholder="Middle"
+                    labelKey="alias_middleName"
+                    id="{'aliasMiddleNameTextbox_' + this.props.index}"
+                ></UX>
+            </UX>
+            <UX
+                type="section"
+                className="ux-col-md-2 applicant-card"
+                showIf="{undefined !== this.props.applicant && undefined === this.props.applicant.indvStatusSw}"
+            >
+                <UX type="label" labelKey="alias_lastName"></UX>
+                <UX type="label" className="applicant-form-control">
+                    {this.props.applicant ? this.props.applicant.aliasLastName: ""}
+                </UX>
+            </UX>
+            <UX
+                type="section"
+                className="ux-col-md-2 applicant-card"
+                showIf="{undefined !== this.props.applicant && this.props.applicant.indvStatusSw === 'T'
+                            && AppContext.model.getValue('applicants['+ this.props.index+'].aliasSw') ==='Y' }"
+            >
+                <UX
+                    type="text"
+                    model="{'applicants['+ this.props.index+'].aliasLastName'}"
+                    required
+                    placeholder="Last"
+                    id="{'aliasLastNameTextbox_' + this.props.index}"
+                    labelKey="alias_lastName"
+                ></UX>
+            </UX>
+            <UX
+                type="section"
+                className="ux-col-md-2 applicant-card"
+                showIf="{undefined !== this.props.applicant && undefined === this.props.applicant.indvStatusSw}"
+            >
+                <UX type="label" labelKey="alias_suffix"></UX>
+                <UX
+                    type="label"
+                    className="applicant-form-control {this.getRefTableDescriptionFromCode(this.props.applicant ?
+                    this.props.applicant.aliasSuffix: '', 'NAMESUFFIX') !== '' ? this.getRefTableDescriptionFromCode(this.props.applicant ?
+                    this.props.applicant.aliasSuffix: '', 'NAMESUFFIX') : 'skipped-text'}"
+                >
+                    {this.getRefTableDescriptionFromCode(this.props.applicant ?
+                    this.props.applicant.aliasSuffix: "", 'NAMESUFFIX') !== '' ?
+                    this.getRefTableDescriptionFromCode(this.props.applicant ?
+                    this.props.applicant.aliasSuffix: "", 'NAMESUFFIX') : 'skipped'}
+                </UX>
+            </UX>
+            <UX
+                type="section"
+                className="ux-col-md-2 applicant-card"
+                showIf="{undefined !== this.props.applicant && this.props.applicant.indvStatusSw === 'T'
+                            && AppContext.model.getValue('applicants['+ this.props.index+'].aliasSw') ==='Y' }"
+            >
+                <UX
+                    type="select"
+                    defaultOption="true"
+                    defaultOptionValue="{''}"
+                    labelKey="alias_suffix"
+                    ref-table="NAMESUFFIX"
+                    model="{'applicants['+ this.props.index+'].aliasSuffix'}"
+                    id="{'aliasSuffixTextbox_' + this.props.index}"
+                ></UX>
+            </UX>
+            <UX
+                type="section"
+                className="ux-col-md-2 applicant-card"
+                showIf="{undefined !== this.props.applicant && undefined === this.props.applicant.indvStatusSw}"
+            >
+                <UX type="label" labelKey="alias_gender"></UX>
+                <UX type="label" className="applicant-form-control">
+                    {this.getRefTableDescriptionFromCode(this.props.applicant ?
+                    this.props.applicant.aliasGender: "", 'GENDER')}
+                </UX>
+            </UX>
+            <UX
+                type="section"
+                className="ux-col-md-2 applicant-card"
+                showIf="{undefined !== this.props.applicant && this.props.applicant.indvStatusSw === 'T'
+                            && AppContext.model.getValue('applicants['+ this.props.index+'].aliasSw') ==='Y' }"
+            >
+                <UX
+                    defaultOption="true"
+                    defaultOptionValue="{''}"
+                    labelKey="alias_gender"
+                    ref-table="GENDER"
+                    model="{'applicants['+ this.props.index+'].aliasGender'}"
+                    model="this.props.applicant.aliasGender"
+                    type="select"
+                    id="{'aliasGenderDropdown_' + this.props.index}"
+                    required
+                />
+            </UX>
+        </UX>
+
+        <UX
+            type="section"
+            className="ux-row ux-col-md-12 ml-lg-2"
+            showIf="{undefined !== this.props.applicant && this.props.applicant.primaryApplicantSw !== undefined &&
+                this.props.applicant.primaryApplicantSw === 'Yes'}"
+        >
+            <UX
+                type="section"
+                className="ux-col-md-2 applicant-card"
+                showIf="{undefined !== this.props.applicant && undefined === this.props.applicant.indvStatusSw}"
+            >
+                <UX type="label" labelKey="interpreter_need"></UX>
+                <UX
+                    type="label"
+                    className="applicant-form-control {this.getRefTableDescriptionFromCode(this.props.applicant ?
+                    this.props.applicant.interpreterSw: '', 'YESNO') !== '' ? this.getRefTableDescriptionFromCode(this.props.applicant ?
+                    this.props.applicant.interpreterSw: '', 'YESNO') : 'skipped-text'}"
+                >
+                    {this.getRefTableDescriptionFromCode(this.props.applicant ?
+                    this.props.applicant.interpreterSw: "", 'YESNO') !== '' ?
+                    this.getRefTableDescriptionFromCode(this.props.applicant ?
+                    this.props.applicant.interpreterSw: "", 'YESNO') : 'skipped'}
+                </UX>
+            </UX>
+            <UX
+                type="section"
+                className="ux-col-md-2 applicant-card"
+                showIf="{undefined !== this.props.applicant && this.props.applicant.indvStatusSw === 'T'}"
+            >
+                <UX
+                    type="radioGroup"
+                    model="{'applicants['+ this.props.index+'].interpreterSw'}"
+                    radioStyle="card"
+                    labelKey="interpreter_need"
+                    vertical-align="false"
+                    className="custom-radio-card"
+                    ref-table="YESNO"
+                    id="{'interpreterSwRadio_' + this.props.index}"
+                ></UX>
+            </UX>
+            <UX
+                type="section"
+                className="ux-col-md-2 applicant-card"
+                showIf="{undefined !== this.props.applicant && undefined === this.props.applicant.indvStatusSw}"
+            >
+                <UX type="label" labelKey="primaryLanguage"></UX>
+                <UX
+                    type="label"
+                    className="applicant-form-control {this.getRefTableDescriptionFromCode(this.props.applicant ?
+                    this.props.applicant.primaryLanguage: '', 'PRIMARYLANGUAGE') !== '' ? this.getRefTableDescriptionFromCode(this.props.applicant ?
+                    this.props.applicant.primaryLanguage: '', 'PRIMARYLANGUAGE') : 'skipped-text'}"
+                >
+                    {this.getRefTableDescriptionFromCode(this.props.applicant ?
+                    this.props.applicant.primaryLanguage: "", 'PRIMARYLANGUAGE') !== '' ?
+                    this.getRefTableDescriptionFromCode(this.props.applicant ?
+                    this.props.applicant.primaryLanguage: "", 'PRIMARYLANGUAGE') : 'skipped'}
+                </UX>
+            </UX>
+            <UX
+                type="section"
+                className="ux-col-md-2 applicant-card"
+                showIf="{undefined !== this.props.applicant && this.props.applicant.indvStatusSw === 'T'}"
+            >
+                <UX
+                    defaultOption="true"
+                    defaultOptionValue="{''}"
+                    id="primaryLanguage"
+                    labelKey="primaryLanguage"
+                    ref-table="PRIMARYLANGUAGE"
+                    model="{'applicants['+ this.props.index+'].primaryLanguage'}"
+                    type="select"
+                    id="{'primaryLanguageDropdown_' + this.props.index}"
+                />
+            </UX>
+            <UX
+                type="section"
+                className="ux-col-md-2 applicant-card"
+                showIf="{undefined !== this.props.applicant && undefined === this.props.applicant.indvStatusSw && 
+                    AppContext.model.getValue('applicants['+ this.props.index+'].primaryLanguage') ==='1002'}"
+            >
+                <UX type="label" labelKey="specificPrimaryLanguage"></UX>
+                <UX
+                    type="label"
+                    className="applicant-form-control {this.props.applicant ? this.props.applicant.specificPrimaryLanguage: 'skipped-text'}"
+                >
+                    {this.props.applicant ? this.props.applicant.specificPrimaryLanguage: "skipped"}
+                </UX>
+            </UX>
+            <UX
+                type="section"
+                className="ux-col-md-2 applicant-card"
+                showIf="{undefined !== this.props.applicant && this.props.applicant.indvStatusSw === 'T' &&
+                     AppContext.model.getValue('applicants['+ this.props.index+'].primaryLanguage') ==='1002'}"
+            >
+                <UX
+                    type="text"
+                    model="{'applicants['+ this.props.index+'].specificPrimaryLanguage'}"
+                    placeholder="Specific"
+                    labelKey="specificPrimaryLanguage"
+                    id="{'specificPrimaryLanguageDropdown_' + this.props.index}"
+                ></UX>
+            </UX>
+        </UX>
+
+        <UX
+            type="section"
+            className="ux-row ux-col-md-12 ml-lg-2"
+            showIf="{undefined !== this.props.applicant && this.props.applicant.primaryApplicantSw !== undefined &&
+                this.props.applicant.primaryApplicantSw === 'Yes'}"
+        >
+            <UX
+                type="section"
+                className="ux-col-md-2 applicant-card"
+                showIf="{undefined !== this.props.applicant && undefined === this.props.applicant.indvStatusSw}"
+            >
+                <UX type="label" labelKey="accomodation_need"></UX>
+                <UX
+                    type="label"
+                    className="applicant-form-control {this.getRefTableDescriptionFromCode(this.props.applicant ?
+                    this.props.applicant.accomodationSw: '', 'YESNO') !== '' ? this.getRefTableDescriptionFromCode(this.props.applicant ?
+                    this.props.applicant.accomodationSw: '', 'YESNO') : 'skipped-text'}"
+                >
+                    {this.getRefTableDescriptionFromCode(this.props.applicant ?
+                    this.props.applicant.accomodationSw: "", 'YESNO') !== '' ?
+                    this.getRefTableDescriptionFromCode(this.props.applicant ?
+                    this.props.applicant.accomodationSw: "", 'YESNO') : 'skipped'}
+                </UX>
+            </UX>
+            <UX
+                type="section"
+                className="ux-col-md-2 applicant-card"
+                showIf="{undefined !== this.props.applicant && this.props.applicant.indvStatusSw === 'T'}"
+            >
+                <UX
+                    type="radioGroup"
+                    model="{'applicants['+ this.props.index+'].accommodationSw'}"
+                    radioStyle="card"
+                    labelKey="accomodation_need"
+                    vertical-align="false"
+                    className="custom-radio-card"
+                    ref-table="YESNO"
+                    id="{'accommodationRadio_' + this.props.index}"
+                ></UX>
+            </UX>
+            <UX
+                type="section"
+                className="ux-col-md-3 applicant-card"
+                showIf="{undefined !== this.props.applicant && undefined === this.props.applicant.indvStatusSw && AppContext.model.getValue('applicants['+ this.props.index+'].accommodationSw') ==='Y'}"
+            >
+                <UX type="label" labelKey="typeAccomodation"></UX>
+                <UX
+                    type="label"
+                    className="applicant-form-control {this.props.applicant ? this.props.applicant.typeAccommodation: 'skipped-text'}"
+                >
+                    {this.props.applicant ? this.props.applicant.typeAccommodation: "skipped"}
+                </UX>
+            </UX>
+            <UX
+                type="section"
+                className="ux-col-md-3 applicant-card"
+                showIf="{undefined !== this.props.applicant && this.props.applicant.indvStatusSw === 'T' && AppContext.model.getValue('applicants['+ this.props.index+'].accommodationSw') ==='Y'}"
+            >
+                <UX
+                    type="text"
+                    model="{'applicants['+ this.props.index+'].typeAccommodation'}"
+                    placeholder="Type"
+                    labelKey="typeAccomodation"
+                    id="{'typeAccommodationTextbox_' + this.props.index}"
+                    labelKey="typeAccommodation"
+                ></UX>
+            </UX>
+        </UX>
+
+        <UX
+            type="section"
+            className="ux-row ux-col-md-12 ml-lg-2"
+            showIf="{undefined !== this.props.applicant && this.props.applicant.primaryApplicantSw !== undefined &&
+            this.props.applicant.primaryApplicantSw === 'Yes'}"
+        >
+            <UX
+                type="section"
+                className="ux-col-md-2 applicant-card"
+                showIf="{undefined !== this.props.applicant && undefined === this.props.applicant.indvStatusSw}"
+            >
+                <UX type="label" labelKey="auth_representative"></UX>
+                <UX
+                    type="label"
+                    className="applicant-form-control {this.getRefTableDescriptionFromCode(this.props.applicant ?
+                    this.props.applicant.authRepresentativeSw: '', 'YESNO') !== '' ? this.getRefTableDescriptionFromCode(this.props.applicant ?
+                    this.props.applicant.authRepresentativeSw: '', 'YESNO') : 'skipped-text'}"
+                >
+                    {this.getRefTableDescriptionFromCode(this.props.applicant ?
+                    this.props.applicant.authRepresentativeSw: "", 'YESNO') !== '' ?
+                    this.getRefTableDescriptionFromCode(this.props.applicant ?
+                    this.props.applicant.authRepresentativeSw: "", 'YESNO') : 'skipped'}
+                </UX>
+            </UX>
+            <UX
+                type="section"
+                className="ux-col-md-2 applicant-card"
+                showIf="{undefined !== this.props.applicant && this.props.applicant.indvStatusSw === 'T'}"
+            >
+                <UX
+                    type="radioGroup"
+                    model="{'applicants['+ this.props.index+'].authRepresentativeSw'}"
+                    radioStyle="card"
+                    labelKey="auth_representative"
+                    vertical-align="false"
+                    ref-table="YESNO"
+                    id="{'authRepresentativeSwRadio_' + this.props.index}"
+                    className="custom-radio-card"
+                ></UX>
+            </UX>
+            <UX
+                type="section"
+                className="ux-col-md-2 applicant-card"
+                showIf="{undefined !== this.props.applicant && undefined === this.props.applicant.indvStatusSw}"
+            >
+                <UX type="label" labelKey="has_ebt_card"></UX>
+                <UX
+                    type="label"
+                    className="applicant-form-control {this.getRefTableDescriptionFromCode(this.props.applicant ?
+                    this.props.applicant.ebtcardSw: '', 'YESNO') !== '' ? this.getRefTableDescriptionFromCode(this.props.applicant ?
+                    this.props.applicant.ebtcardSw: '', 'YESNO') : 'skipped-text'}"
+                >
+                    {this.getRefTableDescriptionFromCode(this.props.applicant ?
+                    this.props.applicant.ebtcardSw: "", 'YESNO') !== '' ?
+                    this.getRefTableDescriptionFromCode(this.props.applicant ?
+                    this.props.applicant.ebtcardSw: "", 'YESNO') : 'skipped'}
+                </UX>
+            </UX>
+            <UX
+                type="section"
+                className="ux-col-md-2 applicant-card"
+                showIf="{undefined !== this.props.applicant && this.props.applicant.indvStatusSw === 'T'}"
+            >
+                <UX
+                    type="radioGroup"
+                    model="{'applicants['+ this.props.index+'].ebtcardSw'}"
+                    radioStyle="card"
+                    labelKey="has_ebt_card"
+                    vertical-align="false"
+                    className="custom-radio-card"
+                    id="{'ebtcardSwRadio_' + this.props.index}"
+                    ref-table="YESNO"
+                ></UX>
+            </UX>
+            <UX
+                type="section"
+                className="ux-col-md-2 applicant-card"
+                showIf="{undefined !== this.props.applicant && this.props.applicant.indvStatusSw === 'T'}"
+            >
+                <UX
+                    type="radioGroup"
+                    model="{'applicants['+ this.props.index+'].registervoteSw'}"
+                    radioStyle="card"
+                    labelKey="register_vote"
+                    vertical-align="false"
+                    className="custom-radio-card"
+                    id="{'registervoteSwRadio_' + this.props.index}"
+                    ref-table="YESNO"
+                ></UX>
+            </UX>
+        </UX>
+
+        <UX
+            type="section"
+            className="ux-row ux-col-md-12 ml-lg-2"
+            showIf="{(undefined !== this.props.applicant && (this.props.applicant.primaryApplicantSw === undefined ||
+                this.props.applicant.primaryApplicantSw !== 'Yes'))}"
+        >
+            <UX
+                type="section"
+                className="ux-col-md-2 applicant-card"
+                showIf="{undefined !== this.props.applicant && undefined === this.props.applicant.indvStatusSw 
+                        && this.props.applicant.primaryApplicantSw !== undefined &&
+                        this.props.applicant.primaryApplicantSw === 'No'}"
+            >
+                <UX type="label" labelKey="primaryLanguage"></UX>
+                <UX
+                    type="label"
+                    className="applicant-form-control {this.getRefTableDescriptionFromCode(this.props.applicant ?
+                    this.props.applicant.primaryLanguage: '', 'PRIMARYLANGUAGE') !== '' ? this.getRefTableDescriptionFromCode(this.props.applicant ?
+                    this.props.applicant.primaryLanguage: '', 'PRIMARYLANGUAGE') : 'skipped-text'}"
+                >
+                    {this.getRefTableDescriptionFromCode(this.props.applicant ?
+                    this.props.applicant.primaryLanguage: "", 'PRIMARYLANGUAGE') !== '' ?
+                    this.getRefTableDescriptionFromCode(this.props.applicant ?
+                    this.props.applicant.primaryLanguage: "", 'PRIMARYLANGUAGE') : 'skipped'}
+                </UX>
+            </UX>
+            <UX
+                type="section"
+                className="ux-col-md-2 applicant-card"
+                showIf="{undefined !== this.props.applicant && this.props.applicant.indvStatusSw === 'T'}"
+            >
+                <UX
+                    defaultOption="true"
+                    defaultOptionValue="{''}"
+                    labelKey="primaryLanguage"
+                    ref-table="PRIMARYLANGUAGE"
+                    model="{'applicants['+ this.props.index+'].primaryLanguage'}"
+                    id="{'primaryLanguageDropdown_' + this.props.index}"
+                    type="select"
+                />
+            </UX>
+            <UX
+                type="section"
+                className="ux-col-md-2 applicant-card"
+                showIf="{undefined !== this.props.applicant && undefined === this.props.applicant.indvStatusSw 
+                        && this.props.applicant.primaryApplicantSw !== undefined &&
+                        this.props.applicant.primaryApplicantSw === 'No'}"
+            >
+                <UX type="label" labelKey="has_ebt_card"></UX>
+                <UX
+                    type="label"
+                    className="applicant-form-control {this.getRefTableDescriptionFromCode(this.props.applicant ?
+                    this.props.applicant.ebtcardSw: '', 'YESNO') !== '' ? this.getRefTableDescriptionFromCode(this.props.applicant ?
+                    this.props.applicant.ebtcardSw: '', 'YESNO') : 'skipped-text'}"
+                >
+                    {this.getRefTableDescriptionFromCode(this.props.applicant ?
+                    this.props.applicant.ebtcardSw: "", 'YESNO') !== '' ?
+                    this.getRefTableDescriptionFromCode(this.props.applicant ?
+                    this.props.applicant.ebtcardSw: "", 'YESNO') : 'skipped'}
+                </UX>
+            </UX>
+            <UX
+                type="section"
+                className="ux-col-md-2 applicant-card"
+                showIf="{undefined !== this.props.applicant && this.props.applicant.indvStatusSw === 'T'}"
+            >
+                <UX
+                    type="radioGroup"
+                    model="{'applicants['+ this.props.index+'].ebtcardSw'}"
+                    radioStyle="card"
+                    labelKey="has_ebt_card"
+                    vertical-align="false"
+                    className="custom-radio-card"
+                    id="{'ebtcardSwRadio_' + this.props.index}"
+                    ref-table="YESNO"
+                ></UX>
+            </UX>
+            <UX
+                type="section"
+                className="ux-col-md-2 applicant-card"
+                showIf="{undefined !== this.props.applicant && this.props.applicant.indvStatusSw === 'T'}"
+            >
+                <UX
+                    type="radioGroup"
+                    model="{'applicants['+ this.props.index+'].registervoteSw'}"
+                    radioStyle="card"
+                    labelKey="register_vote"
+                    vertical-align="false"
+                    className="custom-radio-card"
+                    id="{'registervoteSwRadio_' + this.props.index}"
+                    ref-table="YESNO"
+                ></UX>
+            </UX>
+        </UX>
+    </UX>
+    <hr class="ux-custom-panel-separator" />
+</React.Fragment>

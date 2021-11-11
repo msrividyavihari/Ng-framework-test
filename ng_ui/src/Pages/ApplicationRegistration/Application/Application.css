@@ -1,0 +1,8 @@
+.ux-card-body {
+    display: block !important;
+    flex-direction: column;
+    align-items: flex-start;
+}
+.error{
+    color: #e0284a;
+}

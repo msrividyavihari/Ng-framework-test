@@ -1,0 +1,11 @@
+{
+    "case_association": "File Clearence - Associated Cases",
+    "associate": "Associate",
+    "individuals": "Individuals",
+    "cases_involvment_for": "Cases Involments For <%= name %> <%= ssn %> (SSN) <%= dob %> (DOB)",
+    "select_all": "Select All",
+    "continue_button": "Continue",
+    "select_a_case": "Please Select a Case",
+    "previous_Button": "Back",
+    "exit_Button": "Cancel"
+}

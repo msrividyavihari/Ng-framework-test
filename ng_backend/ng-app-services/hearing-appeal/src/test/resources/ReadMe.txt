@@ -1,0 +1,1 @@
+Dummy file to check-in the empty src\test\resources directory

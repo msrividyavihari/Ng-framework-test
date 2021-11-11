@@ -1,0 +1,37 @@
+plugins {
+    id 'org.springframework.boot' version '2.4.0-SNAPSHOT'
+    id 'io.spring.dependency-management' version '1.0.9.RELEASE'
+    id 'java'
+}
+
+group 'com.deloitte.nextgen.feature.cloud'
+version '1.0-SNAPSHOT'
+sourceCompatibility = JavaVersion.VERSION_1_8
+targetCompatibility = JavaVersion.VERSION_1_8
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+    maven { url 'https://repo.spring.io/milestone' }
+    maven { url 'https://repo.spring.io/snapshot' }
+    maven { url 'https://repo.spring.io/plugins-release'}
+}
+
+dependencies {
+
+    implementation 'org.springframework.cloud:spring-cloud-config-server:3.0.2'
+    implementation 'org.springframework.boot:spring-boot-starter-jdbc'
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'com.microsoft.sqlserver:sqljdbc4:4.0'
+    //implementation 'com.deloitte.nextgen.framework:ng-persistence:0.0.1-SNAPSHOT'
+    //annotationProcessor 'com.deloitte.nextgen.framework:ng-persistence:0.0.1-SNAPSHOT'
+
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+}
+
+
+wrapper {
+    version '6.5'
+    distributionType Wrapper.DistributionType.ALL
+}

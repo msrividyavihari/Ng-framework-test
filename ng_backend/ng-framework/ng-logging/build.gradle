@@ -1,0 +1,10 @@
+description = 'Nextgen Framework - Logging'
+
+dependencies {
+
+    implementation "org.springframework.boot:spring-boot-starter-log4j2:$SPRING_BOOT"
+
+    testImplementation group: 'org.apache.logging.log4j', name: 'log4j-core', classifier: 'tests'
+
+
+}

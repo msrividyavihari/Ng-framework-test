@@ -1,0 +1,376 @@
+<UX type="page" ref-table-list="ARWITHDRAWREASON,STATE">
+    <UX type="card" ux-class="w-100" body-class="p-0 m-0">
+        <UX type="section" ux-class="w-100">
+            <UX
+                type="header"
+                size="4"
+                id="contact_header"
+                className="p-4 mb-0 ux-bg-primary text-light rounded"
+                labelKey="search_title"
+            >
+            </UX>
+        </UX>
+        <UX type="card">
+            <UX size="4" type="header" labelKey="app_search_criteria" className="mb-5" />
+            <UX type="group" width="12">
+                <UX
+                    id="firstName"
+                    model="searchData.first"
+                    labelKey="first"
+                    type="text"
+                    validationRules="alphaNumericCheckWithoutSpace"
+                    col-width="12"
+                    errormessages='{{"alphaNumericCheckWithoutSpace":"only_alphabets_allowed"}}'
+                    className="align-left"
+                />
+                <UX
+                    id="middleName"
+                    model="searchData.middle"
+                    type="text"
+                    labelKey="middle"
+                    validationRules="alphaNumericCheckWithoutSpace"
+                    col-width="12"
+                    errormessages='{{"alphaNumericCheckWithoutSpace":"only_alphabets_allowed"}}'
+                />
+                <UX
+                    id="lastName"
+                    model="searchData.last"
+                    labelKey="last"
+                    type="text"
+                    minLength="2"
+                    validationRules="alphaNumericCheckWithoutSpace"
+                    col-width="12"
+                    errormessages='{{"alphaNumericCheckWithoutSpace":"only_alphabets_allowed"}}'
+                />
+
+                <UX
+                    defaultOption="true"
+                    id="suffix"
+                    labelKey="suffix"
+                    ref-table="NAMESUFFIX"
+                    model="searchData.suffix"
+                    col-width="12"
+                    optionLabel="text"
+                    optionValue="value"
+                    type="select"
+                />
+            </UX>
+            <UX type="group" width="12">
+                <UX id="ssn" model="searchData.ssn" type="ssn" col-width="12" labelKey="ssn" />
+                <UX
+                    id="appNumber"
+                    model="searchData.appNumber"
+                    labelKey="appNumber"
+                    col-width="12"
+                    className="ml-1"
+                    type="text"
+                    maxLength="9"
+                />
+                <UX
+                    id="caseNumber"
+                    model="searchData.caseNumber"
+                    labelKey="caseNumber"
+                    type="text"
+                    col-width="12"
+                    className="ml-1"
+                    validationRules="numericCheck2"
+                    errormessages='{{"numericCheck2":"only_numbers_allowed"}}'
+                />
+                <UX
+                    id="multiSelect"
+                    defaultOption="true"
+                    defaultOptionValue="{''}"
+                    ref-table="PROGRAM"
+                    model="searchData.selectedPrograms"
+                    name="multiSelect"
+                    placeholder="Select an Option"
+                    col-width="12"
+                    labelKey="program"
+                    required="{false}"
+                    type="multiSelect"
+                />
+            </UX>
+            <UX type="group" width="12">
+                <UX
+                    id="beginDate"
+                    model="searchData.beginDate"
+                    type="date"
+                    maxDate="today"
+                    minDate="1990-01-01"
+                    col-width="12"
+                    labelKey="beginDate"
+                    change="{this.validateEndDate}"
+                />
+                <UX
+                    id="endDate"
+                    model="searchData.endDate"
+                    type="date"
+                    maxDate="today"
+                    minDate="1990-01-01"
+                    labelKey="endDate"
+                    col-width="12"
+                    change="{this.validateEndDate}"
+                />
+                <UX
+                    defaultOption="true"
+                    id="applicationCounty"
+                    labelKey="applicationCounty"
+                    ref-table="COUNTY"
+                    className="mr-1"
+                    col-width="12"
+                    model="searchData.selectedCounty"
+                    optionLabel="text"
+                    optionValue="value"
+                    type="select"
+                />
+
+                <UXModule.UXPopupComponent
+                    popupId="popupFirst"
+                    fieldName="Worker Id:"
+                    headerName="Search & Results - User Profile"
+                    enableSubmitBtn="true"
+                    enableCloseBtn="true"
+                >
+                </UXModule.UXPopupComponent>
+            </UX>
+            <UX type="group" width="12">
+                <UX
+                    defaultOption="true"
+                    defaultOptionValue="{''}"
+                    id="applicationSigned"
+                    labelKey="source"
+                    ref-table="APPMODE"
+                    model="searchData.source"
+                    optionLabel="text"
+                    optionValue="value"
+                    type="select"
+                    col-width="12"
+                />
+                <UX type="group" flexGroup="true" flexDirection="row">
+                    <UX
+                        id="programs"
+                        model="searchData.primaryIndividual"
+                        type="checkboxGroup"
+                        className="ml-3 pt-4 padding15"
+                    >
+                        <UX
+                            id="primaryIndv"
+                            text="Primary Individual"
+                            type="checkbox"
+                            value="Y"
+                            trueValue="true"
+                            falseValue="false"
+                        />
+                    </UX>
+                </UX>
+                <UX type="group" />
+                <UX type="group" />
+            </UX>
+            <UX type="group">
+                <UX
+                    className="mt-5"
+                    mode="primary"
+                    size="large"
+                    type="button"
+                    align="right"
+                    click="{this.showTable}"
+                >
+                    Search
+                </UX>
+            </UX>
+            <UX type="group" showIf="{$$searchData.show}">
+                <UX
+                    className="mt-5"
+                    col-data-keys="appNumber,primaryIndividual,program,appCounty,appReceivedDate,appStatus,workerUserId,editRead,withdraw"
+                    col-default-headers="Application Number, Primary Individual, Program, Application County, Application Received Date, Application Status, Worker User ID,Edit,Withdraw"
+                    datacollection="searchData.datatableCollection"
+                    customContent="{{'Edit':this.editApp,'Withdraw':this.withdraw}}"
+                    emptymsg-key="Empty_message"
+                    hover="false"
+                    keyfield="appNumber"
+                    pagination="default"
+                    pagination-show-total="true"
+                    pagination-size-per-page="5"
+                    type="dataTable"
+                    striped="true"
+                />
+            </UX>
+        </UX>
+        <UX
+            type="section"
+            id="appWithdraw"
+            ux-class="w-100"
+            width="12"
+            showIf="{$$searchData.appWithdraw}"
+        >
+            <UX
+                type="header"
+                size="4"
+                className="p-4 mb-0 ux-bg-primary text-light rounded"
+                labelKey="appWithdraw"
+            />
+            <UX type="card">
+                <UX type="group" width="12">
+                    <UX type="group" width="20">
+                        <UX type="label" labelKey="programName" />
+                        <UX type="para" height="10">
+                            {AppContext.model.getValue('searchData.selectedProgram')}
+                        </UX>
+                    </UX>
+                    <UX type="group" width="12">
+                        <UX
+                            id="withdrawDate"
+                            model="searchData.withdrawalDate"
+                            type="date"
+                            maxDate="today"
+                            minDate="1990-01-01"
+                            labelKey="withdrawalDate"
+                            required="true"
+                            col-width="12"
+                            required
+                            errormessages='{{"required":"dateRequired"}}'
+                        />
+                    </UX>
+                    <UX type="group" width="12">
+                        <UX
+                            defaultOption="true"
+                            defaultOptionValue="{''}"
+                            id="reason"
+                            ref-table="ARWITHDRAWREASON"
+                            labelKey="reason"
+                            required="true"
+                            className="align-self-auto"
+                            model="searchData.withdrawalReason"
+                            optionLabel="text"
+                            optionValue="value"
+                            type="select"
+                            col-width="12"
+                        />
+                    </UX>
+                </UX>
+                <UX
+                    className="mt-5"
+                    mode="primary"
+                    size="large"
+                    type="button"
+                    align="right"
+                    click="{this.disposition}"
+                    showIf="{$$searchData.appWithdrawSubmit}"
+                >
+                    SUBMIT
+                </UX>
+            </UX>
+        </UX>
+        <UX type="section" id="wicInfo" ux-class="w-100" width="12" showIf="{$$searchData.wicInfo}">
+            <UX
+                type="header"
+                size="4"
+                className="p-4 mb-0 ux-bg-primary text-light rounded"
+                labelKey="wicInfo"
+            />
+            <UX type="card">
+                <UX type="group" width="12">
+                    <UX
+                        defaultOption="true"
+                        defaultOptionValue="{''}"
+                        id="countyService"
+                        ref-table="COUNTY"
+                        labelKey="preferredCounty"
+                        className="align-self-auto"
+                        model="searchData.clinicCounty"
+                        optionLabel="text"
+                        optionValue="value"
+                        type="select"
+                        col-width="12"
+                    />
+                    <UXModule.UXPopupComponent
+                        popupId="clinicNamePopup"
+                        fieldName="Clinic Name:"
+                        headerName="Search & Results - Clinic Name"
+                        enableSubmitBtn="true"
+                        enableCloseBtn="true"
+                        model="searchData.clinicName"
+                    >
+                    </UXModule.UXPopupComponent>
+                    <UXModule.UXPopupComponent
+                        popupId="clinicIdPopup"
+                        fieldName="Clinic ID:"
+                        headerName="Search & Results - Clinic ID"
+                        enableSubmitBtn="true"
+                        enableCloseBtn="true"
+                        model="searchData.clinicId"
+                    >
+                    </UXModule.UXPopupComponent>
+                    <UX
+                        id="addrLine1"
+                        model="searchData.addrLine1"
+                        labelKey="addrLine1"
+                        type="text"
+                        col-width="12"
+                    />
+                </UX>
+                <UX type="group" width="12">
+                    <UX
+                        id="addrLine2"
+                        model="searchData.addrLine2"
+                        labelKey="addrLine2"
+                        type="text"
+                        col-width="12"
+                        className="align-left"
+                    />
+                    <UX
+                        id="city"
+                        model="searchData.city"
+                        labelKey="city"
+                        type="text"
+                        validationRules="cityCheck"
+                        col-width="12"
+                        errormessages='{{"cityCheck":"invalidCity"}}'
+                    />
+                    <UX
+                        defaultOption="true"
+                        defaultOptionValue="{''}"
+                        id="state"
+                        ref-table="STATE"
+                        labelKey="state"
+                        className="align-self-auto"
+                        model="searchData.state"
+                        optionLabel="text"
+                        optionValue="value"
+                        type="select"
+                        col-width="12"
+                    />
+                    <UX
+                        id="zipCode"
+                        model="searchData.zipcode"
+                        labelKey="zipCode"
+                        type="text"
+                        validationRules="zipCodeCheck"
+                        col-width="12"
+                        errormessages='{{"zipCodeCheck":"numericZipOnly"}}'
+                    />
+                </UX>
+                <UX type="group" width="3">
+                    <UX
+                        id="phone"
+                        labelKey="phone"
+                        type="phone"
+                        col-width="12"
+                        model="searchData.phone"
+                    />
+                </UX>
+                <UX
+                    className="mt-5"
+                    mode="primary"
+                    size="large"
+                    type="button"
+                    align="right"
+                    click="{this.disposition}"
+                    showIf="{$$searchData.wicInfoSubmit}"
+                >
+                    SUBMIT
+                </UX>
+            </UX>
+        </UX>
+    </UX>
+</UX>

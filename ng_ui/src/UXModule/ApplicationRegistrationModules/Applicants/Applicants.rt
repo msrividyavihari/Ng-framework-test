@@ -1,0 +1,43 @@
+<UX type="section">
+    <UX type="section" className="panel-alert" showIf="{$$primaryMissingError === true}">
+        <UX type="section" className="offset-md-5">
+            <UX type="label" labelKey="error_primary_applicant" />
+        </UX>
+    </UX>
+    <UX type="section" className="panel-alert" showIf="{$$sspIndvsAlert === true}">
+        <UX type="section" className="offset-md-5">
+            <UX type="label" labelKey="sspIndvsAlert" />
+        </UX>
+    </UX>
+    <UX
+        type="section"
+        className="panel-alert"
+        showIf="{($$applicantsConflictAlert === true) && ($$sspIndvsAlert !== true)}"
+    >
+        <UX type="section" className="offset-md-5">
+            <UX type="label" labelKey="sspConflictsAlert" />
+        </UX>
+    </UX>
+
+    <React.Fragment key="{itemIndex}" rt-repeat="item in this.buildApplicantCards()">
+        <UXModule.CustomApplicantCards
+            applicant="{item}"
+            index="{itemIndex}"
+        ></UXModule.CustomApplicantCards>
+    </React.Fragment>
+
+    <UX type="section" className="ml-4">
+        <UX type="group">
+            <UX
+                mode="default"
+                className="float-xl-left"
+                size="medium"
+                type="button"
+                labelKey="add_applicant"
+                click="{event => this.addApplicant()}"
+            >
+            </UX>
+        </UX>
+    </UX>
+    <hr className="ux-custom-panel-separator" />
+</UX>

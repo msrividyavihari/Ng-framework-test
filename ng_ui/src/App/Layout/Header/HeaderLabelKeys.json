@@ -1,0 +1,24 @@
+{
+    "en": {
+        "learnMore": "Learn More",
+        "componentsDocs": "UX Component Docs",
+        "frameworkDocs": "LIFT Framework Docs",
+        "liftDemo": "LIFT Demo",
+        "language": "Español",
+        "logout": "Logout",
+        "RegApp":"Register Application",
+        "MaintApp":"Maintain Application",
+        "AppReg":"Application Registration",
+        "sessionTimeout_warning":"Session is Expiring!! Do you wish to continue?",
+        "Home" : "Home",
+        "Correspondence" : "Correspondence"
+    },
+    "es": {
+        "learnMore": "Aprende más",
+        "componentsDocs": "UX Component documentación",
+        "frameworkDocs": "LIFT Framework documentación",
+        "liftDemo": "LIFT manifestación",
+        "language": "English",
+        "logout": "Salir"
+    }
+}

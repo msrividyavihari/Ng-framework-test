@@ -1,0 +1,496 @@
+<UX type="section">
+    <UX type="section">
+        <UX
+            type="header"
+            labelKey="application_overview"
+            className="contact-sub-heading"
+            size="3"
+            ux-class="mt-3 mb-0 pt-3 pb-0"
+        >
+        </UX>
+    </UX>
+    <UX type="section">
+        <UX type="section" className="program_tag">
+            <UXModule.CustomApplicantList></UXModule.CustomApplicantList>
+        </UX>
+        <UX type="section">
+            <UX type="grid" ux-class="p-5" flexDirection="column">
+                <UX type="row" ux-class="mt-0 mb-0 pt-0 pb-0">
+                    <UX type="column" width="3">
+                        <UX
+                            type="para"
+                            className="contact-field-heading"
+                            labelKey="priority_status"
+                        >
+                        </UX>
+                    </UX>
+                    <UX type="column" width="3">
+                        <UX type="para" className="contact-field-heading" labelKey="expedited_snap">
+                        </UX>
+                    </UX>
+                    <UX type="column" width="3">
+                        <UX
+                            type="para"
+                            className="contact-field-heading"
+                            labelKey="special_circumstances"
+                        >
+                        </UX>
+                    </UX>
+                </UX>
+                <UX type="row" ux-class="mt-0 mb-0" className="field-sub-heading">
+                    <UX type="column" width="3">
+                        <UX
+                            id="priority_status"
+                            type="label"
+                            className="field-sub-heading + {AppContext.model.getValue('appOverview.priority_status') ? '' : 'skipped-text'}"
+                            model="appOverview.priority_status"
+                            showIf="{$$appOverview.priority_statusCheck === 'true'}"
+                        >
+                            {AppContext.model.getValue('appOverview.priority_status') ?
+                            AppContext.model.getValue('appOverview.priority_status') : 'skipped'}
+                        </UX>
+                    </UX>
+                    <UX type="column" width="3">
+                        <UX
+                            type="label"
+                            className="field-sub-heading"
+                            showIf="{$$appOverview.expedited_snapCheck === 'true'}"
+                        >
+                            {AppContext.model.getValue('appOverview.expedited_snap')}
+                        </UX>
+                    </UX>
+                    <UX type="column" width="3">
+                        <UX
+                            type="label"
+                            className="field-sub-heading"
+                            showIf="{$$appOverview.special_circumstancesCheck === 'true'}"
+                        >
+                            {AppContext.model.getValue('appOverview.special_circumstances')}
+                        </UX>
+                    </UX>
+                </UX>
+            </UX>
+        </UX>
+    </UX>
+
+    <UX type="section">
+        <UX type="section">
+            <UX
+                type="header"
+                labelKey="contact_info"
+                className="contact-sub-heading"
+                size="3"
+                ux-class="mt-0 mb-0 pt-0 pb-0"
+            >
+            </UX>
+        </UX>
+        <UX type="section">
+            <UX type="grid" ux-class="p-5" flexDirection="column">
+                <UX type="row" ux-class="mt-3 mb-0">
+                    <UX type="column" width="3">
+                        <UX
+                            type="para"
+                            className="contact-field-heading"
+                            labelKey="preferred_method"
+                        >
+                        </UX>
+                    </UX>
+                    <UX type="column" width="3">
+                        <UX type="para" className="contact-field-heading" labelKey="preferred_time">
+                        </UX>
+                    </UX>
+                </UX>
+                <UX type="row" ux-class="mt-0 mb-0">
+                    <UX type="column" width="3">
+                        <UX
+                            type="label"
+                            className="field-sub-heading {AppContext.model.getValue('appOverview.conInfo.preferredMethod') ? '' : 'skipped-text'}"
+                        >
+                            {AppContext.model.getValue('appOverview.conInfo.preferredMethod')?
+                            AppContext.model.getValue('appOverview.conInfo.preferredMethod'):'skipped'
+                            }
+                        </UX>
+                    </UX>
+                    <UX type="column" width="3">
+                        <UX
+                            type="label"
+                            className="field-sub-heading  {AppContext.model.getValue('appOverview.conInfo.preferredTime') ? '' : 'skipped-text'}"
+                        >
+                            {AppContext.model.getValue('appOverview.conInfo.preferredTime') ?
+                            AppContext.model.getValue('appOverview.conInfo.preferredTime')
+                            :'skipped' }
+                        </UX>
+                    </UX>
+                </UX>
+                <UX type="row" ux-class="mt-4 mb-0">
+                    <UX type="column" width="3">
+                        <UX type="para" className="contact-field-heading" labelKey="primary"> </UX>
+                    </UX>
+                    <UX type="column" width="3">
+                        <UX type="para" className="contact-field-heading" labelKey="work"> </UX>
+                    </UX>
+                    <UX type="column" width="3">
+                        <UX type="para" className="contact-field-heading" labelKey="alternative">
+                        </UX>
+                    </UX>
+                    <UX type="column" width="3">
+                        <UX type="para" className="contact-field-heading" labelKey="email"> </UX>
+                    </UX>
+                </UX>
+                <UX type="row" ux-class="mt-0 mb-0">
+                    <UX type="column" width="3">
+                        <UX type="grid" ux-class="pl-3">
+                            <UX type="row">
+                                <UX
+                                    type="label"
+                                    className="field-sub-heading + {AppContext.model.getValue('appOverview.conInfo.primary') ? '' : 'skipped-text'}"
+                                >
+                                    {AppContext.model.getValue('appOverview.conInfo.primary') ?
+                                    AppContext.model.getValue('appOverview.conInfo.primary') :
+                                    'skipped'}
+                                </UX>
+                            </UX>
+                            <UX type="row">
+                                <UX
+                                    type="label"
+                                    className="field-sub-heading"
+                                    showIf="{$$appOverview.conInfo.primary2Check === 'true'}"
+                                >
+                                    {AppContext.model.getValue('appOverview.conInfo.primary2') ?
+                                    AppContext.model.getValue('appOverview.conInfo.primary2') : ''}
+                                </UX>
+                            </UX>
+                        </UX>
+                    </UX>
+                    <UX type="column" width="3">
+                        <UX type="grid" ux-class="pl-3">
+                            <UX type="row">
+                                <UX
+                                    type="label"
+                                    className="field-sub-heading + {AppContext.model.getValue('appOverview.conInfo.work') ? '' : 'skipped-text'}"
+                                >
+                                    {AppContext.model.getValue('appOverview.conInfo.work') ?
+                                    AppContext.model.getValue('appOverview.conInfo.work') :
+                                    'skipped'}
+                                </UX>
+                            </UX>
+                            <UX type="row">
+                                <UX
+                                    type="label"
+                                    className="field-sub-heading"
+                                    showIf="{$$appOverview.conInfo.work2Check === 'true'}"
+                                >
+                                    {AppContext.model.getValue('appOverview.conInfo.work2') ?
+                                    AppContext.model.getValue('appOverview.conInfo.work2') : ''}
+                                </UX>
+                            </UX>
+                        </UX>
+                    </UX>
+                    <UX type="column" width="3">
+                        <UX type="grid" ux-class="pl-3">
+                            <UX type="row">
+                                <UX
+                                    type="label"
+                                    className="field-sub-heading + {AppContext.model.getValue('appOverview.conInfo.alternative') ? '' : 'skipped-text'}"
+                                >
+                                    {AppContext.model.getValue('appOverview.conInfo.alternative') ?
+                                    AppContext.model.getValue('appOverview.conInfo.alternative') :
+                                    'skipped'}
+                                </UX>
+                            </UX>
+                            <UX type="row">
+                                <UX
+                                    type="label"
+                                    className="field-sub-heading"
+                                    showIf="{$$appOverview.conInfo.alternative2Check === 'true'}"
+                                >
+                                    {AppContext.model.getValue('appOverview.conInfo.alternative2') ?
+                                    AppContext.model.getValue('appOverview.conInfo.alternative2') :
+                                    ''}
+                                </UX>
+                            </UX>
+                        </UX>
+                    </UX>
+                    <UX type="column" width="3">
+                        <UX
+                            type="section"
+                            repeat="email, emailIndex in $$appOverview.conInfo.email"
+                        >
+                            <UX
+                                type="label"
+                                className="field-sub-heading + {email.email ? '' : 'skipped-text'}"
+                                >{(email.email ? email.email : 'skipped') + (email.comments ? ' - '
+                                + email.comments : '')}</UX
+                            >
+                        </UX>
+                    </UX>
+                </UX>
+                <UX type="row" ux-class="mt-4 mb-0">
+                    <UX type="column" width="3">
+                        <UX
+                            type="para"
+                            className="contact-field-heading"
+                            labelKey="residence_address"
+                        >
+                        </UX>
+                    </UX>
+                    <UX type="column" width="3">
+                        <UX
+                            type="para"
+                            className="contact-field-heading"
+                            labelKey="mailing_address"
+                        >
+                        </UX>
+                    </UX>
+                </UX>
+                <UX type="row" ux-class="mt-0 mb-0">
+                    <UX type="column" width="3">
+                        <UX type="grid" ux-class="pl-3">
+                            <UX type="row">
+                                <UX
+                                    type="label"
+                                    className="field-sub-heading + {AppContext.model.getValue('appOverview.conInfo.resAddress') ? '' : 'skipped-text'}"
+                                >
+                                    {AppContext.model.getValue('appOverview.conInfo.resAddress') ?
+                                    AppContext.model.getValue('appOverview.conInfo.resAddress') :
+                                    'skipped'}
+                                </UX>
+                            </UX>
+                            <UX type="row">
+                                <UX
+                                    type="label"
+                                    className="field-sub-heading"
+                                    showIf="{$$appOverview.conInfo.resAddress2Check === 'true'}"
+                                >
+                                    {AppContext.model.getValue('appOverview.conInfo.resAddress2') ?
+                                    AppContext.model.getValue('appOverview.conInfo.resAddress2') :
+                                    ''}
+                                </UX>
+                            </UX>
+                            <UX type="row">
+                                <UX
+                                    type="label"
+                                    className="field-sub-heading"
+                                    showIf="{$$appOverview.conInfo.resAddress3Check === 'true'}"
+                                >
+                                    {AppContext.model.getValue('appOverview.conInfo.resAddress3') ?
+                                    AppContext.model.getValue('appOverview.conInfo.resAddress3') :
+                                    ''}
+                                </UX>
+                            </UX>
+                        </UX>
+                    </UX>
+                    <UX type="column" width="3">
+                        <UX type="grid" ux-class="pl-3">
+                            <UX type="row">
+                                <UX
+                                    type="label"
+                                    className="field-sub-heading + {AppContext.model.getValue('appOverview.conInfo.mailAddress') ? '' : 'skipped-text'}"
+                                >
+                                    {AppContext.model.getValue('appOverview.conInfo.mailAddress') ?
+                                    AppContext.model.getValue('appOverview.conInfo.mailAddress') :
+                                    'skipped'}
+                                </UX>
+                            </UX>
+                            <UX type="row">
+                                <UX
+                                    type="label"
+                                    className="field-sub-heading"
+                                    showIf="{$$appOverview.conInfo.mailAddress2Check === 'true'}"
+                                >
+                                    {AppContext.model.getValue('appOverview.conInfo.mailAddress2') ?
+                                    AppContext.model.getValue('appOverview.conInfo.mailAddress2') :
+                                    ''}
+                                </UX>
+                            </UX>
+                            <UX type="row">
+                                <UX
+                                    type="label"
+                                    className="field-sub-heading"
+                                    showIf="{$$appOverview.conInfo.mailAddress3Check === 'true'}"
+                                >
+                                    {AppContext.model.getValue('appOverview.conInfo.mailAddress3') ?
+                                    AppContext.model.getValue('appOverview.conInfo.mailAddress3') :
+                                    ''}
+                                </UX>
+                            </UX>
+                        </UX>
+                    </UX>
+                </UX>
+            </UX>
+        </UX>
+    </UX>
+    <UX type="header" labelKey="authorised_representative" className="contact-sub-heading" size="5">
+    </UX>
+    <UX type="section">
+        <UX type="grid" ux-class="p-5" flexDirection="column">
+            <UX type="row" ux-class="mt-3 mb-0">
+                <UX type="column" width="3">
+                    <UX type="para" className="contact-field-heading" labelKey="use_auth_rep1">
+                    </UX>
+                </UX>
+            </UX>
+            <UX type="row" ux-class="mt-0 mb-0">
+                <UX type="column" width="3">
+                    <UX
+                        type="label"
+                        className="field-sub-heading"
+                        showIf="{$$appOverview.authRep.useAuthRep ==='Yes'}"
+                    >
+                        {AppContext.model.getValue('appOverview.authRep.useAuthRep')}
+                    </UX>
+                </UX>
+            </UX>
+            <UX
+                type="row"
+                ux-class="mt-4 mb-0"
+                showIf="{$$appOverview.authRep.useAuthRep ==='Yes'}"
+            >
+                <UX type="column" width="3">
+                    <UX type="para" className="contact-field-heading" labelKey="name"> </UX>
+                </UX>
+                <UX type="column" width="3">
+                    <UX type="para" className="contact-field-heading" labelKey="relationship_to">
+                    </UX>
+                </UX>
+                <UX type="column" width="3">
+                    <UX type="para" className="contact-field-heading" labelKey="address"> </UX>
+                </UX>
+            </UX>
+            <UX
+                type="row"
+                ux-class="mt-0 mb-0"
+                showIf="{$$appOverview.authRep.useAuthRep ==='Yes'}"
+            >
+                <UX type="column" width="3">
+                    <UX type="label" className="field-sub-heading"
+                        >{AppContext.model.getValue('appOverview.authRep.name')}
+                    </UX>
+                </UX>
+                <UX type="column" width="3">
+                    <UX
+                        type="label"
+                        className="field-sub-heading  {AppContext.model.getValue('appOverview.authRep.relationship') ? '' : 'skipped-text'}"
+                    >
+                        {AppContext.model.getValue('appOverview.authRep.relationship') ?
+                        AppContext.model.getValue('appOverview.authRep.relationship') : 'skipped'}
+                    </UX>
+                </UX>
+                <UX type="column" width="3">
+                    <UX type="grid" ux-class="pl-3">
+                        <UX type="row">
+                            <UX
+                                type="label"
+                                className="field-sub-heading {AppContext.model.getValue('appOverview.authRep.address') ? '' : 'skipped-text'}"
+                            >
+                                {AppContext.model.getValue('appOverview.authRep.address') ?
+                                AppContext.model.getValue('appOverview.authRep.address') :
+                                'skipped'}
+                            </UX>
+                        </UX>
+                        <UX type="row">
+                            <UX type="label" className="field-sub-heading"
+                                >{AppContext.model.getValue('appOverview.authRep.address2') ?
+                                AppContext.model.getValue('appOverview.authRep.address2') : ''}
+                            </UX>
+                        </UX>
+                    </UX>
+                </UX>
+            </UX>
+            <UX
+                type="row"
+                ux-class="mt-4 mb-0"
+                showIf="{$$appOverview.authRep.useAuthRep ==='Yes'}"
+            >
+                <UX type="column" width="3">
+                    <UX type="para" className="contact-field-heading" labelKey="primary"> </UX>
+                </UX>
+                <UX type="column" width="3">
+                    <UX type="para" className="contact-field-heading" labelKey="work"> </UX>
+                </UX>
+                <UX type="column" width="3">
+                    <UX type="para" className="contact-field-heading" labelKey="alternative"> </UX>
+                </UX>
+                <UX type="column" width="3">
+                    <UX type="para" className="contact-field-heading" labelKey="email"> </UX>
+                </UX>
+            </UX>
+            <UX
+                type="row"
+                ux-class="mt-0 mb-0"
+                showIf="{$$appOverview.authRep.useAuthRep ==='Yes'}"
+            >
+                <UX type="column" width="3">
+                    <UX type="grid" ux-class="pl-3">
+                        <UX type="row">
+                            <UX
+                                type="label"
+                                className="field-sub-heading {AppContext.model.getValue('appOverview.authRep.primary') ? '' : 'skipped-text'}"
+                            >
+                                {AppContext.model.getValue('appOverview.authRep.primary') ?
+                                AppContext.model.getValue('appOverview.authRep.primary') :
+                                'skipped'}
+                            </UX>
+                        </UX>
+                        <UX type="row">
+                            <UX type="label" className="field-sub-heading">
+                                {AppContext.model.getValue('appOverview.authRep.primary') ?
+                                AppContext.model.getValue('appOverview.authRep.primary2') : ''}
+                            </UX>
+                        </UX>
+                    </UX>
+                </UX>
+                <UX type="column" width="3">
+                    <UX type="grid" ux-class="pl-3">
+                        <UX type="row">
+                            <UX
+                                type="label"
+                                className="field-sub-heading  {AppContext.model.getValue('appOverview.authRep.work') ? '' : 'skipped-text'}"
+                            >
+                                {AppContext.model.getValue('appOverview.authRep.work') ?
+                                AppContext.model.getValue('appOverview.authRep.work') : 'skipped'}
+                            </UX>
+                        </UX>
+                        <UX type="row">
+                            <UX type="label" className="field-sub-heading">
+                                {AppContext.model.getValue('appOverview.authRep.work2') ?
+                                AppContext.model.getValue('appOverview.authRep.work2') : ''}
+                            </UX>
+                        </UX>
+                    </UX>
+                </UX>
+                <UX type="column" width="3">
+                    <UX type="grid" ux-class="pl-3">
+                        <UX type="row">
+                            <UX
+                                type="label"
+                                className="field-sub-heading {AppContext.model.getValue('appOverview.authRep.alternative') ? '' : 'skipped-text'}"
+                            >
+                                {AppContext.model.getValue('appOverview.authRep.alternative') ?
+                                AppContext.model.getValue('appOverview.authRep.alternative') :
+                                'skipped'}
+                            </UX>
+                        </UX>
+                        <UX type="row">
+                            <UX type="label" className="field-sub-heading">
+                                {AppContext.model.getValue('appOverview.authRep.alternative2') ?
+                                AppContext.model.getValue('appOverview.authRep.alternative2') : ''}
+                            </UX>
+                        </UX>
+                    </UX>
+                </UX>
+                <UX type="column" width="3">
+                    <UX type="section" repeat="email, emailIndex in $$appOverview.authRep.email">
+                        <UX
+                            type="label"
+                            className="field-sub-heading + {email.email ? '' : 'skipped-text'}"
+                            >{(email.email ? email.email : 'skipped') + (email.comments ? ' - ' +
+                            email.comments : '')}
+                        </UX>
+                    </UX>
+                </UX>
+            </UX>
+        </UX>
+    </UX>
+    <UX type="header" labelKey="submit_app" className="contact-sub-heading" size="5"> </UX>
+</UX>

@@ -1,0 +1,27 @@
+<UX type="page">
+    <UX type="group" rowClass="footer-container">
+        <UX type="group" flexGroup="true" flexDirection="row" flexJustify="start">
+            <UX type="group" flexGroup="true" flexDirection="column" rowClass="mr-4">
+                <UX type="header" size="4">Quick Links</UX>
+                <ul className="footer-list">
+                    <li>
+                        <a
+                            href="https://www.yammer.com/deloitte.com/#/threads/inGroup?type=in_group&feedId=8399855616"
+                            target="_blank"
+                            alt="Lift Yammer Support Group"
+                            >Yammer <span class="fa fa-comments"></span
+                        ></a>
+                    </li>
+                    <li>
+                        <a
+                            href="https://www2.deloitte.com/us/en.html"
+                            target="_blank"
+                            alt="Deloitte Consulting LLC"
+                            >Deloitte Consulting LLC <span class="fa fa-copyright"></span
+                        ></a>
+                    </li>
+                </ul>
+            </UX>
+        </UX>
+    </UX>
+</UX>

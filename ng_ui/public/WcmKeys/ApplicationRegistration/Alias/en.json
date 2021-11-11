@@ -1,0 +1,27 @@
+
+{
+    "Alias_title":"Register Individual - Alias Details",
+    "AliasPrmyHdr": "Personal Information - Primary Name",
+    "AliasHeader": "Personal Information - Alias Name",
+    "Prmy_first": "First: ",
+    "Prmy_middle": "Middle: ",
+    "Prmy_last": "Last: ",
+    "Prmy_suffix": "Suffix: ",
+    "Prmy_gender": "Gender: ",
+    "Prmy_ssn": "SSN: ",
+    "Prmy_dob": "Date of Birth: ",
+    "sumbit_button": "Continue",
+    "previous_Button": "Back",
+    "exit_Button": "Cancel",
+
+    "alias_first": "First: ",
+    "alias_middle": "Middle: ",
+    "alias_last": "Last: ",
+    "alias_suffix": "Suffix: ",
+    "alias_gender": "Gender: ",
+    "Add":"Add",
+    "save":"Save",
+    "update":"Update",
+    "cancel":"Cancel"
+
+}

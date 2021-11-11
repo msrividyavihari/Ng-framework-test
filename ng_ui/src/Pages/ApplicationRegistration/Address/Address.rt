@@ -1,0 +1,445 @@
+<UX type="page">
+    <UX type="section">
+        <UX type="card" body-class="p-0 m-0">
+            <UX type="section" id="section0" ux-class="w-100 mb-4">
+                <UX
+                    type="header"
+                    size="4"
+                    id="contact_header"
+                    className="p-4 ux-bg-primary text-light rounded"
+                    labelKey="Add_header"
+                >
+                </UX>
+                <UX linkWith="contact_header" position="right" type="tooltip">
+                    <UX type="section">
+                        Address
+                    </UX>
+                </UX>
+            </UX>
+            <UX type="section" id="section1" className="container-md mb-4 ml-3">
+                <UX type="section" className="alignCenter">
+                    <UX type="section" className="alignCenter width80">
+                        <UX type="label" className="labelfo" labelKey="Addr_Is_Mailing"></UX>
+                    </UX>
+                    <UX type="section" className="alignCenter">
+                        <UX checkStyle="switch" type="checkboxGroup">
+                            <UX
+                                id="diffAddr"
+                                model="ARRAD.anon"
+                                type="checkbox"
+                                trueValue="true"
+                                falseValue="false"
+                                labelKey="checkBoxValue"
+                                change="{this.maildiff}"
+                            />
+                        </UX>
+                    </UX>
+                </UX>
+            </UX>
+
+            <UX type="section" id="section2" className="w-100 mb-4 padding0">
+                <UX
+                    type="header"
+                    size="4"
+                    labelKey="ADD_RES_ADDR_INFO"
+                    className="p-4 ux-bg-primary text-light rounded"
+                />
+                <UX type="section" className="padding2">
+                    <UX type="section">
+                        <UX type="section" className="alignCenter">
+                            <UX type="section" className="displayinlineblock">
+                                <UX type="label" labelKey="ADDR_HOMLESS"></UX>
+                            </UX>
+
+                            <UX type="section" className="displayinlineblock padding6">
+                                <UX checkStyle="switch" type="checkboxGroup">
+                                    <UX
+                                        id="noAddr"
+                                        model="ARRAD.ArAppAddrCargo[0].resAddrSw"
+                                        type="checkbox"
+                                        trueValue="true"
+                                        falseValue="false"
+                                        labelKey="checkBoxValue"
+                                    />
+                                </UX>
+                            </UX>
+                        </UX>
+                        <UX type="section" className="alignCenter displayblock">
+                            <UX type="section" className="displayinlineblock">
+                                <UX type="label" className="" labelKey="ADD_RES_ADDR_FORMAT"></UX>
+                            </UX>
+                            <UX type="section" className="displayinlineblock padding17">
+                                <UX type="radioGroup" model="ARRAD.ArAppAddrCargo[0].addrFormatCd">
+                                    <UX
+                                        text="US "
+                                        type="radioButton"
+                                        labelKey="ADD_RES_ADDR_FORMAT_US"
+                                        value="US"
+                                    />
+                                    <UX
+                                        text="Military"
+                                        type="radioButton"
+                                        labelKey="ADD_RES_ADDR_FORMAT_MILT"
+                                        value="Military"
+                                    />
+                                </UX>
+                            </UX>
+                        </UX>
+                        <UX type="section" className="alignCenter">
+                            <UX type="section" className="displayinlineblock">
+                                <UX type="label" className="" labelKey="ADD_CARE_OF"></UX>
+                            </UX>
+                            <UX type="section" className="displayinlineblock padding20d7">
+                                <UX
+                                    id="careOf"
+                                    className="width291"
+                                    inputMode="text"
+                                    model="ARRAD.ArAppAddrCargo[0].addrCareOfLine"
+                                    type="text"
+                                    col-width="10"
+                                    labelKey="textBoxValue"
+                                >
+                                </UX>
+                            </UX>
+                        </UX>
+                        <UX type="section" className="padding05">
+                            <UX type="group" width="12">
+                                <UX
+                                    id="addrLne1"
+                                    required="{$$ARRAD.ArAppAddrCargo[0].resAddrSw !== 'true'}"
+                                    inputMode="text"
+                                    model="ARRAD.ArAppAddrCargo[0].addrLine1"
+                                    type="text"
+                                    labelKey="ADD_Addr1"
+                                    col-width="10"
+                                    disabled="{$$ARRAD.ArAppAddrCargo[0].resAddrSw === 'true'}"
+                                    validationRules="addressCheck|splCharCheck"
+                                    labelRequiredClassIf="{$$ARRAD.ArAppAddrCargo[0].resAddrSw !== 'true'}"
+                                    errormessages='{{"addressCheck":"addr_numerr_msg1","splCharCheck":"addr_splerr_msg1"}}'
+                                />
+                                <UX
+                                    id="addrLne2"
+                                    inputMode="text"
+                                    model="ARRAD.ArAppAddrCargo[0].addrLine"
+                                    type="text"
+                                    col-width="10"
+                                    labelKey="ADD_Addr2"
+                                    disabled="{$$ARRAD.ArAppAddrCargo[0].resAddrSw === 'true'}"
+                                    validationRules="addressCheck|splCharCheck"
+                                    errormessages='{{"addressCheck":"addr_numerr_msg2","splCharCheck":"addr_splerr_msg2"}}'
+                                />
+                                <UX
+                                    id="addrLne3"
+                                    inputMode="text"
+                                    model="ARRAD.ArAppAddrCargo[0].addrLine1"
+                                    type="text"
+                                    col-width="10"
+                                    labelKey="ADD_Addr3"
+                                    showIf="{$$ARRAD.ArAppAddrCargo[0].addrFormatCd === 'Military'}"
+                                    disabled="{$$ARRAD.ArAppAddrCargo[0].resAddrSw === 'true'}"
+                                    validationRules="addressCheck|splCharCheck"
+                                    errormessages='{{"addressCheck":"addr_numerr_msg3","splCharCheck":"addr_splerr_msg3"}}'
+                                />
+                            </UX>
+
+                            <UX type="group" width="12">
+                                <UX
+                                    type="select"
+                                    required="{$$ARRAD.ArAppAddrCargo[0].addrFormatCd === 'Military'}"
+                                    id="apfo"
+                                    defaultOption="true"
+                                    defaultOptionValue="{''}"
+                                    ref-table="MILITARYPOCODES"
+                                    model="ARRAD.ArAppAddrCargo[0].apoFpoAddr"
+                                    labelKey="ADD_APFO"
+                                    col-width="10"
+                                    showIf="{$$ARRAD.ArAppAddrCargo[0].addrFormatCd === 'Military'}"
+                                    labelRequiredClassIf="{$$ARRAD.ArAppAddrCargo[0].addrFormatCd === 'Military'}"
+                                />
+
+                                <UX
+                                    type="select"
+                                    required="{$$ARRAD.ArAppAddrCargo[0].addrFormatCd === 'Military'}"
+                                    id="aa"
+                                    defaultOption="true"
+                                    defaultOptionValue="{''}"
+                                    ref-table="STATEMILITARY"
+                                    col-width="10"
+                                    model="ARRAD.ArAppAddrCargo[0].addrMilitary"
+                                    labelKey="ADD_AA"
+                                    showIf="{$$ARRAD.ArAppAddrCargo[0].addrFormatCd === 'Military'}"
+                                    labelRequiredClassIf="{$$ARRAD.ArAppAddrCargo[0].addrFormatCd === 'Military'}"
+                                />
+                                <UX type="group" width="11"></UX>
+                            </UX>
+
+                            <UX type="group" width="12">
+                                <UX
+                                    type="select"
+                                    defaultOption="true"
+                                    defaultOptionValue="{''}"
+                                    id="residCounty"
+                                    ref-table="COUNTY"
+                                    model="ARRAD.ArAppAddrCargo[0].addrCountyCd"
+                                    labelKey="ADD_RES_COU"
+                                    col-width="10"
+                                    showIf="{$$ARRAD.ArAppAddrCargo[0].addrFormatCd === 'US'}"
+                                    disabled="{$$ARRAD.ArAppAddrCargo[0].addrStNm !== 'GA'}"
+                                    labelRequiredClassIf="{$$ARRAD.ArAppAddrCargo[0].addrStNm === 'GA'}"
+                                    required="{$$ARRAD.ArAppAddrCargo[0].addrStNm === 'GA'}"
+                                >
+                                </UX>
+                                <UX
+                                    id="cityName"
+                                    required
+                                    inputMode="text"
+                                    model="ARRAD.ArAppAddrCargo[0].addrCity"
+                                    type="text"
+                                    labelKey="ADD_CITY"
+                                    showIf="{$$ARRAD.ArAppAddrCargo[0].addrFormatCd === 'US'}"
+                                    validationRules="cityCheck"
+                                    col-width="10"
+                                    errormessages='{{"cityCheck":"city_err_msg"}}'
+                                >
+                                </UX>
+                                <UX
+                                    type="select"
+                                    required
+                                    defaultOption="true"
+                                    defaultOptionValue="{''}"
+                                    id="stateName"
+                                    ref-table="STATE"
+                                    model="ARRAD.ArAppAddrCargo[0].addrStNm"
+                                    optionLabel="text"
+                                    optionValue="value"
+                                    change="{this.chgResidCounty}"
+                                    labelKey="ADD_STATE"
+                                    col-width="10"
+                                    showIf="{$$ARRAD.ArAppAddrCargo[0].addrFormatCd === 'US'}"
+                                >
+                                </UX>
+                            </UX>
+                            <UX type="group" width="12">
+                                <UX type="group" width="10">
+                                    <UX
+                                        id="zipCode"
+                                        required
+                                        inputMode="numeric"
+                                        model="ARRAD.ArAppAddrCargo[0].addrZip5"
+                                        type="text"
+                                        labelKey="ADD_ZIP"
+                                        col-width="4"
+                                        maxLength="5"
+                                        validationRules="zipCheck"
+                                        col-width="10"
+                                        errormessages='{{"zipCheck":"zip_numeric_allowed"}}'
+                                    >
+                                    </UX>
+                                </UX>
+                            </UX>
+                        </UX>
+                        <UX type="section" className="buttonPadding">
+                            <UX
+                                type="button"
+                                mode="primary"
+                                mode="link"
+                                click="{this.validateResInfo}"
+                                showIf="{$$ARRAD.ArAppAddrCargo[0].addrFormatCd === 'US' && $$ARRAD.ArAppAddrCargo[0].resAddrSw != 'true'}"
+                                labelKey="ADD_VALIDATE"
+                            />
+                        </UX>
+                    </UX>
+                </UX>
+                <UX type="section" id="section3" className="w-100 mb-4 padding0">
+                    <UX
+                        type="header"
+                        size="4"
+                        labelKey="ADD_MAIL_ADDR_INFO"
+                        className="p-4 ux-bg-primary text-light rounded"
+                    />
+                    <UX type="section" className="padding2">
+                        <UX type="section" className="alignCenter displayblock">
+                            <UX type="section" className="displayinlineblock">
+                                <UX type="label" className="" labelKey="ADD_RES_ADDR_FORMAT"></UX>
+                            </UX>
+                            <UX type="section" className="displayinlineblock padding17">
+                                <UX type="radioGroup" model="ARRAD.ArAppAddrCargo[1].addrFormatCd">
+                                    <UX
+                                        text="US "
+                                        type="radioButton"
+                                        labelKey="ADD_RES_ADDR_FORMAT_US"
+                                        value="US"
+                                    />
+                                    <UX
+                                        text="Military"
+                                        type="radioButton"
+                                        labelKey="ADD_RES_ADDR_FORMAT_MILT"
+                                        value="Military"
+                                    />
+                                </UX>
+                            </UX>
+                        </UX>
+                        <UX type="section" className="alignCenter">
+                            <UX type="section" className="displayinlineblock">
+                                <UX type="label" className="" labelKey="ADD_CARE_OF"></UX>
+                            </UX>
+                            <UX type="section" className="displayinlineblock padding20d7">
+                                <UX
+                                    id="careOf"
+                                    className="width291"
+                                    inputMode="text"
+                                    model="ARRAD.ArAppAddrCargo[1].addrCareOfLine"
+                                    type="text"
+                                    col-width="10"
+                                    labelKey="textBoxValue"
+                                >
+                                </UX>
+                            </UX>
+                        </UX>
+                        <UX type="section" className="padding05">
+                            <UX type="group" width="12">
+                                <UX
+                                    id="addrLne1"
+                                    required="{$$ARRAD.anon === 'true'}"
+                                    labelRequiredClassIf="{$$ARRAD.anon === 'true'}"
+                                    showIf="{$$ARRAD.anon
+                    === 'true'}"
+                                    inputMode="text"
+                                    model="ARRAD.ArAppAddrCargo[1].addrLine1"
+                                    type="text"
+                                    labelKey="ADD_Addr1"
+                                    col-width="10"
+                                    validationRules="addressCheck|splCharCheck"
+                                    errormessages='{{"addressCheck":"addr_numerr_msg1","splCharCheck":"addr_splerr_msg1"}}'
+                                />
+                                <UX
+                                    id="addrLne2"
+                                    inputMode="text"
+                                    model="ARRAD.ArAppAddrCargo[1].addrLine"
+                                    type="text"
+                                    labelKey="ADD_Addr2"
+                                    col-width="10"
+                                    validationRules="addressCheck|splCharCheck"
+                                    errormessages='{{"addressCheck":"addr_numerr_msg2","splCharCheck":"addr_splerr_msg2"}}'
+                                />
+                                <UX
+                                    id="addrLne3"
+                                    inputMode="text"
+                                    model="ARRAD.ArAppAddrCargo[1].addrLine3"
+                                    type="text"
+                                    labelKey="ADD_Addr3"
+                                    col-width="10"
+                                    showIf="{$$ARRAD.ArAppAddrCargo[1].addrFormatCd ===
+                    'Military'}"
+                                    validationRules="addressCheck|splCharCheck"
+                                    errormessages='{{"addressCheck":"addr_numerr_msg3","splCharCheck":"addr_splerr_msg3"}}'
+                                />
+                            </UX>
+
+                            <UX type="group" width="12">
+                                <UX
+                                    id="cityName"
+                                    required="{$$ARRAD.anon === 'true'}"
+                                    labelRequiredClassIf="{$$ARRAD.anon === 'true'}"
+                                    inputMode="text"
+                                    model="ARRAD.ArAppAddrCargo[1].addrCity"
+                                    type="text"
+                                    labelKey="ADD_CITY"
+                                    col-width="10"
+                                    showIf="{$$ARRAD.ArAppAddrCargo[1].addrFormatCd === 'US' && $$ARRAD.anon === 'true' }"
+                                    validationRules="cityCheck"
+                                    errormessages='{{"cityCheck":"city_err_msg"}}'
+                                >
+                                </UX>
+                                <UX
+                                    type="select"
+                                    required
+                                    defaultOption="true"
+                                    defaultOptionValue="{''}"
+                                    id="stateName"
+                                    ref-table="STATE"
+                                    model="ARRAD.ArAppAddrCargo[1].addrStNm"
+                                    optionLabel="text"
+                                    optionValue="value"
+                                    col-width="10"
+                                    labelKey="ADD_STATE"
+                                    showIf="{$$ARRAD.ArAppAddrCargo[1].addrFormatCd === 'US'}"
+                                >
+                                </UX>
+                                <UX type="group" col-width="10"></UX>
+                            </UX>
+                            <UX type="group" width="12">
+                                <UX
+                                    type="select"
+                                    required="{$$ARRAD.ArAppAddrCargo[1].addrFormatCd === 'Military' && $$ARRAD.anon === 'true'}"
+                                    defaultOption="true"
+                                    defaultOptionValue="{''}"
+                                    id="stateName"
+                                    ref-table="MILITARYPOCODES"
+                                    model="ARRAD.ArAppAddrCargo[1].apoFpoAddr"
+                                    col-width="10"
+                                    labelKey="ADD_APFO"
+                                    showIf="{$$ARRAD.ArAppAddrCargo[1].addrFormatCd === 'Military' && $$ARRAD.anon === 'true'}"
+                                    labelRequiredClassIf="{$$ARRAD.ArAppAddrCargo[1].addrFormatCd === 'Military'}"
+                                />
+
+                                <UX
+                                    type="select"
+                                    required="{$$ARRAD.ArAppAddrCargo[1].addrFormatCd === 'Military' && $$ARRAD.anon === 'true'}"
+                                    defaultOption="true"
+                                    defaultOptionValue="{''}"
+                                    id="stateName"
+                                    ref-table="STATEMILITARY"
+                                    model="ARRAD.ArAppAddrCargo[1].addrMilitary"
+                                    labelKey="ADD_AA"
+                                    col-width="10"
+                                    showIf="{$$ARRAD.ArAppAddrCargo[1].addrFormatCd === 'Military'  && $$ARRAD.anon === 'true'}"
+                                    labelRequiredClassIf="{$$ARRAD.ArAppAddrCargo[1].addrFormatCd === 'Military'}"
+                                />
+
+                                <UX type="group" width="11"></UX>
+                            </UX>
+                            <UX type="group" width="12">
+                                <UX
+                                    id="zipCode"
+                                    required="{$$ARRAD.anon === 'true'}"
+                                    labelRequiredClassIf="{$$ARRAD.anon === 'true'}"
+                                    showIf="{$$ARRAD.anon === 'true'}"
+                                    inputMode="numeric"
+                                    model="ARRAD.ArAppAddrCargo[1].addrZip5"
+                                    type="text"
+                                    labelKey="ADD_ZIP"
+                                    col-width="10"
+                                    maxLength="6"
+                                    validationRules="zipCheck"
+                                    errormessages='{{"zipCheck":"zip_numeric_allowed"}}'
+                                />
+                                <UX type="group" width="11"></UX>
+                                <UX type="group" width="11"></UX>
+                            </UX>
+                        </UX>
+                        <UX type="section" className="buttonPadding">
+                            <UX
+                                type="button"
+                                mode="primary"
+                                mode="link"
+                                click="{this.validateMailInfo}"
+                                showIf="{$$ARRAD.ArAppAddrCargo[1].addrFormatCd === 'US'}"
+                                labelKey="ADD_VALIDATE"
+                            />
+                        </UX>
+                    </UX>
+                </UX>
+            </UX>
+        </UX>
+
+        <UXModule.NPCButtons
+            prevlabelKey="previous_Button"
+            cancellabelKey="exit_Button"
+            nextlabelKey="next_button"
+            nextclick="{this.goToNextPage}"
+            prevclick="{this.goBack}"
+            cancelclick="{this.goToHomePage}"
+        >
+        </UXModule.NPCButtons> </UX
+></UX>

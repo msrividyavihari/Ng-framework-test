@@ -1,0 +1,66 @@
+spring:
+  application:
+    name: data-collection
+  jmx:
+    default-domain: data-collection-${random.int[1,65536]}
+  jta:
+    enabled: false
+  jackson:
+    default-property-inclusion: non_null
+  jpa:
+    database-platform: org.hibernate.dialect.Oracle10gDialect
+    database: ORACLE
+    show-sql: true
+    open-in-view: false
+    hibernate:
+      ddl-auto: none
+    properties:
+      hibernate:
+        format_sql: true
+        temp:
+          use_jdbc_metadata_defaults: false
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    url: jdbc:oracle:thin:@//localhost:1522/ORCL
+    username: IE_APP_ONLINE
+    password: IE_APP_ONLINE
+    driver-class-name: oracle.jdbc.OracleDriver
+    hikari:
+      poolName: nextgen-data-collection-oracle-HikariCP
+      connectionTimeout: 10000
+      maximumPoolSize: 20
+      autoCommit: false
+      connectionTestQuery: SELECT 1 FROM DUAL
+      data-source-properties:
+        cachePrepStmts: true
+        perpStmtCacheSize: 250
+        prepStmtCacheSqlLimits: 2048
+        userServerPrepStmts: true
+
+server:
+  port: ${server-port:10100}
+  compression:
+    enabled: true
+  servlet:
+    contextPath: /data-collection/api
+
+security:
+  security:
+    testing : true
+
+address:
+  smartystreet-service:
+    auth-id: 263f07f0-e0a9-f580-ac0b-1e7fd9ebb003
+    auth-token: t62pcICqWKkWpc3Awi1F
+    url: https://us-street.api.smartystreets.com/street-address?
+
+http:
+  cache:
+    timeToLiveInDays: 0
+
+springdoc:
+  packagesToScan: com.deloitte.nextgen
+  api-docs:
+    resolve-schema-properties: true
+  cache:
+    disabled: true

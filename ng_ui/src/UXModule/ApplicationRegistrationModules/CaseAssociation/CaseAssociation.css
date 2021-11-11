@@ -1,0 +1,59 @@
+.selBtnSpan{
+    padding-right: 22%; 
+}
+
+.selbtn1 {
+    border-radius: 12px !important;
+}
+
+.selbtn2 {
+    border-radius: 12px !important;
+    background-color: #14F1BB !important;
+    border: 2px solid  #14F1BB !important;
+    display: none;
+}
+
+.table-striped tbody tr:nth-of-type(odd), .ux-table-striped tbody tr:nth-of-type(odd) {
+    background-color: white !important;
+}
+
+.table thead th, .ux-table thead th {
+    border-bottom: 0 !important;
+}
+
+/* .table-bordered th {
+    border: white !important;
+} 
+
+table-bordered td {
+    border: white !important;
+} */
+
+/* .table-bordered tr {
+    border: white !important;
+} 
+
+.table-bordered {
+    border: white !important;
+} */
+
+.heading-resize {
+    padding-left: 26%;
+}
+
+.para-resize {
+    margin-left: auto;
+    margin-right: auto;
+    width: 37em
+}
+
+.button-resize {
+    text-align-last: center !important;
+}
+
+.close-icon {
+    padding-left: 97% !important;
+    font-size: 25px;
+    cursor: pointer;
+}
+

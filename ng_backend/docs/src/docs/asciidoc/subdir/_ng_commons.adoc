@@ -1,0 +1,133 @@
+==== Description
+As name suggest _ng-commons_ microservice is use to provide Commonly used constants, methods, variables,enums
+in a framework Its collection of predefine
+  . Exceptions.
+  . Constants.
+  . Entity Mappers And DTO Mappers.
+  . Common Configurations.
+  . Commonly Used Methods.
+
+==== Exceptions
+* Certain predefined exceptions are declared and defined that applies on all microservices of framework
+* These exceptions are frequently occurs in all microservices of framework, e.g. Api Exceptions,
+ResourceNotFoundException, ResourceAlreadyExistException etc.
+
+==== Usage
+To use these exceptions anywhere in a framework we have to just create particular exception object with
+specified parameters and throw the object using _throw_ key word in method defination and with _throws_
+in method declaration.
+
+[source, java, linenums]
+----
+public void someMethod(){
+ try{
+   // your code
+  }catch(ApiException e){
+   throw  new ApiException(code, message,e);
+ }
+}
+----
+
+==== Create New Exception
+* To create new Exception we have to just create exception class under `_com/deloitte/nextgen/framework/commons/exceptions_`
+package and extend with *_Exception_* class for *_Checked Exception_* and extend with *_RuntimeException_*  class for *_UnChecked Exception_*
+* We can extend our  created exception class with predefined exception,like *_APi Exceptions_* etc.
+
+
+[TIP]
+If already available exception does not suit to you use case then, create custom exceptions in your project.
+
+====  Constants
+* We can declare and define constant value that are commonly used in all microservices of the framework like Security Constants, Entity Status Code, Http Headers, Exception Codes, Status Types And Message Types etc
+* To declare and define we can use public static final variables of class or interface and Enums.
+
+* To use these constant we have use constant name with Class , Interface , Enums name.
+
+[source, java, linenums]
+----
+   // Definition And declaration of Constants using Interface/Class
+public interface Constants {
+
+    interface Mask {
+        char character = '*';
+    }
+    interface EntityStatusCode {
+        int PERSISTED = 100;
+        int UPDATED = 101;
+        int DELETED = 102;
+    }
+}
+// Definition And declaration of Constants using Enum
+  public enum MessageType {
+    SUCCESS,
+    INFO,
+    ERROR,
+    WARN
+   }
+  // Use of constants
+ public static String maskCharsInBetween(String str){
+
+        return maskString(str,  str.length() , Constants.Mask.character); // Constant used
+    }
+  protected ResponseEntity<Object> handleException(Exception ex, Object body) {
+      return ApiResponse.with(status, 500)
+                        .type(MessageType.ERROR) // Enum used
+                        .devMessage(ex.getMessage())
+                        .data(body);
+    }
+----
+
+==== Entity Mapper
+* Entity Mapper are used to convert Entity to DTO and vice versa.
+*  Entity Mapper is an interface which we have to implement in each microservice and override the required methods for mapping.
+*  Entity Mapper has primary two methods i.e. `_E toEntity(D dto);_`    and  `_D toDto(E entity);_` which used to map entity
+to dto and vice versa.
+
+[source, java, linenums]
+----
+  // implementation of EntityMapper
+@Component
+public class ExampleEntityMapper implements EntityMapper<ExampleDto, ExampleEntity> {
+
+   @Override
+    public ExampleDto toDto(ExampleEntity arg) {
+       // your mapping logic / code
+    }
+
+    @Override
+    public ExampleEntity toEntity(ExampleDto arg) {
+       // your mapping logic / code
+    }
+
+}
+----
+
+[source, java, linenums]
+----
+  public class SomeClass {
+     //  Utilization EntityMapper
+    private final ExampleEntityMapper mapper;
+
+    ExampleDto dto = mapper.toDto(exampleEnitiy);
+
+    ExampleEntity entity = mapper.toEntity(exampleDto);
+
+}
+----
+
+==== Common Configurations:
+
+* If Some common configurations that need to apply in all microservices of the framework have to configure in this microservice like `DevTools Configuration` , `2nd Level cache configuration` etc.
+* All  Configuration related properties  we can define in `_application.yml_` file inside `_src/main/resources_` folder
+
+
+====  Commonly Used Methods:
+* There are certain common methods that can be use frequently across all microservices of the framework like Date And time parsing and formatting, Message Masking, Format Validators etc that we can declare and define in this microservice like.
+* These methods can be declared as public static and final to avoid changes
+* These methods can be accessed across the framework  with just class name followed my method name.
+
+
+
+
+
+

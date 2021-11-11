@@ -1,0 +1,41 @@
+import org.gradle.api.JavaVersion
+
+plugins {
+    id 'org.springframework.boot' version '2.4.0'
+    id 'io.spring.dependency-management' version '1.0.9.RELEASE'
+    id 'java'
+}
+
+group 'com.deloitte.nextgen.appservices'
+version '1.0-SNAPSHOT'
+sourceCompatibility = JavaVersion.VERSION_1_8
+targetCompatibility = JavaVersion.VERSION_1_8
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+    maven { url 'https://repo.spring.io/milestone' }
+    maven { url 'https://repo.spring.io/snapshot' }
+    maven { url 'https://repo.spring.io/plugins-release'}
+    maven { url 'http://fast4j.glbsnet.com:8086/artifactory/repo' }
+}
+
+dependencies {
+    implementation project(':appreg-ssp-client')
+    implementation 'com.deloitte.nextgen.framework:ng-spring-boot-starter:1.0.0-RC1'
+    annotationProcessor 'com.deloitte.nextgen.framework:ng-persistence:1.0.0-RC1'
+    annotationProcessor 'org.projectlombok:lombok'
+    annotationProcessor "org.mapstruct:mapstruct-processor:1.4.1.Final"
+    annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
+    annotationProcessor "com.deloitte.nextgen.framework:ng-automate:1.0.0-RC1"
+}
+
+test {
+    useJUnitPlatform()
+}

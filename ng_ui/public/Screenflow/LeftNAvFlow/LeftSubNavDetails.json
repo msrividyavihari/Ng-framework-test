@@ -1,0 +1,152 @@
+{
+    "Application_Summary": {
+        "title": {
+            "en": "Application Summary",
+            "es": "Resumen de la aplicación"
+        },
+        "context": "ApplicationRegistration"
+    },
+    "Program_Screens": {
+        "title": {
+            "en": "Program Screens",
+            "es": "Pantallas del programa"
+        },
+        "context": "ApplicationRegistration"
+    },
+    "Person_Clerarnce": {
+        "title": {
+            "en": "Person Clearence",
+            "es": "Personal Clearence"
+        },
+        "context": "ApplicationRegistration"
+    },
+    "Individual_Regestration": {
+        "title": {
+            "en": "Register Individual",
+            "es": "Registrar individuo"
+        },
+        "context": "ApplicationRegistration"
+    },
+    "Register_application": {
+        "title": {
+            "en": "Register Application",
+            "es": "Solicitud de registro"
+        },
+        "context": "ApplicationRegistration"
+    },
+    "Application": {
+        "title": {
+            "en": "Application",
+            "es": "Aplicación"
+        },
+        "context": "ApplicationRegistration"
+    },
+    "authrep": {
+        "title": {
+            "en": "Authorized Representative",
+            "es": "Representante autorizado"
+        },
+        "context": "ApplicationRegistration"
+    },
+    "address": {
+        "title": {
+            "en": "Addresses",
+            "es": "Direcciones"
+        },
+        "context": "ApplicationRegistration"
+    },
+    "childcareprogroup": {
+        "title": {
+            "en": "Child Care Priority Group",
+            "es": "Grupo prioritario de cuidado infantil"
+        },
+        "context": "ApplicationRegistration"
+    },
+    "appgrpindiv": {
+        "title": {
+            "en": "Register Individual Summary",
+            "es": "Register Individual Summary"
+        },
+        "context": "ApplicationRegistration"
+    },
+    "indiv": {
+        "title": {
+            "en": "Individual",
+            "es": "Individual"
+        },
+        "context": "ApplicationRegistration"
+    },
+    "alias": {
+        "title": {
+            "en": "Alias Details",
+            "es": "Detalles de alias"
+        },
+        "context": "ApplicationRegistration"
+    },
+
+    "personclear": {
+        "title": {
+            "en": "File Clearence",
+            "es": "Clearence de archivo"
+        },
+        "context": "ApplicationRegistration"
+    },
+    "assocase": {
+        "title": {
+            "en": "Assocaited Case",
+            "es": "Caso asociado"
+        },
+        "context": "ApplicationRegistration"
+    },
+    "progsummary": {
+        "title": {
+            "en": "Program summary",
+            "es": "Program summary"
+        },
+        "context": "ApplicationRegistration"
+    },
+    "selectprog": {
+        "title": {
+            "en": "Program",
+            "es": "Program"
+        },
+        "context": "ApplicationRegistration"
+    },
+    "expscrn": {
+        "title": {
+            "en": "Expidited Screening",
+            "es": "Expidited Screening"
+        },
+        "context": "ApplicationRegistration"
+    },
+
+    "appsumm": {
+        "title": {
+            "en": " Summary",
+            "es": "Resumen de la aplicación"
+        },
+        "context": "ApplicationRegistration"
+    },
+
+    "Maintain_Application": {
+        "title": {
+            "en": "Maintain Application",
+            "es": "Resumen de la aplicación"
+        },
+        "context": "ApplicationMaintainance"
+    },
+    "searchapp": {
+        "title": {
+            "en": "Application Search",
+            "es": "Aplicación"
+        },
+        "context": "ApplicationMaintainance"
+    },
+    "searchappNew": {
+        "title": {
+            "en": "Application Search",
+            "es": "Aplicación"
+        },
+        "context": "ApplicationMaintainanceNew"
+    }
+}

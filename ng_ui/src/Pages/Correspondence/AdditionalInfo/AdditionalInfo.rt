@@ -1,0 +1,288 @@
+<UX type="page">
+    <UX type="section" ux-class="w-100 app-srch-hd-sec">
+        <UX
+            type="header"
+            size="4"
+            id="contact_header"
+            className="p-3 co-common-header"
+            labelKey="additional_info"
+        >
+        </UX>
+    </UX>
+    <UX type="card" ux-class="w-100" body-class="p-0 m-0">
+        <UX type="card">
+            <UX size="4" type="header" labelKey="{this.pageName}" className="mb-5" />
+            <UX type="section" 
+                showIf = "{AppContext.model.getValue('initializeData.generateManualDetail.docId') === 'FGGA0015'
+                    || AppContext.model.getValue('initializeData.ViewPendingDetail.docId') === 'FGGA0015'}">
+                <UX type="group" className="notice" col-width="12">
+                    <UX
+                        type="group"
+                        flexGroup="true"
+                        flexDirection="row"
+                        flexWrap="false"
+                        flexAlign="start"
+                        flexJustify="start"
+                        childWidths="true"
+                    >
+                        <UX
+                            id="notice_lbl"
+                            col-width="3"
+                            labelKey="notice_salutation"
+                            className="notice-lbl"
+                            type="label"
+                        />
+                        <UX
+                            id="noticeSalutation"
+                            model="additionalInfoData.noticeSalutation"
+                            labelKey="empty_string"
+                            col-width="8"
+                            className="ml-1 sal-txt"
+                            type="text"
+                        />
+                    </UX>
+                </UX>
+            </UX>
+            <UX type="section" 
+                showIf = "{AppContext.model.getValue('initializeData.generateManualDetail.docId') === 'FGGA0015'
+                    || AppContext.model.getValue('initializeData.ViewPendingDetail.docId') === 'FGGA0015'}">
+                <UX type="group" className="notice_purpose" col-width="12">
+                    <UX
+                        type="group"
+                        flexGroup="true"
+                        flexDirection="row"
+                        flexWrap="false"
+                        flexAlign="start"
+                        flexJustify="start"
+                        childWidths="true"
+                    >
+                        <UX
+                            id="notice_purpose"
+                            col-width="3"
+                            labelKey="notice_purpose"
+                            className="notice_purpose-lbl"
+                            type="label"
+                        />
+                        <UX
+                            id="noticePurposeTxt"
+                            model="additionalInfoData.coPurposeOfNotice"
+                            labelKey="empty_string"
+                            col-width="8"
+                            className="ml-1 sal-txt"
+                            type="text"
+                        />
+                    </UX>
+                </UX>
+            </UX>
+            <UX type="section">
+                <UX type="group" className="policy-ref" col-width="12" 
+                showIf = "{AppContext.model.getValue('initializeData.generateManualDetail.docId') === 'FGGA0015'
+                    || AppContext.model.getValue('initializeData.ViewPendingDetail.docId') === 'FGGA0015'}">
+                    <UX
+                        type="group"
+                        flexGroup="true"
+                        flexDirection="row"
+                        flexWrap="false"
+                        flexAlign="start"
+                        flexJustify="start"
+                        childWidths="true"
+                    >
+                        <UX
+                            id="policy_ref"
+                            col-width="3"
+                            labelKey="policy_ref"
+                            className="policy-ref-lbl"
+                            type="label"
+                        />
+                        <UX
+                            id="salutation"
+                            model="additionalInfoData.coPolicyManualReference"
+                            labelKey="empty_string"
+                            col-width="8"
+                            className="ml-1 sal-txt"
+                            type="text"
+                        />
+                    </UX>
+                </UX>
+
+                <UX
+                    type="group"
+                    flexGroup="true"
+                    flexDirection="row"
+                    flexWrap="false"
+                    flexAlign="start"
+                    flexJustify="start"
+                    childWidths="true"
+                    
+                showIf = "{AppContext.model.getValue('initializeData.generateManualDetail.docId')
+                        || AppContext.model.getValue('initializeData.ViewPendingDetail.docId') === 'FGGA0015'}"
+                >
+                    <UX
+                        id="street1"
+                        col-width="4"
+                        labelKey="street1"
+                        className="pt-4"
+                        type="label"
+                    />
+                    <UX
+                        id="street1"
+                        model="additionalInfoData.street1"
+                        labelKey="textboxValue"
+                        col-width="8"
+                        className="ml-1"
+                        type="text"
+                        maxLength="9"
+                    />
+
+                    <UX
+                        id="street2"
+                        col-width="4"
+                        labelKey="street2"
+                        className="pt-4"
+                        type="label"
+                    />
+                    <UX
+                        id="street2"
+                        model="additionalInfoData.street2"
+                        labelKey="textboxValue"
+                        col-width="8"
+                        className="ml-1"
+                        type="text"
+                        maxLength="9"
+                    />
+                </UX>
+
+                <UX
+                    type="group"
+                    flexGroup="true"
+                    flexDirection="row"
+                    flexWrap="false"
+                    flexAlign="start"
+                    flexJustify="start"
+                    childWidths="true"
+                    
+                showIf = "{AppContext.model.getValue('initializeData.generateManualDetail.docId')
+                        || AppContext.model.getValue('initializeData.ViewPendingDetail.docId') === 'FGGA0015'}"
+                >
+                    <UX id="city" col-width="4" labelKey="city" className="pt-4" type="label" />
+                    <UX
+                        id="city"
+                        model="additionalInfoData.city"
+                        labelKey="textboxValue"
+                        col-width="8"
+                        className="ml-1"
+                        type="text"
+                        maxLength="9"
+                    />
+
+                    <UX id="state" col-width="4" labelKey="state" className="pt-4" type="label" />
+                    <UX
+                        id="state"
+                        model="additionalInfoData.state"
+                        labelKey="textboxValue"
+                        col-width="8"
+                        className="ml-1"
+                        type="text"
+                        maxLength="9"
+                    />
+                </UX>
+
+                <UX
+                    type="group"
+                    flexGroup="true"
+                    flexDirection="row"
+                    flexWrap="false"
+                    flexAlign="start"
+                    flexJustify="start"
+                    childWidths="true"
+                    
+                showIf = "{AppContext.model.getValue('initializeData.generateManualDetail.docId')
+                        || AppContext.model.getValue('initializeData.ViewPendingDetail.docId') === 'FGGA0015'}"
+                >
+                    <UX id="zip5" col-width="4" labelKey="zip5" className="pt-4" type="label" />
+                    <UX
+                        id="zip5"
+                        model="additionalInfoData.zip5"
+                        labelKey="textboxValue"
+                        col-width="8"
+                        className="ml-1"
+                        type="text"
+                        maxLength="9"
+                    />
+
+                    <UX id="zip4" col-width="4" labelKey="zip4" className="pt-4" type="label" />
+                    <UX
+                        id="zip4"
+                        model="additionalInfoData.zip4"
+                        labelKey="textboxValue"
+                        col-width="8"
+                        className="ml-1"
+                        type="text"
+                        maxLength="9"
+                    />
+                </UX>
+            </UX>
+            <UX type="section" className="btn-sec " 
+                showIf = "{AppContext.model.getValue('initializeData.generateManualDetail.docId')
+                        || appContext.model.getValue('initializeData.ViewPendingDetail.docId') === 'FGGA0015'}">
+                <UX type="section" className="btn-sec-inner">
+                    <UX type="group" className="reset-img-ctn">
+                        <UX
+                            type="image"
+                            src="../icons/buttonResetScreen.png"
+                            className="reset-img"
+                            click="{this.resetForm}"
+                        />
+                    </UX>
+                </UX>
+            </UX>
+            <UX type="lineBreak" size="{1}" />
+            <UX type="section" className="btn-grp">
+                <UX type="group">
+                    <UX
+                        type="group"
+                        flexGroup="true"
+                        flexDirection="row"
+                        flexWrap="false"
+                        flexAlign="start"
+                        flexJustify="start"
+                        col-width="12"
+                    >
+                        <UX
+                            className="mt-5 "
+                            mode="primary"
+                            size="small"
+                            type="button"
+                            click="{this.goBack}"
+                            labelKey="previous"
+                        />
+                        <UX
+                            className="mt-5 "
+                            mode="primary"
+                            size="small"
+                            type="button"
+                            click="{this.preview}"
+                            labelKey="preview"
+                        />
+                        <UX
+                            className="mt-5 "
+                            mode="primary"
+                            size="small"
+                            type="button"
+                            click="{this.centralPrint}"
+                            labelKey="centralPrint"
+                        />
+                        <UX
+                            className="mt-5 "
+                            mode="primary"
+                            size="small"
+                            type="button"
+                            click="{this.localPrint}"
+                            labelKey="localPrint"
+                        />
+                    </UX>
+                </UX>
+            </UX>
+        </UX>
+    </UX>
+</UX>

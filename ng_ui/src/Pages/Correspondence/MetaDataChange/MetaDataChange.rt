@@ -1,0 +1,160 @@
+<UX type="page" ref-table-list="DISDOCTYPE">
+    <UX type="section" ux-class="w-100 app-srch-hd-sec">
+        <UX
+            type="header"
+            size="4"
+            id="pen_dtl_header"
+            className="p-3 co-common-header"
+            labelKey="metadata_title"
+        >
+        </UX>
+    </UX>
+    <UX type="card" ux-class="w-100" body-class="p-0 m-0">
+        <UX type="card">
+        <UX size="4" type="header" labelKey="co_document_title" className="mb-5 srch-hdr" />
+            <UX type="section" className="dtl-sec" col-width="12">
+                <UX
+                    type="group"
+                    flexGroup="true"
+                    flexDirection="row"
+                    flexWrap="false"
+                    flexAlign="start"
+                    flexJustify="start"
+                    childWidths="true"
+                >
+                    <UX
+                        id="appNumber_label"
+                        col-width="6"
+                        labelKey="doc_type"
+                        className="app-num-lbl co-lbl"
+                        type="label"
+                    />
+                    <UX type="para" >
+                       {AppContext.model.getValue('metaData.docType')}
+                    </UX>
+                </UX>
+                <UX
+                    type="group"
+                    flexGroup="true"
+                    flexDirection="row"
+                    flexWrap="false"
+                    flexAlign="start"
+                    flexJustify="start"
+                    childWidths="true"
+                >
+                    <UX
+                        id="appNumber_label"
+                        col-width="6"
+                        labelKey="ref_pound"
+                        className="app-num-lbl co-lbl"
+                        type="label"
+                    />
+                    <UX type="para" >
+                        {AppContext.model.getValue('metaData.disDocMstrSeqNum')}
+                    </UX>
+                </UX>
+                <UX
+                    type="group"
+                    flexGroup="true"
+                    flexDirection="row"
+                    flexWrap="false"
+                    flexAlign="start"
+                    flexJustify="start"
+                    childWidths="true"
+                >
+                    <UX
+                        id="appNumber_label"
+                        col-width="6"
+                        labelKey="ssn_id"
+                        className="app-num-lbl co-lbl"
+                        type="label"
+                    />
+                     <UX type="para" >
+                        {AppContext.model.getValue('metaData.originalSsn')}
+                    </UX>
+                </UX>
+                <UX size="{1}" type="lineBreak" />
+                <UX size="4" type="header" labelKey="link_change_title" className="mb-5 srch-hdr" />
+                <UX type="label" labelKey="doc_type_info" className="mb-5 srch-hdr"/>
+                <UX
+                    type="group"
+                    flexGroup="true"
+                    flexDirection="row"
+                    flexWrap="false"
+                    flexAlign="start"
+                    flexJustify="start"
+                    childWidths="true"
+                >
+                    <UX
+                        id="appNumber_label"
+                        col-width="6"
+                        labelKey="doc_type"
+                        className="app-num-lbl co-lbl"
+                        type="label"
+                    />
+                    <UX
+                        type="select"
+                        col-width="6"
+                        id="doc_type_select"
+                        model="metaData.modifiedDocumentType"
+                        ref-table="DISDOCTYPE"
+                        labelKey="empty_string"
+                        className="ml-1 co-srch-txt"
+                        defaultOption="true"
+                        defaultOptionValue="{''}"        
+                    />
+                </UX>
+                <UX type="label" labelKey="ssn_info" className="mb-5 srch-hdr"/>
+                <UX
+                    type="group"
+                    flexGroup="true"
+                    flexDirection="row"
+                    flexWrap="false"
+                    flexAlign="start"
+                    flexJustify="start"
+                    childWidths="true"
+                >
+                    <UX
+                        id="appNumber_label"
+                        col-width="6"
+                        labelKey="ssn_no"
+                        className="app-num-lbl co-lbl"
+                        type="label"
+                    />
+                    <UX
+                        id="ssn"
+                        model="metaData.modifiedSsn"
+                        labelKey="empty_string"
+                        col-width="6"
+                        className="ml-1 co-srch-txt"
+                        type="text"
+                    />
+                </UX>
+            </UX>
+            <UX type="section" className="btn-sec ">
+                    <UX type="section" className="btn-sec-inner">
+                        <UX type="group" className="reset-img-ctn">
+                            <UX
+                                type="image"
+                                src="../icons/buttonResetScreen.png"
+                                className="reset-img"
+                                click="{this.resetForm}"
+                            />
+                        </UX>
+                        <UX type="group">
+                            <UX
+                                className="mt-5 co-srch-btn"
+                                mode="primary"
+                                size="small"
+                                type="button"
+                                align="center"
+                                click="{this.metadataChange}"
+                                labelKey="metadata_change"
+                            />
+                        </UX>
+                    </UX>
+                </UX>
+
+        </UX>
+    </UX>
+</UX>

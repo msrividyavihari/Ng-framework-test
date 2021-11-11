@@ -1,0 +1,218 @@
+<UX type="page" ref-table-list="ARWITHDRAWREASON,STATE,APPLICATIONSTATUS">
+    <UX type="section" ux-class="w-100 app-srch-hd-sec">
+        <UX
+            type="header"
+            size="1"
+            id="contact_header"
+            className="p-3 app-search-header"
+            labelKey="search_title"
+        >
+        </UX>
+    </UX>
+    <UX type="card" ux-class="w-100" body-class="p-0 m-0">
+        <UX type="card">
+            <UX type="grid">
+                <UX type="row">
+                    <UX type="column" width="10" className="searchLeftPanel">
+                        <UX
+                            size="5"
+                            type="header"
+                            labelKey="app_search_criteria"
+                            className="mb-3"
+                        />
+
+                        <UX type="grid" className="rowWidth">
+                            <UX
+                                type="row"
+                                flexDirection="row"
+                                flexWrap="false"
+                                flexAlign="start"
+                                flexJustify="start"
+                                childWidths="false"
+                                className="appSearchGroup"
+                            >
+                                <UX type="column">
+                                    <UX
+                                        id="appNumber"
+                                        model="searchData.appNumber"
+                                        labelKey="appNumber"
+                                        col-width="10"
+                                        className="ml-1"
+                                        type="text"
+                                        maxLength="9"
+                                    />
+                                </UX>
+                                <UX
+                                    id="andOr1"
+                                    labelKey="andOr"
+                                    className="andOrOne"
+                                    col-width="1"
+                                    type="label"
+                                />
+                                <UX type="column">
+                                    <UX
+                                        id="ssn"
+                                        model="searchData.ssn"
+                                        type="text"
+                                        col-width="10"
+                                        className="ml-1"
+                                        labelKey="ssn"
+                                        maxLength="9"
+                                    />
+                                </UX>
+                                <UX
+                                    id="andOr2"
+                                    labelKey="andOr"
+                                    className="andOrTwo"
+                                    col-width="1"
+                                    type="label"
+                                />
+                                <UX type="column">
+                                    <UX
+                                        id="firstName"
+                                        model="searchData.first"
+                                        labelKey="first"
+                                        type="text"
+                                        validationRules="alphaNumericCheckWithoutSpace"
+                                        col-width="10"
+                                        errormessages='{{"alphaNumericCheckWithoutSpace":"only_alphabets_allowed"}}'
+                                    />
+                                </UX>
+                                <UX
+                                    id="andOr3"
+                                    labelKey="andOr"
+                                    className="andOrThree"
+                                    col-width="1"
+                                    type="label"
+                                />
+                                <UX type="column">
+                                    <UX
+                                        id="lastName"
+                                        model="searchData.last"
+                                        labelKey="last"
+                                        type="text"
+                                        minLength="2"
+                                        validationRules="alphaNumericCheckWithoutSpace"
+                                        col-width="10"
+                                        errormessages='{{"alphaNumericCheckWithoutSpace":"only_alphabets_allowed"}}'
+                                    />
+                                </UX>
+                            </UX>
+                        </UX>
+                        <UX type="group">
+                            <UX
+                                className="mt-5 searchButton"
+                                mode="primary"
+                                size="small"
+                                type="button"
+                                float="left"
+                                click="{this.showTable}"
+                                labelKey="search"
+                            />
+                        </UX>
+                        <UX size="{1}" type="lineBreak" />
+                        <UX type="row" col-width="11" className="border alignLineCenter" />
+                        <UX size="{1}" type="lineBreak" />
+                        <UX type="group" showIf="{$$searchData.show}">
+                            <UX
+                                className="mt-5 appSearchDetails"
+                                col-data-keys="firstName,lastName,appRecvdDt,source,appNum,appStatCd"
+                                col-default-headers="HOH First Name,HOH Last Name,Date Application Received,Source,T Number,Status,Action"
+                                datacollection="searchData.datatableCollection"
+                                customContent="{{'T Number':this.appNumLink,'Status':this.formatStatCode,'Action':this.withdraw}}"
+                                emptymsg-key="Empty_message"
+                                hover="false"
+                                keyfield="appNum"
+                                pagination="nextgen"
+                                pagination-show-total="true"
+                                pagination-size-per-page="5"
+                                type="CustomeDataTable"
+                                sortable-col-names="HOH First Name,HOH Last Name,Date Application Received,Source,T Number,Status"
+                                col-width="11"
+                                col-widths="{{'HOH First Name':2,'HOH Last Name':2,'Date Application Received':5,'Source':2,'T Number':2,'Status':2,'Action':1}}"
+                            />
+                        </UX>
+                    </UX>
+                    <UX type="column" width="2" className="searchRightPanel">
+                        <UXModule.RightNavigation
+                            rightNavCond="{AppContext.model.getValue('searchData.rNavCond')}"
+                            module="{AppContext.model.getValue('searchData.module')}"
+                            recentAppList="{ AppContext.model.getValue('searchData.recentAppList')}"
+                        ></UXModule.RightNavigation>
+                    </UX>
+                </UX>
+            </UX>
+        </UX>
+    </UX>
+    <UX type="modal" isOpen="{$$searchData.deleteModalOpen}" className="search-modal">
+        <span onClick="{this.onCloseModal}">
+            <p className="close-icon">&#x2716;</p>
+        </span>
+        <UX
+            size="3"
+            type="header"
+            value="Test"
+            labelKey="deleteApplicationHeader"
+            className="heading-resize"
+        >
+        </UX>
+        <UX type="para" labelKey="deleteApplicationCaution" className="para-resize"> </UX>
+        <UX type="section" className="del-app-data" col-width="8">
+            <UX type="grid">
+                <UX type="row">
+                    <UX type="column">
+                        <UX id="appName" labelKey="appName" className="appName" type="label" />
+                    </UX>
+                    <UX type="column">
+                        <UX id="fullName" className="fullName" type="label"
+                            >{AppContext.model.getValue('searchData.deleteRowData.firstName')}
+                        </UX>
+
+                        <UX id="fullName" className="fullName pl-1" type="label"
+                            >{AppContext.model.getValue('searchData.deleteRowData.lastName')}
+                        </UX>
+                    </UX>
+                </UX>
+                <UX type="row">
+                    <UX type="column">
+                        <UX id="appDate" labelKey="appDate" className="appDate" type="label" />
+                    </UX>
+                    <UX type="column">
+                        <UX id="appRecdDate" className="appRecdDate" type="label"
+                            >{AppContext.model.getValue('searchData.deleteRowData.appRecvdDt')}
+                        </UX>
+                    </UX>
+                </UX>
+                <UX type="row">
+                    <UX type="column">
+                        <UX id="appTNum" labelKey="appTNum" className="appTNum" type="label" />
+                    </UX>
+                    <UX type="column">
+                        <UX id="appNumber" className="appNumber" type="label"
+                            >{AppContext.model.getValue('searchData.deleteRowData.appNum')}</UX
+                        >
+                    </UX>
+                </UX>
+            </UX>
+        </UX>
+        <UX type="lineBreak" size="{1}"></UX>
+        <UX type="section" className="button-resize-search">
+            <UX
+                className="dontDeleteButton"
+                mode="default"
+                size="small"
+                type="button"
+                click="{this.onCloseModal}"
+                labelKey="dontDelete"
+            />
+            <UX
+                className="confirmDeleteButton"
+                mode="default"
+                size="small"
+                type="button"
+                click="{this.callDeleteAppAction}"
+                labelKey="confirmDelete"
+            />
+        </UX>
+    </UX>
+</UX>

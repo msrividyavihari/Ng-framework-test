@@ -1,0 +1,73 @@
+.contact-radio div[role="group"]  {
+    display:flex;
+}
+
+.contact-radio .ux-radio label {
+    padding-right: 10px;
+    margin-left: 8px !important;
+    margin-right: 8px;
+    white-space: nowrap;
+}
+
+.contact-page-details {
+    padding-left: 24px;
+}
+.contact-page-details20 {
+    padding-left: 24px;
+}
+
+.contact-sub-heading {
+    font-size: 24px;
+    font-weight: 500;
+}
+
+.phone-type-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.phone-type-group-content {
+    font-weight: bold;
+    font-size: 1.25rem;
+    white-space: nowrap;
+}
+
+.phone-type-group-label {
+    font-size: 0.875rem;
+    white-space: nowrap;
+}
+
+.marginTop35 {
+    margin-top: 35px;
+}
+
+.paddingleft25{
+    padding-left: 25%;
+}
+
+.pophead{
+    padding-left: 28%;
+}
+
+.modalContact{
+    width: 50%;
+}
+
+.addrLn1{
+  width: 122% !important;
+}
+.addrLn2{
+    width: 80% !important;
+    padding-left: 21% !important;
+}
+.addrLn3{
+    width: 57%;
+    margin-left: -22% !important;
+}
+
+.pophead38{
+    padding-left: 38%;
+}
+.center {
+    margin-left:10%;
+}

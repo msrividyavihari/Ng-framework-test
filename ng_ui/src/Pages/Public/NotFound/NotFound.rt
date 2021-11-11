@@ -1,0 +1,10 @@
+<rt-import name="UX" from="@d-lift/uxcomponents" />
+<UX type="page">
+    <div class="text-center">
+        <img src="{this.notFoundImage}" alt="Page not found" />
+        <h4>Page Not Found</h4>
+        <UX type="para">Sorry, we couldn't find the page you were looking for.</UX>
+        <UX type="para">We suggest that you return to </UX>
+        <UX type="navlink" to="/">home page.</UX>
+    </div>
+</UX>

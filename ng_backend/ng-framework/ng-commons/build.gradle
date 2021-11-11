@@ -1,0 +1,20 @@
+description = "Nextgen Framework - Commons"
+
+dependencies{
+
+    api project(':ng-logging')
+
+    api "org.springframework.boot:spring-boot-starter-web:$SPRING_BOOT"
+
+    implementation "com.querydsl:querydsl-core:$QUERY_DSL"
+    implementation "org.springframework.data:spring-data-redis:$REDIS"
+    implementation "javax.validation:validation-api:$BEAN_VALIDATION"
+    implementation "org.springframework.boot:spring-boot-starter-json:$SPRING_BOOT"
+    implementation "javax.persistence:javax.persistence-api:$JPA"
+
+    implementation "org.mapstruct:mapstruct:$MAPSTRUCT"
+
+    annotationProcessor "org.projectlombok:lombok:$LOMBOK"
+    compile "redis.clients:jedis:3.3.0"
+
+}

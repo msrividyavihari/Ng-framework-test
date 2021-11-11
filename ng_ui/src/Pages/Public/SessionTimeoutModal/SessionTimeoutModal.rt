@@ -1,0 +1,20 @@
+<rt-import name="default" as="PageUtills" from="@/ScreenFlowUtils/PageUtills"></rt-import>
+<UX type="component">
+    <UX type="section" className="text-center">
+        <UX symbol="far fa-stopwatch" type="icon" />
+        <UX type="header" size="1">Still Working?</UX>
+        <p>To protect your account, you will be logged out in</p>
+        <UX type="header" size="2"> {props.timeLeftForDisplay} sec</UX>
+        <br />
+        <UX
+            type="button"
+            col-width="12"
+            size="large"
+            className="text-center"
+            click="{e=> PageUtills.continueSession(props)}"
+            mode="primary"
+        >
+            KEEP WORKING
+        </UX>
+    </UX>
+</UX>

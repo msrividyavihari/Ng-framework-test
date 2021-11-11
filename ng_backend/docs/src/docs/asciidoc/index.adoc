@@ -1,0 +1,39 @@
+= NextGen 4.0 - Developers Guide
+Deloitte
+:sourcedir: ../../main/java
+:sectnums:
+:experimental:
+
+== Introduction
+
+NextGen 4.0 is a new framework written from scratch on top of Spring Boot framework. This framework helps developer to focus
+mainly on business logic leaving aside the boilerplate code to be handled by the framework. This framework has been built
+from the perspective of developer-first mentality, also have abstracted many functionalities and have given out of box
+implementation.
+
+The goal of this document is to help developer build new project from scratch by using different features of the framework.
+The developer should go through this document in its entirety before starting to use it.
+
+== Project Structure
+
+include::subdir/_project_structure.adoc[]
+
+== Getting Started
+
+include::subdir/_getting_started.adoc[]
+
+== Coding Guidelines
+
+include::subdir/_code_guidelines.adoc[]
+
+== Keyboard Shortcuts
+
+include::subdir/_ide_shortcuts.adoc[]
+
+
+== Framework Modules
+
+include::subdir/_framwork.adoc[]
+
+== Framework Services
+

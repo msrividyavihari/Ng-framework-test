@@ -1,0 +1,22 @@
+.containers {
+    display: flex;
+}
+.containers > div {
+    width: 100%;
+}
+
+.search-btn {
+    border: none;
+    background-color: transparent;
+    margin-left: 2%;
+    height: 10%;
+    cursor: pointer;
+    margin-top: 17%;
+}
+
+@media (max-width: 600px) {
+.search-btn {    
+    margin-left: 4%;
+    margin-top: 12%;
+}
+}

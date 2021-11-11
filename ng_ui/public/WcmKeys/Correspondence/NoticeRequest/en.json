@@ -1,0 +1,12 @@
+{
+    "notice_request": "Notice Status",
+    "co_search_criteria" : "Search Criteria",
+    "case_number": "Case Number :",
+    "notice_id": "Notice Id :",
+    "start_dt": "Start Date",
+    "end_dt": "End Date",
+    "search": "SEARCH",
+    "preview": "PREVIEW",
+    "centralPrint": "CENTRAL PRINT",
+    "localPrint": "LOCAL PRINT"
+}

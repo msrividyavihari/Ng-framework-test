@@ -1,0 +1,16 @@
+logging:
+  level:
+    root: ERROR
+
+spring:
+  jpa:
+    database-platform: org.hibernate.dialect.Oracle12cDialect
+    database: ORACLE
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    url: jdbc:oracle:thin:@//localhost:1522/ORCL
+    username: IE_APP_ONLINE
+    password: IE_APP_ONLINE
+    driver-class-name: oracle.jdbc.OracleDriver
+    hikari:
+      connectionTestQuery: SELECT 1 FROM DUAL

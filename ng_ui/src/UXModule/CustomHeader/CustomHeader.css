@@ -1,0 +1,20 @@
+.card-allign{
+    position: relative;
+    display: inline-block;
+    flex-direction: column;
+    min-width: 100%;
+    word-wrap: break-word;
+    background-color:#ffffe0;
+    background-clip: border-box;
+    border: 1px solid rgba(0, 0, 0, 0.125);
+    border-radius: 8px;
+    color: #0a1542;
+    padding-left: 2%;
+    font-weight: bold;
+}
+.displayHide{
+    display: none;
+}
+.padding90{
+    padding-left: 90%;
+}

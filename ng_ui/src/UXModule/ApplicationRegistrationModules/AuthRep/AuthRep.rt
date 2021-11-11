@@ -1,0 +1,290 @@
+<UX type="section" className="pb-4">
+    <UX type="section" className="panel-alert" showIf="{$$authRepConflictAlert === true}">
+        <UX type="section" className="offset-md-5">
+            <UX type="label" labelKey="sspConflictsAlert" />
+        </UX>
+    </UX>
+
+    <UX type="lineBreak"></UX>
+
+    <UX type="section">
+        <UX type="section">
+            <UX type="section">
+                <UX type="group">
+                    <UX
+                        model="authRep.authRepSw"
+                        radioStyle="card"
+                        type="radioGroup"
+                        className="align-left"
+                        labelKey="use_auth_rep"
+                    >
+                        <UX text="Yes" type="radioButton" value="Y" />
+                        <UX text="No" type="radioButton" value="N" />
+                    </UX>
+                </UX>
+            </UX>
+        </UX>
+    </UX>
+
+    <UX type="lineBreak"></UX>
+
+    <!-- New panel to enable/disable main section -->
+    <UX type="section" id="auth_rep_main_section" showIf="{$$authRep.authRepSw==='Y'}">
+        <!-- Individual Information Begins here-->
+
+        <UX type="para" className="authrep-sub-heading">Individual Information</UX>
+        <UX type="section" className="authrep-page-details">
+            <UX type="group">
+                <UX type="row" ux-class="mt-2 mb-2">
+                    <UX type="column" width="2">
+                        <UX
+                            type="text"
+                            labelKey="first_name"
+                            model="authRep.authRepDetails.firstName"
+                            required="true"
+                        />
+                    </UX>
+                    <UX type="column" width="2">
+                        <UX
+                            type="text"
+                            labelKey="middle_name"
+                            model="authRep.authRepDetails.middleName"
+                        />
+                    </UX>
+                    <UX type="column" width="2">
+                        <UX
+                            type="text"
+                            labelKey="last_name"
+                            model="authRep.authRepDetails.lastName"
+                            required="true"
+                        />
+                    </UX>
+                    <UX type="column" width="2">
+                        <UX type="text" labelKey="suffix" model="authRep.authRepDetails.suffix" />
+                    </UX>
+                    <UX type="column" width="2">
+                        <UX
+                            type="select"
+                            defaultOption="true"
+                            defaultOptionValue="{''}"
+                            ref-table="AUTHREPRELATIONTOINDIVIDUAL"
+                            labelKey="relationship_to"
+                            model="authRep.authRepDetails.relCd"
+                        />
+                    </UX>
+                </UX>
+            </UX>
+            <UX type="group">
+                <UX type="row" ux-class="mt-2 mb-2">
+                    <UX type="column" width="4">
+                        <UX
+                            type="text"
+                            labelKey="address_line1"
+                            model="authRep.addrDetails.addrLine"
+                        />
+                    </UX>
+                    <UX type="column" width="2">
+                        <UX
+                            type="text"
+                            labelKey="address_line2"
+                            model="authRep.addrDetails.addrLine1"
+                        />
+                    </UX>
+                </UX>
+            </UX>
+            <UX type="group">
+                <UX type="row" ux-class="mt-2 mb-2">
+                    <UX type="column" width="2">
+                        <UX type="text" labelKey="addr_city" model="authRep.addrDetails.addrCity" />
+                    </UX>
+                    <UX type="column" width="2">
+                        <UX
+                            type="select"
+                            defaultOption="true"
+                            defaultOptionValue="{''}"
+                            ref-table="STATE"
+                            labelKey="addr_state"
+                            model="authRep.addrDetails.addrStateCd"
+                        />
+                    </UX>
+                    <UX type="column" width="2">
+                        <UX
+                            type="text"
+                            labelKey="addr_zip"
+                            maxLength="{5}"
+                            model="authRep.addrDetails.addrZip5"
+                        />
+                    </UX>
+                </UX>
+            </UX>
+        </UX>
+
+        <hr />
+
+        <UX type="para" className="authrep-sub-heading">Phone Details</UX>
+        <UX type="section" className="authrep-page-details">
+            <UX type="group">
+                <UX type="row" ux-class="mt-2 mb-2">
+                    <UX type="column" width="2">
+                        <UX type="group" flexGroup="true" flexDirection="column">
+                            <UX
+                                type="para"
+                                labelKey="phone_type"
+                                className="phone-type-group-label"
+                            />
+                            <UX
+                                type="para"
+                                labelKey="primary"
+                                className="phone-type-group-content"
+                            />
+                        </UX>
+                    </UX>
+                    <UX type="column" width="2">
+                        <UX
+                            type="phone"
+                            labelKey="phone_number"
+                            model="authRep.phoneDetails.PRP.phnNum"
+                            maxLength="10"
+                            validationRules="phoneCheck"
+                            errormessages='{{"phoneCheck":"phone_numeric_allowed"}}'
+                        />
+                    </UX>
+                    <UX type="column" width="2">
+                        <UX
+                            type="text"
+                            labelKey="extension"
+                            model="authRep.phoneDetails.PRP.phoneExtn"
+                        />
+                    </UX>
+                    <UX type="column" width="4">
+                        <UX
+                            type="text"
+                            labelKey="comments"
+                            model="authRep.phoneDetails.PRP.phnComments"
+                        />
+                    </UX>
+                </UX>
+            </UX>
+            <UX type="group">
+                <UX type="row" ux-class="mt-2 mb-2">
+                    <UX type="column" width="2">
+                        <UX type="group" flexGroup="true" flexDirection="column">
+                            <UX
+                                type="para"
+                                labelKey="phone_type"
+                                className="phone-type-group-label"
+                            />
+                            <UX type="para" labelKey="work" className="phone-type-group-content" />
+                        </UX>
+                    </UX>
+                    <UX type="column" width="2">
+                        <UX
+                            type="phone"
+                            labelKey="phone_number"
+                            model="authRep.phoneDetails.WOP.phnNum"
+                            maxLength="10"
+                            validationRules="phoneCheck"
+                            errormessages='{{"phoneCheck":"phone_numeric_allowed"}}'
+                        />
+                    </UX>
+                    <UX type="column" width="2">
+                        <UX
+                            type="text"
+                            labelKey="extension"
+                            model="authRep.phoneDetails.WOP.phoneExtn"
+                        />
+                    </UX>
+                    <UX type="column" width="4">
+                        <UX
+                            type="text"
+                            labelKey="comments"
+                            model="authRep.phoneDetails.WOP.phnComments"
+                        />
+                    </UX>
+                </UX>
+            </UX>
+            <UX type="group">
+                <UX type="row" ux-class="mt-2 mb-2">
+                    <UX type="column" width="2">
+                        <UX type="group" flexGroup="true" flexDirection="column">
+                            <UX
+                                type="para"
+                                labelKey="phone_type"
+                                className="phone-type-group-label"
+                            />
+                            <UX
+                                type="para"
+                                labelKey="alternative"
+                                className="phone-type-group-content"
+                            />
+                        </UX>
+                    </UX>
+                    <UX type="column" width="2">
+                        <UX
+                            type="phone"
+                            labelKey="phone_number"
+                            model="authRep.phoneDetails.ALP.phnNum"
+                            maxLength="10"
+                            validationRules="phoneCheck"
+                            errormessages='{{"phoneCheck":"phone_numeric_allowed"}}'
+                        />
+                    </UX>
+                    <UX type="column" width="2">
+                        <UX
+                            type="text"
+                            labelKey="extension"
+                            model="authRep.phoneDetails.ALP.phoneExtn"
+                        />
+                    </UX>
+                    <UX type="column" width="4">
+                        <UX
+                            type="text"
+                            labelKey="comments"
+                            model="authRep.phoneDetails.ALP.phnComments"
+                        />
+                    </UX>
+                </UX>
+            </UX>
+        </UX>
+        <hr />
+
+        <UX type="para" className="authrep-sub-heading">
+            Email Details
+        </UX>
+
+        <UX type="section" className="authrep-page-details">
+            <UX type="section" repeat="email, emailIndex in $$authRep.emailDetails">
+                <UX type="para">
+                    <!-- {appContext.model.getValue(`authRep.emailDetails[${emailIndex}].comments`)} -->
+                    <UX type="group">
+                        <UX type="row" ux-class="mt-2 mb-2">
+                            <UX type="column" width="4">
+                                <UX
+                                    type="text"
+                                    labelKey="email_address"
+                                    model="authRep.emailDetails[{emailIndex}].email"
+                                    validationRules="emailCheck"
+                                    errormessages='{{"emailCheck":"email_pattern_allowed"}}'
+                                />
+                            </UX>
+                            <UX type="column" width="4">
+                                <UX
+                                    type="text"
+                                    labelKey="comments"
+                                    model="authRep.emailDetails[{emailIndex}].emailComments"
+                                />
+                            </UX>
+                        </UX>
+                    </UX>
+                </UX>
+            </UX>
+            <UX
+                type="button"
+                className="authrep-page-details"
+                labelKey="add_additional_email"
+                click="{this.addEmailDetails}"
+            ></UX>
+        </UX>
+        <!-- End of enable/disable panel-->
+    </UX>
+</UX>

@@ -1,0 +1,15 @@
+description = "Nextgen Framework - Automate"
+
+dependencies {
+
+    api project(':ng-commons')
+    api project(':ng-logging')
+    api project(':ng-validator')
+    api project(':ng-persistence')
+
+    implementation "com.google.auto.service:auto-service:$AUTO_SERVICE"
+    implementation "com.squareup:javapoet:$JAVA_POET"
+
+    annotationProcessor "com.google.auto.service:auto-service:$AUTO_SERVICE"
+    annotationProcessor "org.projectlombok:lombok:$LOMBOK"
+}

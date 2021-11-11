@@ -1,0 +1,62 @@
+<UX type="page">
+    <UX type="section">
+        <UX type="card" body-class="p-0 m-0">
+            <UX type="section" ux-class="w-100 mb-4">
+                <UX
+                    type="header"
+                    size="4"
+                    id="contact_header"
+                    className="p-4 ux-bg-primary text-light rounded"
+                    labelKey="register_indv_summary_title"
+                >
+                </UX>
+                <UX linkWith="contact_header" position="right" type="tooltip">
+                    <UX type="section">
+                        Register Individual - Summary
+                    </UX>
+                </UX>
+            </UX>
+            <UX type="section" className="align-self-center container-md mb-4">
+                <UX type="section" className="align-self-center container-md mb-4">
+                    <UX
+                        type="dataTable"
+                        col-default-headers="PI,Name,SSN,Date of Birth,Gender,Alias Name(s),Client ID,Edit,Delete"
+                        col-data-keys="isPI,name,SSN,dateOfBirth,Gender,aliasName,clinetId,personId,isPI"
+                        sortable-col-names="Name,SSN,Date of Birth,Gender,Alias Name(s)"
+                        customContent="{{'PI':this.piCustomeColumn,'Delete':this.deleteCreation,'Edit':this.editCreation,'Alias Name(s)':this.splitAliasNames,'Gender':this.getGenderCustome}}"
+                        header-formatter="{{'PI':this.formetPeronHeader}}"
+                        datacollection="personCollection"
+                        keyfield="personId"
+                        pagination="default"
+                        hover="false"
+                        sortable-col-names="2"
+                        pagination-show-total="true"
+                        pagination-size-per-page="5"
+                        striped="true"
+                    >
+                    </UX>
+                </UX>
+            </UX>
+            <UX type="section" className="align-self-center container-md mb-4">
+                <UX type="section" className="align-self-center container-md mb-4">
+                    <UX type="buttonGroup" groupAlign="center">
+                        <UX
+                            type="button"
+                            preIconClass="fa fa-users"
+                            mode="link"
+                            click="{this.addIndividual}"
+                            labelKey="add_individua"
+                        ></UX>
+                    </UX> </UX
+            ></UX>
+        </UX>
+        <UXModule.NPCButtons
+            prevlabelKey="previous_Button"
+            cancellabelKey="exit_Button"
+            nextlabelKey="continue_button"
+            nextclick="{this.goToProgramSummary}"
+            prevclick="{this.goBack}"
+            cancelclick="{this.goToHomePage}"
+        ></UXModule.NPCButtons>
+    </UX>
+</UX>

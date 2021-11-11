@@ -1,0 +1,189 @@
+<UX type="page" ref-table-list="WEEKDAYCONTACTMETHOD">
+    <UX id="authrepSummary" type="collapsePanel">
+        <UX
+            id="authrepInfoHdr"
+            titleKey="AuthRep_Info_Hdr"
+            type="collapseSection"
+            editDoneMode="false"
+        >
+            <UX type="group" width="12">
+                <UX
+                    required
+                    id="firstName"
+                    inputMode="text"
+                    model="authRep.firstName"
+                    type="text"
+                    labelKey="Authrep_first"
+                    col-width="11"
+                    validationRules="charCheck"
+                    errormessages='{{"charCheck":"char_err_msg1"}}'
+                >
+                </UX>
+                <UX
+                    id="middleName"
+                    inputMode="text"
+                    model="authRep.middleName"
+                    type="text"
+                    labelKey="Authrep_middle"
+                    col-width="11"
+                    validationRules="charCheck"
+                    errormessages='{{"charCheck":"char_err_msg2"}}'
+                />
+                <UX
+                    required
+                    id="lastName"
+                    inputMode="text"
+                    model="authRep.lastName"
+                    type="text"
+                    labelKey="Authrep_last"
+                    col-width="11"
+                    validationRules="charCheck|minCharCheck"
+                    errormessages='{{"charCheck":"char_err_msg3","minCharCheck":"min_char_err"}}'
+                ></UX>
+            </UX>
+
+            <UX type="group" width="12">
+                <UX
+                    type="select"
+                    defaultOption="true"
+                    defaultOptionValue="{''}"
+                    id="authSuffix"
+                    ref-table="NAMESUFFIX"
+                    model="authRep.authSuffix"
+                    col-width="11"
+                    labelKey="Authrep_suffix"
+                />
+                <UX
+                    type="select"
+                    defaultOption="true"
+                    defaultOptionValue="{''}"
+                    id="reltnPrmyIndiv"
+                    ref-table="AUTHREPRELATIONTOINDIVIDUAL"
+                    model="authRep.reltnPrmyIndiv"
+                    col-width="11"
+                    labelKey="Authrep_Reltnshp_Prmy_Indiv"
+                />
+                <UX type="group"></UX>
+            </UX>
+        </UX>
+
+        <UX
+            id="authrepAddrHdr"
+            titleKey="AuthRep_Addr_Hdr"
+            type="collapseSection"
+            editDoneMode="false"
+        >
+            <UX type="group" width="12">
+                <UX
+                    id="authAddrLn1"
+                    inputMode="text"
+                    model="authRep.authAddrLn1"
+                    type="text"
+                    labelKey="Authrep_AddrLn1"
+                    col-width="11"
+                    validationRules="splCharCheck|splNumCheck"
+                    errormessages='{{"splCharCheck": "addr_charerr_msg1","splNumCheck": "addr_numerr_msg1"}}'
+                />
+                <UX
+                    id="authAddrLn2"
+                    inputMode="text"
+                    model="authRep.authAddrLn2"
+                    type="text"
+                    labelKey="Authrep_AddrLn2"
+                    col-width="11"
+                    validationRules="splCharCheck|splNumCheck"
+                    errormessages='{{"splCharCheck": "addr_charerr_msg2","splNumCheck": "addr_numerr_msg2"}}'
+                />
+                <UX
+                    id="authCity"
+                    inputMode="text"
+                    model="authRep.authCity"
+                    type="text"
+                    labelKey="Authrep_city"
+                    col-width="11"
+                    validationRules="cityCheck"
+                    errormessages='{{"cityCheck":"city_err_msg"}}'
+                />
+            </UX>
+
+            <UX type="group" width="12">
+                <UX
+                    type="select"
+                    defaultOption="true"
+                    defaultOptionValue="{''}"
+                    id="authState"
+                    ref-table="STATE"
+                    model="authRep.authState"
+                    col-width="11"
+                    labelKey="Authrep_state"
+                />
+                <UX
+                    id="authZipcode"
+                    inputMode="numeric"
+                    model="authRep.authZipcode"
+                    type="text"
+                    labelKey="Authrep_zipcode"
+                    col-width="11"
+                    maxLength="9"
+                    validationRules="zipCheck"
+                    errormessages='{{"zipCheck":"zip_numerr_msg"}}'
+                />
+                <UX type="group"></UX>
+            </UX>
+        </UX>
+
+        <UX
+            id="authrepContactHdr"
+            titleKey="AuthRep_Contact_Hdr"
+            type="collapseSection"
+            editDoneMode="false"
+        >
+            <UXModule.EditableDyna
+                datacollection="ARRAR.phoneCollection"
+                id="PhoneDyna"
+                validationFunctions="{this.ValidatePhoneDyna}"
+                sortableColumnNames="Phone Type,Phone Number,Extension,Comments"
+                dynaTableList="Dyna.dynaElementPhoneList"
+                columnDefaultHeader="Phone Type,Phone Number,Extension,Comments,Edit,Delete"
+                columnDataKeys="phnTypeCd,phnNum,phoneExtn,phnComments"
+                keyfield="phoneType"
+                pagination="default"
+                hover="{false}"
+                paginationShowTotal="true"
+                paginationSizePerPage="{5}"
+                striped="{true}"
+                addText="Add_Phone"
+                customFunction="{this.createCustomContent}"
+            >
+            </UXModule.EditableDyna>
+
+            <UXModule.EditableDyna
+                datacollection="ARRAR.contactCollection"
+                id="EmailDyna"
+                validationFunctions="{this.ValidateContactDyna}"
+                sortableColumnNames="Email,Comments"
+                dynaTableList="Dyna.dynaElementContactList"
+                columnDefaultHeader="Email,Comments,Edit,Delete"
+                columnDataKeys="email,emailComments"
+                keyfield="email"
+                pagination="default"
+                hover="{false}"
+                paginationShowTotal="true"
+                paginationSizePerPage="{5}"
+                striped="{true}"
+                addText="Add_Email"
+                }
+            >
+            </UXModule.EditableDyna>
+        </UX>
+    </UX>
+
+    <UXModule.NPCButtons
+        prevlabelKey="previous_Button"
+        cancellabelKey="exit_Button"
+        nextlabelKey="continue_button"
+        nextclick="{this.SubmitForm}"
+        prevclick="{this.goBack}"
+        cancelclick="{this.goToHomePage}"
+    ></UXModule.NPCButtons>
+</UX>

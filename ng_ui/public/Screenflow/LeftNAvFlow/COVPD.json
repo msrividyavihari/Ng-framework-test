@@ -1,0 +1,44 @@
+{
+    "data": {
+        "metadata": {
+            "COVSH": {
+                "title": {
+                    "en": "Notice Status"
+                }
+            },
+            "COVSR": {
+                "title": {
+                    "en": "Reports"
+                }
+            },
+            "COVSD": {
+                "title": {
+                    "en": "Search documents"
+                }
+            },
+            "COMCI": {
+                "title": {
+                    "en": "Generate Manual"
+                }
+            }
+        },
+        "navigation": {
+            "COVPC": {
+                "COMCI": [
+                    "COMCI"
+                ],
+                "COVSH":{
+                    "COVSH": [
+                        "COVSH"
+                    ]
+                },
+                "COVSR":{
+                    "COVSR": [
+                        "COVSR"
+                    ]
+                }
+			}
+        }
+    },
+    "status": "0"
+}

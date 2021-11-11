@@ -1,0 +1,424 @@
+<UX type="page" ref-table-list="PRINTMODE,CORRESPNAMES">
+    <UX type="section" ux-class="w-100 app-srch-hd-sec">
+        <UX
+            type="header"
+            size="4"
+            id="contact_header"
+            className="p-3 co-common-header"
+            labelKey="co_view_history_title"
+        >
+        </UX>
+    </UX>
+    <UX type="card" ux-class="w-100" body-class="p-0 m-0">
+        <UX type="card">
+            <UX size="4" type="header" labelKey="co_search_criteria" className="mb-5 srch-hdr" />
+            <UX type="section" className="outer-sec">
+                <UX type="section" className="search-sec">
+                    <UX
+                        type="radioGroup"
+                        radioStyle="card"
+                        model="viewHistoryData.searchCriteria"
+                        vertical-align="false"
+                        col-width="12"
+                        labelKey="empty_string"
+                    >
+                        <UX type="radioButton" labelKey="case" value="C" />
+                        <UX type="radioButton" labelKey="client_id" value="I" />
+                        <UX type="radioButton" labelKey="app" value="A" />
+                        <UX type="radioButton" labelKey="worker_name" value="E" />
+                        <UX type="radioButton" labelKey="worker_id" value="W" />
+                    </UX>
+                </UX>
+                <UX type="section" className="sr-txt-sec">
+                    <UX
+                        type="group"
+                        className="case-num"
+                        col-width="12"
+                        showIf="{$$viewHistoryData.searchCriteria==='C'}"
+                    >
+                        <UX
+                            type="group"
+                            flexGroup="true"
+                            flexDirection="row"
+                            flexWrap="false"
+                            flexAlign="start"
+                            flexJustify="start"
+                            childWidths="true"
+                        >
+                            <UX
+                                id="case_label"
+                                col-width="3"
+                                labelKey="case_pound"
+                                className="case-num-lbl co-lbl"
+                                type="label"
+                            />
+                            <UX
+                                id="caseNumber"
+                                model="viewHistoryData.caseNumber"
+                                labelKey="empty_string"
+                                col-width="6"
+                                className="ml-1 co-srch-txt"
+                                type="text"
+                                maxLength="9"
+                            />
+                        </UX>
+                    </UX>
+                    <UX
+                        type="group"
+                        className="marginauto"
+                        col-width="12"
+                        showIf="{$$viewHistoryData.searchCriteria==='I'}"
+                    >
+                        <UX
+                            type="group"
+                            flexGroup="true"
+                            flexDirection="row"
+                            flexWrap="false"
+                            flexAlign="start"
+                            flexJustify="start"
+                            childWidths="true"
+                        >
+                            <UX
+                                id="client_id_label"
+                                col-width="3"
+                                labelKey="client_id_pound"
+                                className="cl-id-lbl co-lbl"
+                                type="label"
+                            />
+                            <UX
+                                id="clientId"
+                                model="viewHistoryData.clientId"
+                                labelKey="textboxValue"
+                                col-width="6"
+                                className="ml-1 co-srch-txt"
+                                type="text"
+                            />
+                        </UX>
+                    </UX>
+                    <UX
+                        type="group"
+                        className="marginauto app-num-sec"
+                        col-width="12"
+                        showIf="{$$viewHistoryData.searchCriteria==='A'}"
+                    >
+                        <UX
+                            type="group"
+                            flexGroup="true"
+                            flexDirection="row"
+                            flexWrap="false"
+                            flexAlign="start"
+                            flexJustify="start"
+                            childWidths="true"
+                        >
+                            <UX
+                                id="appNumber_label"
+                                col-width="6"
+                                labelKey="app_pound"
+                                className="app-num-lbl co-lbl"
+                                type="label"
+                            />
+                            <UX
+                                id="appNumber"
+                                model="viewHistoryData.appNumber"
+                                labelKey="textboxValue"
+                                col-width="6"
+                                className="ml-1 co-srch-txt"
+                                type="text"
+                            />
+                        </UX>
+                    </UX>
+                    <UX
+                        type="group"
+                        className="marginauto"
+                        col-width="12"
+                        showIf="{$$viewHistoryData.searchCriteria==='E'}"
+                    >
+                        <UX
+                            type="group"
+                            flexGroup="true"
+                            flexDirection="row"
+                            flexWrap="false"
+                            flexAlign="start"
+                            flexJustify="start"
+                            childWidths="true"
+                        >
+                            <UX
+                                id="worker_name_label"
+                                col-width="5"
+                                labelKey="worker_name"
+                                className="wr-nm-lbl co-lbl"
+                                type="label"
+                            />
+                            <UX
+                                id="workerName"
+                                model="viewHistoryData.workerName"
+                                labelKey="textboxValue"
+                                col-width="6"
+                                className="ml-1 co-srch-txt"
+                                type="text"
+                            />
+                        </UX>
+                    </UX>
+                    <UX
+                        type="group"
+                        className="marginauto"
+                        col-width="12"
+                        showIf="{$$viewHistoryData.searchCriteria==='W'}"
+                    >
+                        <UX
+                            type="group"
+                            flexGroup="true"
+                            flexDirection="row"
+                            flexWrap="false"
+                            flexAlign="start"
+                            flexJustify="start"
+                            childWidths="true"
+                        >
+                            <UX
+                                id="worker_id_label"
+                                col-width="3"
+                                labelKey="worker_id"
+                                className="wr-id-lbl co-lbl"
+                                type="label"
+                            />
+                            <UX
+                                id="worker_id"
+                                model="viewHistoryData.workerId"
+                                labelKey="textboxValue"
+                                col-width="6"
+                                className="ml-1 co-srch-txt"
+                                type="text"
+                            />
+                        </UX>
+                    </UX>
+                </UX>
+                <UX type="section" className="dates-sec">
+                    <UX type="section" col-width="12" className="dates-sec-inner">
+                     <UX
+                            type="group"
+                            flexGroup="true"
+                            flexDirection="row"
+                            flexWrap="false"
+                            flexAlign="start"
+                            flexJustify="start"
+                            childWidths="true"
+                        >
+                            <UX
+                                id="printBegDt"
+                                model="viewHistoryData.printStartDate"
+                                type="date"
+                                maxDate="today"
+                                minDate="1990-01-01"
+                                col-width="6"
+                                labelKey="print_start_dt"
+                            />
+                            <UX
+                                id="printEndDt"
+                                model="viewHistoryData.printEndDate"
+                                type="date"
+                                maxDate="today"
+                                col-width="6"
+                                minDate="1990-01-01"
+                                labelKey="print_end_dt"\
+                                className="ml-1 co-srch-txt"
+                            />
+                        </UX>
+                         <UX
+                            type="group"
+                            flexGroup="true"
+                            flexDirection="row"
+                            flexWrap="false"
+                            flexAlign="start"
+                            flexJustify="start"
+                            childWidths="true"
+                        >
+                            <UX
+                                id="benefitMonBegDt"
+                                model="viewHistoryData.benefitMonStartDate"
+                                type="date"
+                                maxDate="today"
+                                minDate="1990-01-01"
+                                col-width="6"
+                                labelKey="benefit_mon_start_dt"
+                            />
+                            <UX
+                                id="benefitMonEndDt"
+                                model="viewHistoryData.benefitMonEndDate"
+                                type="date"
+                                maxDate="today"
+                                col-width="6"
+                                minDate="1990-01-01"
+                                labelKey="benefit_mon_end_dt"
+                                className="ml-1 co-srch-txt"
+                            />
+                        </UX>
+                        <UX
+                            type="group"
+                            flexGroup="true"
+                            flexDirection="row"
+                            flexWrap="false"
+                            flexAlign="start"
+                            flexJustify="start"
+                            childWidths="true"
+                        >
+                            <UX
+                                id="certBegDt"
+                                model="viewHistoryData.ccCertStartDate"
+                                type="date"
+                                maxDate="today"
+                                minDate="1990-01-01"
+                                col-width="6"
+                                labelKey="cc_cert_start_dt"
+                            />
+                            <UX
+                                id="certEndDt"
+                                model="viewHistoryData.ccCertEndDate"
+                                type="date"
+                                maxDate="today"
+                                col-width="6"
+                                minDate="1990-01-01"
+                                labelKey="cc_cert_end_dt"
+                                className="ml-1 co-srch-txt"
+                            />
+                        </UX>
+
+                        <UX
+                            type="group"
+                            flexGroup="true"
+                            flexDirection="row"
+                            flexWrap="false"
+                            flexAlign="start"
+                            flexJustify="start"
+                            childWidths="true"
+                        >
+                            <UX
+                                id="provider_id_label"
+                                col-width="6"
+                                labelKey="cc_provider_id"
+                                className="pr-id-lbl co-lbl"
+                                type="label"
+                            />
+                            <UX
+                                id="worker_id"
+                                model="viewHistoryData.ccProviderId"
+                                labelKey="textboxValue"
+                                col-width="6"
+                                className="ml-1 co-srch-txt"
+                                type="text"
+                            />
+                        </UX>
+                        <UX
+                            type="group"
+                            flexGroup="true"
+                            flexDirection="row"
+                            flexWrap="false"
+                            flexAlign="start"
+                            flexJustify="start"
+                            childWidths="true"
+                        >
+                            <UX
+                                id="print_mode_label"
+                                col-width="6"
+                                labelKey="print_mode"
+                                type="label"
+                            />
+                            <UX
+                                type="select"
+                                col-width="6"
+                                id="printMode"
+                                model="viewHistoryData.printMode"
+                                ref-table="PRINTMODE"
+                                labelKey="empty_string"
+                                className="ml-1 co-srch-txt"
+                                defaultOption="true"
+                                defaultOptionValue="{''}"
+                                optionValue=""
+                            />
+                        </UX>
+                        <UX
+                            type="group"
+                            flexGroup="true"
+                            flexDirection="row"
+                            flexWrap="false"
+                            flexAlign="start"
+                            flexJustify="start"
+                            childWidths="true"
+                        >
+                            <UX
+                                id="doc_title_label"
+                                col-width="6"
+                                labelKey="doc_title"
+                                type="label"
+                            />
+                            <UX
+                                type="select"
+                                col-width="6"
+                                id="docTitle"
+                                model="viewHistoryData.docTitle"
+                                ref-table="CORRESPNAMES"
+                                labelKey="empty_string"
+                                className="ml-1 co-srch-txt"
+                                defaultOption="true"
+                                defaultOptionValue="{''}"
+                            />
+                        </UX>
+                    </UX>
+                </UX>
+                <UX type="section" className="btn-sec ">
+                    <UX type="section" className="btn-sec-inner">
+                        <UX type="group" className="reset-img-ctn">
+                            <UX
+                                type="image"
+                                src="../icons/buttonResetScreen.png"
+                                className="reset-img"
+                                click="{this.resetForm}"
+                            />
+                        </UX>
+                        <UX type="group">
+                            <UX
+                                className="mt-5 co-srch-btn"
+                                mode="primary"
+                                size="small"
+                                type="button"
+                                align="center"
+                                click="{this.showTable}"
+                                labelKey="search"
+                            />
+                        </UX>
+                    </UX>
+                </UX>
+            </UX>
+            <UX type="section" className="dt-tbl-sec" showIf="{$$viewHistoryData.show}">
+                <UX size="{1}" type="lineBreak" />
+                <UX type="group">
+                    <UX type="row" col-width="12" className="border alignLineCenter" />
+                </UX>
+                <UX size="{1}" type="lineBreak" />
+                <UX type="group">
+                    <UX
+                        type="CustomeDataTable"
+                        col-default-headers="Client ID,Document Title,Print Date,Language,Print Mode,CC Provider Id,CC Cert Start Date,CC Cert End Date"
+                        col-data-keys="indvId,docName,printDt,languageCd,printMode,ccProviderId,ccProviderCertStartDt,ccProviderCertEndDt"
+                        datacollection="viewHistoryData.dataCollection"
+                        customContent="{{'Document Title':this.docTitleLink}}"
+                        keyfield="coReqSeq" 
+                        pagination="default"
+                        hover="false"
+                        sortable-col-names="2"
+                        pagination-show-total="true"
+                        rowSelection="single"
+                        pagination-size-per-page="5"
+                        striped="true"
+                        expandColumnPosition="right"
+                        expandMultiple="{false}"
+                        className="co-dt-tbl"
+                    />
+                </UX>
+
+            </UX>
+
+            </UX>
+            </UX>
+        </UX>
+    </UX>
+</UX>

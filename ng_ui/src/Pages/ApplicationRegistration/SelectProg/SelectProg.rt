@@ -1,0 +1,88 @@
+<UX type="page">
+    <UX type="section">
+        <UX <UX type="card" body-class="p-0 m-0">
+            <UX type="section" id="section0" ux-class="w-100 mb-0">
+                <UX
+                    type="header"
+                    size="4"
+                    id="regstrPrgmHdr"
+                    className="p-4 ux-bg-primary text-light rounded"
+                    labelKey="regstr_Prgm_title"
+                >
+                </UX>
+                <UX
+                    type="section"
+                    id="section1"
+                    className="align-self-center container-md mb-4 ml-3"
+                >
+                    <UX type="group" width="8">
+                        <UX
+                            required
+                            type="select"
+                            defaultOption="true"
+                            id="prgmSource"
+                            ref-table="APPMODE"
+                            model="regProgram.prgmSource"
+                            col-width="10"
+                            labelKey="prgm_source"
+                        />
+                        <UX
+                            type="select"
+                            defaultOption="true"
+                            id="prgmWaitlist"
+                            ref-table="YESNO"
+                            model="regProgram.prgmWaitlist"
+                            col-width="10"
+                            labelKey="prgm_waitlist"
+                        />
+                    </UX>
+                </UX>
+                <UX
+                    type="section"
+                    id="section1"
+                    className="align-self-center container-md mb-4 ml-3"
+                >
+                    <UX type="group" width="8">
+                        <UX type="group" width="10">
+                            <UX type="label" labelKey="prgm_selected" />
+                            <UX type="label">
+                                {AppContext.model.getValue('regProgram1.prgmList.prgmSelected')}
+                            </UX>
+                        </UX>
+                        <UX type="group" width="12">
+                            <UX type="label" labelKey="prgm_appln_recvd_date" />
+                            <UX type="label">
+                                {AppContext.model.getValue('regProgram1.prgmList.prgmApplnRecvdDate')}
+                            </UX>
+                        </UX>
+                    </UX>
+                </UX>
+                <UX
+                    type="section"
+                    id="section1"
+                    className="align-self-center container-md mb-4 ml-3"
+                >
+                    <UX type="group" width="8">
+                        <UX
+                            id="prgmSelectAll"
+                            model="regProgram.prgmSelectAll"
+                            type="checkbox"
+                            trueValue="true"
+                            falseValue="false"
+                            labelKey="prgm_chkbok_select"
+                        />
+                    </UX>
+                </UX>
+            </UX>
+        </UX>
+    </UX>
+    <UXModule.NPCButtons
+        prevlabelKey="previous_Button"
+        cancellabelKey="exit_Button"
+        nextlabelKey="continue_button"
+        nextclick="{this.goToNextPage}"
+        prevclick="{this.goBack}"
+        cancelclick="{this.goToHomePage}"
+    >
+    </UXModule.NPCButtons>
+</UX>

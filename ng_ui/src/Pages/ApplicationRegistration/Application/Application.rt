@@ -1,0 +1,169 @@
+<UX type="page" ref-table-list="WEEKDAYCONTACTMETHOD">
+  <UX type="collapsePanel" id="applicationInfo">
+    <UX type="collapseSection" editDoneMode="false" titleKey="application_info" id="application_info" doneShowIf="true">
+      <UX type="group" width="12">
+        <UX type="group" width="20">
+          <UX type="label" labelKey="date_and_time_registered" />
+          <UX type="para" height="10">
+          {AppContext.model.getValue('ARRAP.ArApplicationForAid.dateTimeRegistered') }
+          </UX>
+        </UX>
+        <UX id="recievedDate" model="ARRAP.ArApplicationForAid.appRecvdDt" type="date" maxDate="today"
+          minDate="1990-01-01" change="{this.validateRecievedDate}" labelKey="application_recieved_date" required
+          errormessages='{{"required":"dobDate.required"}}'>
+        </UX>
+        <UX type="group">
+          <UX defaultOption="true" defaultOptionValue="{''}" id="applicationSigned" labelKey="application_signed"
+            ref-table="YESNO" model="ARRAP.ArApplicationForAid.appSignedSw" type="select" />
+        </UX>
+        <UX type="group">
+          <UX defaultOption="true" defaultOptionValue="{''}" id="source" labelKey="source" ref-table="APPMODE"
+            model="ARRAP.ArApplicationForAid.appModeCd" type="select" required change="{this.checkSourceForAll}"
+            errormessages='{{"required":"source_required"}}' />
+        </UX>
+      </UX>
+      <UX type="group" width="12">
+        <UX id="telephonicConversationReference" labelKey="telephonic_conversation_reference"
+          model="ARRAP.ArApplicationForAid.teleConvRefNum" disabled="{$$ARRAP.ArApplicationForAid.appModeCd !== 'TP'}"
+          type="text">
+        </UX>
+        <UX id="UcmTxnNumber" labelKey="ucm_transaction_number" model="ARRAP.ArApplicationForAid.ucmTranNum"
+          disabled="{$$ARRAP.ArApplicationForAid.appModeCd !== 'PAP'}" type="text">
+        </UX>
+        <UX type="group" />
+        <UX type="group" />
+      </UX>
+    </UX>
+    <UX type="collapseSection" editDoneMode="false" titleKey="primary_individual" id="primary_individual"
+      lastSectionIf="false">
+
+      <UX type="group" width="12">
+        <UX id="firstName" model="ARRAP.DcIndv.firstName" required labelKey="firstName" type="text"
+          validationRules="alphaNumericCheck"
+          errormessages='{{"alphaNumericCheck":"only_alphabets_allowed", "required":"firstname_required"}}'>
+        </UX>
+        <UX id="middleName" model="ARRAP.DcIndv.midName" type="text" labelKey="middleName">
+        </UX>
+        <UX id="lastName" model="ARRAP.DcIndv.lastName" required labelKey="lastName" type="text"
+          validationRules="alphaNumericCheck"
+          errormessages='{{"alphaNumericCheck":"only_alphabets_allowed", "required":"lastname_required"}}'>
+        </UX>
+        <UX type="group">
+          <UX defaultOption="true" defaultOptionValue="{''}" id="suffix" labelKey="suffix" ref-table="NAMESUFFIX"
+            model="ARRAP.DcIndv.sufxName" type="select" />
+        </UX>
+      </UX>
+      <UX type="group" width="12">
+        <UX id="organizationName" model="ARRAP.DcIndv.organizationName" labelKey="organization_name" type="text"
+          validationRules="alphaNumericCheck" errormessages='{{"alphaNumericCheck":"only_alphabets_allowed"}}'>
+        </UX>
+        <UX id="organizationId" model="ARRAP.DcIndv.organizationId" labelKey="organization_id" type="text"
+          validationRules="alphaNumericCheck" errormessages='{{"alphaNumericCheck":"only_alphabets_allowed"}}'>
+        </UX>
+        <UX type="group">
+          <UX defaultOption="true" defaultOptionValue="{''}" id="language" labelKey="primary_language"
+            ref-table="PRIMARYLANGUAGE" model="ARRAP.DcIndv.primaryLang" type="select" />
+        </UX>
+        <UX id="otherLanguage" model="ARRAP.DcIndv.otherLanguage" labelKey="if_other_specify"
+          disabled="{$$ARRAP.DcIndv.primaryLang !== '1002'}" type="text">
+        </UX>
+      </UX>
+      <UX type="group" width="3">
+        <UX type="group">
+          <UX defaultOption="true" defaultOptionValue="{''}" id="accomodationRequired"
+            labelText="Has a disability/language barrier that will require accomodation?" ref-table="YESNO"
+            model="ARRAP.DcIndv.disabilityAccom" type="select" />
+        </UX>
+      </UX>
+      <UX type="group" width="12">
+        <UX id="multiSelect" model="ARRAP.DcIndv.communicationAsst" name="multiSelect" ref-table="ACCOMMODATIONTYPE"
+          placeholder="Select an Option" labelKey="type_of_accomodation" required="{false}" type="multiSelect"
+          disabled="{$$ARRAP.DcIndv.disabilityAccom !== 'Y'}">
+        </UX>
+        <UX id="otherAccomodation" model="ARRAP.DcIndv.otherAccomodation" type="text" labelKey="if_other_specify"
+          disabled="{!this.showOtherAccomodation($$ARRAP.DcIndv.communicationAsst)}">
+        </UX>
+        <UX defaultOption="true" defaultOptionValue="{''}" id="interpreterNeeded" labelText="Interpreter Needed?"
+          ref-table="YESNO" model="ARRAP.DcIndv.interpreterSw" optionLabel="text" optionValue="value" type="select">
+        </UX>
+        <UX defaultOption="true" defaultOptionValue="{''}" id="authRep"
+          labelText="Is there an Authorized Representative?" model="ARRAP.DcIndv.authRepSw" ref-table="YESNO"
+          type="select">
+        </UX>
+      </UX>
+
+    </UX>
+    <UX type="collapseSection" editDoneMode="false" titleKey="programs" id="programs" lastSectionIf="false">
+      <UX type="group" width="12">
+        <UX type="group">
+          <UX id="programs" model="ARRAP.ArAppProgram.programCd" type="checkboxGroup" vertical-align="true" required
+            errormessages='{{"required":"program_required"}}'>
+            <UX id="TANF" text="TANF" type="checkbox" value="TF" trueValue="true" falseValue="false"
+              change="{this.checkSourceForAll}" />
+            <UX id="Food Stamps" text="Food Stamps" type="checkbox" value="FS" trueValue="true" falseValue="false"
+              change="{this.checkSourceForAll}" />
+            <UX id="Medicaid" text="Medical Assistance" type="checkbox" value="MA" trueValue="true" falseValue="false"
+              change="{this.checkSourceForAll}" />
+            <UX id="ChildCare" text="Child Care" type="checkbox" value="CC" trueValue="true" falseValue="false"
+              change="{this.checkSourceForAll}" />
+            <UX id="SNAP" text="SNAP" type="checkbox" value="SP" trueValue="true" falseValue="false"
+              change="{this.checkSourceForAll}" />
+            <UX id="WIC" text="WIC" type="checkbox" value="WC" trueValue="true" falseValue="false"
+              change="{this.validateWic}" />
+          </UX>
+        </UX>
+      </UX>
+      <UX type="group" width="5">
+        <UX defaultOption="true" defaultOptionValue="{''}" id="disclosure"
+          labelText="Does applicant want to disclose their information with other programs?" ref-table="YESNO"
+          model="ARRAP.ArApplicationForAid.wicDisclosureSw" type="select"
+          errormessages='{{"required":"disclosure_required"}}'
+          required="{this.showDisclosure($$ARRAP.ArAppProgram.programCd)}"
+          showIf="{this.showDisclosure($$ARRAP.ArAppProgram.programCd)}" />
+      </UX>
+      <UX id="tanfProgram" showIf="{$$application.programs.tanfProgram === 'show'}" symbol="error" type="fieldError"
+        labelKey="program_tanf_error" />
+      <UX id="foodStampProgram" showIf="{$$application.programs.foodStampProgram === 'show'}" symbol="error"
+        type="fieldError" labelKey="program_foodstamp_error" />
+      <UX id="programsMismatch" errorType="error" type="fieldError" showIf="{$$application.programs.programError}"
+        labelKey="correct_combination">
+      </UX>
+
+
+    </UX>
+    <UX type="collapseSection" editDoneMode="false" titleKey="applicant_group_contact_info"
+      id="applicant_group_contact_info" lastSectionIf="false">
+      <UX type="group" width="6">
+        <UX type="group">
+          <UX defaultOption="true" defaultOptionValue="{''}" id="weekdayContactMethod"
+            labelText="Weekday contact method:" model="ARRAP.ArApplicationForAid.weekdayContMethSw"
+            ref-table="WEEKDAYCONTACTMETHOD" type="select" />
+        </UX>
+        <UX type="group">
+          <UX defaultOption="true" defaultOptionValue="{''}" id="weekdayContactTime" labelText="Weekday Contact Time:"
+            ref-table="CONTACTTIME" model="ARRAP.ArApplicationForAid.weekdayContTime" type="select" />
+        </UX>
+      </UX>
+
+      <UXModule.EditableDyna datacollection="ARRAP.phoneCollection" id="PhoneDyna"
+        validationFunctions={this.ValidatePhoneDyna} sortableColumnNames="Phone Type,Phone Number,Extension,Comments"
+        dynaTableList="Dyna.dynaElementPhoneList"
+        columnDefaultHeader="Phone Type,Phone Number,Extension,Comments,Edit,Delete"
+        columnDataKeys="phnTypeCd,phnNum,phoneExtn,phnComments" keyfield="phoneType" pagination="default"
+        hover="{false}" paginationShowTotal="true" paginationSizePerPage="{5}" striped="{true}" addText="Add_Phone"
+        customFunction={this.createCustomContent}>
+      </UXModule.EditableDyna>
+
+      <UXModule.EditableDyna datacollection="ARRAP.contactCollection" id="EmailDyna"
+        validationFunctions={this.ValidateContactDyna} sortableColumnNames="Email,Comments"
+        dynaTableList="Dyna.dynaElementContactList" columnDefaultHeader="Email,Comments,Edit,Delete"
+        columnDataKeys="email,emailComments" keyfield="email" pagination="default" hover="{false}"
+        paginationShowTotal="true" paginationSizePerPage="{5}" striped="{true}" addText="Add_Email" >
+      </UXModule.EditableDyna>
+    </UX>
+  </UX>
+  <UXModule.NPCButtons prevlabelKey="exit_button" cancellabelKey="exit_button" nextlabelKey="next_button"
+    cancelshowif="{false}" prevpreIconClass="fa fa-home" nextclick="{this.navigateToNextPage}"
+    cancelclick="{this.goToHomePage}"></UXModule.NPCButtons>
+</UX>
+</UX>

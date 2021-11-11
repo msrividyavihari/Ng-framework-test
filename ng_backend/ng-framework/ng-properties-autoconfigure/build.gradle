@@ -1,0 +1,12 @@
+description = 'Nextgen Framework - Properties Autoconfigure'
+
+dependencies {
+
+    implementation "org.springframework.boot:spring-boot:$SPRING_BOOT"
+    implementation "org.springframework.boot:spring-boot-autoconfigure:$SPRING_BOOT"
+
+    annotationProcessor "org.springframework.boot:spring-boot-autoconfigure-processor:$SPRING_BOOT"
+    annotationProcessor "org.springframework.boot:spring-boot-configuration-processor:$SPRING_BOOT"
+    annotationProcessor "org.projectlombok:lombok:$LOMBOK"
+
+}

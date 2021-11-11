@@ -1,0 +1,84 @@
+.custom-checkbox-blue input:checked ~ .ux-cb-state .icon {
+    color:white !important;
+}
+
+.custom-checkbox-blue input:checked ~ .ux-cb-state label::before {
+    border-color: #0088ff !important;
+    background-color: #0088ff !important;
+    color:white; 
+}
+
+.custom-checkbox-blue input[type=checkbox]:disabled ~ .ux-cb-state .icon {
+    color:white !important;
+}
+
+.custom-checkbox-blue input[type=checkbox]:disabled ~ .ux-cb-state {
+    color:white;
+}
+
+.custom-checkbox-blue input[type=checkbox]:disabled ~ .ux-cb-state label::before {
+    border-color: #000000 !important;
+    background-color: #000000 !important;
+    color:white !important;
+}
+
+.custom-checkbox-blue .ux-cb-state label::before {
+    border-radius: .25rem !important;
+    position: absolute !important;
+    top: -0.1rem !important;
+    display: block !important;
+    width: 1.5rem !important;
+    height: 1.5rem !important;
+    pointer-events: none !important;
+    content: "";
+    background-color: #fff !important;
+    border: #c6c9df solid 2px !important;
+}
+
+.custom-checkbox-blue .ux-cb-state label::after {
+    position: absolute;
+    top: .25rem;    
+    position: absolute !important;
+    top: -0.1rem !important;
+    display: block !important;
+    width: 1.5rem !important;
+    height: 1.5rem !important;
+    content: "";
+    background: no-repeat 50%/50% 50% !important;
+}
+
+.custom-checkbox-label::before {
+    top: 0rem !important;
+    display: block !important;
+    width: 1.5rem !important;
+    height: 1.5rem !important;
+}
+
+.custom-checkbox-label::after {
+    top: 0rem !important;
+    display: block !important;
+    width: 1.5rem !important;
+    height: 1.5rem !important;
+}
+
+.custom-checkbox-label {
+    padding-left: 8px !important;
+    padding-right: 20px !important;
+    position: initial;
+    display: inline-block;
+    font-weight: normal;
+    margin: 0;
+    text-indent: 1.5em;
+    min-width: calc(1em + 2px);
+    color: #0a1542;
+    font-family: Avenir Next LT Pro;
+    font-style: normal;
+    font-size: 1rem;
+    line-height: 40px;
+}
+
+.custom-checkbox input[type=checkbox]:disabled ~ label::before {
+    border-color: #5B6473 !important;
+    background-color: #5B6473 !important;
+    color:white !important;
+}

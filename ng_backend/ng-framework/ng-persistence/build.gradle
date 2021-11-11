@@ -1,0 +1,32 @@
+description = 'Nextgen Framework - Persistence'
+
+dependencies {
+
+    api project(':ng-commons')
+    api project(':ng-logging')
+
+    api "org.springframework.boot:spring-boot-starter-data-jpa:$SPRING_BOOT"
+    api 'com.microsoft.sqlserver:mssql-jdbc:6.4.0.jre8'
+    api "com.oracle.database.jdbc:ojdbc8:$ORACLE_DRIVER"
+    api "com.zaxxer:HikariCP:$HIKARI_CP"
+    api "com.querydsl:querydsl-jpa:$QUERY_DSL"
+
+    implementation "org.reflections:reflections:$REFLECTIONS"
+
+    implementation "commons-beanutils:commons-beanutils:$APACHE_COMMONS_BEAN_UTILS"
+    implementation "com.google.auto.service:auto-service:$AUTO_SERVICE"
+    implementation "com.squareup:javapoet:$JAVA_POET"
+
+
+    annotationProcessor "com.google.auto.service:auto-service:$AUTO_SERVICE"
+    annotationProcessor "com.querydsl:querydsl-apt:$QUERY_DSL:jpa"
+    annotationProcessor "org.springframework.boot:spring-boot-starter-data-jpa:$SPRING_BOOT"
+    annotationProcessor "org.projectlombok:lombok:$LOMBOK"
+
+    testRuntimeOnly 'com.h2database:h2'
+    testAnnotationProcessor "org.projectlombok:lombok:$LOMBOK"
+    testAnnotationProcessor 'com.deloitte.nextgen.framework:ng-persistence'
+
+    testImplementation 'org.hsqldb:hsqldb:2.4.1'
+
+}

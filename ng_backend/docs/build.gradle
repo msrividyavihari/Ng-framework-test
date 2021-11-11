@@ -1,0 +1,78 @@
+plugins {
+    id 'org.asciidoctor.jvm.gems' version '3.3.2'
+    id 'org.asciidoctor.jvm.revealjs' version '3.3.2'
+    id 'org.asciidoctor.jvm.convert' version '3.3.2'
+}
+
+apply plugin: 'java'
+
+version = '1.0.0-SNAPSHOT'
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+    jcenter()
+    ruby {
+        gems()
+    }
+}
+
+revealjs {
+    version = '3.1.0'
+
+    templateGitHub {
+        organisation = 'hakimel'
+        repository = 'reveal.js'
+        tag = '3.9.1'
+    }
+}
+
+asciidoctorRevealJs {
+    sourceDir file("src/docs/asciidoc")
+
+    baseDirFollowsSourceFile()
+
+    resources {
+        from("${sourceDir}/images") {
+            include '**'
+            into 'images'
+        }
+    }
+
+    attributes 'build-gradle': file('build.gradle'),
+            'source-highlighter': 'coderay',
+            'coderay-css': 'style',
+            'imagesdir': './images',
+            'toc': 'left',
+            'icons': 'font',
+            'setanchors': '',
+            'idprefix': 'slide-',
+            'idseparator': '-',
+            'docinfo': 'shared',
+            'revealjs_theme': 'black',
+            'revealjs_transition': 'linear',
+            'revealjs_history': 'true',
+            'revealjs_slideNumber': 'true'
+}
+
+asciidoctor {
+
+    baseDirFollowsSourceFile()
+
+    attributes  'build-gradle': file('build.gradle'),
+            'sourcedir': project.sourceSets.main.java.srcDirs[0],
+            'imagesdir': 'images',
+            'toc': 'left',
+            'stylesdir': 'stylesheet',
+            'stylesheet': 'style.css',
+            'coderay-css': 'style',
+            'source-highlighter': 'coderay',
+            'icons': 'font',
+            'setanchors': '',
+            'idprefix': '',
+            'idseparator': '-',
+            'docinfo': 'shared'
+}
+
+// alias
+//task asciidoctor(dependsOn: asciidoctorRevealJs)

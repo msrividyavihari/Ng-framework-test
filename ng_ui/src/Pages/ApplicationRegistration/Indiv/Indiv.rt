@@ -1,0 +1,118 @@
+<UX type="page">
+    <UX type="collapsePanel" id="applicationInfo">
+        <!--Search-->
+        <UX type="collapseSection" editDoneMode="false" titleKey="search_individual_info" id="search_individual_info"
+            modifyButtonKey="done_button_text" doneButtonkey="done_button_text" doneShowIf="true">
+
+            <UX type="section" className="alignCenter">
+                <UX type="section" width="16">
+                    <UX type="label" labelKey="inputSSN" />
+                </UX>
+                <UX type="section" width="16" className="padding24">
+                    <UX id="inputSsn" model="application.searchIndv.inputSSN" labelKey="" type="ssn" col-width="12" />
+                </UX>
+            </UX>
+
+            <UX type="section" className="alignCenter">
+                <UX type="section" width="16">
+                    <UX type="label" labelKey="clientId" />
+                </UX>
+                <UX type="section" width="16" className="padding25">
+                    <UX id="clientId" errormessages='{{"regex": "only_numeric_allowed"}}'
+                        validationRules="regex:/^[0-9]+$/" model="application.searchIndv.indvId" type="text"
+                        labelKey="" />
+                </UX>
+            </UX>
+
+
+            <UX type="section" className="buttonPaddingIn">
+                <UX type="button" buttonType="search_button_text" click="{this.searchSSN}">
+                    Search
+                </UX>
+            </UX>
+            <UX size={1} type="lineBreak" />
+
+        </UX>
+
+
+        <!--Individual Name-->
+        <UX type="collapseSection" editDoneMode="false" titleKey="individual_name" id="individual_name"
+            modifyButtonKey="done_button_text" doneButtonkey="done_button_text" doneShowIf="true">
+
+            <UX type="group" width="12">
+                <UX id="firstName" model="application.individual.firstName" required labelKey="firstName" type="text"
+                    validationRules="charCheck" errormessages='{{"charCheck":"char_err_msg"}}' />
+
+                <UX id="middleName" model="application.individual.middleName" type="text" labelKey="middleName"
+                    validationRules="charCheck" errormessages='{{"charCheck":"char_err_msg"}}' />
+
+                <UX id="lastName" model="application.individual.lastName" required labelKey="lastName" type="text"
+                    validationRules="charCheck" errormessages='{{"charCheck":"char_err_msg"}}' />
+
+                <UX type="group">
+                    <UX defaultOption="true" id="suffix" labelKey="suffix" ref-table="NAMESUFFIX"
+                        model="application.individual.suffix" type="select" />
+                </UX>
+            </UX>
+        </UX>
+        <!--Demographic Information-->
+        <UX type="collapseSection" editDoneMode="false" titleKey="demographic_information" id="demographic_information"
+            modifyButtonKey="PersonFillingOuthisForm_edit" doneButtonkey="PersonFillingOuthisForm_done"
+            lastSectionIf="false">
+
+            <UX type="group" width="12">
+
+                <UX defaultOption="true" defaultOptionValue="{''}" id="gender" labelKey="gender" ref-table="GENDER"
+                    model="application.individual.genderCd" type="select" change="{this.checkBlur}" required />
+
+                <UX id="dob" model="application.info.dob" type="date" maxDate="today" minDate="1990-01-01"
+                    change="{this.validateDateOfBirth}" labelKey="dateOfBirth" required
+                    errormessages='{{"required":"dateOfBirthDate.required"}}' />
+
+
+                <UX id="ssn" model="application.individual.ssn" labelKey="ssn" type="ssn" />
+                <UX defaultOption="true" id="raceCd" labelKey="race" ref-table="INSDXRACE"
+                    placeholder="Select an Option" type="multiSelect" click="{this.checkBlur}" required />
+
+            </UX>
+
+            <UX type="group" width="12">
+
+                <UX defaultOption="true" id="ethnicity" labelKey="ethnicity" ref-table="ETHNICITY"
+                    model="application.individual.ethnicityCd" type="select" />
+                <UX defaultOption="true" id="language" labelKey="primary_language" ref-table="PRIMARYLANGUAGE"
+                    model="application.individual.language" type="select" />
+
+                <UX id="otherLanguage" model="application.individual.otherLanguage" labelKey="if_other_specify"
+                    disabled="{$$application.individual.language !== '1002'}" type="text" />
+                <UX type="group"></UX>
+            </UX>
+
+            <!--Language -->
+
+        </UX>
+
+        <UX type="collapseSection" editDoneMode="false" titleKey="other_information" id="other_information"
+            modifyButtonKey="PersonFillingOuthisForm_edit" doneButtonkey="PersonFillingOuthisForm_done"
+            lastSectionIf="false">
+
+            <UX type="group" width="12">
+                <UX defaultOption="true" id="hasEBTCard" labelText="Has an EBT Card?" ref-table="YESNO"
+                    model="application.individual.hasEbtCard" type="select" />
+
+                <UX defaultOption="N" id="alias" labelText="Do you want to create an alias or does an alias exists?"
+                    ref-table="YESNO" model="application.individual.hasAlias" type="select" />
+
+                <UX defaultOption="N" id="alias" labelText="Does individual wish to register to vote?" ref-table="YESNO"
+                    model="application.individual.registerVote" type="select" />
+            </UX>
+        </UX>
+    </UX>
+    <!--<UX type="button" click="{this.resetForm}">Reset</UX>
+        <UX type="button" buttonType="submit" click="{this.navigateToFileClearance}" mode="primary" align="right">
+        Continue</UX> -->
+    <UXModule.NPCButtons prevlabelKey="previous_Button" cancellabelKey="exit_Button" nextlabelKey="continue_button"
+        nextclick="{this.navigateToNextPage}" prevclick="{this.goBack}" cancelclick="{this.goToHomePage}">
+    </UXModule.NPCButtons>
+</UX>
+</UX>

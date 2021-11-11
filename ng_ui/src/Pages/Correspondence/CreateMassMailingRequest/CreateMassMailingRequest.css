@@ -1,0 +1,94 @@
+.padding15{
+    padding-top: 15% !important;
+}
+.padding17{
+    padding-left: 17rem;
+}
+.align-left{
+    padding-left: 5px;
+}
+.co-common-header {
+    font-size: 2.75rem;
+    font-weight: 600;
+}
+.co-lbl{
+    margin-bottom: 0;
+    margin-top: 0.35rem;
+    margin-right: 2%;
+    font-size: 1rem;
+}
+.marginauto{
+    margin: 0 auto;
+}
+.alignCenter{
+    align-items: center !important;
+}
+.displayblock{
+    display: block !important;
+}
+.displayinlineblock{
+    display: inline-block !important;
+}
+.search-sec,.sr-txt-sec {
+    margin-left: 6%;
+}
+.srch-hdr{
+    margin-bottom: 1rem !important;
+}
+.co-srch-hdr{
+    margin-bottom: 0.25rem !important;
+}
+.dates-sec-inner {
+    margin-left: 6%;
+}
+button.co-srch-btn{
+    margin-top: 5px !important;
+    margin-left: 38%;
+}
+button.co-nxt-btn{
+    margin-top: 5px !important;
+    margin-left: 49%;
+}
+.reset-img {
+    margin-left: 5%;
+}
+.co-srch-txt{
+    margin-left: -3% !important;
+}
+.flex-align-center{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.outer-sec {
+    padding-left: 15%;
+}
+.co-dt-tbl tr td {
+    font-size: 0.875rem !important;
+}
+.fr-txt-sec {
+    margin-left: 7%;
+}
+.co-fr-btn {
+    margin-left: 46% !important;
+}
+.sav-can-btn {
+    float: right;
+    margin-right: 7%;
+    margin-top: -4%;
+}
+.co-text-label{
+    margin-left: 3px;
+    margin-top: 25px;
+}
+.label{
+    font-size: 0.5rem;
+    width: 80%;
+}
+.checkbox-label{
+    margin-left: 40px;
+    margin-top: 19px;
+}
+.txt-sec{
+    margin-top: 20px;
+}

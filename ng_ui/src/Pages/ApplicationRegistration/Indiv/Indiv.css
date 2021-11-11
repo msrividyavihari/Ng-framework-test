@@ -1,0 +1,13 @@
+.alignCenter{
+    align-items: center;
+    display: inline-flex;
+}
+.padding25{
+    padding-left: 25rem;
+}
+.padding24{
+    padding-left: 24rem;
+}
+.buttonPaddingIn{
+      text-align-last: center;
+}

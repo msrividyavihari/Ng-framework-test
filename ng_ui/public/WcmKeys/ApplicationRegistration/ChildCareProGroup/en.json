@@ -1,0 +1,28 @@
+
+{
+    "ChildCareProGroup_title":"Child Care Priority Group - Details",
+    "CHLD_HDR": "PRIORITY GROUP INFORMATION",
+    "CHLD_APPLN_PRTY_GRP" : "Application meets priority group status or is an existing CAPS family?",
+    "CHLD_DFCS_STAT" : "DFCS Custody:",
+    "CHLD_WITH_DISABL" : "Children with Disabilities:",
+    "CHLD_PROTCT_SVC" : "Protective Services:",
+    "CHLD_GA_PRE_K" :"Georgia's Pre-K:",
+    "CHLD_FMLIES_DOMES_VIOL" :"Families Experiencing Domestic Violence:",
+    "CHLD_FMLIES_LACK" :"Families who Lack Fixed, regular and Adequate Housing:",
+    "CHLD_FMLIES_NTRL_DISTR" :"Families Experiencing a Natural Disaster:",
+    "CHLD_GRNDPARNT_RASIE_GRNDCHILD" :"Grandparents Raising Grandchildren:",
+    "CHLD_MIN_PARENT" :"Minor Parent:",
+    "CHLD_TANF" :"TANF:",
+    "CHLD_LOW_INCME" :"Very Low Income:",
+    "CHLD_GRNT_TRANST" :"Grant Transition:",
+    "CHLD_NO_PRTY_GRP" :"No Priority Group:",
+    "CHLD_TCC_CASE" :"TCC Case:",
+    "CHLD_ADDR_INFO" : "ADDITIONAL INFORMATION",
+    "CHLD_RESRC_EXCESS" : "Does this applicant group own resources in excess of $ 1 million?",
+    "CHLD_CONT" : "Continue",
+    "next_button": "Continue",
+    "previous_Button": "Back",
+    "exit_Button": "Cancel"
+
+
+}
